@@ -27,7 +27,7 @@ function generateAdminPage() {
 
           <div>
             <label class="label block text-[11px] text-faint mb-1.5 uppercase tracking-wider">Username or Email</label>
-            <input id="login-username" type="text" autocomplete="username" value="parekhhyash" required class="w-full rounded-xl border border-line-strong bg-bg px-4 py-3 text-[14px] text-fg outline-none transition-colors focus:border-fg" placeholder="Username" />
+            <input id="login-username" type="text" autocomplete="username" value="" required class="w-full rounded-xl border border-line-strong bg-bg px-4 py-3 text-[14px] text-fg outline-none transition-colors focus:border-fg" placeholder="Username" />
           </div>
 
           <div>
@@ -90,7 +90,7 @@ function generateAdminPage() {
 
           <!-- User Badge & Logout -->
           <div class="flex items-center gap-2">
-            <span class="label text-[12px] text-muted hidden md:inline">User: <strong id="admin-user-display" class="text-fg">parekhhyash</strong></span>
+            <span class="label text-[12px] text-muted hidden md:inline">User: <strong id="admin-user-display" class="text-fg">Admin</strong></span>
             <button id="btn-admin-logout" type="button" class="label cursor-pointer rounded-full border border-line-strong px-3.5 py-1.5 text-[12px] text-muted transition-colors hover:border-fg hover:text-fg">
               Sign Out
             </button>
@@ -697,7 +697,7 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
         computedLocal === '443b91a662495949cd66c2ec0fa119ba3785b1f586d9c3c196fb6efc8dd36f09' || // yash@spit2027
         computedLocal === '3440d464349a27f212ae4e92761c0b2e98d086e6c5652fb5d52626d4e46aee58'    // spit2027
       ) {
-        return { success: true, user: cleanUser || 'parekhhyash' };
+        return { success: true, user: cleanUser || 'Admin' };
       }
 
       return { success: false, error: 'Invalid username or password. Please try again.' };

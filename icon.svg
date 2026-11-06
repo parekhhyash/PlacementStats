@@ -1,6 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="7 6.5 19 19">
-  <!-- The P alone, no tile: near-black on light browser tabs, light on dark ones. Shapes as in src/lib/brand.ts. -->
-  <style>path{fill:#111}@media (prefers-color-scheme:dark){path{fill:#ededed}}</style>
-  <path d="M9 7H13.5V25H9Z"/>
-  <path d="M9 7H24V15L19 20H9Z M13.5 11.5V15.5H17.14L19.5 13.14V11.5Z" fill-rule="evenodd"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="p27-tile-fill" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#262626"/>
+      <stop offset="0.6" stop-color="#0b0b0b"/>
+    </linearGradient>
+    <linearGradient id="p27-tile-rim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.32"/>
+      <stop offset="0.55" stop-color="#fff" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="s-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#d4d4d8"/>
+    </linearGradient>
+  </defs>
+  <path d="M7 0H32V25L25 32H0V7Z" fill="url(#p27-tile-fill)" stroke="url(#p27-tile-rim)" stroke-width="1"/>
+  <path d="M22.5 11C22.5 8.6 20.2 6.8 16 6.8C11.5 6.8 9.5 8.8 9.5 11.5C9.5 15.6 22.5 14.5 22.5 20.2C22.5 23.2 19.8 25.2 16 25.2C11.2 25.2 9.5 22.8 9.5 20.2" fill="none" stroke="url(#s-grad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

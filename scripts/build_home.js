@@ -152,11 +152,7 @@ function generateHomePage() {
         </div>
       </div>
       <div class="mt-10">
-        <a id="home-branch-stat-link" class="group mb-8 grid gap-2 border-y border-line py-6 transition-colors hover:bg-panel sm:grid-cols-[auto_1fr] sm:items-baseline sm:gap-8" href="/branches/">
-          <!-- Rendered dynamically -->
-        </a>
-
-        <div id="home-top-hiring-companies" class="mt-6 grid gap-4">
+        <div id="home-top-hiring-companies" class="grid gap-4">
           <!-- Rendered dynamically -->
         </div>
       </div>
@@ -563,18 +559,7 @@ function generateHomePage() {
       }
     }
 
-    // 7. Branch stat link & top hiring companies
-    const branchStatLink = document.getElementById('home-branch-stat-link');
-    if (branchStatLink) {
-      branchStatLink.href = is2028 ? '/branches/?batch=2028' : '/branches/';
-      branchStatLink.innerHTML = \`
-        <span class="num font-display text-[clamp(44px,5vw,72px)] leading-none tracking-[-0.05em] text-fg">\${batch.stats.placementPercentage}<span class="text-muted">+</span></span>
-        <span class="text-[17px] text-muted">
-          <span class="text-fg">\${batch.stats.studentsPlaced} selections</span> across all 4 engineering branches at SPIT. <span class="link-underline text-fg">See branch comparison →</span>
-        </span>
-      \`;
-    }
-
+    // 7. Top hiring companies
     const topHiringCompanies = document.getElementById('home-top-hiring-companies');
     if (topHiringCompanies) {
       if (is2028) {
