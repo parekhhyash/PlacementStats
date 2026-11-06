@@ -144,7 +144,7 @@
           <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r max-lg:col-span-2 max-lg:!border-r-0">
             <dt class="order-2 mt-2 text-muted">Average, full-time only</dt>
             <dd id="stat-avg-ft" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">₹14.1<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
-            <dd id="stat-avg-ft-sub" class="label order-3 mt-1 text-[11px] text-faint">Median ₹13.5 LPA · 225 offers in all</dd>
+            <dd id="stat-avg-ft-sub" class="label order-3 mt-1 text-[11px] text-faint">Median ₹13.5 LPA · 228 offers in all</dd>
           </div>
           <style>@media (min-width:1024px){dl[style*="--cols"]{grid-template-columns:repeat(var(--cols),minmax(0,1fr))}}</style>
         </dl>
@@ -404,7 +404,7 @@
       if (statMedCtc) statMedCtc.innerHTML = '₹13<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
       if (statMedCtcSub) statMedCtcSub.textContent = 'Range ₹8.23–33.0 LPA';
       if (statAvgFt) statAvgFt.innerHTML = '₹14.1<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
-      if (statAvgFtSub) statAvgFtSub.textContent = 'Median ₹13.5 LPA · 225 offers in all';
+      if (statAvgFtSub) statAvgFtSub.textContent = 'Median ₹13.5 LPA · 228 offers in all';
     }
 
     const listEl = document.getElementById('companies-list');
@@ -489,8 +489,13 @@
         return 0;
       }
 
+      function getCompanyTotalOffers(c) {
+        if (c.noDetailsAvailable) return 0;
+        return c.out?.students || (c.roles ? c.roles.reduce((a, r) => a + (r.count || 0), 0) : 0);
+      }
+
       if (sort === 'placed') {
-        filtered.sort((a, b) => (b.out?.students || 0) - (a.out?.students || 0));
+        filtered.sort((a, b) => getCompanyTotalOffers(b) - getCompanyTotalOffers(a));
       } else if (sort === 'pay') {
         filtered.sort((a, b) => getCompanySortPay(b) - getCompanySortPay(a));
       } else if (sort === 'name') {
@@ -550,21 +555,69 @@
         if (isNoDetails) {
           offersMain = '—';
           offersSub = 'Awaiting data';
-        } else if (c.out && c.out.fulltimeOffers && c.out.internships) {
-          offersMain = `${c.out.fulltimeOffers} full-time`;
-          offersSub = `${c.out.internships} internships`;
-        } else if (c.out && c.out.fulltimeOffers) {
-          offersMain = `${c.out.fulltimeOffers} full-time`;
-          offersSub = '&nbsp;';
-        } else if (c.out && c.out.internships) {
-          offersMain = '—';
-          offersSub = `${c.out.internships} internships`;
-        } else if (c.out && c.out.students) {
-          offersMain = `${c.out.students} placed`;
-          offersSub = '&nbsp;';
-        } else if (c.status) {
-          offersMain = c.status;
-          offersSub = '&nbsp;';
+        } else {
+          const ftOffers = c.out?.fulltimeOffers || 0;
+          const internOffers = c.out?.internships || 0;
+          const totalStudents = c.out?.students || 0;
+
+          let roleFt = 0;
+          let roleIntern = 0;
+          let roleBoth = 0;
+
+          if (c.roles && c.roles.length > 0) {
+            c.roles.forEach(r => {
+              const t = (r.type || '').toLowerCase();
+              const cnt = r.count || 0;
+              if (t === 'both' || t === 'internship+ppo' || t.includes('ppo')) {
+                roleBoth += cnt;
+              } else if (t === 'internship' || t === 'intern') {
+                roleIntern += cnt;
+              } else if (t === 'fulltime' || t === 'ft') {
+                roleFt += cnt;
+              } else {
+                roleFt += cnt;
+              }
+            });
+          }
+
+          const totalOffersCount = totalStudents || (roleFt + roleIntern + roleBoth) || Math.max(ftOffers, internOffers);
+
+          if (totalOffersCount > 0) {
+            offersMain = String(totalOffersCount);
+
+            if (roleFt > 0 && roleIntern > 0 && roleBoth === 0) {
+              offersSub = roleFt + ' full-time · ' + roleIntern + ' intern';
+            } else if (roleFt > 0 && roleBoth > 0 && roleIntern === 0) {
+              offersSub = roleFt + ' full-time · ' + roleBoth + ' intern/PPO';
+            } else if (roleIntern > 0 && roleBoth > 0 && roleFt === 0) {
+              offersSub = roleIntern + ' intern · ' + roleBoth + ' intern/PPO';
+            } else if (roleFt > 0 && roleIntern > 0 && roleBoth > 0) {
+              offersSub = roleFt + ' FT · ' + roleIntern + ' intern · ' + roleBoth + ' both';
+            } else if (roleBoth > 0 && roleFt === 0 && roleIntern === 0) {
+              if (c.offers && c.offers.includes('ppo')) {
+                offersSub = roleBoth + ' intern + PPO';
+              } else {
+                offersSub = roleBoth + ' full-time / intern';
+              }
+            } else if (roleFt > 0 && roleIntern === 0 && roleBoth === 0) {
+              offersSub = roleFt + ' full-time';
+            } else if (roleIntern > 0 && roleFt === 0 && roleBoth === 0) {
+              offersSub = roleIntern + ' intern';
+            } else if (ftOffers > 0 && internOffers > 0 && ftOffers !== internOffers) {
+              offersSub = ftOffers + ' full-time · ' + internOffers + ' intern';
+            } else if (ftOffers > 0 && internOffers === 0) {
+              offersSub = ftOffers + ' full-time';
+            } else if (internOffers > 0 && ftOffers === 0) {
+              offersSub = internOffers + ' intern';
+            } else if (ftOffers > 0 && ftOffers === internOffers) {
+              offersSub = ftOffers + (c.offers?.includes('ppo') ? ' intern + PPO' : ' full-time / intern');
+            } else {
+              offersSub = totalOffersCount + ' offers';
+            }
+          } else if (c.status) {
+            offersMain = c.status;
+            offersSub = '&nbsp;';
+          }
         }
 
         const logoHtml = c.logo 
@@ -593,9 +646,9 @@
                   <span class="label block text-[11px] text-faint group-hover:text-bg/60">${paySubtitle}</span>
                 `}
               </span>
-              <span class="group-hover:text-bg max-lg:col-span-2 max-lg:row-start-3 max-lg:flex max-lg:gap-4 ${(!hasOffers && !c.status && !isNoDetails) ? 'max-lg:hidden' : ''}">
-                <span class="num block text-[15px]">${offersMain}</span>
-                <span class="label block text-[11px] text-faint group-hover:text-bg/60">${offersSub}</span>
+              <span class="group-hover:text-bg max-lg:col-span-2 max-lg:row-start-3 max-lg:flex max-lg:items-baseline max-lg:gap-2.5 ${(!hasOffers && !c.status && !isNoDetails) ? 'max-lg:hidden' : ''}">
+                <span class="num block text-[15px] font-medium">${offersMain}</span>
+                <span class="label block text-[11px] text-faint group-hover:text-bg/60 normal-case">${offersSub}</span>
               </span>
               <span class="label truncate text-muted group-hover:text-bg max-lg:hidden">${c.branches || 'All branches'}</span>
             </a>
