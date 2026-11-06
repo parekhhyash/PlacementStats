@@ -151,49 +151,83 @@ export const timelineData2028 = {
   summary: {
     internshipDrives: 5,
     finalYearDrives: 1,
-    busiestMonth: "Oct 2026 (4 drives)",
-    medianWaitDays: "10 days"
+    busiestMonth: "Oct 2026 (4 drives)"
   },
   months: [
-    { label: "Aug 2026", count: 0, intern: 0, fulltime: 0, ppo: 0 },
-    { label: "Sep 2026", count: 0, intern: 0, fulltime: 0, ppo: 0 },
-    { label: "Oct 2026", count: 4, intern: 3, fulltime: 1, ppo: 0 },
-    { label: "Nov 2026", count: 1, intern: 1, fulltime: 0, ppo: 0 }
+    { label: "Aug '26", count: 0, intern: 0, fulltime: 0, ppo: 0 },
+    { label: "Sep '26", count: 0, intern: 0, fulltime: 0, ppo: 0 },
+    { label: "Oct '26", count: 4, intern: 3, fulltime: 1, ppo: 0 },
+    { label: "Nov '26", count: 1, intern: 1, fulltime: 0, ppo: 0 }
   ],
   events: [
     {
       date: "04 Nov 2026",
+      displayDate: "4 Nov",
+      monthGroup: "Nov 2026",
+      timestamp: 1793836800000,
       company: "Russell Investments",
+      slug: "russell-investments",
       type: "internship",
+      typeLabel: "Internship Only",
       role: "Technology & Investment Research Intern",
+      offers: 5,
+      pay: "Stipend ₹60,000/mo",
       status: "5 selections confirmed at ₹60,000/month"
     },
     {
       date: "31 Oct 2026",
+      displayDate: "31 Oct",
+      monthGroup: "Oct 2026",
+      timestamp: 1793491200000,
       company: "IBM",
+      slug: "ibm",
       type: "internship",
+      typeLabel: "Internship Only",
       role: "Cloud & Cognitive Software Intern",
+      offers: 5,
+      pay: "Stipend ₹40,000/mo",
       status: "5 selections confirmed at ₹40,000/month"
     },
     {
       date: "28 Oct 2026",
+      displayDate: "28 Oct",
+      monthGroup: "Oct 2026",
+      timestamp: 1793232000000,
       company: "General Mills",
+      slug: "general-mills",
       type: "internship",
+      typeLabel: "Internship + PPO",
       role: "Digital & Technology Intern",
+      offers: 6,
+      pay: "Stipend ₹45,000/mo",
       status: "6 selections confirmed at ₹45,000/month"
     },
     {
       date: "25 Oct 2026",
+      displayDate: "25 Oct",
+      monthGroup: "Oct 2026",
+      timestamp: 1792972800000,
       company: "Mastercard",
-      type: "internship",
+      slug: "mastercard",
+      type: "ppo",
+      typeLabel: "Internship + PPO",
       role: "Software Engineering Intern",
+      offers: 9,
+      pay: "Stipend ₹50,000/mo",
       status: "9 selections confirmed at ₹50,000/month (PPO pathway)"
     },
     {
       date: "20 Oct 2026",
+      displayDate: "20 Oct",
+      monthGroup: "Oct 2026",
+      timestamp: 1792540800000,
       company: "Barclays",
+      slug: "barclays",
       type: "fulltime",
+      typeLabel: "Summer Internship & Graduate Developer",
       role: "Summer Internship & Technology Developer",
+      offers: 25,
+      pay: "Stipend ₹75k/mo · CTC 15.05 LPA",
       status: "25 total offers (16 Interns @ ₹75k/mo + 9 Dev @ ₹15.05 LPA)"
     }
   ]
