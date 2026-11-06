@@ -148,31 +148,36 @@
       </section>
 
       <div class="wrap">
-        <dl class="grid grid-cols-2 border-t border-line" style="--cols:5">
+        <dl class="grid grid-cols-2 border-t border-line" style="--cols:6">
+          <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
+            <dt class="order-2 mt-2 text-muted">Total offers</dt>
+            <dd id="stat-total-offers" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">236</dd>
+            <dd id="stat-total-offers-sub" class="label order-3 mt-1 text-[11px] text-faint">Across all selections</dd>
+          </div>
           <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
             <dt class="order-2 mt-2 text-muted">Offered internships</dt>
-            <dd id="stat-internships" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">23</dd>
-            <dd id="stat-internships-sub" class="label order-3 mt-1 text-[11px] text-faint">19 with a PPO path</dd>
+            <dd id="stat-internships" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">34</dd>
+            <dd id="stat-internships-sub" class="label order-3 mt-1 text-[11px] text-faint">21 with a PPO path</dd>
           </div>
           <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
             <dt class="order-2 mt-2 text-muted">Hired full-time</dt>
-            <dd id="stat-fulltime" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">17</dd>
-            <dd id="stat-fulltime-sub" class="label order-3 mt-1 text-[11px] text-faint">11 offered both</dd>
+            <dd id="stat-fulltime" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">32</dd>
+            <dd id="stat-fulltime-sub" class="label order-3 mt-1 text-[11px] text-faint">29 offered both</dd>
           </div>
           <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
             <dt class="order-2 mt-2 text-muted">Average CTC</dt>
             <dd id="stat-avg-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">₹14.06<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
-            <dd id="stat-avg-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">29 drives with selections</dd>
+            <dd id="stat-avg-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">30 drives with selections</dd>
           </div>
           <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
             <dt class="order-2 mt-2 text-muted">Median CTC</dt>
             <dd id="stat-med-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">₹13<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
             <dd id="stat-med-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">Range ₹8.23–33.0 LPA</dd>
           </div>
-          <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r max-lg:col-span-2 max-lg:!border-r-0">
+          <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
             <dt class="order-2 mt-2 text-muted">Average, full-time only</dt>
             <dd id="stat-avg-ft" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">₹14.1<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
-            <dd id="stat-avg-ft-sub" class="label order-3 mt-1 text-[11px] text-faint">Median ₹13.5 LPA · 228 offers in all</dd>
+            <dd id="stat-avg-ft-sub" class="label order-3 mt-1 text-[11px] text-faint">Median ₹13.5 LPA · 236 offers in all</dd>
           </div>
           <style>@media (min-width:1024px){dl[style*="--cols"]{grid-template-columns:repeat(var(--cols),minmax(0,1fr))}}</style>
         </dl>
@@ -393,7 +398,24 @@
       badgeEl.textContent = `Companies · SPIT Class of ${batch.year}`;
     }
 
+    function calculateOffers(compList) {
+      let total = 0;
+      compList.forEach(c => {
+        if (c.noDetailsAvailable) return;
+        if (c.out && typeof c.out.students === 'number' && c.out.students > 0) {
+          total += c.out.students;
+        } else if (c.roles && Array.isArray(c.roles) && c.roles.length > 0) {
+          total += c.roles.reduce((acc, r) => acc + (r.count || 0), 0);
+        } else if (c.out && (typeof c.out.fulltimeOffers === 'number' || typeof c.out.internships === 'number')) {
+          total += Math.max(c.out.fulltimeOffers || 0, c.out.internships || 0);
+        }
+      });
+      return total;
+    }
+
     // Populate Top KPI Summary Stats
+    const statTotalOffers = document.getElementById('stat-total-offers');
+    const statTotalOffersSub = document.getElementById('stat-total-offers-sub');
     const statInternships = document.getElementById('stat-internships');
     const statInternshipsSub = document.getElementById('stat-internships-sub');
     const statFulltime = document.getElementById('stat-fulltime');
@@ -405,35 +427,45 @@
     const statAvgFt = document.getElementById('stat-avg-ft');
     const statAvgFtSub = document.getElementById('stat-avg-ft-sub');
 
-    if (is2028) {
-      if (statInternships) statInternships.textContent = '5';
-      if (statInternshipsSub) statInternshipsSub.textContent = 'All 5 summer intern drives';
-      if (statFulltime) statFulltime.textContent = '0';
-      if (statFulltimeSub) statFulltimeSub.textContent = 'Summer internship phase';
-      if (statAvgCtc) statAvgCtc.innerHTML = '₹54k<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">/mo</span>';
-      if (statAvgCtcSub) statAvgCtcSub.textContent = 'Average monthly stipend';
-      if (statMedCtc) statMedCtc.innerHTML = '₹50k<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">/mo</span>';
-      if (statMedCtcSub) statMedCtcSub.textContent = 'Median monthly stipend';
-      if (statAvgFt) statAvgFt.innerHTML = '50<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">offers</span>';
-      if (statAvgFtSub) statAvgFtSub.textContent = '100% summer internships';
-    } else {
-      const internCount = companies.filter(c => c.offers && c.offers.includes('internship')).length;
-      const ppoCount = companies.filter(c => c.offers && c.offers.includes('ppo')).length;
-      const ftCount = companies.filter(c => c.offers && c.offers.includes('fulltime')).length;
-      const bothCount = companies.filter(c => c.offers && c.offers.includes('internship') && c.offers.includes('fulltime')).length;
+    function updateStatStrip() {
+      const totalOffers = calculateOffers(companies);
 
-      if (statInternships) statInternships.textContent = internCount || '23';
-      if (statInternshipsSub) statInternshipsSub.textContent = `${ppoCount || 19} with a PPO path`;
-      if (statFulltime) statFulltime.textContent = ftCount || '17';
-      if (statFulltimeSub) statFulltimeSub.textContent = `${bothCount || 11} offered both`;
-      const placedDrivesCount = companies.filter(c => c.out && (c.out.students > 0 || c.out.fulltimeOffers > 0 || c.out.internships > 0)).length;
-      if (statAvgCtc) statAvgCtc.innerHTML = '₹14.06<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
-      if (statAvgCtcSub) statAvgCtcSub.textContent = `${placedDrivesCount} drives with selections`;
-      if (statMedCtc) statMedCtc.innerHTML = '₹13<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
-      if (statMedCtcSub) statMedCtcSub.textContent = 'Range ₹8.23–33.0 LPA';
-      if (statAvgFt) statAvgFt.innerHTML = '₹14.1<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
-      if (statAvgFtSub) statAvgFtSub.textContent = 'Median ₹13.5 LPA · 228 offers in all';
+      if (is2028) {
+        if (statTotalOffers) statTotalOffers.textContent = totalOffers || '50';
+        if (statTotalOffersSub) statTotalOffersSub.textContent = 'Summer internship phase';
+        if (statInternships) statInternships.textContent = '5';
+        if (statInternshipsSub) statInternshipsSub.textContent = 'All 5 summer intern drives';
+        if (statFulltime) statFulltime.textContent = '0';
+        if (statFulltimeSub) statFulltimeSub.textContent = 'Summer internship phase';
+        if (statAvgCtc) statAvgCtc.innerHTML = '₹54k<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">/mo</span>';
+        if (statAvgCtcSub) statAvgCtcSub.textContent = 'Average monthly stipend';
+        if (statMedCtc) statMedCtc.innerHTML = '₹50k<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">/mo</span>';
+        if (statMedCtcSub) statMedCtcSub.textContent = 'Median monthly stipend';
+        if (statAvgFt) statAvgFt.innerHTML = '50<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">offers</span>';
+        if (statAvgFtSub) statAvgFtSub.textContent = `100% summer internships · ${totalOffers || 50} offers in all`;
+      } else {
+        const internCount = companies.filter(c => c.offers && c.offers.includes('internship')).length;
+        const ppoCount = companies.filter(c => c.offers && c.offers.includes('ppo')).length;
+        const ftCount = companies.filter(c => c.offers && c.offers.includes('fulltime')).length;
+        const bothCount = companies.filter(c => c.offers && c.offers.includes('internship') && c.offers.includes('fulltime')).length;
+        const placedDrivesCount = companies.filter(c => c.out && (c.out.students > 0 || c.out.fulltimeOffers > 0 || c.out.internships > 0)).length;
+
+        if (statTotalOffers) statTotalOffers.textContent = totalOffers;
+        if (statTotalOffersSub) statTotalOffersSub.textContent = 'Across all selections';
+        if (statInternships) statInternships.textContent = internCount || '34';
+        if (statInternshipsSub) statInternshipsSub.textContent = `${ppoCount || 21} with a PPO path`;
+        if (statFulltime) statFulltime.textContent = ftCount || '32';
+        if (statFulltimeSub) statFulltimeSub.textContent = `${bothCount || 29} offered both`;
+        if (statAvgCtc) statAvgCtc.innerHTML = '₹14.06<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
+        if (statAvgCtcSub) statAvgCtcSub.textContent = `${placedDrivesCount} drives with selections`;
+        if (statMedCtc) statMedCtc.innerHTML = '₹13<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
+        if (statMedCtcSub) statMedCtcSub.textContent = 'Range ₹8.23–33.0 LPA';
+        if (statAvgFt) statAvgFt.innerHTML = '₹14.1<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
+        if (statAvgFtSub) statAvgFtSub.textContent = `Median ₹13.5 LPA · ${totalOffers} offers in all`;
+      }
     }
+
+    updateStatStrip();
 
     const listEl = document.getElementById('companies-list');
     const searchInput = document.getElementById('company-search');
@@ -586,10 +618,12 @@
       }
 
       if (countEl) {
+        const filteredOffers = calculateOffers(filtered);
+        const totalBatchOffers = calculateOffers(companies);
         if (!q && role === 'all' && branch === 'all') {
-          countEl.textContent = `All ${companies.length} companies`;
+          countEl.textContent = `All ${companies.length} companies · ${totalBatchOffers} total offers`;
         } else {
-          countEl.textContent = `Showing ${filtered.length} of ${companies.length} companies`;
+          countEl.textContent = `Showing ${filtered.length} of ${companies.length} companies · ${filteredOffers} offers`;
         }
       }
 
@@ -917,16 +951,7 @@
             });
             if (changed) {
               renderCompanies();
-              if (!is2028) {
-                const internCount = companies.filter(c => c.offers && c.offers.includes('internship')).length;
-                const ppoCount = companies.filter(c => c.offers && c.offers.includes('ppo')).length;
-                const ftCount = companies.filter(c => c.offers && c.offers.includes('fulltime')).length;
-                const bothCount = companies.filter(c => c.offers && c.offers.includes('internship') && c.offers.includes('fulltime')).length;
-                if (statInternships) statInternships.textContent = internCount;
-                if (statInternshipsSub) statInternshipsSub.textContent = `${ppoCount} with a PPO path`;
-                if (statFulltime) statFulltime.textContent = ftCount;
-                if (statFulltimeSub) statFulltimeSub.textContent = `${bothCount} offered both`;
-              }
+              updateStatStrip();
             }
           }
         }
