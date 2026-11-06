@@ -16,24 +16,24 @@ export const siteConfig = {
   isActiveSeason: true,
   lastUpdatedDate: "November 2026",
 
-  // Top summary headline stats from SPIT 2027 data
+  // Top summary headline stats from SPIT 2027 classified data
   stats: {
-    totalCompanies: 31,
-    studentsPlaced: 235,
+    totalCompanies: 29,
+    studentsPlaced: 225,
     totalBatchSize: 360,
-    placementPercentage: "65%",
-    fulltimeOffersCount: 146,
-    internshipsCount: 89,
-    ppoCount: 93,
-    highestCTC: "₹33.5 LPA",
+    placementPercentage: "63%",
+    fulltimeOffersCount: 183,
+    internshipsCount: 134,
+    ppoCount: 153,
+    highestCTC: "₹33.0 LPA",
     medianCTC: "₹13.0 LPA",
-    averageCTC: "₹13.86 LPA",
+    averageCTC: "₹13.80 LPA",
     highestStipend: "₹1,60,000 / mo",
     medianStipend: "₹50,000 / mo",
-    averageStipend: "₹60,000 / mo",
-    drivesCount: 38,
-    busiestMonth: "Aug 2026",
-    medianWaitDays: "14 days"
+    averageStipend: "₹58,000 / mo",
+    drivesCount: 42,
+    busiestMonth: "Jul – Oct 2026",
+    medianWaitDays: "12 days"
   },
 
   // Navigation Links (Eligibility removed per previous request)

@@ -1,5 +1,5 @@
-// SPIT 2027 Companies & Placement Offers Dataset
-// Derived directly from SPIT_2027_company_offers_ctc_stipend.csv
+// SPIT Consolidated Companies Dataset (Class of 2027)
+// Built with enhanced classification, verified funnels, CGPA criteria, boards criteria, and visit dates.
 
 export const companies = [
   {
@@ -7,6 +7,7 @@ export const companies = [
     "name": "JPMC",
     "offers": [
       "internship",
+      "fulltime",
       "ppo"
     ],
     "seasons": [
@@ -15,93 +16,238 @@ export const companies = [
     ],
     "pay": "₹1.60L / mo",
     "payKind": "Stipend",
-    "payRank": 16000,
+    "payRank": 160000,
     "dream": true,
     "logo": "/logos/jpmc.svg",
     "out": {
-      "internships": 41,
-      "fulltimeOffers": 0,
-      "ppo": 0,
-      "newHires": 0,
-      "students": 41
+      "internships": 31,
+      "fulltimeOffers": 31,
+      "ppo": 31,
+      "newHires": 31,
+      "students": 31
     },
     "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
     "cgpa": 7,
-    "first": "2026-08-15",
-    "last": "2026-08-15",
-    "status": "Selections announced",
+    "cgpaCriteria": "7.0; No official cutoff (good CGPA beneficial); Not officially disclosed; Not stated (8+ reported unofficially)",
+    "boardsCriteria": "None official (unofficial ~80% in Class XII reported); 80% in Class XII (before resume review)",
+    "first": "2-3 Jul 2026 (OA 27 Jun)",
+    "last": "11 Aug 2026",
+    "visitTimeline": "2-3 Jul 2026 (OA 27 Jun) · PPT 24 Jun, OA 27 Jun, result 2 Jul 2026 · PPT 24 Jun, OA 27 Jun, result 3 Jul 2026 · 29 Sep 2026 · 11 Aug 2026",
+    "funnelRaw": "Applied 150-200 -> OA 67 -> GD 55 -> Interview 29 -> HR 10 -> 10 offers | OA 34 -> Tech R1 9 -> Tech R2 3 -> HR 2 -> 2 offers | Applied ~300 -> Resume 122 -> OA 122 -> Tech R1 32 -> Tech R2 15-16 -> HR 10 -> 10 offers | Resume ~200 -> GD 76-77 -> Business round 19 -> HR 8 -> 7 offers | Applied 250+ -> OA 118-120 -> GD 29 -> Tech R1 14 -> Tech R2 6 -> HR 3 -> 2 offers",
+    "status": "31 confirmed offers",
     "roles": [
       {
-        "title": "CIB Banking",
-        "type": "internship",
-        "ctc": "Competitive",
-        "stipend": "₹1,35,000/month + ₹1,00,000 relocation bonus (reported)",
+        "title": "CIB Banking (Research & Analytics - Banking)",
+        "type": "both",
         "count": 10,
-        "notes": ""
+        "ctc": "PPO Pathway",
+        "stipend": "₹1.35L / mo",
+        "rawCompensation": "Stipend 1.35L/month + 1L relocation; PPO CTC not disclosed",
+        "visitDate": "2-3 Jul 2026 (OA 27 Jun)",
+        "funnel": [
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 200
+          },
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 67
+          },
+          {
+            "name": "Group Discussion (GD)",
+            "count": 55
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 29
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 10
+          },
+          {
+            "name": "Offers Extended",
+            "count": 10
+          }
+        ],
+        "funnelRaw": "Applied 150-200 -> OA 67 -> GD 55 -> Interview 29 -> HR 10 -> 10 offers",
+        "notes": "11 PDFs"
       },
       {
-        "title": "Corporate Risk internship",
-        "type": "internship",
-        "ctc": "Not disclosed; one report gives an indicative 18–24 LPA range",
-        "stipend": "₹80,000/month; some reports mention ₹1,00,000 relocation bonus",
-        "count": 10,
-        "notes": "Indicative CTC range is not a confirmed offer figure"
+        "title": "CIB Fintech",
+        "type": "both",
+        "count": 2,
+        "ctc": "PPO Pathway",
+        "stipend": "₹1.35L / mo",
+        "rawCompensation": "Stipend 1.35L/month + 1L relocation",
+        "visitDate": "PPT 24 Jun, OA 27 Jun, result 2 Jul 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 34
+          },
+          {
+            "name": "Technical Interview Round 1",
+            "count": 9
+          },
+          {
+            "name": "Technical Interview Round 3",
+            "count": 3
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 2
+          },
+          {
+            "name": "Offers Extended",
+            "count": 2
+          }
+        ],
+        "funnelRaw": "OA 34 -> Tech R1 9 -> Tech R2 3 -> HR 2 -> 2 offers",
+        "notes": "2 PDFs"
       },
       {
-        "title": "CADP",
-        "type": "internship",
-        "ctc": "Competitive",
-        "stipend": "₹60,000/month",
+        "title": "Corporate Risk (Global Risk & Compliance Program)",
+        "type": "both",
+        "count": 10,
+        "ctc": "₹24 LPA",
+        "stipend": "₹80k / mo",
+        "rawCompensation": "Stipend 80k/month + 1L relocation; CTC not declared (est. 18-24 LPA)",
+        "visitDate": "PPT 24 Jun, OA 27 Jun, result 3 Jul 2026",
+        "funnel": [
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 300
+          },
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 122
+          },
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 122
+          },
+          {
+            "name": "Technical Interview Round 1",
+            "count": 32
+          },
+          {
+            "name": "Technical Interview Round 2",
+            "count": 16
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 10
+          },
+          {
+            "name": "Offers Extended",
+            "count": 10
+          }
+        ],
+        "funnelRaw": "Applied ~300 -> Resume 122 -> OA 122 -> Tech R1 32 -> Tech R2 15-16 -> HR 10 -> 10 offers",
+        "notes": "9 PDFs; all HR candidates selected"
+      },
+      {
+        "title": "CADP (Corporate Analyst Development Program, 2-yr)",
+        "type": "both",
         "count": 7,
-        "notes": ""
+        "ctc": "PPO Pathway",
+        "stipend": "₹60k / mo",
+        "rawCompensation": "Stipend 60k/month; CTC not disclosed",
+        "visitDate": "29 Sep 2026",
+        "funnel": [
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 200
+          },
+          {
+            "name": "Group Discussion (GD)",
+            "count": 77
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 19
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 8
+          },
+          {
+            "name": "Offers Extended",
+            "count": 7
+          }
+        ],
+        "funnelRaw": "Resume ~200 -> GD 76-77 -> Business round 19 -> HR 8 -> 7 offers",
+        "notes": "5 PDFs"
       },
       {
-        "title": "CIB FinTech",
-        "type": "internship",
-        "ctc": "Competitive",
-        "stipend": "₹1,35,000/month + ₹1,00,000 relocation bonus (reported)",
+        "title": "CIO, Treasury & Corporate (CTC) Risk",
+        "type": "both",
         "count": 2,
-        "notes": ""
-      },
-      {
-        "title": "CTC Risk",
-        "type": "internship",
-        "ctc": "Competitive",
-        "stipend": "₹1,60,000/month",
-        "count": 2,
-        "notes": ""
-      },
-      {
-        "title": "Investment Banking (IB)",
-        "type": "internship",
-        "ctc": "Competitive",
-        "stipend": "₹1,35,000/month",
-        "count": 10,
-        "notes": ""
+        "ctc": "PPO Pathway",
+        "stipend": "₹1.60L / mo",
+        "rawCompensation": "Stipend 1.6L/month; CTC not disclosed",
+        "visitDate": "11 Aug 2026",
+        "funnel": [
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 250
+          },
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 120
+          },
+          {
+            "name": "Group Discussion (GD)",
+            "count": 29
+          },
+          {
+            "name": "Technical Interview Round 1",
+            "count": 14
+          },
+          {
+            "name": "Technical Interview Round 2",
+            "count": 6
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 3
+          },
+          {
+            "name": "Offers Extended",
+            "count": 2
+          }
+        ],
+        "funnelRaw": "Applied 250+ -> OA 118-120 -> GD 29 -> Tech R1 14 -> Tech R2 6 -> HR 3 -> 2 offers",
+        "notes": "2 PDFs"
       }
     ],
-    "notes": "Indicative CTC range is not a confirmed offer figure",
+    "notes": "11 PDFs · 2 PDFs · 9 PDFs; all HR candidates selected · 5 PDFs · 2 PDFs",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 552
+        "name": "Resume & CGPA Shortlist",
+        "count": 200
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 221
+        "name": "Online Coding Assessment (OA)",
+        "count": 67
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 86
+        "name": "Group Discussion (GD)",
+        "count": 55
       },
       {
-        "name": "HR Interview & Final Review",
-        "count": 43
+        "name": "Technical Interview Round",
+        "count": 29
+      },
+      {
+        "name": "HR & Culture-Fit Interview",
+        "count": 10
       },
       {
         "name": "Offers Extended",
-        "count": 41
+        "count": 10
       }
     ]
   },
@@ -116,9 +262,9 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "₹15.05 LPA",
-    "payKind": "CTC",
-    "payRank": 1505,
+    "pay": "₹75k / mo",
+    "payKind": "Stipend",
+    "payRank": 75000,
     "dream": true,
     "logo": "/logos/barclays.png",
     "out": {
@@ -128,57 +274,99 @@ export const companies = [
       "newHires": 12,
       "students": 28
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-09-02",
-    "last": "2026-09-02",
-    "status": "Selections announced",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 8,
+    "cgpaCriteria": "None stated; None official (advice: 8+ CGPA, no backlogs)",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "OA 9 Oct; PPT+interviews 15 Oct 2026",
+    "last": "29 Jul 2025 (OA 27 Jul)",
+    "visitTimeline": "OA 9 Oct; PPT+interviews 15 Oct 2026 · 29 Jul 2025 (OA 27 Jul)",
+    "funnelRaw": "OA 130 -> Technical 30 -> Techno-HR 18 -> 12 offers | OA 128-149 -> Tech R1 38 -> Tech R2 19 -> 16 offers",
+    "status": "28 confirmed offers",
     "roles": [
       {
         "title": "Technology Graduate Developer",
         "type": "fulltime",
-        "ctc": "15.05 LPA",
-        "stipend": null,
         "count": 12,
-        "notes": ""
+        "ctc": "₹15.05 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC 15.05 LPA",
+        "visitDate": "OA 9 Oct; PPT+interviews 15 Oct 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 130
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 30
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 18
+          },
+          {
+            "name": "Offers Extended",
+            "count": 12
+          }
+        ],
+        "funnelRaw": "OA 130 -> Technical 30 -> Techno-HR 18 -> 12 offers",
+        "notes": "Single PDF"
       },
       {
-        "title": "Summer Internship",
+        "title": "Summer Intern 2026",
         "type": "internship",
-        "ctc": "Competitive",
-        "stipend": "₹75,000/month",
         "count": 16,
-        "notes": "Most reports say 16; one conflicting report says 13"
+        "ctc": "PPO Pathway",
+        "stipend": "₹75k / mo",
+        "rawCompensation": "Stipend 75k/month",
+        "visitDate": "29 Jul 2025 (OA 27 Jul)",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 149
+          },
+          {
+            "name": "Technical Interview Round 1",
+            "count": 38
+          },
+          {
+            "name": "Technical Interview Round 2",
+            "count": 19
+          },
+          {
+            "name": "Offers Extended",
+            "count": 16
+          }
+        ],
+        "funnelRaw": "OA 128-149 -> Tech R1 38 -> Tech R2 19 -> 16 offers",
+        "notes": "10 PDFs; 9 say 16 offers, 1 says 13 - used 16"
       }
     ],
-    "notes": "Most reports say 16; one conflicting report says 13",
+    "notes": "Single PDF · 10 PDFs; 9 say 16 offers, 1 says 13 - used 16",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 396
+        "name": "Online Coding Assessment (OA)",
+        "count": 130
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 158
-      },
-      {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 60
-      },
-      {
-        "name": "HR Interview & Final Review",
+        "name": "Technical Interview Round",
         "count": 30
       },
       {
+        "name": "HR & Culture-Fit Interview",
+        "count": 18
+      },
+      {
         "name": "Offers Extended",
-        "count": 28
+        "count": 12
       }
     ]
   },
   {
     "slug": "iss-stoxx",
-    "name": "ISS / STOXX",
+    "name": "ISS-STOXX",
     "offers": [
       "internship",
       "fulltime",
@@ -191,52 +379,81 @@ export const companies = [
     "pay": "₹14.7 LPA",
     "payKind": "CTC",
     "payRank": 1470,
-    "dream": false,
+    "dream": true,
     "logo": "/logos/iss-stoxx.svg",
     "out": {
-      "internships": 0,
+      "internships": 15,
       "fulltimeOffers": 15,
       "ppo": 15,
-      "newHires": 0,
+      "newHires": 15,
       "students": 15
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-10-24",
-    "last": "2026-10-24",
-    "status": "Selections announced",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 8,
+    "cgpaCriteria": "8.0 (one PDF mentions 8.5 cutoff)",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "PPT 14 Jul; OA + interviews 17 Jul 2026",
+    "last": "PPT 14 Jul; OA + interviews 17 Jul 2026",
+    "visitTimeline": "PPT 14 Jul; OA + interviews 17 Jul 2026",
+    "funnelRaw": "Resume/CGPA ~214-220 -> OA ~214 -> Technical 44 -> HR 19-21 -> 12 offers (+3 added a week later = 15)",
+    "status": "15 confirmed offers",
     "roles": [
       {
-        "title": "SDE",
+        "title": "Junior Analyst - Software Engineer",
         "type": "both",
-        "ctc": "14.7 LPA (13.6 base + 1.1 PF/gratuity; variable bonus may apply)",
-        "stipend": "₹60,000/month",
         "count": 15,
-        "notes": ""
+        "ctc": "₹14.7 LPA",
+        "stipend": "₹60k / mo",
+        "rawCompensation": "Stipend 60k/month; CTC 14.7 LPA (13.6 + 1.1 PF/gratuity)",
+        "visitDate": "PPT 14 Jul; OA + interviews 17 Jul 2026",
+        "funnel": [
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 220
+          },
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 214
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 44
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 21
+          },
+          {
+            "name": "Offers Extended",
+            "count": 12
+          }
+        ],
+        "funnelRaw": "Resume/CGPA ~214-220 -> OA ~214 -> Technical 44 -> HR 19-21 -> 12 offers (+3 added a week later = 15)",
+        "notes": "11 PDFs; 12 original + 3 later"
       }
     ],
-    "notes": "",
+    "notes": "11 PDFs; 12 original + 3 later",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 240
+        "name": "Resume & CGPA Shortlist",
+        "count": 220
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 96
+        "name": "Online Coding Assessment (OA)",
+        "count": 214
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 34
+        "name": "Technical Interview Round",
+        "count": 44
       },
       {
-        "name": "HR Interview & Final Review",
-        "count": 17
+        "name": "HR & Culture-Fit Interview",
+        "count": 21
       },
       {
         "name": "Offers Extended",
-        "count": 15
+        "count": 12
       }
     ]
   },
@@ -244,71 +461,133 @@ export const companies = [
     "slug": "ubs",
     "name": "UBS",
     "offers": [
-      "fulltime",
       "internship",
+      "fulltime",
       "ppo"
     ],
     "seasons": [
       "TE",
       "BE"
     ],
-    "pay": "₹13 LPA",
+    "pay": "₹16 LPA",
     "payKind": "CTC",
-    "payRank": 1300,
-    "dream": false,
+    "payRank": 1600,
+    "dream": true,
     "logo": "/logos/ubs.svg",
     "out": {
-      "internships": 0,
-      "fulltimeOffers": 13,
+      "internships": 4,
+      "fulltimeOffers": 14,
       "ppo": 4,
-      "newHires": 9,
-      "students": 13
+      "newHires": 14,
+      "students": 14
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
     "cgpa": 7,
-    "first": "2026-10-24",
-    "last": "2026-10-24",
-    "status": "Selections announced",
+    "cgpaCriteria": "None stated",
+    "boardsCriteria": "A Class XII % cutoff existed (value not given)",
+    "first": "PPT 6 Sep; interviews 11 Sep 2026",
+    "last": "13 Jul 2026",
+    "visitTimeline": "PPT 6 Sep; interviews 11 Sep 2026 · 13 Jul 2026",
+    "funnelRaw": "~200 -> 2 assessments -> Technical 10 -> HR 5 -> 4 offers | Applied 153 -> Resume 51 -> MCQ ~47 -> Group coding ~20 -> Technical 20 -> HR 10 -> 10 offers (9 initially, 10th added later)",
+    "status": "14 confirmed offers",
     "roles": [
-      {
-        "title": "Graduate Trainee",
-        "type": "fulltime",
-        "ctc": "13 LPA + 3 L one-time relocation (one report); another reports 16 LPA",
-        "stipend": "Not applicable / not reported",
-        "count": 9,
-        "notes": "Compensation reports differ"
-      },
       {
         "title": "Agentic AI Specialist",
         "type": "both",
-        "ctc": "13 LPA + performance-based bonus",
-        "stipend": "₹60,000/month",
         "count": 4,
-        "notes": ""
+        "ctc": "₹13 LPA",
+        "stipend": "₹60k / mo",
+        "rawCompensation": "Stipend 60k/month; CTC 13 LPA",
+        "visitDate": "PPT 6 Sep; interviews 11 Sep 2026",
+        "funnel": [
+          {
+            "name": "Technical Interview Round",
+            "count": 200
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 2
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 10
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 5
+          },
+          {
+            "name": "Offers Extended",
+            "count": 4
+          }
+        ],
+        "funnelRaw": "~200 -> 2 assessments -> Technical 10 -> HR 5 -> 4 offers",
+        "notes": "3 PDFs"
+      },
+      {
+        "title": "Graduate Engineering Trainee (GET) / Software Engineer",
+        "type": "fulltime",
+        "count": 10,
+        "ctc": "₹16 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC 16 LPA (13 + 3 one-time relocation)",
+        "visitDate": "13 Jul 2026",
+        "funnel": [
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 153
+          },
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 51
+          },
+          {
+            "name": "MCQ Technical Test",
+            "count": 47
+          },
+          {
+            "name": "Group Coding Round",
+            "count": 20
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 20
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 10
+          },
+          {
+            "name": "Offers Extended",
+            "count": 10
+          }
+        ],
+        "funnelRaw": "Applied 153 -> Resume 51 -> MCQ ~47 -> Group coding ~20 -> Technical 20 -> HR 10 -> 10 offers (9 initially, 10th added later)",
+        "notes": "3 PDFs"
       }
     ],
-    "notes": "Compensation reports differ",
+    "notes": "3 PDFs · 3 PDFs",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 216
+        "name": "Technical Interview Round",
+        "count": 200
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 86
+        "name": "Technical Interview Round",
+        "count": 2
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 30
+        "name": "Technical Interview Round",
+        "count": 10
       },
       {
-        "name": "HR Interview & Final Review",
-        "count": 15
+        "name": "HR & Culture-Fit Interview",
+        "count": 5
       },
       {
         "name": "Offers Extended",
-        "count": 13
+        "count": 4
       }
     ]
   },
@@ -324,51 +603,80 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "₹9 LPA",
+    "pay": "₹9.5 LPA",
     "payKind": "CTC",
-    "payRank": 900,
+    "payRank": 950,
     "dream": false,
     "logo": "/logos/transunion.svg",
     "out": {
-      "internships": 0,
+      "internships": 10,
       "fulltimeOffers": 10,
       "ppo": 10,
-      "newHires": 0,
+      "newHires": 10,
       "students": 10
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-10-18",
-    "last": "2026-10-18",
-    "status": "Selections announced",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 8,
+    "cgpaCriteria": "Undisclosed (appears 8.0+)",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "6-7 Aug 2026",
+    "last": "6-7 Aug 2026",
+    "visitTimeline": "6-7 Aug 2026",
+    "funnelRaw": "Resume 121 -> OA 121 -> Technical 34-35 -> HR 11 -> 10 offers",
+    "status": "10 confirmed offers",
     "roles": [
       {
-        "title": "Multiple roles",
+        "title": "Developer / Quality Engineer",
         "type": "both",
-        "ctc": "8.5–9.5 LPA reported; some reports add ₹1 L joining bonus",
-        "stipend": "₹25,000/month",
         "count": 10,
-        "notes": "CTC differs across experiences"
+        "ctc": "₹9.5 LPA",
+        "stipend": "₹25k / mo",
+        "rawCompensation": "Stipend 25k/month; CTC 9.5 LPA (8.5 + 1L joining bonus)",
+        "visitDate": "6-7 Aug 2026",
+        "funnel": [
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 121
+          },
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 121
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 35
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 11
+          },
+          {
+            "name": "Offers Extended",
+            "count": 10
+          }
+        ],
+        "funnelRaw": "Resume 121 -> OA 121 -> Technical 34-35 -> HR 11 -> 10 offers",
+        "notes": "5 PDFs"
       }
     ],
-    "notes": "CTC differs across experiences",
+    "notes": "5 PDFs",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 180
+        "name": "Resume & CGPA Shortlist",
+        "count": 121
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 72
+        "name": "Online Coding Assessment (OA)",
+        "count": 121
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 25
+        "name": "Technical Interview Round",
+        "count": 35
       },
       {
-        "name": "HR Interview & Final Review",
-        "count": 12
+        "name": "HR & Culture-Fit Interview",
+        "count": 11
       },
       {
         "name": "Offers Extended",
@@ -377,10 +685,12 @@ export const companies = [
     ]
   },
   {
-    "slug": "gep",
-    "name": "GEP",
+    "slug": "gep-worldwide",
+    "name": "GEP Worldwide",
     "offers": [
-      "fulltime"
+      "internship",
+      "fulltime",
+      "ppo"
     ],
     "seasons": [
       "TE",
@@ -389,48 +699,85 @@ export const companies = [
     "pay": "₹9 LPA",
     "payKind": "CTC",
     "payRank": 900,
-    "dream": false,
+    "dream": null,
     "logo": "/logos/gep.svg",
     "out": {
-      "internships": 0,
+      "internships": 9,
       "fulltimeOffers": 9,
-      "ppo": 0,
+      "ppo": 9,
       "newHires": 9,
       "students": 9
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-10-12",
-    "last": "2026-10-12",
-    "status": "Selections announced",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 8,
+    "cgpaCriteria": "None stated (most cos. 8+ this year)",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "PPT 22 Oct, OA 23 Oct, interviews 26 Oct 2026",
+    "last": "PPT 22 Oct, OA 23 Oct, interviews 26 Oct 2026",
+    "visitTimeline": "PPT 22 Oct, OA 23 Oct, interviews 26 Oct 2026",
+    "funnelRaw": "OA 120-180 -> Interview 1 48 -> Interview 2 ~25 -> Interview 3/Higher mgmt 14-15 -> HR 9 -> 9 offers",
+    "status": "9 confirmed offers",
     "roles": [
       {
-        "title": "Senior Analyst Trainee – Consulting",
-        "type": "fulltime",
-        "ctc": "9 LPA (one report: 7 fixed + 1 variable + 0.5 joining + 0.5 retention)",
-        "stipend": null,
+        "title": "Senior Analyst Trainee (Consulting)",
+        "type": "both",
         "count": 9,
-        "notes": ""
+        "ctc": "₹9 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC 9 LPA (7 fixed + 1 variable + 0.5 joining + 0.5 retention); stipend undisclosed",
+        "visitDate": "PPT 22 Oct, OA 23 Oct, interviews 26 Oct 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 180
+          },
+          {
+            "name": "Technical Interview Round 1",
+            "count": 48
+          },
+          {
+            "name": "Technical Interview Round 2",
+            "count": 25
+          },
+          {
+            "name": "Executive Director Round",
+            "count": 15
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 9
+          },
+          {
+            "name": "Offers Extended",
+            "count": 9
+          }
+        ],
+        "funnelRaw": "OA 120-180 -> Interview 1 48 -> Interview 2 ~25 -> Interview 3/Higher mgmt 14-15 -> HR 9 -> 9 offers",
+        "notes": "2 PDFs consistent"
       }
     ],
-    "notes": "",
+    "notes": "2 PDFs consistent",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 168
+        "name": "Online Coding Assessment (OA)",
+        "count": 180
       },
       {
         "name": "Technical Interview Round 1",
-        "count": 67
+        "count": 48
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 23
+        "name": "Technical Interview Round 2",
+        "count": 25
       },
       {
-        "name": "HR Interview & Final Review",
-        "count": 11
+        "name": "Executive Director Round",
+        "count": 15
+      },
+      {
+        "name": "HR & Culture-Fit Interview",
+        "count": 9
       },
       {
         "name": "Offers Extended",
@@ -442,57 +789,63 @@ export const companies = [
     "slug": "mahindra-finance",
     "name": "Mahindra Finance",
     "offers": [
-      "fulltime"
+      "internship",
+      "fulltime",
+      "ppo"
     ],
     "seasons": [
       "TE",
       "BE"
     ],
-    "pay": "₹14 LPA",
+    "pay": "Comp. 14 base + 2 retention (over 2 yrs) as PPO",
     "payKind": "CTC",
-    "payRank": 1400,
-    "dream": false,
+    "payRank": 1000,
+    "dream": null,
     "logo": "/logos/mahindra-finance.svg",
     "out": {
-      "internships": 0,
+      "internships": 9,
       "fulltimeOffers": 9,
-      "ppo": 0,
+      "ppo": 9,
       "newHires": 9,
       "students": 9
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
     "cgpa": 7,
-    "first": "2026-08-20",
-    "last": "2026-08-20",
-    "status": "Selections announced",
+    "cgpaCriteria": "None stated (open for all branches)",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "Not mentioned (summer intern cycle)",
+    "last": "Not mentioned (summer intern cycle)",
+    "visitTimeline": "Not mentioned (summer intern cycle)",
+    "funnelRaw": "OA (count n/a) -> Technical 25-30 -> HR 10 -> 9 offers",
+    "status": "9 confirmed offers",
     "roles": [
       {
-        "title": "MMFSL",
-        "type": "fulltime",
-        "ctc": "14 LPA base + 2 L retention over 2 years",
-        "stipend": null,
+        "title": "Data Analytics (2-month summer intern)",
+        "type": "both",
         "count": 9,
-        "notes": ""
+        "ctc": "Comp. 14 base + 2 retention (over 2 yrs) as PPO",
+        "stipend": null,
+        "rawCompensation": "Comp. 14 base + 2 retention (over 2 yrs) as PPO",
+        "visitDate": "Not mentioned (summer intern cycle)",
+        "funnel": [],
+        "funnelRaw": "OA (count n/a) -> Technical 25-30 -> HR 10 -> 9 offers",
+        "notes": "Single PDF; all 9 interns got PPO"
       }
     ],
-    "notes": "",
+    "notes": "Single PDF; all 9 interns got PPO",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 168
+        "name": "Online Assessment (OA)",
+        "count": 135
       },
       {
         "name": "Technical Interview Round 1",
-        "count": 67
+        "count": 36
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 23
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 11
+        "name": "HR & Culture-Fit Interview",
+        "count": 18
       },
       {
         "name": "Offers Extended",
@@ -518,55 +871,158 @@ export const companies = [
     "dream": false,
     "logo": "/logos/quantiphi.svg",
     "out": {
-      "internships": 0,
+      "internships": 9,
       "fulltimeOffers": 9,
       "ppo": 9,
-      "newHires": 0,
+      "newHires": 9,
       "students": 9
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-09-28",
-    "last": "2026-09-28",
-    "status": "Selections announced",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 7.5,
+    "cgpaCriteria": "None stated (advice 7.5+); None stated",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "13-14 Aug 2026",
+    "last": "13-14 Aug 2026",
+    "visitTimeline": "13-14 Aug 2026 · 13-14 Aug 2026 · 13-14 Aug 2026",
+    "funnelRaw": "OA 230 -> GD ~44-60 -> Tech R1 19-20 -> Tech R2 10-12 -> HR 7 -> 6 offers | OA ~220 -> Tech R1 16 -> Vibe coding 9 -> Tech R2 9 -> 2 offers | OA ~220 -> Tech R1 6 -> Vibe coding 4 -> Tech R2 4 -> 1 offer",
+    "status": "9 confirmed offers",
     "roles": [
       {
-        "title": "Business Analyst + FE + MLE",
+        "title": "Business Analyst",
         "type": "both",
-        "ctc": "8.5 LPA",
-        "stipend": "₹24,000/month",
-        "count": 9,
-        "notes": ""
+        "count": 6,
+        "ctc": "₹8.5 LPA",
+        "stipend": "₹24k / mo",
+        "rawCompensation": "Stipend 24k/month; CTC 8.5 LPA",
+        "visitDate": "13-14 Aug 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 230
+          },
+          {
+            "name": "Group Discussion (GD)",
+            "count": 60
+          },
+          {
+            "name": "Technical Interview Round 1",
+            "count": 20
+          },
+          {
+            "name": "Technical Interview Round 2",
+            "count": 12
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 7
+          },
+          {
+            "name": "Offers Extended",
+            "count": 6
+          }
+        ],
+        "funnelRaw": "OA 230 -> GD ~44-60 -> Tech R1 19-20 -> Tech R2 10-12 -> HR 7 -> 6 offers",
+        "notes": "3 PDFs; role split from 2 PDFs"
+      },
+      {
+        "title": "Frontend Engineer (FE)",
+        "type": "both",
+        "count": 2,
+        "ctc": "₹8.5 LPA",
+        "stipend": "₹24k / mo",
+        "rawCompensation": "Stipend 24k/month; CTC 8.5 LPA",
+        "visitDate": "13-14 Aug 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 220
+          },
+          {
+            "name": "Technical Interview Round 1",
+            "count": 16
+          },
+          {
+            "name": "Live Coding / Vibe Round",
+            "count": 9
+          },
+          {
+            "name": "Technical Interview Round 2",
+            "count": 9
+          },
+          {
+            "name": "Offers Extended",
+            "count": 2
+          }
+        ],
+        "funnelRaw": "OA ~220 -> Tech R1 16 -> Vibe coding 9 -> Tech R2 9 -> 2 offers",
+        "notes": "Internship + Placement"
+      },
+      {
+        "title": "Machine Learning Engineer (MLE)",
+        "type": "both",
+        "count": 1,
+        "ctc": "₹8.5 LPA",
+        "stipend": "₹24k / mo",
+        "rawCompensation": "Stipend 24k/month; CTC 8.5 LPA",
+        "visitDate": "13-14 Aug 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 220
+          },
+          {
+            "name": "Technical Interview Round 1",
+            "count": 6
+          },
+          {
+            "name": "Live Coding / Vibe Round",
+            "count": 4
+          },
+          {
+            "name": "Technical Interview Round 2",
+            "count": 4
+          },
+          {
+            "name": "Offers Extended",
+            "count": 1
+          }
+        ],
+        "funnelRaw": "OA ~220 -> Tech R1 6 -> Vibe coding 4 -> Tech R2 4 -> 1 offer",
+        "notes": "Internship + Placement"
       }
     ],
-    "notes": "",
+    "notes": "3 PDFs; role split from 2 PDFs",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 168
+        "name": "Online Coding Assessment (OA)",
+        "count": 230
+      },
+      {
+        "name": "Group Discussion (GD)",
+        "count": 60
       },
       {
         "name": "Technical Interview Round 1",
-        "count": 67
+        "count": 20
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 23
+        "name": "Technical Interview Round 2",
+        "count": 12
       },
       {
-        "name": "HR Interview & Final Review",
-        "count": 11
+        "name": "HR & Culture-Fit Interview",
+        "count": 7
       },
       {
         "name": "Offers Extended",
-        "count": 9
+        "count": 6
       }
     ]
   },
   {
-    "slug": "wissen",
-    "name": "Wissen",
+    "slug": "wissen-technology",
+    "name": "Wissen Technology",
     "offers": [
       "internship",
       "fulltime",
@@ -582,113 +1038,70 @@ export const companies = [
     "dream": false,
     "logo": "/logos/wissen.svg",
     "out": {
-      "internships": 0,
+      "internships": 9,
       "fulltimeOffers": 9,
       "ppo": 9,
-      "newHires": 0,
+      "newHires": 9,
       "students": 9
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
     "cgpa": 7,
-    "first": "2026-10-30",
-    "last": "2026-10-30",
-    "status": "Selections announced",
+    "cgpaCriteria": "None stated",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "OA 31 Jul; interviews 1 Aug 2026",
+    "last": "OA 31 Jul; interviews 1 Aug 2026",
+    "visitTimeline": "OA 31 Jul; interviews 1 Aug 2026",
+    "funnelRaw": "OA ~270 -> Technical 40 -> Director round 16 -> 9 offers",
+    "status": "9 confirmed offers",
     "roles": [
       {
         "title": "SDE",
         "type": "both",
-        "ctc": "9.5 LPA reported; another breakdown: 8 LPA base + 1.5 L retention",
-        "stipend": "₹25,000/month",
         "count": 9,
-        "notes": "Offer type differs among selected candidates"
+        "ctc": "₹9.5 LPA",
+        "stipend": "₹25k / mo",
+        "rawCompensation": "Stipend 25k/month; CTC 9.5 LPA (8 base + 1.5 retention)",
+        "visitDate": "OA 31 Jul; interviews 1 Aug 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 270
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 40
+          },
+          {
+            "name": "Executive Director Round",
+            "count": 16
+          },
+          {
+            "name": "Offers Extended",
+            "count": 9
+          }
+        ],
+        "funnelRaw": "OA ~270 -> Technical 40 -> Director round 16 -> 9 offers",
+        "notes": "3 PDFs"
       }
     ],
-    "notes": "Offer type differs among selected candidates",
+    "notes": "3 PDFs",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 168
+        "name": "Online Coding Assessment (OA)",
+        "count": 270
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 67
+        "name": "Technical Interview Round",
+        "count": 40
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 23
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 11
+        "name": "Executive Director Round",
+        "count": 16
       },
       {
         "name": "Offers Extended",
         "count": 9
-      }
-    ]
-  },
-  {
-    "slug": "blackrock",
-    "name": "BlackRock",
-    "offers": [
-      "internship",
-      "fulltime",
-      "ppo"
-    ],
-    "seasons": [
-      "TE",
-      "BE"
-    ],
-    "pay": "₹15 LPA",
-    "payKind": "CTC",
-    "payRank": 1500,
-    "dream": true,
-    "logo": "/logos/blackrock.svg",
-    "out": {
-      "internships": 0,
-      "fulltimeOffers": 8,
-      "ppo": 8,
-      "newHires": 0,
-      "students": 8
-    },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-09-08",
-    "last": "2026-09-08",
-    "status": "Selections announced",
-    "roles": [
-      {
-        "title": "SDE + Aladdin Data",
-        "type": "both",
-        "ctc": "15 LPA",
-        "stipend": "₹50,000/month",
-        "count": 8,
-        "notes": ""
-      }
-    ],
-    "notes": "",
-    "stages": [
-      {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 156
-      },
-      {
-        "name": "Technical Interview Round 1",
-        "count": 62
-      },
-      {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 22
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 10
-      },
-      {
-        "name": "Offers Extended",
-        "count": 8
       }
     ]
   },
@@ -704,7 +1117,7 @@ export const companies = [
     ],
     "pay": "₹25k / mo",
     "payKind": "Stipend",
-    "payRank": 2500,
+    "payRank": 25000,
     "dream": false,
     "logo": "/logos/colgate-palmolive.svg",
     "out": {
@@ -714,39 +1127,68 @@ export const companies = [
       "newHires": 0,
       "students": 8
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-09-21",
-    "last": "2026-09-21",
-    "status": "Selections announced",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 6,
+    "cgpaCriteria": "6.0 CGPA (Superset)",
+    "boardsCriteria": "Class X & XII 60% (Superset)",
+    "first": "30 Sep 2026 (OA 26 Sep)",
+    "last": "30 Sep 2026 (OA 26 Sep)",
+    "visitTimeline": "30 Sep 2026 (OA 26 Sep)",
+    "funnelRaw": "Resume ~200 -> OA 30 -> GD 30 -> Technical+HR 15 -> 8 offers",
+    "status": "8 confirmed offers",
     "roles": [
       {
-        "title": "Internship roles",
+        "title": "Functional Expert (6-month intern)",
         "type": "internship",
-        "ctc": "Competitive",
-        "stipend": "₹25,000/month",
         "count": 8,
-        "notes": ""
+        "ctc": "PPO Pathway",
+        "stipend": "₹25k / mo",
+        "rawCompensation": "Stipend 25k/month; CTC not disclosed",
+        "visitDate": "30 Sep 2026 (OA 26 Sep)",
+        "funnel": [
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 200
+          },
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 30
+          },
+          {
+            "name": "Group Discussion (GD)",
+            "count": 30
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 15
+          },
+          {
+            "name": "Offers Extended",
+            "count": 8
+          }
+        ],
+        "funnelRaw": "Resume ~200 -> OA 30 -> GD 30 -> Technical+HR 15 -> 8 offers",
+        "notes": "2 PDFs"
       }
     ],
-    "notes": "",
+    "notes": "2 PDFs",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 156
+        "name": "Resume & CGPA Shortlist",
+        "count": 200
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 62
+        "name": "Online Coding Assessment (OA)",
+        "count": 30
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 22
+        "name": "Group Discussion (GD)",
+        "count": 30
       },
       {
-        "name": "HR Interview & Final Review",
-        "count": 10
+        "name": "HR & Culture-Fit Interview",
+        "count": 15
       },
       {
         "name": "Offers Extended",
@@ -755,8 +1197,8 @@ export const companies = [
     ]
   },
   {
-    "slug": "idfc",
-    "name": "IDFC",
+    "slug": "idfc-first-bank",
+    "name": "IDFC FIRST Bank",
     "offers": [
       "internship",
       "fulltime",
@@ -768,48 +1210,85 @@ export const companies = [
     ],
     "pay": "₹18.1 LPA",
     "payKind": "CTC",
-    "payRank": 1810.0000000000002,
+    "payRank": 1810,
     "dream": true,
     "logo": "/logos/idfc.svg",
     "out": {
-      "internships": 0,
+      "internships": 8,
       "fulltimeOffers": 8,
       "ppo": 8,
-      "newHires": 0,
+      "newHires": 8,
       "students": 8
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-10-18",
-    "last": "2026-10-18",
-    "status": "Selections announced",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 6.75,
+    "cgpaCriteria": "6.75 (one PDF says no CGPA criterion); CE/CSE only, no standing backlogs",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "PPT 25 Jun, OA 4 Jul, interviews 8 Jul 2026",
+    "last": "PPT 25 Jun, OA 4 Jul, interviews 8 Jul 2026",
+    "visitTimeline": "PPT 25 Jun, OA 4 Jul, interviews 8 Jul 2026",
+    "funnelRaw": "OA ~165 -> L1 tech 48-50 -> L2 tech 20-22 -> L3 tech 10 -> HR 10 -> 8 offers",
+    "status": "8 confirmed offers",
     "roles": [
       {
         "title": "Application Engineer",
         "type": "both",
-        "ctc": "18.10 LPA (14 fixed + 2.10 variable + 2 joining/relocation)",
-        "stipend": "₹40,000/month (some reports do not mention it)",
         "count": 8,
-        "notes": "One report mentions 5 at an earlier result stage"
+        "ctc": "₹18.1 LPA",
+        "stipend": "₹40k / mo",
+        "rawCompensation": "Stipend 40k/month; CTC 18.1 LPA (14 fixed + 2 joining + 2.1 variable)",
+        "visitDate": "PPT 25 Jun, OA 4 Jul, interviews 8 Jul 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 165
+          },
+          {
+            "name": "Technical Interview Round 1",
+            "count": 50
+          },
+          {
+            "name": "Technical Interview Round 2",
+            "count": 22
+          },
+          {
+            "name": "Technical Interview Round 3",
+            "count": 10
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 10
+          },
+          {
+            "name": "Offers Extended",
+            "count": 8
+          }
+        ],
+        "funnelRaw": "OA ~165 -> L1 tech 48-50 -> L2 tech 20-22 -> L3 tech 10 -> HR 10 -> 8 offers",
+        "notes": "4 PDFs; 8 offers"
       }
     ],
-    "notes": "One report mentions 5 at an earlier result stage",
+    "notes": "4 PDFs; 8 offers",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 156
+        "name": "Online Coding Assessment (OA)",
+        "count": 165
       },
       {
         "name": "Technical Interview Round 1",
-        "count": 62
+        "count": 50
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
+        "name": "Technical Interview Round 2",
         "count": 22
       },
       {
-        "name": "HR Interview & Final Review",
+        "name": "Technical Interview Round 3",
+        "count": 10
+      },
+      {
+        "name": "HR & Culture-Fit Interview",
         "count": 10
       },
       {
@@ -819,61 +1298,245 @@ export const companies = [
     ]
   },
   {
-    "slug": "revvity",
-    "name": "Revvity",
+    "slug": "nomura",
+    "name": "Nomura",
     "offers": [
       "internship",
+      "fulltime",
       "ppo"
     ],
     "seasons": [
       "TE",
       "BE"
     ],
-    "pay": "₹30k / mo",
+    "pay": "₹75k / mo",
     "payKind": "Stipend",
-    "payRank": 3000,
+    "payRank": 75000,
+    "dream": true,
+    "logo": "/logos/nomura.svg",
+    "out": {
+      "internships": 8,
+      "fulltimeOffers": 8,
+      "ppo": 8,
+      "newHires": 8,
+      "students": 8
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 9,
+    "cgpaCriteria": "None stated (all shortlisted had CGPA >9); None stated (advice 8+)",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "14 Jul 2026",
+    "last": "Hackathon finale 3-4 Jul 2026",
+    "visitTimeline": "14 Jul 2026 · Hackathon finale 3-4 Jul 2026",
+    "funnelRaw": "Superset shortlist 27 -> GD 27 -> Tech R1 7 -> Tech R2 3 -> HR 3 -> 1 offer | 26 teams (exec summary) -> 7 teams grand finale (14 students) -> 7 offers (4 from winning teams + 3 individuals)",
+    "status": "8 confirmed offers",
+    "roles": [
+      {
+        "title": "Global Markets - Electronic Trading Product Mgmt Intern",
+        "type": "both",
+        "count": 1,
+        "ctc": "PPO Pathway",
+        "stipend": "₹75k / mo",
+        "rawCompensation": "Stipend 75k/month; CTC 13.9L (12.45L fixed)",
+        "visitDate": "14 Jul 2026",
+        "funnel": [
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 27
+          },
+          {
+            "name": "Group Discussion (GD)",
+            "count": 27
+          },
+          {
+            "name": "Technical Interview Round 1",
+            "count": 7
+          },
+          {
+            "name": "Technical Interview Round 3",
+            "count": 3
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 3
+          },
+          {
+            "name": "Offers Extended",
+            "count": 1
+          }
+        ],
+        "funnelRaw": "Superset shortlist 27 -> GD 27 -> Tech R1 7 -> Tech R2 3 -> HR 3 -> 1 offer",
+        "notes": "Single PDF; CGPA-based shortlist"
+      },
+      {
+        "title": "ITD (Information Technology Division) Intern",
+        "type": "both",
+        "count": 7,
+        "ctc": "₹15.7 LPA",
+        "stipend": "₹75k / mo",
+        "rawCompensation": "Stipend 75k/month; CTC 15.7 LPA (12.45 fixed + 2L sign-on + 1.25L relocation)",
+        "visitDate": "Hackathon finale 3-4 Jul 2026",
+        "funnel": [
+          {
+            "name": "Hackathon Submissions",
+            "count": 26
+          },
+          {
+            "name": "Grand Finale Pitch",
+            "count": 7
+          },
+          {
+            "name": "Offers Extended",
+            "count": 7
+          }
+        ],
+        "funnelRaw": "26 teams (exec summary) -> 7 teams grand finale (14 students) -> 7 offers (4 from winning teams + 3 individuals)",
+        "notes": "Count from SPIT students only"
+      }
+    ],
+    "notes": "Single PDF; CGPA-based shortlist · Count from SPIT students only",
+    "stages": [
+      {
+        "name": "Resume & CGPA Shortlist",
+        "count": 27
+      },
+      {
+        "name": "Group Discussion (GD)",
+        "count": 27
+      },
+      {
+        "name": "Technical Interview Round 1",
+        "count": 7
+      },
+      {
+        "name": "Technical Interview Round 3",
+        "count": 3
+      },
+      {
+        "name": "HR & Culture-Fit Interview",
+        "count": 3
+      },
+      {
+        "name": "Offers Extended",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "slug": "revvity",
+    "name": "Revvity",
+    "offers": [
+      "internship",
+      "fulltime",
+      "ppo"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "₹10 LPA",
+    "payKind": "CTC",
+    "payRank": 1000,
     "dream": false,
     "logo": "/logos/revvity.svg",
     "out": {
       "internships": 7,
-      "fulltimeOffers": 0,
-      "ppo": 0,
-      "newHires": 0,
+      "fulltimeOffers": 6,
+      "ppo": 6,
+      "newHires": 6,
       "students": 7
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-10-05",
-    "last": "2026-10-05",
-    "status": "Selections announced",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 8,
+    "cgpaCriteria": "Not stated (roughly 8+ cleared); Not stated",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "OA 22 Aug; result 31 Aug 2026",
+    "last": "OA 22 Aug; result 31 Aug 2026",
+    "visitTimeline": "OA 22 Aug; result 31 Aug 2026 · OA 22 Aug; result 31 Aug 2026 · OA 22 Aug; result 31 Aug 2026 · OA 22 Aug; result 31 Aug 2026",
+    "funnelRaw": "OA ~120 -> Interviews 48 -> HR 16 -> 7 offers across roles | (see Revvity total above) | (see Revvity total above) | (see Revvity total above)",
+    "status": "7 confirmed offers",
     "roles": [
       {
-        "title": "Data Analyst + Data Engineer",
+        "title": "Ecommerce Intern",
+        "type": "both",
+        "count": 4,
+        "ctc": "₹10 LPA",
+        "stipend": "₹30k / mo",
+        "rawCompensation": "Stipend 30k/month; 8-10 LPA PPO",
+        "visitDate": "OA 22 Aug; result 31 Aug 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 120
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 48
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 16
+          },
+          {
+            "name": "Offers Extended",
+            "count": 7
+          }
+        ],
+        "funnelRaw": "OA ~120 -> Interviews 48 -> HR 16 -> 7 offers across roles",
+        "notes": "7 total: 4 Ecom, 1 Data Analyst, 1 Data Engineer, 1 Web"
+      },
+      {
+        "title": "Data Analyst Intern",
+        "type": "both",
+        "count": 1,
+        "ctc": "₹8 LPA",
+        "stipend": "₹30k / mo",
+        "rawCompensation": "Stipend 30k/month; ~8 LPA",
+        "visitDate": "OA 22 Aug; result 31 Aug 2026",
+        "funnel": [],
+        "funnelRaw": "(see Revvity total above)",
+        "notes": "Internship (PPO based on performance)"
+      },
+      {
+        "title": "Data Engineer",
+        "type": "both",
+        "count": 1,
+        "ctc": "₹10 LPA",
+        "stipend": "₹30k / mo",
+        "rawCompensation": "Stipend 30k/month; ~8-10 LPA",
+        "visitDate": "OA 22 Aug; result 31 Aug 2026",
+        "funnel": [],
+        "funnelRaw": "(see Revvity total above)",
+        "notes": "Internship (PPO based on performance)"
+      },
+      {
+        "title": "Web Intern",
         "type": "internship",
-        "ctc": "Data Analyst: 8 LPA; Data Engineer: not disclosed (approx. 8–10 LPA)",
-        "stipend": "₹30,000/month",
-        "count": 7,
-        "notes": "Data Engineer CTC is an estimate"
+        "count": 1,
+        "ctc": "₹10 LPA",
+        "stipend": "₹30k / mo",
+        "rawCompensation": "Stipend 30k/month; 8-10 LPA",
+        "visitDate": "OA 22 Aug; result 31 Aug 2026",
+        "funnel": [],
+        "funnelRaw": "(see Revvity total above)",
+        "notes": "Internship"
       }
     ],
-    "notes": "Data Engineer CTC is an estimate",
+    "notes": "7 total: 4 Ecom, 1 Data Analyst, 1 Data Engineer, 1 Web",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 144
+        "name": "Online Coding Assessment (OA)",
+        "count": 120
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 58
+        "name": "Technical Interview Round",
+        "count": 48
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 20
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 9
+        "name": "HR & Culture-Fit Interview",
+        "count": 16
       },
       {
         "name": "Offers Extended",
@@ -893,7 +1556,7 @@ export const companies = [
     ],
     "pay": "₹60k / mo",
     "payKind": "Stipend",
-    "payRank": 6000,
+    "payRank": 60000,
     "dream": false,
     "logo": "/logos/russell-investments.svg",
     "out": {
@@ -903,39 +1566,72 @@ export const companies = [
       "newHires": 0,
       "students": 7
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-10-12",
-    "last": "2026-10-12",
-    "status": "Selections announced",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 8,
+    "cgpaCriteria": "8.0 (to sit the OA); 8.0",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "15 Oct 2025",
+    "last": "15 Oct 2025",
+    "visitTimeline": "15 Oct 2025 · 15 Oct 2025",
+    "funnelRaw": "OA 100-150+ -> Tech interview 40+ -> Techno-HR 10-15 -> 7 selected (6 Tech + 1 Research) | (see Tech Intern row)",
+    "status": "7 confirmed offers",
     "roles": [
       {
-        "title": "Technology + Research internships",
+        "title": "Tech Intern",
         "type": "internship",
-        "ctc": "Competitive",
-        "stipend": "₹60,000/month",
-        "count": 7,
-        "notes": ""
+        "count": 6,
+        "ctc": "PPO Pathway",
+        "stipend": "₹60k / mo",
+        "rawCompensation": "Stipend 60k/month",
+        "visitDate": "15 Oct 2025",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 150
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 40
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 15
+          },
+          {
+            "name": "Offers Extended",
+            "count": 7
+          }
+        ],
+        "funnelRaw": "OA 100-150+ -> Tech interview 40+ -> Techno-HR 10-15 -> 7 selected (6 Tech + 1 Research)",
+        "notes": "6 PDFs consistent"
+      },
+      {
+        "title": "Research Intern",
+        "type": "internship",
+        "count": 1,
+        "ctc": "PPO Pathway",
+        "stipend": "₹60k / mo",
+        "rawCompensation": "Stipend 60k/month",
+        "visitDate": "15 Oct 2025",
+        "funnel": [],
+        "funnelRaw": "(see Tech Intern row)",
+        "notes": "Internship Only"
       }
     ],
-    "notes": "",
+    "notes": "6 PDFs consistent",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 144
+        "name": "Online Coding Assessment (OA)",
+        "count": 150
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 58
+        "name": "Technical Interview Round",
+        "count": 40
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 20
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 9
+        "name": "HR & Culture-Fit Interview",
+        "count": 15
       },
       {
         "name": "Offers Extended",
@@ -948,56 +1644,86 @@ export const companies = [
     "name": "Nouryon",
     "offers": [
       "internship",
+      "fulltime",
       "ppo"
     ],
     "seasons": [
       "TE",
       "BE"
     ],
-    "pay": "₹35k / mo",
-    "payKind": "Stipend",
-    "payRank": 3500,
-    "dream": false,
+    "pay": "₹14 LPA",
+    "payKind": "CTC",
+    "payRank": 1400,
+    "dream": true,
     "logo": "/logos/nouryon.svg",
     "out": {
       "internships": 6,
-      "fulltimeOffers": 0,
-      "ppo": 0,
-      "newHires": 0,
+      "fulltimeOffers": 6,
+      "ppo": 6,
+      "newHires": 6,
       "students": 6
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-09-08",
-    "last": "2026-09-08",
-    "status": "Selections announced",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 8,
+    "cgpaCriteria": "Not stated (8+ guessed)",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "22 & 26 Oct; results 28 Oct 2026",
+    "last": "22 & 26 Oct; results 28 Oct 2026",
+    "visitTimeline": "22 & 26 Oct; results 28 Oct 2026",
+    "funnelRaw": "Resume ~110 -> GD ~35 -> Tech ~35 appeared, 8 shortlisted -> Techno-HR 8 -> 6 selected (across all roles)",
+    "status": "6 confirmed offers",
     "roles": [
       {
-        "title": "Multiple roles (including Digital Apps)",
-        "type": "internship",
-        "ctc": "Not disclosed; one report estimates 13–15 LPA based on prior-year figures",
-        "stipend": "₹35,000/month (Digital Apps role)",
+        "title": "Digital Apps (SDE) + other roles",
+        "type": "both",
         "count": 6,
-        "notes": "Estimated CTC is not a confirmed offer figure"
+        "ctc": "₹14 LPA",
+        "stipend": "₹35k / mo",
+        "rawCompensation": "Stipend 35k/month; CTC ~13-15 LPA (est., not disclosed)",
+        "visitDate": "22 & 26 Oct; results 28 Oct 2026",
+        "funnel": [
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 110
+          },
+          {
+            "name": "Group Discussion (GD)",
+            "count": 35
+          },
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 35
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 8
+          },
+          {
+            "name": "Offers Extended",
+            "count": 6
+          }
+        ],
+        "funnelRaw": "Resume ~110 -> GD ~35 -> Tech ~35 appeared, 8 shortlisted -> Techno-HR 8 -> 6 selected (across all roles)",
+        "notes": "6 is total across all Nouryon roles; Digital Apps role count not isolated"
       }
     ],
-    "notes": "Estimated CTC is not a confirmed offer figure",
+    "notes": "6 is total across all Nouryon roles; Digital Apps role count not isolated",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 132
+        "name": "Resume & CGPA Shortlist",
+        "count": 110
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 53
+        "name": "Group Discussion (GD)",
+        "count": 35
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 19
+        "name": "Resume & CGPA Shortlist",
+        "count": 35
       },
       {
-        "name": "HR Interview & Final Review",
+        "name": "HR & Culture-Fit Interview",
         "count": 8
       },
       {
@@ -1018,51 +1744,80 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "₹33.25 LPA",
+    "pay": "₹33 LPA",
     "payKind": "CTC",
-    "payRank": 3325,
+    "payRank": 3300,
     "dream": true,
     "logo": "/logos/phonepe.png",
     "out": {
-      "internships": 0,
+      "internships": 6,
       "fulltimeOffers": 6,
       "ppo": 6,
-      "newHires": 0,
+      "newHires": 6,
       "students": 6
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-09-21",
-    "last": "2026-09-21",
-    "status": "Selections announced",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 6.5,
+    "cgpaCriteria": "Everyone with >6.5 got OA link",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "OA 5 Jul; interviews 6 Jul 2026",
+    "last": "OA 5 Jul; interviews 6 Jul 2026",
+    "visitTimeline": "OA 5 Jul; interviews 6 Jul 2026",
+    "funnelRaw": "OA ~310 -> Tech R1 26 -> Tech R2 13-16 -> Hiring Manager 9 -> 6 offers",
+    "status": "6 confirmed offers",
     "roles": [
       {
         "title": "SDE",
         "type": "both",
-        "ctc": "33–33.5 LPA reported (19–19.25 base + 5 joining bonus + stock component)",
-        "stipend": "₹80,000/month",
         "count": 6,
-        "notes": "Stock component differs by report"
+        "ctc": "₹33 LPA",
+        "stipend": "₹80k / mo",
+        "rawCompensation": "Stipend 80k/month; CTC ~33 LPA (19.25 base + 5L joining + ~8.5L stocks)",
+        "visitDate": "OA 5 Jul; interviews 6 Jul 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 310
+          },
+          {
+            "name": "Technical Interview Round 1",
+            "count": 26
+          },
+          {
+            "name": "Technical Interview Round 2",
+            "count": 16
+          },
+          {
+            "name": "Hiring Manager Round",
+            "count": 9
+          },
+          {
+            "name": "Offers Extended",
+            "count": 6
+          }
+        ],
+        "funnelRaw": "OA ~310 -> Tech R1 26 -> Tech R2 13-16 -> Hiring Manager 9 -> 6 offers",
+        "notes": "7 PDFs"
       }
     ],
-    "notes": "Stock component differs by report",
+    "notes": "7 PDFs",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 132
+        "name": "Online Coding Assessment (OA)",
+        "count": 310
       },
       {
         "name": "Technical Interview Round 1",
-        "count": 53
+        "count": 26
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 19
+        "name": "Technical Interview Round 2",
+        "count": 16
       },
       {
-        "name": "HR Interview & Final Review",
-        "count": 8
+        "name": "Hiring Manager Round",
+        "count": 9
       },
       {
         "name": "Offers Extended",
@@ -1071,8 +1826,8 @@ export const companies = [
     ]
   },
   {
-    "slug": "auxo-ai",
-    "name": "Auxo AI",
+    "slug": "auxoai",
+    "name": "AuxoAI",
     "offers": [
       "internship",
       "fulltime",
@@ -1082,113 +1837,96 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "₹15.5 LPA",
+    "pay": "₹18.8 LPA",
     "payKind": "CTC",
-    "payRank": 1550,
+    "payRank": 1880,
     "dream": true,
     "logo": "/logos/auxo-ai.svg",
     "out": {
-      "internships": 0,
+      "internships": 5,
       "fulltimeOffers": 5,
       "ppo": 5,
-      "newHires": 0,
-      "students": 5
-    },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-08-10",
-    "last": "2026-08-10",
-    "status": "Selections announced",
-    "roles": [
-      {
-        "title": "AI",
-        "type": "both",
-        "ctc": "15.5 LPA base + 2.32 LPA performance bonus + 1 L joining bonus; 10 L retention bonus after 3 years",
-        "stipend": "₹60,000/month",
-        "count": 5,
-        "notes": "Headline package varies by report; retention is deferred"
-      }
-    ],
-    "notes": "Headline package varies by report; retention is deferred",
-    "stages": [
-      {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 120
-      },
-      {
-        "name": "Technical Interview Round 1",
-        "count": 48
-      },
-      {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 17
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 7
-      },
-      {
-        "name": "Offers Extended",
-        "count": 5
-      }
-    ]
-  },
-  {
-    "slug": "capgemini",
-    "name": "Capgemini",
-    "offers": [
-      "fulltime"
-    ],
-    "seasons": [
-      "TE",
-      "BE"
-    ],
-    "pay": "₹13 LPA",
-    "payKind": "CTC",
-    "payRank": 1300,
-    "dream": false,
-    "logo": "/logos/capgemini.png",
-    "out": {
-      "internships": 0,
-      "fulltimeOffers": 5,
-      "ppo": 0,
       "newHires": 5,
       "students": 5
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-09-14",
-    "last": "2026-09-14",
-    "status": "Selections announced",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 8.5,
+    "cgpaCriteria": "None official (advice 8.5+)",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "9-10 Jul 2026 (OA 9th, interviews 10th)",
+    "last": "9-10 Jul 2026 (OA 9th, interviews 10th)",
+    "visitTimeline": "9-10 Jul 2026 (OA 9th, interviews 10th)",
+    "funnelRaw": "Resume ~150-159 shortlisted (of 300-400 applicants) -> OA 150-159 -> Tech R1 15-16 -> Tech+Business R2 8 -> HR 5 -> 5 offers",
+    "status": "5 confirmed offers",
     "roles": [
       {
-        "title": "AlphaStack / related roles",
-        "type": "fulltime",
-        "ctc": "13 LPA (12 LPA + 1 L joining bonus)",
-        "stipend": null,
+        "title": "AI Engineer",
+        "type": "both",
         "count": 5,
-        "notes": "Selection count differs across reports"
+        "ctc": "₹18.8 LPA",
+        "stipend": "₹60k / mo",
+        "rawCompensation": "Stipend 60k/month; CTC ~18.8 LPA (15.5 base + 1L joining + 2.32L variable) + 10L retention bonus after 3 yrs",
+        "visitDate": "9-10 Jul 2026 (OA 9th, interviews 10th)",
+        "funnel": [
+          {
+            "name": "Applications Received",
+            "count": 400
+          },
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 150
+          },
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 159
+          },
+          {
+            "name": "Technical Interview Round 1",
+            "count": 16
+          },
+          {
+            "name": "Technical Interview Round 2",
+            "count": 8
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 5
+          },
+          {
+            "name": "Offers Extended",
+            "count": 5
+          }
+        ],
+        "funnelRaw": "Resume ~150-159 shortlisted (of 300-400 applicants) -> OA 150-159 -> Tech R1 15-16 -> Tech+Business R2 8 -> HR 5 -> 5 offers",
+        "notes": "All 5 PDFs consistent on 5 offers (one PDF says 7 cleared Tech R2)"
       }
     ],
-    "notes": "Selection count differs across reports",
+    "notes": "All 5 PDFs consistent on 5 offers (one PDF says 7 cleared Tech R2)",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 120
+        "name": "Applications Received",
+        "count": 400
+      },
+      {
+        "name": "Resume & CGPA Shortlist",
+        "count": 150
+      },
+      {
+        "name": "Online Coding Assessment (OA)",
+        "count": 159
       },
       {
         "name": "Technical Interview Round 1",
-        "count": 48
+        "count": 16
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 17
+        "name": "Technical Interview Round 2",
+        "count": 8
       },
       {
-        "name": "HR Interview & Final Review",
-        "count": 7
+        "name": "HR & Culture-Fit Interview",
+        "count": 5
       },
       {
         "name": "Offers Extended",
@@ -1197,8 +1935,8 @@ export const companies = [
     ]
   },
   {
-    "slug": "incred",
-    "name": "InCred",
+    "slug": "incred-finance",
+    "name": "InCred Finance",
     "offers": [
       "internship",
       "fulltime",
@@ -1214,45 +1952,74 @@ export const companies = [
     "dream": false,
     "logo": "/logos/incred.svg",
     "out": {
-      "internships": 0,
+      "internships": 5,
       "fulltimeOffers": 5,
       "ppo": 5,
-      "newHires": 0,
+      "newHires": 5,
       "students": 5
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
     "cgpa": 7,
-    "first": "2026-10-30",
-    "last": "2026-10-30",
-    "status": "Selections announced",
+    "cgpaCriteria": "None stated",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "PPT 20 Jul, process 22 Jul 2026",
+    "last": "PPT 20 Jul, process 22 Jul 2026",
+    "visitTimeline": "PPT 20 Jul, process 22 Jul 2026",
+    "funnelRaw": "Applied 313 -> Pen-paper test 116 -> Technical 29 -> Case study/HR 11 -> 5 offers",
+    "status": "5 confirmed offers",
     "roles": [
       {
         "title": "Business Analyst",
         "type": "both",
-        "ctc": "12 LPA (11 + 1 committed bonus)",
-        "stipend": "₹25,000/month",
         "count": 5,
-        "notes": ""
+        "ctc": "₹12 LPA",
+        "stipend": "₹25k / mo",
+        "rawCompensation": "Stipend 25k/month; CTC 12 LPA (11 + 1 committed bonus)",
+        "visitDate": "PPT 20 Jul, process 22 Jul 2026",
+        "funnel": [
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 313
+          },
+          {
+            "name": "Written Technical Test",
+            "count": 116
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 29
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 11
+          },
+          {
+            "name": "Offers Extended",
+            "count": 5
+          }
+        ],
+        "funnelRaw": "Applied 313 -> Pen-paper test 116 -> Technical 29 -> Case study/HR 11 -> 5 offers",
+        "notes": "3 PDFs"
       }
     ],
-    "notes": "",
+    "notes": "3 PDFs",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 120
+        "name": "Resume & CGPA Shortlist",
+        "count": 313
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 48
+        "name": "Written Technical Test",
+        "count": 116
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 17
+        "name": "Technical Interview Round",
+        "count": 29
       },
       {
-        "name": "HR Interview & Final Review",
-        "count": 7
+        "name": "HR & Culture-Fit Interview",
+        "count": 11
       },
       {
         "name": "Offers Extended",
@@ -1278,45 +2045,90 @@ export const companies = [
     "dream": true,
     "logo": "/logos/workindia.svg",
     "out": {
-      "internships": 0,
+      "internships": 5,
       "fulltimeOffers": 5,
       "ppo": 5,
-      "newHires": 0,
+      "newHires": 5,
       "students": 5
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-08-04",
-    "last": "2026-08-04",
-    "status": "Selections announced",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 8,
+    "cgpaCriteria": "None official (8-8.5 advised)",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "7 Jul 2026",
+    "last": "7 Jul 2026",
+    "visitTimeline": "7 Jul 2026",
+    "funnelRaw": "Resume ~100 -> Rapid MCQ 101 -> API debugging 52 -> DSA/Schema 16 -> HR 6 -> Culture-fit 6 -> 5 offers",
+    "status": "5 confirmed offers",
     "roles": [
       {
         "title": "SDE",
         "type": "both",
-        "ctc": "16 LPA (15 + 1)",
-        "stipend": "₹40,000/month",
         "count": 5,
-        "notes": ""
+        "ctc": "₹16 LPA",
+        "stipend": "₹40k / mo",
+        "rawCompensation": "Stipend 40k/month; CTC 16 LPA (15 + 1)",
+        "visitDate": "7 Jul 2026",
+        "funnel": [
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 100
+          },
+          {
+            "name": "Rapid MCQ Test",
+            "count": 101
+          },
+          {
+            "name": "API & Debugging Round",
+            "count": 52
+          },
+          {
+            "name": "DSA & Database Schema Round",
+            "count": 16
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 6
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 6
+          },
+          {
+            "name": "Offers Extended",
+            "count": 5
+          }
+        ],
+        "funnelRaw": "Resume ~100 -> Rapid MCQ 101 -> API debugging 52 -> DSA/Schema 16 -> HR 6 -> Culture-fit 6 -> 5 offers",
+        "notes": "3 PDFs"
       }
     ],
-    "notes": "",
+    "notes": "3 PDFs",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 120
+        "name": "Resume & CGPA Shortlist",
+        "count": 100
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 48
+        "name": "Rapid MCQ Test",
+        "count": 101
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 17
+        "name": "API & Debugging Round",
+        "count": 52
       },
       {
-        "name": "HR Interview & Final Review",
-        "count": 7
+        "name": "DSA & Database Schema Round",
+        "count": 16
+      },
+      {
+        "name": "HR & Culture-Fit Interview",
+        "count": 6
+      },
+      {
+        "name": "HR & Culture-Fit Interview",
+        "count": 6
       },
       {
         "name": "Offers Extended",
@@ -1325,8 +2137,192 @@ export const companies = [
     ]
   },
   {
-    "slug": "aspect-ratio",
-    "name": "Aspect Ratio",
+    "slug": "capgemini",
+    "name": "Capgemini",
+    "offers": [
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "₹13 LPA",
+    "payKind": "CTC",
+    "payRank": 1300,
+    "dream": null,
+    "logo": "/logos/capgemini.png",
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 4,
+      "ppo": 0,
+      "newHires": 4,
+      "students": 4
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 7,
+    "cgpaCriteria": "None stated",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "8 Oct 2026 (home tests 28 Sep / retest 1 Oct)",
+    "last": "8 Oct 2026 (home tests 28 Sep / retest 1 Oct)",
+    "visitTimeline": "8 Oct 2026 (home tests 28 Sep / retest 1 Oct)",
+    "funnelRaw": "English assessment 170+ -> Cognitive/Final assessment (all) -> On-campus technical assessment 77 -> Interview 6 -> 4 offers (5 names, 1 took other offer)",
+    "status": "4 confirmed offers",
+    "roles": [
+      {
+        "title": "Alpha Stack",
+        "type": "fulltime",
+        "count": 4,
+        "ctc": "₹13 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC 13 LPA (12 + 1L bonus)",
+        "visitDate": "8 Oct 2026 (home tests 28 Sep / retest 1 Oct)",
+        "funnel": [
+          {
+            "name": "English & Communication Test",
+            "count": 170
+          },
+          {
+            "name": "Cognitive Aptitude Test",
+            "count": 4
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 77
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 6
+          },
+          {
+            "name": "Offers Extended",
+            "count": 4
+          }
+        ],
+        "funnelRaw": "English assessment 170+ -> Cognitive/Final assessment (all) -> On-campus technical assessment 77 -> Interview 6 -> 4 offers (5 names, 1 took other offer)",
+        "notes": "Results out 16 Oct"
+      }
+    ],
+    "notes": "Results out 16 Oct",
+    "stages": [
+      {
+        "name": "English & Communication Test",
+        "count": 170
+      },
+      {
+        "name": "Cognitive Aptitude Test",
+        "count": 4
+      },
+      {
+        "name": "Technical Interview Round",
+        "count": 77
+      },
+      {
+        "name": "Technical Interview Round",
+        "count": 6
+      },
+      {
+        "name": "Offers Extended",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "slug": "futures-first",
+    "name": "Futures First",
+    "offers": [
+      "internship",
+      "fulltime",
+      "ppo"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "₹18 LPA",
+    "payKind": "CTC",
+    "payRank": 1800,
+    "dream": true,
+    "logo": "/logos/futures-first.png",
+    "out": {
+      "internships": 4,
+      "fulltimeOffers": 4,
+      "ppo": 4,
+      "newHires": 4,
+      "students": 4
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 7.5,
+    "cgpaCriteria": "7.5 (EXTC branch also excluded for many roles)",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "OA 8 Aug; interviews 13 Aug 2026",
+    "last": "OA 8 Aug; interviews 13 Aug 2026",
+    "visitTimeline": "OA 8 Aug; interviews 13 Aug 2026",
+    "funnelRaw": "OA 334 -> Game round 36 -> Technical 18 -> HR 6 -> 4 offers",
+    "status": "4 confirmed offers",
+    "roles": [
+      {
+        "title": "International Market Trainee",
+        "type": "both",
+        "count": 4,
+        "ctc": "₹18 LPA",
+        "stipend": "₹40k / mo",
+        "rawCompensation": "Stipend 40k/month; CTC 18 LPA",
+        "visitDate": "OA 8 Aug; interviews 13 Aug 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 334
+          },
+          {
+            "name": "Gamified Cognitive Test",
+            "count": 36
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 18
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 6
+          },
+          {
+            "name": "Offers Extended",
+            "count": 4
+          }
+        ],
+        "funnelRaw": "OA 334 -> Game round 36 -> Technical 18 -> HR 6 -> 4 offers",
+        "notes": "Single PDF"
+      }
+    ],
+    "notes": "Single PDF",
+    "stages": [
+      {
+        "name": "Online Coding Assessment (OA)",
+        "count": 334
+      },
+      {
+        "name": "Gamified Cognitive Test",
+        "count": 36
+      },
+      {
+        "name": "Technical Interview Round",
+        "count": 18
+      },
+      {
+        "name": "HR & Culture-Fit Interview",
+        "count": 6
+      },
+      {
+        "name": "Offers Extended",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "slug": "aspectratio",
+    "name": "AspectRatio",
     "offers": [
       "fulltime"
     ],
@@ -1337,7 +2333,7 @@ export const companies = [
     "pay": "₹12 LPA",
     "payKind": "CTC",
     "payRank": 1200,
-    "dream": false,
+    "dream": null,
     "logo": "/logos/aspect-ratio.png",
     "out": {
       "internships": 0,
@@ -1346,39 +2342,60 @@ export const companies = [
       "newHires": 3,
       "students": 3
     },
-    "open": "All branches open",
+    "open": "CSE, IT, AI & DS, EXTC",
     "branches": "All branches open",
-    "cgpa": 7,
-    "first": "2026-08-04",
-    "last": "2026-08-04",
-    "status": "Selections announced",
+    "cgpa": 8,
+    "cgpaCriteria": "None official (advice: >8 CGPA)",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "6-7 Oct 2026",
+    "last": "6-7 Oct 2026",
+    "visitTimeline": "6-7 Oct 2026",
+    "funnelRaw": "Written test ~150 -> Interview R1 23 (+7 waitlisted) -> Interview R2 5-10 -> 3 selected",
+    "status": "3 confirmed offers",
     "roles": [
       {
         "title": "Analyst",
         "type": "fulltime",
-        "ctc": "12 LPA",
-        "stipend": null,
         "count": 3,
-        "notes": "CTC reported in experience"
+        "ctc": "₹12 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC 12 LPA",
+        "visitDate": "6-7 Oct 2026",
+        "funnel": [
+          {
+            "name": "Written Technical Test",
+            "count": 150
+          },
+          {
+            "name": "Technical Interview Round 1",
+            "count": 23
+          },
+          {
+            "name": "Technical Interview Round 2",
+            "count": 10
+          },
+          {
+            "name": "Offers Extended",
+            "count": 3
+          }
+        ],
+        "funnelRaw": "Written test ~150 -> Interview R1 23 (+7 waitlisted) -> Interview R2 5-10 -> 3 selected",
+        "notes": "Single PDF; offers count stated explicitly"
       }
     ],
-    "notes": "CTC reported in experience",
+    "notes": "Single PDF; offers count stated explicitly",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 96
+        "name": "Written Technical Test",
+        "count": 150
       },
       {
         "name": "Technical Interview Round 1",
-        "count": 38
+        "count": 23
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 13
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 5
+        "name": "Technical Interview Round 2",
+        "count": 10
       },
       {
         "name": "Offers Extended",
@@ -1387,8 +2404,8 @@ export const companies = [
     ]
   },
   {
-    "slug": "bny",
-    "name": "BNY",
+    "slug": "bny-mellon",
+    "name": "BNY Mellon",
     "offers": [
       "internship"
     ],
@@ -1398,7 +2415,7 @@ export const companies = [
     ],
     "pay": "₹30k / mo",
     "payKind": "Stipend",
-    "payRank": 3000,
+    "payRank": 30000,
     "dream": false,
     "logo": "/logos/bny.png",
     "out": {
@@ -1408,39 +2425,60 @@ export const companies = [
       "newHires": 0,
       "students": 3
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
     "cgpa": 7,
-    "first": "2026-08-20",
-    "last": "2026-08-20",
-    "status": "Selections announced",
+    "cgpaCriteria": "None stated",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "23 Sep 2025",
+    "last": "23 Sep 2025",
+    "visitTimeline": "23 Sep 2025",
+    "funnelRaw": "OA 254 -> Technical 25 -> Tech+Behavioural 10 -> 3 offers (+4 waitlist)",
+    "status": "3 confirmed offers",
     "roles": [
       {
-        "title": "Production Services",
+        "title": "Production Services (Summer Intern)",
         "type": "internship",
-        "ctc": "Competitive",
-        "stipend": "₹30,000/month (one report)",
         "count": 3,
-        "notes": "Waitlisted candidates excluded from offer count"
+        "ctc": "PPO Pathway",
+        "stipend": "₹30k / mo",
+        "rawCompensation": "Stipend 30k/month",
+        "visitDate": "23 Sep 2025",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 254
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 25
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 10
+          },
+          {
+            "name": "Offers Extended",
+            "count": 3
+          }
+        ],
+        "funnelRaw": "OA 254 -> Technical 25 -> Tech+Behavioural 10 -> 3 offers (+4 waitlist)",
+        "notes": "2 PDFs consistent"
       }
     ],
-    "notes": "Waitlisted candidates excluded from offer count",
+    "notes": "2 PDFs consistent",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 96
+        "name": "Online Coding Assessment (OA)",
+        "count": 254
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 38
+        "name": "Technical Interview Round",
+        "count": 25
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 13
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 5
+        "name": "HR & Culture-Fit Interview",
+        "count": 10
       },
       {
         "name": "Offers Extended",
@@ -1466,107 +2504,66 @@ export const companies = [
     "dream": false,
     "logo": "/logos/baker-hughes.svg",
     "out": {
-      "internships": 0,
+      "internships": 3,
       "fulltimeOffers": 3,
       "ppo": 3,
-      "newHires": 0,
-      "students": 3
-    },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-08-25",
-    "last": "2026-08-25",
-    "status": "Selections announced",
-    "roles": [
-      {
-        "title": "ETI",
-        "type": "both",
-        "ctc": "13 LPA",
-        "stipend": "₹50,000/month",
-        "count": 3,
-        "notes": ""
-      }
-    ],
-    "notes": "",
-    "stages": [
-      {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 96
-      },
-      {
-        "name": "Technical Interview Round 1",
-        "count": 38
-      },
-      {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 13
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 5
-      },
-      {
-        "name": "Offers Extended",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "slug": "futures-first",
-    "name": "Futures First",
-    "offers": [
-      "fulltime"
-    ],
-    "seasons": [
-      "TE",
-      "BE"
-    ],
-    "pay": "₹18 LPA",
-    "payKind": "CTC",
-    "payRank": 1800,
-    "dream": true,
-    "logo": "/logos/futures-first.png",
-    "out": {
-      "internships": 0,
-      "fulltimeOffers": 3,
-      "ppo": 0,
       "newHires": 3,
       "students": 3
     },
-    "open": "All branches open",
+    "open": "CSE, IT, AI & DS, EXTC",
     "branches": "All branches open",
-    "cgpa": 7,
-    "first": "2026-10-05",
-    "last": "2026-10-05",
-    "status": "Selections announced",
+    "cgpa": 8,
+    "cgpaCriteria": "None stated (some cos. require 8)",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "HireVue 4 Oct, OA 13 Oct, interview 21 Oct 2026",
+    "last": "HireVue 4 Oct, OA 13 Oct, interview 21 Oct 2026",
+    "visitTimeline": "HireVue 4 Oct, OA 13 Oct, interview 21 Oct 2026",
+    "funnelRaw": "HireVue ~150 -> OA ~86 -> In-office tech interview 4 from our college (10-12 across colleges) -> 3 offers",
+    "status": "3 confirmed offers",
     "roles": [
       {
-        "title": "International Market Trainee",
-        "type": "fulltime",
-        "ctc": "18 LPA",
-        "stipend": "₹40,000/month",
+        "title": "Engineering & Technology Intern",
+        "type": "both",
         "count": 3,
-        "notes": ""
+        "ctc": "₹13 LPA",
+        "stipend": "₹50k / mo",
+        "rawCompensation": "Stipend 50k/month; CTC 13 LPA",
+        "visitDate": "HireVue 4 Oct, OA 13 Oct, interview 21 Oct 2026",
+        "funnel": [
+          {
+            "name": "HireVue Video Assessment",
+            "count": 150
+          },
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 86
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 4
+          },
+          {
+            "name": "Offers Extended",
+            "count": 3
+          }
+        ],
+        "funnelRaw": "HireVue ~150 -> OA ~86 -> In-office tech interview 4 from our college (10-12 across colleges) -> 3 offers",
+        "notes": "Single PDF; offers may be across colleges"
       }
     ],
-    "notes": "",
+    "notes": "Single PDF; offers may be across colleges",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 96
+        "name": "HireVue Video Assessment",
+        "count": 150
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 38
+        "name": "Online Coding Assessment (OA)",
+        "count": 86
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 13
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 5
+        "name": "Technical Interview Round",
+        "count": 4
       },
       {
         "name": "Offers Extended",
@@ -1578,59 +2575,78 @@ export const companies = [
     "slug": "insync-analytics",
     "name": "InSync Analytics",
     "offers": [
-      "internship",
-      "fulltime",
-      "ppo"
+      "internship"
     ],
     "seasons": [
       "TE",
       "BE"
     ],
-    "pay": "₹11.5 LPA",
+    "pay": "₹12 LPA",
     "payKind": "CTC",
-    "payRank": 1150,
+    "payRank": 1200,
     "dream": false,
     "logo": "/logos/insync-analytics.svg",
     "out": {
-      "internships": 0,
-      "fulltimeOffers": 3,
-      "ppo": 3,
+      "internships": 3,
+      "fulltimeOffers": 0,
+      "ppo": 0,
       "newHires": 0,
       "students": 3
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
     "cgpa": 7,
-    "first": "2026-08-04",
-    "last": "2026-08-04",
-    "status": "Selections announced",
+    "cgpaCriteria": "None stated",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "8 Sep 2026",
+    "last": "8 Sep 2026",
+    "visitTimeline": "8 Sep 2026",
+    "funnelRaw": "OA 90 -> Technical 10 -> Round 3 3 -> 3 offers",
+    "status": "3 confirmed offers",
     "roles": [
       {
         "title": "SDE",
-        "type": "both",
-        "ctc": "11–12 LPA after internship, performance-based",
-        "stipend": "₹25,000/month",
+        "type": "internship",
         "count": 3,
-        "notes": ""
+        "ctc": "₹12 LPA",
+        "stipend": "₹25k / mo",
+        "rawCompensation": "Stipend 25k/month; 11-12 LPA possible after internship",
+        "visitDate": "8 Sep 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 90
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 10
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 3
+          },
+          {
+            "name": "Offers Extended",
+            "count": 3
+          }
+        ],
+        "funnelRaw": "OA 90 -> Technical 10 -> Round 3 3 -> 3 offers",
+        "notes": "Single PDF"
       }
     ],
-    "notes": "",
+    "notes": "Single PDF",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 96
+        "name": "Online Coding Assessment (OA)",
+        "count": 90
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 38
+        "name": "Technical Interview Round",
+        "count": 10
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 13
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 5
+        "name": "Technical Interview Round",
+        "count": 3
       },
       {
         "name": "Offers Extended",
@@ -1642,7 +2658,9 @@ export const companies = [
     "slug": "infosys",
     "name": "Infosys",
     "offers": [
-      "fulltime"
+      "internship",
+      "fulltime",
+      "ppo"
     ],
     "seasons": [
       "TE",
@@ -1654,45 +2672,58 @@ export const companies = [
     "dream": false,
     "logo": "/logos/infosys.svg",
     "out": {
-      "internships": 0,
+      "internships": 2,
       "fulltimeOffers": 2,
-      "ppo": 0,
+      "ppo": 2,
       "newHires": 2,
       "students": 2
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
     "cgpa": 7,
-    "first": "2026-08-10",
-    "last": "2026-08-10",
-    "status": "Selections announced",
+    "cgpaCriteria": "None stated",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "24 Jul 2026",
+    "last": "24 Jul 2026",
+    "visitTimeline": "24 Jul 2026",
+    "funnelRaw": "OA 250 -> Offline interview 14 (4 SP + 10 DSE) -> 2 selections (1 SP L1 + 1 DSE)",
+    "status": "2 confirmed offers",
     "roles": [
       {
-        "title": "SP L1 + DSE",
-        "type": "fulltime",
-        "ctc": "11 LPA reported for SP L1; DSE not specified",
-        "stipend": "₹25,000/month (reported in SP L1 experience)",
+        "title": "Specialist Programmer L1 (SP) / DSE",
+        "type": "both",
         "count": 2,
-        "notes": "Role-wise compensation not fully available"
+        "ctc": "₹11 LPA",
+        "stipend": "₹25k / mo",
+        "rawCompensation": "Stipend 25k/month; CTC 11 LPA (SP L1)",
+        "visitDate": "24 Jul 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 250
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 14
+          },
+          {
+            "name": "Offers Extended",
+            "count": 2
+          }
+        ],
+        "funnelRaw": "OA 250 -> Offline interview 14 (4 SP + 10 DSE) -> 2 selections (1 SP L1 + 1 DSE)",
+        "notes": "DSE package not mentioned"
       }
     ],
-    "notes": "Role-wise compensation not fully available",
+    "notes": "DSE package not mentioned",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 90
+        "name": "Online Coding Assessment (OA)",
+        "count": 250
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 36
-      },
-      {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 13
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 4
+        "name": "Technical Interview Round",
+        "count": 14
       },
       {
         "name": "Offers Extended",
@@ -1704,9 +2735,7 @@ export const companies = [
     "slug": "pfizer",
     "name": "Pfizer",
     "offers": [
-      "internship",
-      "fulltime",
-      "ppo"
+      "internship"
     ],
     "seasons": [
       "TE",
@@ -1714,49 +2743,70 @@ export const companies = [
     ],
     "pay": "₹50k / mo",
     "payKind": "Stipend",
-    "payRank": 5000,
+    "payRank": 50000,
     "dream": false,
     "logo": "/logos/pfizer.svg",
     "out": {
-      "internships": 0,
-      "fulltimeOffers": 2,
-      "ppo": 2,
+      "internships": 2,
+      "fulltimeOffers": 0,
+      "ppo": 0,
       "newHires": 0,
       "students": 2
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
     "cgpa": 7,
-    "first": "2026-09-14",
-    "last": "2026-09-14",
-    "status": "Selections announced",
+    "cgpaCriteria": "None stated",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "10 Sep 2026",
+    "last": "10 Sep 2026",
+    "visitTimeline": "10 Sep 2026",
+    "funnelRaw": "Test ~24 shortlisted -> GD 24 -> Technical 8 -> 2 offers",
+    "status": "2 confirmed offers",
     "roles": [
       {
-        "title": "AI",
-        "type": "both",
-        "ctc": "Competitive",
-        "stipend": "₹50,000/month",
+        "title": "AI/ML Engineer",
+        "type": "internship",
         "count": 2,
-        "notes": ""
+        "ctc": "PPO Pathway",
+        "stipend": "₹50k / mo",
+        "rawCompensation": "Stipend 50k/month",
+        "visitDate": "10 Sep 2026",
+        "funnel": [
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 24
+          },
+          {
+            "name": "Group Discussion (GD)",
+            "count": 24
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 8
+          },
+          {
+            "name": "Offers Extended",
+            "count": 2
+          }
+        ],
+        "funnelRaw": "Test ~24 shortlisted -> GD 24 -> Technical 8 -> 2 offers",
+        "notes": "Single PDF"
       }
     ],
-    "notes": "",
+    "notes": "Single PDF",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 90
+        "name": "Resume & CGPA Shortlist",
+        "count": 24
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 36
+        "name": "Group Discussion (GD)",
+        "count": 24
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 13
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 4
+        "name": "Technical Interview Round",
+        "count": 8
       },
       {
         "name": "Offers Extended",
@@ -1777,7 +2827,7 @@ export const companies = [
     "pay": "₹8.23 LPA",
     "payKind": "CTC",
     "payRank": 823,
-    "dream": false,
+    "dream": null,
     "logo": "/logos/axis-mutual-fund.svg",
     "out": {
       "internships": 0,
@@ -1786,39 +2836,43 @@ export const companies = [
       "newHires": 1,
       "students": 1
     },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
     "cgpa": 7,
-    "first": "2026-08-15",
-    "last": "2026-08-15",
-    "status": "Selections announced",
+    "cgpaCriteria": "None stated; B.Tech with no active backlogs eligible",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "1 Oct 2026 (resume shortlist 30 Sep)",
+    "last": "1 Oct 2026 (resume shortlist 30 Sep)",
+    "visitTimeline": "1 Oct 2026 (resume shortlist 30 Sep)",
+    "funnelRaw": "Resume 150-200 -> Functional interview (count n/a) -> HR 4 -> 1 offer",
+    "status": "1 confirmed offers",
     "roles": [
       {
-        "title": "Management Trainee – Digital Technology",
+        "title": "Management Trainee - Digital Technology (AI/ML)",
         "type": "fulltime",
-        "ctc": "₹8,22,651 (CTC)",
-        "stipend": null,
         "count": 1,
-        "notes": ""
+        "ctc": "₹8.23 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC Rs 8,22,651",
+        "visitDate": "1 Oct 2026 (resume shortlist 30 Sep)",
+        "funnel": [],
+        "funnelRaw": "Resume 150-200 -> Functional interview (count n/a) -> HR 4 -> 1 offer",
+        "notes": "Single PDF"
       }
     ],
-    "notes": "",
+    "notes": "Single PDF",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 90
+        "name": "Online Assessment (OA)",
+        "count": 120
       },
       {
         "name": "Technical Interview Round 1",
-        "count": 36
+        "count": 30
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 13
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 3
+        "name": "HR & Culture-Fit Interview",
+        "count": 12
       },
       {
         "name": "Offers Extended",
@@ -1827,10 +2881,11 @@ export const companies = [
     ]
   },
   {
-    "slug": "edralabs",
-    "name": "EdraLabs",
+    "slug": "edra-labs",
+    "name": "Edra Labs",
     "offers": [
       "internship",
+      "fulltime",
       "ppo"
     ],
     "seasons": [
@@ -1844,217 +2899,109 @@ export const companies = [
     "logo": "/logos/edralabs.svg",
     "out": {
       "internships": 1,
-      "fulltimeOffers": 0,
-      "ppo": 0,
-      "newHires": 0,
-      "students": 1
-    },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-09-28",
-    "last": "2026-09-28",
-    "status": "Selections announced",
-    "roles": [
-      {
-        "title": "SDE",
-        "type": "internship",
-        "ctc": "16.5 LPA + annual bonus",
-        "stipend": "₹75,000/month",
-        "count": 1,
-        "notes": "PPO is performance-based"
-      }
-    ],
-    "notes": "PPO is performance-based",
-    "stages": [
-      {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 90
-      },
-      {
-        "name": "Technical Interview Round 1",
-        "count": 36
-      },
-      {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 13
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 3
-      },
-      {
-        "name": "Offers Extended",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "slug": "nomura",
-    "name": "Nomura",
-    "offers": [
-      "internship",
-      "fulltime",
-      "ppo"
-    ],
-    "seasons": [
-      "TE",
-      "BE"
-    ],
-    "pay": "₹13.905 LPA",
-    "payKind": "CTC",
-    "payRank": 1390.5,
-    "dream": true,
-    "logo": "/logos/nomura.svg",
-    "out": {
-      "internships": 0,
       "fulltimeOffers": 1,
       "ppo": 1,
-      "newHires": 0,
+      "newHires": 1,
       "students": 1
     },
     "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "CSE, IT, AI & DS, EXTC",
-    "cgpa": 7,
-    "first": "2026-08-25",
-    "last": "2026-08-25",
-    "status": "Selections announced",
+    "branches": "All branches open",
+    "cgpa": 8.5,
+    "cgpaCriteria": "8.5+",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "14 Aug (screening), 18-19 Aug 2026",
+    "last": "14 Aug (screening), 18-19 Aug 2026",
+    "visitTimeline": "14 Aug (screening), 18-19 Aug 2026",
+    "funnelRaw": "Screening ~40 -> Machine coding 11 -> Tech R1 & R2 (n/a) -> Head of Engineering 4 -> 1 offer",
+    "status": "1 confirmed offers",
     "roles": [
       {
-        "title": "Global Markets",
+        "title": "Software Engineer",
         "type": "both",
-        "ctc": "13.905 LPA (12.455 LPA fixed)",
-        "stipend": "₹75,000/month",
         "count": 1,
-        "notes": ""
+        "ctc": "₹16.5 LPA",
+        "stipend": "₹75k / mo",
+        "rawCompensation": "Stipend 75k/month; CTC 16.5 LPA + annual bonus",
+        "visitDate": "14 Aug (screening), 18-19 Aug 2026",
+        "funnel": [
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 40
+          },
+          {
+            "name": "Machine Coding Round",
+            "count": 11
+          },
+          {
+            "name": "Technical Interview Round 2",
+            "count": 1
+          },
+          {
+            "name": "Executive Director Round",
+            "count": 4
+          },
+          {
+            "name": "Offers Extended",
+            "count": 1
+          }
+        ],
+        "funnelRaw": "Screening ~40 -> Machine coding 11 -> Tech R1 & R2 (n/a) -> Head of Engineering 4 -> 1 offer",
+        "notes": "Single PDF"
       }
     ],
-    "notes": "",
+    "notes": "Single PDF",
     "stages": [
       {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 90
+        "name": "Resume & CGPA Shortlist",
+        "count": 40
       },
       {
-        "name": "Technical Interview Round 1",
-        "count": 36
+        "name": "Machine Coding Round",
+        "count": 11
       },
       {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 13
+        "name": "Technical Interview Round 2",
+        "count": 1
       },
       {
-        "name": "HR Interview & Final Review",
-        "count": 3
+        "name": "Executive Director Round",
+        "count": 4
       },
       {
         "name": "Offers Extended",
         "count": 1
-      }
-    ]
-  },
-  {
-    "slug": "nomura-kakushin",
-    "name": "Nomura Kakushin",
-    "offers": [],
-    "seasons": [
-      "TE",
-      "BE"
-    ],
-    "pay": "₹15.7 LPA",
-    "payKind": "CTC",
-    "payRank": 1570,
-    "dream": true,
-    "logo": "/logos/nomura-kakushin.svg",
-    "out": {
-      "internships": 0,
-      "fulltimeOffers": 0,
-      "ppo": 0,
-      "newHires": 0,
-      "students": 0
-    },
-    "open": "CSE, IT, EXTC, AI & DS",
-    "branches": "CSE, IT, EXTC, AI & DS",
-    "cgpa": 7,
-    "first": "2026-09-02",
-    "last": "2026-09-02",
-    "status": "Hackathon finalists (7 selected)",
-    "roles": [
-      {
-        "title": "Hackathon / ITD",
-        "type": "fulltime",
-        "ctc": "15.7 LPA stated in one ITD experience; not a confirmed offer for all finalists",
-        "stipend": "₹75,000/month stated",
-        "count": 7,
-        "notes": "Excluded from offer totals"
-      }
-    ],
-    "notes": "Excluded from offer totals",
-    "stages": [
-      {
-        "name": "Online Coding & Aptitude Assessment",
-        "count": 90
-      },
-      {
-        "name": "Technical Interview Round 1",
-        "count": 36
-      },
-      {
-        "name": "Technical Interview Round 2 / Managerial",
-        "count": 13
-      },
-      {
-        "name": "HR Interview & Final Review",
-        "count": 2
-      },
-      {
-        "name": "Offers Extended",
-        "count": 7
       }
     ]
   }
 ];
 
 export function getCompanyBySlug(slug) {
-  return companies.find(c => c.slug.toLowerCase() === slug.toLowerCase()) || null;
+  return companies.find(c => c.slug === slug);
 }
 
-export function searchCompanies({ query = '', role = 'all', branch = 'all', sort = 'latest' } = {}) {
-  let list = [...companies];
+export function searchCompanies(query, role = 'all', branch = 'all', sort = 'placed') {
+  const q = query.toLowerCase().trim();
+  let filtered = companies.filter(c => {
+    if (q) {
+      const matchName = c.name.toLowerCase().includes(q);
+      const matchRoles = c.roles.some(r => r.title.toLowerCase().includes(q) || (r.notes && r.notes.toLowerCase().includes(q)));
+      const matchPay = c.pay.toLowerCase().includes(q);
+      const matchCriteria = (c.cgpaCriteria && c.cgpaCriteria.toLowerCase().includes(q)) || (c.boardsCriteria && c.boardsCriteria.toLowerCase().includes(q));
+      if (!matchName && !matchRoles && !matchPay && !matchCriteria) return false;
+    }
+    if (role !== 'all' && (!c.offers || !c.offers.includes(role))) return false;
+    return true;
+  });
 
-  if (query.trim()) {
-    const q = query.toLowerCase();
-    list = list.filter(c => 
-      c.name.toLowerCase().includes(q) || 
-      c.slug.toLowerCase().includes(q) ||
-      (c.branches && c.branches.toLowerCase().includes(q)) ||
-      (c.roles && c.roles.some(r => r.title.toLowerCase().includes(q)))
-    );
-  }
-
-  if (role !== 'all') {
-    list = list.filter(c => c.offers && c.offers.includes(role));
-  }
-
-  if (branch !== 'all') {
-    list = list.filter(c => {
-      if (!c.branches) return true;
-      const b = c.branches.toLowerCase();
-      if (b.includes('all')) return true;
-      return b.includes(branch.toLowerCase());
-    });
-  }
-
-  if (sort === 'pay') {
-    list.sort((a, b) => (b.payRank || 0) - (a.payRank || 0));
+  if (sort === 'placed') {
+    filtered.sort((a, b) => b.out.students - a.out.students);
+  } else if (sort === 'pay') {
+    filtered.sort((a, b) => b.payRank - a.payRank);
   } else if (sort === 'name') {
-    list.sort((a, b) => a.name.localeCompare(b.name));
-  } else if (sort === 'placed') {
-    list.sort((a, b) => ((b.out?.students || 0) - (a.out?.students || 0)));
-  } else {
-    // Default: by offers then pay
-    list.sort((a, b) => (b.out?.students || 0) - (a.out?.students || 0) || (b.payRank || 0) - (a.payRank || 0));
+    filtered.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sort === 'latest') {
+    filtered.sort((a, b) => b.last.localeCompare(a.last));
   }
 
-  return list;
+  return filtered;
 }
