@@ -408,11 +408,11 @@
     const is2028 = currentBatch === '2028';
 
     // Find company in current batch first, then in alternate batch as fallback
-    let company = batchData.companies.find(c => c.slug.toLowerCase() === slug);
+    let company = batchData.companies.find(c => c.slug.toLowerCase() === slug || (c.slug === 'idfc-first-bank' && slug === 'idfc-first-bank-apm'));
     let matchedBatchYear = currentBatch;
     if (!company) {
       const altYear = currentBatch === '2028' ? '2027' : '2028';
-      company = allBatches[altYear]?.companies.find(c => c.slug.toLowerCase() === slug);
+      company = allBatches[altYear]?.companies.find(c => c.slug.toLowerCase() === slug || (c.slug === 'idfc-first-bank' && slug === 'idfc-first-bank-apm'));
       if (company) matchedBatchYear = altYear;
     }
 

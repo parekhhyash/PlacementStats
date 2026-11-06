@@ -21,7 +21,7 @@ export const siteConfig = {
   // Top summary headline stats from SPIT 2027 classified data
   stats: {
     totalCompanies: companies.length,
-    studentsPlaced: 225,
+    studentsPlaced: companies.reduce((sum, c) => sum + (c.out?.students || 0), 0),
     totalBatchSize: 360,
     placementPercentage: "63%",
     fulltimeOffersCount: 111,

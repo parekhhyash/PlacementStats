@@ -1214,22 +1214,22 @@ export const companies = [
     "dream": true,
     "logo": "/logos/idfc.svg",
     "out": {
-      "internships": 8,
-      "fulltimeOffers": 8,
-      "ppo": 8,
-      "newHires": 8,
-      "students": 8
+      "internships": 11,
+      "fulltimeOffers": 11,
+      "ppo": 11,
+      "newHires": 11,
+      "students": 11
     },
     "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "All branches open",
+    "branches": "All branches open (APM selected from Computer Engineering)",
     "cgpa": 6.75,
-    "cgpaCriteria": "6.75 (one PDF says no CGPA criterion); CE/CSE only, no standing backlogs",
-    "boardsCriteria": "Standard SPIT eligibility",
+    "cgpaCriteria": "6.75+ CGPA; CE/CSE only, no standing backlogs",
+    "boardsCriteria": "60% in Class 10 and 60% in Class 12",
     "first": "PPT 25 Jun, OA 4 Jul, interviews 8 Jul 2026",
-    "last": "PPT 25 Jun, OA 4 Jul, interviews 8 Jul 2026",
-    "visitTimeline": "PPT 25 Jun, OA 4 Jul, interviews 8 Jul 2026",
-    "funnelRaw": "OA ~165 -> L1 tech 48-50 -> L2 tech 20-22 -> L3 tech 10 -> HR 10 -> 8 offers",
-    "status": "8 confirmed offers",
+    "last": "PPT 22 Oct 2026, results 31 Oct",
+    "visitTimeline": "Jun–Oct 2026 (Application Engineer & APM drives)",
+    "funnelRaw": "App Eng (OA ~165 -> 8 offers) | APM (OA ~130 -> 3 SPIT offers)",
+    "status": "11 confirmed offers",
     "roles": [
       {
         "title": "Application Engineer",
@@ -1267,9 +1267,34 @@ export const companies = [
         ],
         "funnelRaw": "OA ~165 -> L1 tech 48-50 -> L2 tech 20-22 -> L3 tech 10 -> HR 10 -> 8 offers",
         "notes": "4 PDFs; 8 offers"
+      },
+      {
+        "title": "Associate Product Manager",
+        "type": "both",
+        "count": 3,
+        "ctc": "₹18.1 LPA",
+        "stipend": "₹40,000/month",
+        "rawCompensation": "14L base + 2L joining bonus + 15% variable",
+        "visitDate": "PPT 22 Oct 2026; OA 23 Oct; Techno-HR 29 Oct; results 31 Oct",
+        "notes": "Performance-based PPO. Pooled drive with DJ Sanghvi: 5 offers in total (3 SPIT + 2 DJ Sanghvi); Gold Loans vertical interviews postponed, so more offers may follow. Bond: Rs 1 lakh if leaving within a year.",
+        "funnelRaw": "OA ~130 SPIT -> Techno-HR 41 SPIT + 21 DJ Sanghvi -> 5 offers (3 SPIT + 2 DJ Sanghvi)",
+        "funnel": [
+          {
+            "name": "Online Assessment (OA)",
+            "count": 130
+          },
+          {
+            "name": "Techno-HR Round",
+            "count": 41
+          },
+          {
+            "name": "Offers Extended (SPIT)",
+            "count": 3
+          }
+        ]
       }
     ],
-    "notes": "4 PDFs; 8 offers",
+    "notes": "Application Engineer (8 offers) + Associate Product Manager (3 SPIT offers from pooled DJ Sanghvi drive). Total 11 offers.",
     "stages": [
       {
         "name": "Online Coding Assessment (OA)",
@@ -3100,6 +3125,117 @@ export const companies = [
     "payRank": 0,
     "dream": false,
     "logo": "/logos/kelp-dao.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No official details available yet. Submit verified data if you have it."
+  },
+  {
+    "slug": "loginext",
+    "name": "LogiNext",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/loginext.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No official details available yet. Submit verified data if you have it."
+  },
+  {
+    "slug": "nxpec-technologies",
+    "name": "Nxpec Technologies",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/nxpec-technologies.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No official details available yet. Submit verified data if you have it."
+  },
+  {
+    "slug": "kpmg",
+    "name": "KPMG",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/kpmg.svg",
     "noDetailsAvailable": true,
     "out": {
       "internships": 0,

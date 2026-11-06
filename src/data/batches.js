@@ -407,7 +407,7 @@ export const allBatches = {
     statusBadge: "Placements in progress",
     stats: {
       totalCompanies: companies2027.length,
-      studentsPlaced: 225,
+      studentsPlaced: companies2027.reduce((sum, c) => sum + (c.out?.students || 0), 0),
       totalBatchSize: 360,
       placementPercentage: "63%",
       fulltimeOffersCount: 111,
