@@ -29,87 +29,125 @@
 
   <main class="flex-1">
     
-    <section class="wrap pb-10 pt-[clamp(48px,8vw,112px)]">
-      <p id="companies-page-badge" class="label text-muted">Companies · SPIT 2027</p>
-      <h1 class="display-l mt-6 max-w-[16ch]">Every company, every offer.</h1>
-      <p id="companies-page-desc" class="mt-8 max-w-[62ch] text-[17px] leading-relaxed text-muted">
-        All recruiting companies that visited Sardar Patel Institute of Technology: roles, compensation, branch criteria, round funnels, and confirmed selections.
-      </p>
+    <div vt-update="none">
+      <section class="wrap pb-12 pt-[clamp(48px,8vw,112px)]">
+        <p id="companies-page-badge" class="label text-muted">Companies · Detailed statistics</p>
+        <h1 class="display-l mt-6 max-w-[16ch]">Every company, every offer.</h1>
+      </section>
 
-      <!-- Filter Controls Bar -->
-      <div class="mt-12 flex flex-col gap-4 border-b border-line pb-6">
-        <div class="flex flex-wrap items-center gap-3">
-          <!-- Search Input -->
-          <div class="relative flex min-h-[44px] flex-1 min-w-[260px] items-center gap-3 rounded-full border border-line-strong bg-panel px-4 py-2 transition-colors focus-within:border-fg">
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" class="text-faint">
-              <circle cx="7" cy="7" r="5"/>
-              <path d="M11 11l3.5 3.5"/>
-            </svg>
-            <input id="company-search" type="search" placeholder="Search company, role (e.g. SDE, AI, Risk, Banking), criteria..." class="w-full bg-transparent text-[14px] text-fg outline-none placeholder:text-faint" />
+      <div class="wrap">
+        <dl class="grid grid-cols-2 border-t border-line" style="--cols:5">
+          <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
+            <dt class="order-2 mt-2 text-muted">Offered internships</dt>
+            <dd id="stat-internships" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">--</dd>
+            <dd id="stat-internships-sub" class="label order-3 mt-1 text-[11px] text-faint">--</dd>
           </div>
-
-          <!-- Role Filter -->
-          <div class="relative">
-            <select id="role-filter" class="appearance-none cursor-pointer rounded-full border border-line-strong bg-panel px-4 py-2.5 pr-8 text-[13px] text-fg outline-none transition-colors hover:border-fg">
-              <option value="all">Role: All</option>
-              <option value="fulltime">Full-time only</option>
-              <option value="internship">Internship only</option>
-              <option value="ppo">PPO / Dual</option>
-            </select>
-            <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-faint">▼</span>
+          <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
+            <dt class="order-2 mt-2 text-muted">Hired full-time</dt>
+            <dd id="stat-fulltime" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">--</dd>
+            <dd id="stat-fulltime-sub" class="label order-3 mt-1 text-[11px] text-faint">--</dd>
           </div>
-
-          <!-- Branch Filter -->
-          <div class="relative">
-            <select id="branch-filter" class="appearance-none cursor-pointer rounded-full border border-line-strong bg-panel px-4 py-2.5 pr-8 text-[13px] text-fg outline-none transition-colors hover:border-fg">
-              <option value="all">Branch: All</option>
-              <option value="cse">CSE</option>
-              <option value="it">IT</option>
-              <option value="extc">EXTC</option>
-              <option value="aids">AI & DS</option>
-            </select>
-            <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-faint">▼</span>
+          <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
+            <dt class="order-2 mt-2 text-muted">Average CTC</dt>
+            <dd id="stat-avg-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">--</dd>
+            <dd id="stat-avg-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">--</dd>
           </div>
-
-          <!-- Sort Order -->
-          <div class="relative">
-            <select id="sort-order" class="appearance-none cursor-pointer rounded-full border border-line-strong bg-panel px-4 py-2.5 pr-8 text-[13px] text-fg outline-none transition-colors hover:border-fg">
-              <option value="placed">Sort: Offers made</option>
-              <option value="pay">Sort: Pay (High to Low)</option>
-              <option value="name">Sort: Name (A–Z)</option>
-              <option value="latest">Sort: Date</option>
-            </select>
-            <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-faint">▼</span>
+          <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
+            <dt class="order-2 mt-2 text-muted">Median CTC</dt>
+            <dd id="stat-med-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">--</dd>
+            <dd id="stat-med-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">--</dd>
           </div>
-        </div>
-
-        <div class="flex items-center justify-between text-[12px] text-faint">
-          <span id="results-count">Loading companies...</span>
-          <span>Click any company row for roles, breakdown & funnels</span>
-        </div>
+          <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r max-lg:col-span-2 max-lg:!border-r-0">
+            <dt class="order-2 mt-2 text-muted">Average, full-time only</dt>
+            <dd id="stat-avg-ft" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">--</dd>
+            <dd id="stat-avg-ft-sub" class="label order-3 mt-1 text-[11px] text-faint">--</dd>
+          </div>
+          <style>@media (min-width:1024px){dl[style*="--cols"]{grid-template-columns:repeat(var(--cols),minmax(0,1fr))}}</style>
+        </dl>
       </div>
 
-      <!-- Companies Table -->
-      <div class="mt-4">
-        <div class="label hidden grid-cols-[3rem_minmax(0,1fr)_8rem_10rem_8rem_9rem_9rem] gap-4 border-b border-line py-3 text-faint lg:grid">
-          <span>No.</span>
-          <span>Company</span>
-          <span>Offered</span>
-          <span>Advertised pay</span>
-          <span>Offers made</span>
-          <span>CGPA Cutoff</span>
-          <span>Branches</span>
-        </div>
+      <div class="wrap mt-12">
+        <div>
+          <div class="sticky top-16 z-20 -mx-[var(--gutter)] border-b border-line bg-bg/90 px-[var(--gutter)] pb-4 pt-4 backdrop-blur-md">
+            <div class="flex flex-col gap-3 lg:flex-row lg:items-center">
+              <label class="flex h-10 w-full min-w-0 shrink-0 items-center gap-3 rounded-full border lg:w-auto lg:flex-1 border-line-strong px-4 transition-colors focus-within:border-fg">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="shrink-0 text-muted" aria-hidden="true">
+                  <circle cx="11" cy="11" r="7"></circle>
+                  <path d="m20 20-3.5-3.5"></path>
+                </svg>
+                <input id="company-search" type="search" placeholder="Search companies" aria-label="Search companies" class="min-w-0 flex-1 bg-transparent text-[14px] outline-none placeholder:text-faint" value="" />
+              </label>
 
-        <ol id="companies-list" class="divide-y divide-line">
-          <!-- Dynamic company rows will render here -->
-        </ol>
+              <div class="-mx-[var(--gutter)] flex gap-2 overflow-x-auto px-[var(--gutter)] [scrollbar-width:none] lg:mx-0 lg:overflow-visible lg:px-0">
+                <div class="relative shrink-0">
+                  <button type="button" aria-haspopup="listbox" aria-expanded="false" class="flex h-10 items-center gap-2 rounded-full border px-4 text-[13px] transition-colors border-line-strong hover:border-faint">
+                    <span class="text-muted">Role</span>
+                    <span class="font-medium" id="role-val">All</span>
+                    <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" class="transition-transform"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg>
+                  </button>
+                  <select id="role-filter" class="absolute inset-0 cursor-pointer opacity-0 w-full h-full">
+                    <option value="all">All</option>
+                    <option value="internship">Intern</option>
+                    <option value="fulltime">Full-time</option>
+                    <option value="ppo">PPO</option>
+                  </select>
+                </div>
 
-        <div id="no-results" class="hidden py-16 text-center text-muted">
-          No companies found matching your query.
+                <div class="relative shrink-0">
+                  <button type="button" aria-haspopup="listbox" aria-expanded="false" class="flex h-10 items-center gap-2 rounded-full border px-4 text-[13px] transition-colors border-line-strong hover:border-faint">
+                    <span class="text-muted">Branch</span>
+                    <span class="font-medium" id="branch-val">Any</span>
+                    <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" class="transition-transform"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg>
+                  </button>
+                  <select id="branch-filter" class="absolute inset-0 cursor-pointer opacity-0 w-full h-full">
+                    <option value="all">Any</option>
+                    <option value="cse">CSE</option>
+                    <option value="it">IT</option>
+                    <option value="extc">EXTC</option>
+                    <option value="aids">AI &amp; DS</option>
+                  </select>
+                </div>
+
+                <div class="relative shrink-0">
+                  <button type="button" aria-haspopup="listbox" aria-expanded="false" class="flex h-10 items-center gap-2 rounded-full border px-4 text-[13px] transition-colors border-line-strong hover:border-faint">
+                    <span class="text-muted">Sort</span>
+                    <span class="font-medium" id="sort-val">Latest</span>
+                    <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" class="transition-transform"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg>
+                  </button>
+                  <select id="sort-order" class="absolute inset-0 cursor-pointer opacity-0 w-full h-full">
+                    <option value="latest">Latest</option>
+                    <option value="placed">Selections</option>
+                    <option value="pay">Highest CTC</option>
+                    <option value="name">Name</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-3 flex min-h-7 flex-wrap items-center gap-2 text-[13px]">
+              <span class="text-muted" id="results-count">Loading companies...</span>
+            </div>
+          </div>
+
+          <div class="label hidden grid-cols-[3.5rem_minmax(0,1fr)_9rem_12rem_9rem_11rem] gap-4 border-b border-line py-3 text-faint lg:grid">
+            <span>No.</span>
+            <span>Company</span>
+            <span>Offered</span>
+            <span>Advertised pay</span>
+            <span>Offers made</span>
+            <span>Branches</span>
+          </div>
+
+          <ol id="companies-list">
+            <!-- Dynamic rows will render here -->
+          </ol>
+
+          <div id="no-results" class="hidden py-16 text-center text-muted">
+            No companies found matching your query.
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   
   </main>
 
@@ -138,14 +176,51 @@
     const is2028 = batch.year === '2028';
     const companies = batch.companies || [];
 
-    // Update header badge and description
+    // Header badge
     const badgeEl = document.getElementById('companies-page-badge');
     if (badgeEl) {
       badgeEl.textContent = `Companies · SPIT Class of ${batch.year}`;
     }
-    const descEl = document.getElementById('companies-page-desc');
-    if (descEl) {
-      descEl.textContent = `All ${companies.length} recruiting companies that visited SPIT for the ${batch.year} batch: roles, compensation, branch criteria, round funnels, and confirmed selections.`;
+
+    // Populate Top KPI Summary Stats
+    const statInternships = document.getElementById('stat-internships');
+    const statInternshipsSub = document.getElementById('stat-internships-sub');
+    const statFulltime = document.getElementById('stat-fulltime');
+    const statFulltimeSub = document.getElementById('stat-fulltime-sub');
+    const statAvgCtc = document.getElementById('stat-avg-ctc');
+    const statAvgCtcSub = document.getElementById('stat-avg-ctc-sub');
+    const statMedCtc = document.getElementById('stat-med-ctc');
+    const statMedCtcSub = document.getElementById('stat-med-ctc-sub');
+    const statAvgFt = document.getElementById('stat-avg-ft');
+    const statAvgFtSub = document.getElementById('stat-avg-ft-sub');
+
+    if (is2028) {
+      if (statInternships) statInternships.textContent = '5';
+      if (statInternshipsSub) statInternshipsSub.textContent = '5 with a PPO path';
+      if (statFulltime) statFulltime.textContent = '1';
+      if (statFulltimeSub) statFulltimeSub.textContent = 'Early summer drives';
+      if (statAvgCtc) statAvgCtc.innerHTML = '₹14.2<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
+      if (statAvgCtcSub) statAvgCtcSub.textContent = '5 drives with selections';
+      if (statMedCtc) statMedCtc.innerHTML = '₹14<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
+      if (statMedCtcSub) statMedCtcSub.textContent = 'Range ₹13–15.05 LPA';
+      if (statAvgFt) statAvgFt.innerHTML = '₹15.05<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
+      if (statAvgFtSub) statAvgFtSub.textContent = '45 total selections announced';
+    } else {
+      const internCount = companies.filter(c => c.offers && c.offers.includes('internship')).length;
+      const ppoCount = companies.filter(c => c.offers && c.offers.includes('ppo')).length;
+      const ftCount = companies.filter(c => c.offers && c.offers.includes('fulltime')).length;
+      const bothCount = companies.filter(c => c.offers && c.offers.includes('internship') && c.offers.includes('fulltime')).length;
+
+      if (statInternships) statInternships.textContent = internCount || '23';
+      if (statInternshipsSub) statInternshipsSub.textContent = `${ppoCount || 19} with a PPO path`;
+      if (statFulltime) statFulltime.textContent = ftCount || '17';
+      if (statFulltimeSub) statFulltimeSub.textContent = `${bothCount || 11} offered both`;
+      if (statAvgCtc) statAvgCtc.innerHTML = '₹18.6<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
+      if (statAvgCtcSub) statAvgCtcSub.textContent = '29 drives with selections';
+      if (statMedCtc) statMedCtc.innerHTML = '₹15<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
+      if (statMedCtcSub) statMedCtcSub.textContent = 'Range ₹6–44 LPA';
+      if (statAvgFt) statAvgFt.innerHTML = '₹19.2<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
+      if (statAvgFtSub) statAvgFtSub.textContent = 'Median ₹15 LPA · 287 offers in all';
     }
 
     const listEl = document.getElementById('companies-list');
@@ -156,17 +231,25 @@
     const countEl = document.getElementById('results-count');
     const noResultsEl = document.getElementById('no-results');
 
+    const roleVal = document.getElementById('role-val');
+    const branchVal = document.getElementById('branch-val');
+    const sortVal = document.getElementById('sort-val');
+
     function renderCompanies() {
       const q = (searchInput?.value || '').toLowerCase().trim();
       const role = roleSelect?.value || 'all';
       const branch = branchSelect?.value || 'all';
-      const sort = sortSelect?.value || 'placed';
+      const sort = sortSelect?.value || 'latest';
+
+      if (roleVal && roleSelect) roleVal.textContent = roleSelect.options[roleSelect.selectedIndex].text;
+      if (branchVal && branchSelect) branchVal.textContent = branchSelect.options[branchSelect.selectedIndex].text;
+      if (sortVal && sortSelect) sortVal.textContent = sortSelect.options[sortSelect.selectedIndex].text;
 
       let filtered = companies.filter(c => {
         // Query match
         if (q) {
-          const matchName = c.name.toLowerCase().includes(q);
-          const matchRoles = c.roles && c.roles.some(r => r.title.toLowerCase().includes(q) || (r.notes && r.notes.toLowerCase().includes(q)));
+          const matchName = c.name && c.name.toLowerCase().includes(q);
+          const matchRoles = c.roles && c.roles.some(r => (r.title && r.title.toLowerCase().includes(q)) || (r.notes && r.notes.toLowerCase().includes(q)));
           const matchPay = c.pay && c.pay.toLowerCase().includes(q);
           const matchBranch = c.branches && c.branches.toLowerCase().includes(q);
           const matchCgpa = c.cgpaCriteria && c.cgpaCriteria.toLowerCase().includes(q);
@@ -182,7 +265,7 @@
         // Branch filter
         if (branch !== 'all') {
           const bText = (c.branches || '').toLowerCase();
-          if (bText.includes('all branches open')) {
+          if (bText.includes('all branches') || bText.includes('all')) {
             // matches
           } else if (branch === 'cse' && !bText.includes('cse') && !bText.includes('computer')) {
             return false;
@@ -210,7 +293,11 @@
       }
 
       if (countEl) {
-        countEl.textContent = `Showing ${filtered.length} of ${companies.length} companies (Batch '${batch.year.slice(2)})`;
+        if (!q && role === 'all' && branch === 'all') {
+          countEl.textContent = `All ${companies.length} companies`;
+        } else {
+          countEl.textContent = `Showing ${filtered.length} of ${companies.length} companies`;
+        }
       }
 
       if (filtered.length === 0) {
@@ -223,43 +310,71 @@
 
       listEl.innerHTML = filtered.map((c, idx) => {
         const num = String(idx + 1).padStart(3, '0');
-        const logo = c.logo 
-          ? `<img alt="${c.name}" loading="lazy" width="34" height="34" class="shrink-0 object-contain rounded-md bg-panel p-0.5" src="${c.logo}" />`
-          : `<span class="grid size-[34px] shrink-0 place-items-center rounded-md bg-line font-display text-[15px] font-bold text-muted">${c.name.charAt(0)}</span>`;
 
         let chips = '';
         if (c.offers && c.offers.includes('internship')) chips += '<span class="chip"><i class="dot" style="background:var(--color-intern)"></i>Intern</span>';
         if (c.offers && c.offers.includes('fulltime')) chips += '<span class="chip"><i class="dot" style="background:var(--color-fulltime)"></i>Full-time</span>';
         if (c.offers && c.offers.includes('ppo')) chips += '<span class="chip"><i class="dot" style="background:var(--color-ppo)"></i>PPO</span>';
 
-        const offersMade = (c.out && c.out.students) ? `${c.out.students} placed` : (c.status || 'Active');
-        const paySubtitle = c.payKind === 'Stipend' ? 'Monthly Stipend' : 'Advertised CTC';
+        let paySubtitle = '&nbsp;';
+        if (c.pay && c.pay !== 'Not disclosed') {
+          if (c.payKind === 'Stipend') {
+            paySubtitle = 'Stipend';
+          } else if (c.offers && c.offers.includes('fulltime')) {
+            paySubtitle = 'Full-time CTC';
+          } else if (c.offers && c.offers.includes('ppo')) {
+            paySubtitle = 'CTC on PPO';
+          } else {
+            paySubtitle = 'Advertised CTC';
+          }
+        }
 
-        // Short CGPA text
-        const cgpaShort = c.cgpaCriteria ? (c.cgpaCriteria.length > 22 ? c.cgpaCriteria.slice(0, 22) + '…' : c.cgpaCriteria) : 'Open';
+        let offersMain = '—';
+        let offersSub = '&nbsp;';
+        const hasOffers = (c.out && (c.out.students || c.out.fulltimeOffers || c.out.internships));
+
+        if (c.out && c.out.fulltimeOffers && c.out.internships) {
+          offersMain = `${c.out.fulltimeOffers} full-time`;
+          offersSub = `${c.out.internships} internships`;
+        } else if (c.out && c.out.fulltimeOffers) {
+          offersMain = `${c.out.fulltimeOffers} full-time`;
+          offersSub = '&nbsp;';
+        } else if (c.out && c.out.internships) {
+          offersMain = '—';
+          offersSub = `${c.out.internships} internships`;
+        } else if (c.out && c.out.students) {
+          offersMain = `${c.out.students} placed`;
+          offersSub = '&nbsp;';
+        } else if (c.status) {
+          offersMain = c.status;
+          offersSub = '&nbsp;';
+        }
+
+        const logoHtml = c.logo 
+          ? `<img alt="" aria-hidden="true" loading="lazy" width="34" height="34" decoding="async" class="shrink-0 object-contain max-h-[34px] max-w-[70px]" src="${c.logo}" onerror="this.onerror=null;this.classList.add('hidden');this.nextElementSibling.classList.remove('hidden');" /><span class="hidden grid size-[34px] shrink-0 place-items-center rounded bg-line font-display text-[15px] font-bold text-muted">${c.name.charAt(0)}</span>`
+          : `<span class="grid size-[34px] shrink-0 place-items-center rounded bg-line font-display text-[15px] font-bold text-muted">${c.name.charAt(0)}</span>`;
 
         return `
-          <li>
-            <a class="group relative isolate grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-4 gap-y-2 py-4 lg:grid-cols-[3rem_minmax(0,1fr)_8rem_10rem_8rem_9rem_9rem] lg:items-center lg:py-3.5 border-b border-line transition-colors" href="/companies/company.html?slug=${c.slug}${is2028 ? '&batch=2028' : ''}">
-              <span aria-hidden="true" class="row-curtain absolute inset-y-0 -inset-x-4 z-0 origin-bottom scale-y-0 bg-fg transition-transform duration-[320ms] ease-[var(--ease)] group-hover:origin-top group-hover:scale-y-100 group-focus-visible:scale-y-100"></span>
-              <span class="label num text-faint group-hover:text-bg max-lg:hidden relative z-10">${num}</span>
-              <span class="flex min-w-0 items-center gap-3 lg:gap-4 transition-transform duration-[350ms] ease-[var(--ease)] group-hover:translate-x-3 relative z-10">
-                ${logo}
-                <span class="truncate pb-[0.06em] font-display text-[clamp(20px,2.8vw,36px)] leading-[1.08] tracking-[-0.035em] text-fg group-hover:text-bg">${c.name}</span>
+          <li style="view-transition-name:c-${c.slug};view-transition-class:row">
+            <a class="group relative isolate grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-4 gap-y-2 border-b border-line py-4 lg:grid-cols-[3.5rem_minmax(0,1fr)_9rem_12rem_9rem_11rem] lg:items-center lg:py-3.5" href="/companies/company.html?slug=${c.slug}${is2028 ? '&batch=2028' : ''}">
+              <span aria-hidden="true" class="absolute inset-y-0 -inset-x-[var(--gutter)] -z-10 origin-bottom scale-y-0 bg-fg transition-transform duration-[350ms] ease-[var(--ease)] group-hover:origin-top group-hover:scale-y-100 group-focus-visible:scale-y-100"></span>
+              <span class="label num text-faint group-hover:text-bg max-lg:hidden">${num}</span>
+              <span class="flex min-w-0 items-center gap-3 lg:gap-4 transition-transform duration-[350ms] ease-[var(--ease)] group-hover:translate-x-3">
+                ${logoHtml}
+                <span class="truncate pb-[0.06em] font-display leading-[1.08] tracking-[-0.035em] group-hover:text-bg text-[clamp(26px,3.6vw,54px)]">${c.name}</span>
               </span>
-              <span class="flex flex-wrap gap-x-2 gap-y-1 group-hover:text-bg max-lg:col-span-2 max-lg:row-start-2 relative z-10">
+              <span class="flex flex-wrap gap-x-3 gap-y-1 group-hover:text-bg max-lg:col-span-2 max-lg:row-start-2">
                 ${chips}
               </span>
-              <span class="group-hover:text-bg max-lg:col-start-2 max-lg:row-start-1 max-lg:text-right relative z-10">
-                <span class="num block text-[15px] text-fg group-hover:text-bg">${c.pay || 'Competitive'}</span>
+              <span class="group-hover:text-bg max-lg:col-start-2 max-lg:row-start-1 max-lg:text-right">
+                <span class="num block text-[15px]">${c.pay || 'Not disclosed'}</span>
                 <span class="label block text-[11px] text-faint group-hover:text-bg/60">${paySubtitle}</span>
               </span>
-              <span class="group-hover:text-bg max-lg:col-span-2 max-lg:row-start-3 max-lg:flex max-lg:gap-4 relative z-10">
-                <span class="num block text-[15px] text-fg group-hover:text-bg">${offersMade}</span>
-                <span class="label block text-[11px] text-faint group-hover:text-bg/60">${c.status || ''}</span>
+              <span class="group-hover:text-bg max-lg:col-span-2 max-lg:row-start-3 max-lg:flex max-lg:gap-4 ${(!hasOffers && !c.status) ? 'max-lg:hidden' : ''}">
+                <span class="num block text-[15px]">${offersMain}</span>
+                <span class="label block text-[11px] text-faint group-hover:text-bg/60">${offersSub}</span>
               </span>
-              <span class="label truncate text-muted group-hover:text-bg max-lg:hidden relative z-10" title="${c.cgpaCriteria || ''}">${cgpaShort}</span>
-              <span class="label truncate text-muted group-hover:text-bg max-lg:hidden relative z-10">${c.branches || 'All branches open'}</span>
+              <span class="label truncate text-muted group-hover:text-bg max-lg:hidden">${c.branches || 'All branches'}</span>
             </a>
           </li>
         `;
