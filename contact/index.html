@@ -25,7 +25,91 @@
   
 </head>
 <body class="min-h-full bg-bg font-sans text-fg antialiased flex flex-col justify-between selection:bg-fg selection:text-bg">
-  <div id="site-header-root"></div>
+  <div id="site-header-root">
+    <header class="wrap sticky top-0 z-30 border-b border-line bg-bg/85 backdrop-blur-md [view-transition-name:site-header]">
+      <div class="flex h-16 items-center justify-between gap-4">
+        <a aria-label="Placed ’27 · SPIT, home" class="group -my-2 py-2 shrink-0" href="/">
+          <span class="flex items-center gap-3">
+            <span aria-hidden="true" class="p27-mark size-8 shrink-0">
+              <span class="p27-float">
+                <span class="p27-card">
+                  <svg viewBox="0 0 32 32" class="p27-layer p27-tile">
+                    <defs>
+                      <linearGradient id="p27-tile-fill" x1="0" y1="0" x2="0.6" y2="1">
+                        <stop offset="0" stop-color="#262626"></stop>
+                        <stop offset="0.6" stop-color="#0b0b0b"></stop>
+                      </linearGradient>
+                      <linearGradient id="p27-tile-rim" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#fff" stop-opacity="0.32"></stop>
+                        <stop offset="0.55" stop-color="#fff" stop-opacity="0.05"></stop>
+                      </linearGradient>
+                    </defs>
+                    <path d="M7 0H32V25L25 32H0V7Z" fill="url(#p27-tile-fill)" stroke="url(#p27-tile-rim)" stroke-width="1"></path>
+                    <path class="p27-footprint" d="M9 7H13.5V25H9Z M9 7H24V15L19 20H9Z M13.5 11.5V15.5H17.14L19.5 13.14V11.5Z" fill="#ededed" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+              </span>
+            </span>
+            <span class="font-display text-[18px] font-medium tracking-tight text-fg flex items-center gap-1.5">
+              <span>Placed</span>
+              <span id="header-batch-mark" class="text-fg font-bold" style="cursor:pointer;" title="Click to switch batch">’27</span>
+              <span class="text-faint text-[13px] font-mono">· SPIT</span>
+            </span>
+          </span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav aria-label="Main" class="label -mx-1 flex gap-1 max-lg:hidden">
+          <a class="rounded-full px-3 py-2 transition-colors text-muted hover:text-fg" href="/companies/">Companies</a><a class="nav-glow rounded-full px-3 py-2 " href="/recap/"><span class="nav-glow-text">Recap</span></a><a class="rounded-full px-3 py-2 transition-colors text-muted hover:text-fg" href="/pay/">Pay</a><a class="rounded-full px-3 py-2 transition-colors text-muted hover:text-fg" href="/selections/">Offers</a><a class="rounded-full px-3 py-2 transition-colors text-muted hover:text-fg" href="/branches/">Branches</a><a class="rounded-full px-3 py-2 transition-colors text-muted hover:text-fg" href="/timeline/">Timeline</a><a class="rounded-full px-3 py-2 transition-colors text-muted hover:text-fg" href="/about/">About</a>
+        </nav>
+
+        <!-- Right Side: Batch Switcher & Mobile Menu Button -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Batch Switcher Pill (Always visible in Header on desktop AND mobile!) -->
+          <div class="batch-switcher-container inline-flex items-center rounded-full border border-line-strong bg-panel p-1 text-[12px] shadow-sm shrink-0" role="group" aria-label="Placement Batch">
+            <button type="button" data-batch-btn="2027" class="batch-tab-btn flex items-center gap-1.5 rounded-full bg-fg px-3 py-1 text-[12px] font-semibold text-bg shadow-sm transition-all duration-200 cursor-pointer">
+              <span>Batch '27</span>
+              <span class="batch-dot size-1.5 rounded-full bg-intern"></span>
+            </button>
+            <button type="button" data-batch-btn="2028" class="batch-tab-btn flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px] font-medium text-muted hover:text-fg transition-all duration-200 cursor-pointer">
+              <span>Batch '28</span>
+              <span class="batch-dot size-1.5 rounded-full bg-intern"></span>
+            </button>
+          </div>
+
+          <a href="/admin/" title="Admin Portal" class="grid size-9 place-items-center rounded-full border border-line text-muted transition-colors hover:border-fg hover:text-fg max-sm:hidden" aria-label="Admin Portal">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/>
+            </svg>
+          </a>
+
+          <button id="mobile-menu-btn" type="button" aria-label="Toggle navigation menu" class="grid size-9 place-items-center rounded-full border border-line text-muted transition-colors hover:border-fg hover:text-fg lg:hidden">
+            <svg id="menu-icon-bars" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M2 4h12M2 8h12M2 12h12"/>
+            </svg>
+            <svg id="menu-icon-close" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" class="hidden">
+              <path d="M3 3l10 10M13 3L3 13"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Navigation Drawer -->
+      <div id="mobile-drawer" class="hidden pb-6 pt-3 border-t border-line lg:hidden">
+        <div class="flex items-center justify-between px-3 py-2.5 mb-3 rounded-xl bg-panel border border-line-strong">
+          <span class="text-[13px] font-medium text-muted">Placement Batch:</span>
+          <div class="inline-flex items-center rounded-full border border-line bg-bg p-0.5 text-[12px]" role="group">
+            <button type="button" data-batch-btn="2027" class="batch-tab-btn rounded-full px-3 py-1 text-[12px] transition-all bg-fg font-semibold text-bg">Batch '27</button>
+            <button type="button" data-batch-btn="2028" class="batch-tab-btn rounded-full px-3 py-1 text-[12px] transition-all text-muted">Batch '28</button>
+          </div>
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <a class="flex items-center justify-between rounded-xl px-4 py-3 text-[16px] transition-colors text-muted hover:bg-line hover:text-fg" href="/companies/"><span>Companies</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 2l4 4-4 4"/></svg></a><a class="flex items-center justify-between rounded-xl px-4 py-3 text-[16px] transition-colors text-muted hover:bg-line hover:text-fg" href="/recap/"><span>Recap</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 2l4 4-4 4"/></svg></a><a class="flex items-center justify-between rounded-xl px-4 py-3 text-[16px] transition-colors text-muted hover:bg-line hover:text-fg" href="/pay/"><span>Pay</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 2l4 4-4 4"/></svg></a><a class="flex items-center justify-between rounded-xl px-4 py-3 text-[16px] transition-colors text-muted hover:bg-line hover:text-fg" href="/selections/"><span>Offers</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 2l4 4-4 4"/></svg></a><a class="flex items-center justify-between rounded-xl px-4 py-3 text-[16px] transition-colors text-muted hover:bg-line hover:text-fg" href="/branches/"><span>Branches</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 2l4 4-4 4"/></svg></a><a class="flex items-center justify-between rounded-xl px-4 py-3 text-[16px] transition-colors text-muted hover:bg-line hover:text-fg" href="/timeline/"><span>Timeline</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 2l4 4-4 4"/></svg></a><a class="flex items-center justify-between rounded-xl px-4 py-3 text-[16px] transition-colors text-muted hover:bg-line hover:text-fg" href="/about/"><span>About</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 2l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+    </header>
+  </div>
 
   <main class="flex-1">
     
@@ -62,15 +146,19 @@
     import { renderFooter, initFooter } from '/src/components/footer.js';
     import { renderStoryModal, initStoryModal } from '/src/components/story-modal.js';
 
-    document.getElementById('site-header-root').innerHTML = renderHeader('/contact/');
-    document.getElementById('site-footer-root').innerHTML = renderFooter();
+    if (!document.getElementById('site-header-root').firstElementChild) {
+      document.getElementById('site-header-root').innerHTML = renderHeader('/contact/');
+    }
+    if (!document.getElementById('site-footer-root').firstElementChild) {
+      document.getElementById('site-footer-root').innerHTML = renderFooter();
+    }
     document.getElementById('story-modal-root').innerHTML = renderStoryModal();
 
     initHeader();
     initFooter();
     initStoryModal();
-
-    
   </script>
+
+  
 </body>
 </html>
