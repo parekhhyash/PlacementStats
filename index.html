@@ -26,33 +26,29 @@
 </head>
 <body class="min-h-full bg-bg font-sans text-fg antialiased flex flex-col justify-between selection:bg-fg selection:text-bg">
   <div id="site-header-root">
-    <!-- Top Announcement / Disclaimer Banner (Crossable) -->
-    <aside id="site-top-disclaimer" class="relative z-40 border-b border-line bg-panel text-center text-[12px] sm:text-[13px] text-muted py-2 px-4 transition-all duration-300">
-      <div class="wrap flex items-center justify-center gap-2 pr-7 sm:pr-8">
-        <span class="inline-flex items-center gap-1.5 flex-wrap justify-center text-center">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-amber-400 shrink-0 inline" aria-hidden="true">
-            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-            <line x1="12" y1="9" x2="12" y2="13"/>
-            <line x1="12" y1="17" x2="12.01" y2="17"/>
+    <div id="disclaimer-banner" class="w-full border-b border-line bg-panel/95 py-2 px-4 text-[11px] sm:text-[13px] text-muted transition-all duration-300">
+      <div class="wrap flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <span class="inline-flex size-2 rounded-full bg-amber-400 shrink-0 shadow-[0_0_8px_rgba(251,191,36,0.6)]" aria-hidden="true"></span>
+          <p class="text-left leading-snug">
+            This is not an official website. The data might be incorrect. Report or submit data at <a href="/corrections/" class="text-fg font-semibold underline underline-offset-2 hover:text-intern transition-colors">/corrections/ →</a>
+          </p>
+        </div>
+        <button id="btn-dismiss-disclaimer" type="button" aria-label="Dismiss disclaimer" class="cursor-pointer text-muted hover:text-fg transition-colors p-1 -mr-1 shrink-0 rounded-md hover:bg-line/50 flex items-center justify-center">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M2 2l10 10M12 2L2 12"/>
           </svg>
-          <span>This is not an official website. The data might be incorrect. Report or submit data at <a href="/corrections/" class="font-medium text-fg underline underline-offset-2 hover:text-intern transition-colors">/corrections/ →</a></span>
-        </span>
+        </button>
       </div>
-      <button id="close-disclaimer-btn" type="button" aria-label="Dismiss banner" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-1 text-muted hover:text-fg transition-colors cursor-pointer rounded-full hover:bg-line" title="Dismiss notice">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-      <script>
-        try {
-          if (sessionStorage.getItem('spit_disclaimer_closed') === 'true') {
-            document.getElementById('site-top-disclaimer').style.display = 'none';
-          }
-        } catch(e) {}
-      </script>
-    </aside>
-
+    </div>
+    <script>
+      try {
+        if (sessionStorage.getItem('disclaimer_dismissed') === '1') {
+          var b = document.getElementById('disclaimer-banner');
+          if (b) b.style.display = 'none';
+        }
+      } catch(e) {}
+    </script>
     <header class="wrap sticky top-0 z-30 border-b border-line bg-bg/85 backdrop-blur-md [view-transition-name:site-header]">
       <div class="flex h-16 items-center justify-between gap-4">
         <a aria-label="Placed ’27 · SPIT, home" class="group -my-2 py-2 shrink-0" href="/">
