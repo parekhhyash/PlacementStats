@@ -92,8 +92,8 @@ function getHeaderHtml(activePath = '/') {
 
         <!-- Right Side: Batch Switcher & Mobile Menu Button -->
         <div class="flex items-center gap-2 sm:gap-3">
-          <!-- Batch Switcher Pill (Always visible in Header on desktop AND mobile!) -->
-          <div class="batch-switcher-container inline-flex items-center rounded-full border border-line-strong bg-panel p-1 text-[12px] shadow-sm shrink-0" role="group" aria-label="Placement Batch">
+          <!-- Batch Switcher Pill (Desktop only) -->
+          <div class="batch-switcher-container batch-switcher-desktop max-lg:hidden inline-flex items-center rounded-full border border-line-strong bg-panel p-1 text-[12px] shadow-sm shrink-0" role="group" aria-label="Placement Batch">
             <button type="button" data-batch-btn="2027" class="batch-tab-btn flex items-center gap-1.5 rounded-full bg-fg px-3 py-1 text-[12px] font-semibold text-bg shadow-sm transition-all duration-200 cursor-pointer">
               <span>Batch '27</span>
               <span class="batch-dot size-1.5 rounded-full bg-intern"></span>
@@ -117,11 +117,21 @@ function getHeaderHtml(activePath = '/') {
 
       <!-- Mobile Dropdown Navigation Drawer -->
       <div id="mobile-drawer" class="hidden pb-6 pt-3 border-t border-line lg:hidden">
-        <div class="flex items-center justify-between px-3 py-2.5 mb-3 rounded-xl bg-panel border border-line-strong">
-          <span class="text-[13px] font-medium text-muted">Placement Batch:</span>
-          <div class="inline-flex items-center rounded-full border border-line bg-bg p-0.5 text-[12px]" role="group">
-            <button type="button" data-batch-btn="2027" class="batch-tab-btn rounded-full px-3 py-1 text-[12px] transition-all bg-fg font-semibold text-bg">Batch '27</button>
-            <button type="button" data-batch-btn="2028" class="batch-tab-btn rounded-full px-3 py-1 text-[12px] transition-all text-muted">Batch '28</button>
+        <!-- Mobile Batch Selector -->
+        <div class="batch-switcher-mobile mb-4 rounded-xl border border-line-strong bg-panel p-3">
+          <div class="flex items-center justify-between mb-2.5">
+            <span class="text-[12px] font-mono uppercase tracking-wider text-muted font-medium">Placement Batch</span>
+            <span class="text-[11px] font-mono text-faint">Active: <span class="active-batch-label text-fg font-semibold">Batch '27</span></span>
+          </div>
+          <div class="grid grid-cols-2 gap-2" role="group" aria-label="Placement Batch">
+            <button type="button" data-batch-btn="2027" class="batch-tab-btn flex items-center justify-center gap-2 rounded-lg bg-fg py-2.5 px-3 text-[13px] font-semibold text-bg shadow-sm transition-all duration-200 cursor-pointer">
+              <span>Batch '27</span>
+              <span class="batch-dot size-1.5 rounded-full bg-intern"></span>
+            </button>
+            <button type="button" data-batch-btn="2028" class="batch-tab-btn flex items-center justify-center gap-2 rounded-lg bg-bg/70 border border-line py-2.5 px-3 text-[13px] font-medium text-muted hover:text-fg hover:bg-bg transition-all duration-200 cursor-pointer">
+              <span>Batch '28</span>
+              <span class="batch-dot size-1.5 rounded-full bg-intern"></span>
+            </button>
           </div>
         </div>
         <div class="flex flex-col gap-1.5">

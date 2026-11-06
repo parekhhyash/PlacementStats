@@ -248,5 +248,33 @@ input[type="search"]::-webkit-search-results-decoration {
   -webkit-backdrop-filter: blur(14px) !important;
 }
 
+/* Prevent horizontal overflow on mobile viewports */
+html, body {
+  overflow-x: clip;
+}
+
+/* Responsive Header and Mobile Navigation */
+@media (max-width: 1023px) {
+  .max-lg\:hidden,
+  .batch-switcher-desktop {
+    display: none !important;
+  }
+  #mobile-menu-btn {
+    display: grid !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:hidden,
+  #mobile-menu-btn,
+  #mobile-drawer {
+    display: none !important;
+  }
+  .batch-switcher-desktop {
+    display: inline-flex !important;
+  }
+}
+
+
 
 
