@@ -1,5 +1,5 @@
 // SPIT 2027 Pay & CTC Statistics
-// Derived from official classified placement dataset
+// Derived from classified placement dataset
 
 export const payData = {
   summary: {

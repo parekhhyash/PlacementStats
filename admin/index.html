@@ -442,8 +442,8 @@
               </div>
 
               <div>
-                <label class="label block text-[12px] text-faint mb-2">Placement Cell Official Notes</label>
-                <textarea id="field-notes" rows="2" placeholder="e.g. Verified via official circulars and TPO tracker." class="w-full rounded-xl border border-line-strong bg-bg p-3.5 text-[13px] text-fg outline-none focus:border-fg"></textarea>
+                <label class="label block text-[12px] text-faint mb-2">Placement Cell Notes</label>
+                <textarea id="field-notes" rows="2" placeholder="e.g. Verified via circulars and TPO tracker." class="w-full rounded-xl border border-line-strong bg-bg p-3.5 text-[13px] text-fg outline-none focus:border-fg"></textarea>
               </div>
             </div>
 
@@ -625,7 +625,7 @@
               Supported Columns: <code class="font-mono text-intern bg-intern/10 px-1.5 py-0.5 rounded text-[11px]">name, slug, pay, payKind, offers, branches, cgpaCriteria, boardsCriteria, visitTimeline, students, roles, notes</code>
             </p>
             <div class="relative overflow-x-auto rounded-xl border border-line bg-panel p-3 font-mono text-[11px] text-faint select-all whitespace-pre leading-relaxed">name,slug,pay,payKind,offers,branches,cgpaCriteria,boardsCriteria,visitTimeline,students,roles,notes
-Kelp DAO,kelp-dao,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+ CGPA,Standard eligibility,Oct 2026,5,Blockchain Engineer:fulltime:5:₹16 LPA,Official campus recruitment drive</div>
+Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+ CGPA,Standard eligibility,Oct 2026,5,Blockchain Engineer:fulltime:5:₹16 LPA,Campus recruitment drive</div>
             <p class="text-[11px] text-faint">💡 Tip: In CSV, multiple roles can be separated by <code class="font-mono text-muted">;</code> formatted as <code class="font-mono text-muted">Title:Type:Count:CTC</code>.</p>
           </div>
 
@@ -635,8 +635,8 @@ Kelp DAO,kelp-dao,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+ CGPA,
               JSON Structure (single company object or array of companies):
             </p>
             <div class="relative max-h-48 overflow-y-auto rounded-xl border border-line bg-panel p-3 font-mono text-[11px] text-faint select-all whitespace-pre leading-relaxed">{
-  "name": "Kelp DAO",
-  "slug": "kelp-dao",
+  "name": "Kelp Global",
+  "slug": "kelp-global",
   "pay": "₹16 LPA",
   "payKind": "CTC",
   "offers": ["internship", "fulltime"],
@@ -663,7 +663,7 @@ Kelp DAO,kelp-dao,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+ CGPA,
     }
   ],
   "funnelRaw": "Applied 120 -> OA 40 -> Tech 15 -> 5 offers",
-  "notes": "Official campus recruitment drive"
+  "notes": "Campus recruitment drive"
 }</div>
           </div>
         </div>
@@ -1907,11 +1907,11 @@ Kelp DAO,kelp-dao,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+ CGPA,
     const importParseStatus = document.getElementById('import-parse-status');
     const btnDoExtract = document.getElementById('btn-do-extract');
 
-    const CSV_TEMPLATE = 'name,slug,pay,payKind,offers,branches,cgpaCriteria,boardsCriteria,visitTimeline,students,roles,notes\nKelp DAO,kelp-dao,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+ CGPA,Standard eligibility,Oct 2026,5,Blockchain Engineer:fulltime:5:₹16 LPA,Official campus recruitment drive';
+    const CSV_TEMPLATE = 'name,slug,pay,payKind,offers,branches,cgpaCriteria,boardsCriteria,visitTimeline,students,roles,notes\nKelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+ CGPA,Standard eligibility,Oct 2026,5,Blockchain Engineer:fulltime:5:₹16 LPA,Campus recruitment drive';
 
     const JSON_TEMPLATE = JSON.stringify({
-      name: "Kelp DAO",
-      slug: "kelp-dao",
+      name: "Kelp Global",
+      slug: "kelp-global",
       pay: "₹16 LPA",
       payKind: "CTC",
       offers: ["internship", "fulltime"],
@@ -1938,7 +1938,7 @@ Kelp DAO,kelp-dao,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+ CGPA,
         }
       ],
       funnelRaw: "Applied 120 -> OA 40 -> Tech 15 -> 5 offers",
-      notes: "Official campus recruitment drive"
+      notes: "Campus recruitment drive"
     }, null, 2);
 
     function openImportModal() {

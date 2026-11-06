@@ -1,5 +1,5 @@
 // SPIT 2027 Season Highlights and Interactive Recap Slides
-// Built from official verified placement dataset
+// Built from verified placement dataset
 
 export const recapData = {
   seasonTitle: "The Season, Replayed · SPIT 2027",

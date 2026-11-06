@@ -709,7 +709,7 @@ function generateCompanyDetailPage() {
             </div>
             <h3 class="font-display text-[22px] sm:text-[26px] text-fg font-medium">Placement data for this company is currently unavailable</h3>
             <p class="text-[14px] text-muted max-w-[65ch] leading-relaxed">
-              Official campus recruitment packages, eligibility criteria, and selection lists have not yet been published or confirmed for this company. If you participated in this drive or have official placement records, submit your data below to update the portal.
+              Campus recruitment packages, eligibility criteria, and selection lists have not yet been published or confirmed for this company. If you participated in this drive or have placement records, submit your data below to update the portal.
             </p>
           </div>
           <button id="btn-open-company-submit-modal" type="button" class="cursor-pointer shrink-0 inline-flex items-center justify-center gap-2 rounded-full bg-intern px-5 py-3 font-mono text-[13px] font-semibold text-bg transition-opacity hover:opacity-90">
@@ -752,11 +752,11 @@ function generateCompanyDetailPage() {
           </div>
         </dl>
 
-        <!-- Official Eligibility & Drive Details Card -->
+        <!-- Eligibility & Drive Details Card -->
         <section class="mt-12 rounded-3xl border border-line-strong bg-panel p-6 sm:p-8">
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-line pb-5">
             <div>
-              <p class="label text-faint">Official SPIT Placement Records</p>
+              <p class="label text-faint">SPIT Placement Records</p>
               <h2 class="display-m mt-1 text-[22px] sm:text-[26px]">Recruitment Drive & Criteria</h2>
             </div>
             <div id="company-visit-badge" class="flex items-center gap-2 text-[13px] text-muted font-mono">
@@ -766,7 +766,7 @@ function generateCompanyDetailPage() {
 
           <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <div class="rounded-2xl border border-line bg-bg/50 p-4">
-              <span class="label text-[11px] text-faint block uppercase tracking-wider">Official CGPA Requirement</span>
+              <span class="label text-[11px] text-faint block uppercase tracking-wider">CGPA Requirement</span>
               <p id="detail-cgpa" class="mt-2 text-[14px] text-fg leading-relaxed font-medium"></p>
             </div>
             <div class="rounded-2xl border border-line bg-bg/50 p-4">
@@ -921,8 +921,8 @@ function generateCompanyDetailPage() {
     const slug = (params.get('slug') || '').toLowerCase().trim();
     const batchParam = params.get('batch');
     
-    // Choose active batch from URL param or global
-    const currentBatch = batchParam === '2028' || batchParam === '2027' ? batchParam : getBatchKey();
+    // Choose active batch from URL param or global (strictly defaults to 2027)
+    const currentBatch = batchParam === '2028' ? '2028' : '2027';
     const batchData = allBatches[currentBatch] || getActiveBatchData();
     const is2028 = currentBatch === '2028';
 

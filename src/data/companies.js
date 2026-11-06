@@ -29,8 +29,8 @@ export const companies = [
     "open": "CSE, IT, AI & DS, EXTC",
     "branches": "All branches open",
     "cgpa": 7,
-    "cgpaCriteria": "7.0; No official cutoff (good CGPA beneficial); Not officially disclosed; Not stated (8+ reported unofficially)",
-    "boardsCriteria": "None official (unofficial ~80% in Class XII reported); 80% in Class XII (before resume review)",
+    "cgpaCriteria": "7.0; No formal cutoff (good CGPA beneficial); Not disclosed; Not stated (8+ reported by candidates)",
+    "boardsCriteria": "None specified (~80% in Class XII reported); 80% in Class XII (before resume review)",
     "first": "2-3 Jul 2026 (OA 27 Jun)",
     "last": "11 Aug 2026",
     "visitTimeline": "2-3 Jul 2026 (OA 27 Jun) · PPT 24 Jun, OA 27 Jun, result 2 Jul 2026 · PPT 24 Jun, OA 27 Jun, result 3 Jul 2026 · 29 Sep 2026 · 11 Aug 2026",
@@ -277,7 +277,7 @@ export const companies = [
     "open": "CSE, IT, AI & DS, EXTC",
     "branches": "All branches open",
     "cgpa": 8,
-    "cgpaCriteria": "None stated; None official (advice: 8+ CGPA, no backlogs)",
+    "cgpaCriteria": "None stated (advice: 8+ CGPA, no backlogs)",
     "boardsCriteria": "Standard SPIT eligibility",
     "first": "OA 9 Oct; PPT+interviews 15 Oct 2026",
     "last": "29 Jul 2025 (OA 27 Jul)",
@@ -1877,7 +1877,7 @@ export const companies = [
     "open": "CSE, IT, AI & DS, EXTC",
     "branches": "All branches open",
     "cgpa": 8.5,
-    "cgpaCriteria": "None official (advice 8.5+)",
+    "cgpaCriteria": "None specified (advice 8.5+)",
     "boardsCriteria": "Standard SPIT eligibility",
     "first": "9-10 Jul 2026 (OA 9th, interviews 10th)",
     "last": "9-10 Jul 2026 (OA 9th, interviews 10th)",
@@ -2079,7 +2079,7 @@ export const companies = [
     "open": "CSE, IT, AI & DS, EXTC",
     "branches": "All branches open",
     "cgpa": 8,
-    "cgpaCriteria": "None official (8-8.5 advised)",
+    "cgpaCriteria": "None specified (8-8.5 advised)",
     "boardsCriteria": "Standard SPIT eligibility",
     "first": "7 Jul 2026",
     "last": "7 Jul 2026",
@@ -2370,7 +2370,7 @@ export const companies = [
     "open": "CSE, IT, AI & DS, EXTC",
     "branches": "All branches open",
     "cgpa": 8,
-    "cgpaCriteria": "None official (advice: >8 CGPA)",
+    "cgpaCriteria": "None specified (advice: >8 CGPA)",
     "boardsCriteria": "Standard SPIT eligibility",
     "first": "6-7 Oct 2026",
     "last": "6-7 Oct 2026",
@@ -3033,7 +3033,7 @@ export const companies = [
     "funnelRaw": "No details available",
     "status": "No details available",
     "roles": [],
-    "notes": "No official details available yet. Submit verified data if you have it."
+    "notes": "No details available yet. Submit data if you have it."
   },
   {
     "slug": "dolat-capital",
@@ -3070,7 +3070,7 @@ export const companies = [
     "funnelRaw": "No details available",
     "status": "No details available",
     "roles": [],
-    "notes": "No official details available yet. Submit verified data if you have it."
+    "notes": "No details available yet. Submit data if you have it."
   },
   {
     "slug": "versor",
@@ -3107,11 +3107,11 @@ export const companies = [
     "funnelRaw": "No details available",
     "status": "No details available",
     "roles": [],
-    "notes": "No official details available yet. Submit verified data if you have it."
+    "notes": "No details available yet. Submit data if you have it."
   },
   {
-    "slug": "kelp-dao",
-    "name": "Kelp DAO",
+    "slug": "kelp-global",
+    "name": "Kelp Global",
     "offers": [
       "internship",
       "fulltime"
@@ -3124,7 +3124,7 @@ export const companies = [
     "payKind": "CTC",
     "payRank": 0,
     "dream": false,
-    "logo": "/logos/kelp-dao.svg",
+    "logo": "/logos/kelp-global.svg",
     "noDetailsAvailable": true,
     "out": {
       "internships": 0,
@@ -3144,7 +3144,7 @@ export const companies = [
     "funnelRaw": "No details available",
     "status": "No details available",
     "roles": [],
-    "notes": "No official details available yet. Submit verified data if you have it."
+    "notes": "No details available yet. Submit data if you have it."
   },
   {
     "slug": "loginext",
@@ -3181,7 +3181,7 @@ export const companies = [
     "funnelRaw": "No details available",
     "status": "No details available",
     "roles": [],
-    "notes": "No official details available yet. Submit verified data if you have it."
+    "notes": "No details available yet. Submit data if you have it."
   },
   {
     "slug": "nxpec-technologies",
@@ -3218,7 +3218,7 @@ export const companies = [
     "funnelRaw": "No details available",
     "status": "No details available",
     "roles": [],
-    "notes": "No official details available yet. Submit verified data if you have it."
+    "notes": "No details available yet. Submit data if you have it."
   },
   {
     "slug": "kpmg",
@@ -3255,7 +3255,7 @@ export const companies = [
     "funnelRaw": "No details available",
     "status": "No details available",
     "roles": [],
-    "notes": "No official details available yet. Submit verified data if you have it."
+    "notes": "No details available yet. Submit data if you have it."
   }
 ];
 

@@ -100,10 +100,10 @@ function generateBranchesPage() {
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
           </div>
-          <p class="label font-mono text-[11px] text-faint tracking-wider uppercase">Official Department Records</p>
+          <p class="label font-mono text-[11px] text-faint tracking-wider uppercase">Department Records</p>
           <h2 class="display-m mt-2 text-[28px] sm:text-[32px] text-fg">Data not available</h2>
           <p class="mt-3 text-[14px] leading-relaxed text-muted max-w-[44ch] mx-auto">
-            Official department-wise placement and salary breakdown reports have not yet been released or verified for this batch.
+            Department-wise placement and salary breakdown reports have not yet been released or compiled for this batch.
           </p>
           <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
             <button type="button" id="btn-open-branch-submit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-fg px-7 py-3.5 text-[13px] font-medium text-bg shadow-md transition-opacity hover:opacity-90 cursor-pointer">

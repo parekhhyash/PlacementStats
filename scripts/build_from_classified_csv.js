@@ -319,7 +319,7 @@ groups.forEach((rows, cName) => {
   if (cgpaM) numCGPA = parseFloat(cgpaM[1]);
 
   const fullBoardsText = Array.from(boardsSet).join('; ') || 'Standard SPIT eligibility';
-  const fullNotesText = allNotes.join(' · ') || 'Verified from official SPIT placement PDFs.';
+  const fullNotesText = allNotes.join(' · ') || 'Verified from SPIT placement reports.';
 
   consolidatedCompanies.push({
     slug,

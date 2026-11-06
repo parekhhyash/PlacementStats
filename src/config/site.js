@@ -11,7 +11,7 @@ export const siteConfig = {
   batchYear: "2027",
   batchLabel: "Class of 2027",
   siteTitle: "Placed ’27 · SPIT",
-  siteTagline: "Official campus recruitment statistics, roles, pay packages and selection analytics for SPIT 2027.",
+  siteTagline: "Campus recruitment statistics, roles, pay packages and selection analytics for SPIT 2027.",
   
   // Status banner
   statusBadge: "Placements in progress",

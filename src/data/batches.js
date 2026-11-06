@@ -460,17 +460,16 @@ export const allBatches = {
   }
 };
 
-// Client-side batch accessor
+// Client-side batch accessor - strictly defaults to 2027 for all pages
 export function getBatchKey() {
   if (typeof window !== 'undefined') {
     const urlParams = new URLSearchParams(window.location.search);
     const fromUrl = urlParams.get('batch');
-    if (fromUrl === '2028' || fromUrl === '2027') {
-      localStorage.setItem('spit_batch', fromUrl);
-      return fromUrl;
+    if (fromUrl === '2028') {
+      return '2028';
     }
-    const stored = localStorage.getItem('spit_batch');
-    if (stored === '2028' || stored === '2027') return stored;
+    // Clean URLs and standard links always default to 2027
+    return '2027';
   }
   return "2027";
 }
@@ -482,9 +481,15 @@ export function getActiveBatchData() {
 
 export function setBatch(year) {
   if (typeof window !== 'undefined') {
-    localStorage.setItem('spit_batch', year);
+    try {
+      localStorage.setItem('spit_batch', year);
+    } catch (e) {}
     const url = new URL(window.location.href);
-    url.searchParams.set('batch', year);
+    if (year === '2028') {
+      url.searchParams.set('batch', '2028');
+    } else {
+      url.searchParams.delete('batch');
+    }
     window.location.href = url.toString();
   }
 }

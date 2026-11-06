@@ -1,5 +1,5 @@
 // SPIT 2027 Recruitment Timeline Dataset
-// Month-by-month drive announcements and milestones from official records (SPIT Classified CSV)
+// Month-by-month drive announcements and milestones from SPIT placement records (SPIT Classified CSV)
 
 export const timelineData = {
   summary: {

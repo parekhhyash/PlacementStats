@@ -48,7 +48,7 @@ async function syncAll() {
 
   console.log(`Syncing ${records.length} companies to Supabase (${c2027.length} from 2027, ${c2028.length} from 2028)...`);
 
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/companies`, {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/companies?on_conflict=slug,batch_year`, {
     method: 'POST',
     headers: {
       'apikey': SUPABASE_KEY,
