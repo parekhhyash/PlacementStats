@@ -195,3 +195,28 @@ select option:checked, select option:hover {
   color: #ffffff !important;
 }
 
+/* Prevent white squared border box / outline inside search inputs on focus */
+input[type="search"],
+input[type="search"]:focus,
+input[type="search"]:focus-visible,
+#company-search,
+#company-search:focus,
+#company-search:focus-visible {
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Remove WebKit search decoration cancel button border */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+

@@ -50,7 +50,7 @@ function generateCompaniesPage() {
                   <circle cx="11" cy="11" r="7"></circle>
                   <path d="m20 20-3.5-3.5"></path>
                 </svg>
-                <input id="company-search" type="search" placeholder="Search companies" aria-label="Search companies" class="min-w-0 flex-1 bg-transparent text-[14px] outline-none placeholder:text-faint" value="" />
+                <input id="company-search" type="search" placeholder="Search companies" aria-label="Search companies" class="min-w-0 flex-1 bg-transparent text-[14px] placeholder:text-faint border-0 outline-none focus:outline-none focus:ring-0 focus:border-0" style="outline: none !important; box-shadow: none !important; border: none !important; -webkit-appearance: none; appearance: none;" value="" />
               </label>
 
               <div class="-mx-[var(--gutter)] flex gap-2 overflow-x-auto px-[var(--gutter)] [scrollbar-width:none] lg:mx-0 lg:overflow-visible lg:px-0">

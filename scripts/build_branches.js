@@ -4,79 +4,81 @@ const { siteConfig } = require('../src/config/site');
 
 function generateBranchesPage() {
   const content = `
-    <section class="wrap pb-12 pt-[clamp(48px,8vw,112px)]">
-      <p id="branches-page-badge" class="label text-muted">Branches · Pay and placement</p>
-      <h1 class="display-l mt-6 max-w-[16ch]">Every branch, by the numbers.</h1>
-      <p id="branches-page-desc" class="mt-8 max-w-[62ch] text-[17px] leading-relaxed text-muted">
-        Pick a branch to see what its students were offered: the typical package, the spread from lowest to highest, how many are placed and who hired them.
-      </p>
-    </section>
+    <!-- Full-page Container with Complete Blur and Centered Data Not Available Overlay -->
+    <div class="relative min-h-[85vh] w-full overflow-hidden">
+      <!-- 1. The whole branches page content underneath - deeply blurred, low opacity, unclickable, unselectable -->
+      <div id="branches-blurred-content" class="filter blur-[16px] opacity-15 select-none pointer-events-none transition-all" aria-hidden="true" tabindex="-1">
+        <section class="wrap pb-12 pt-[clamp(48px,8vw,112px)]">
+          <p id="branches-page-badge" class="label text-muted">Branches · Pay and placement</p>
+          <h1 class="display-l mt-6 max-w-[16ch]">Every branch, by the numbers.</h1>
+          <p id="branches-page-desc" class="mt-8 max-w-[62ch] text-[17px] leading-relaxed text-muted">
+            Pick a branch to see what its students were offered: the typical package, the spread from lowest to highest, how many are placed and who hired them.
+          </p>
+        </section>
 
-    <!-- Blurred Content Container with Overlay -->
-    <div class="wrap relative">
-      <!-- Centered "Data not available" Overlay Card -->
-      <div class="absolute inset-0 z-20 flex flex-col items-center justify-start pt-10 sm:pt-16 px-4 pointer-events-auto">
-        <div class="w-full max-w-[540px] rounded-3xl border border-line-strong bg-panel/95 p-8 sm:p-10 shadow-2xl backdrop-blur-2xl text-center">
-          <div class="inline-flex size-14 items-center justify-center rounded-2xl bg-fg/10 text-fg mb-4">
+        <div class="wrap">
+          <!-- Branch Tab Buttons -->
+          <div id="branch-tabs" role="tablist" class="-mx-1 flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none]">
+            <!-- Dynamic tabs rendered by script -->
+          </div>
+
+          <!-- Active Branch Card -->
+          <div id="branch-active-card" class="relative mt-8 overflow-hidden rounded-3xl border border-line-strong bg-panel p-6 sm:p-10">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <!-- Side by Side Comparison Section -->
+          <section class="mt-20 pb-16">
+            <div class="border-t border-line pt-6">
+              <p class="label text-faint">Comparison</p>
+              <h2 class="display-m mt-3">Side by side</h2>
+              <p class="mt-2 text-[15px] text-muted">Branch-wise comparative breakdown across key recruitment metrics.</p>
+            </div>
+
+            <div class="mt-8 overflow-x-auto">
+              <table class="w-full text-left text-[14px]">
+                <thead>
+                  <tr class="border-b border-line text-faint label">
+                    <th class="py-3 pr-4">Branch</th>
+                    <th class="py-3 px-4">Batch size</th>
+                    <th class="py-3 px-4">Placed students</th>
+                    <th class="py-3 px-4">Placement rate</th>
+                    <th class="py-3 px-4">Median CTC</th>
+                    <th class="py-3 px-4">Average CTC</th>
+                    <th class="py-3 px-4">Highest CTC</th>
+                    <th class="py-3 pl-4">PPOs</th>
+                  </tr>
+                </thead>
+                <tbody id="branch-table-body" class="divide-y divide-line">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- 2. Full-page overlay: ONLY this card is sharp, visible and accessible -->
+      <div class="absolute inset-0 z-20 flex items-center justify-center p-4 backdrop-blur-[6px] bg-bg/50">
+        <div class="w-full max-w-[540px] rounded-3xl border border-line-strong bg-[#0e0f12]/95 p-8 sm:p-12 shadow-[0_24px_80px_rgba(0,0,0,0.9)] backdrop-blur-2xl text-center">
+          <div class="inline-flex size-14 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-400 mb-5 border border-amber-500/20">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
           </div>
           <p class="label font-mono text-[11px] text-faint tracking-wider uppercase">Official Department Records</p>
-          <h2 class="display-m mt-2 text-[26px]">Data not available</h2>
-          <p class="mt-3 text-[14px] leading-relaxed text-muted">
+          <h2 class="display-m mt-2 text-[28px] sm:text-[32px] text-fg">Data not available</h2>
+          <p class="mt-3 text-[14px] leading-relaxed text-muted max-w-[44ch] mx-auto">
             Official department-wise placement and salary breakdown reports have not yet been released or verified for this batch.
           </p>
-          <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <button type="button" id="btn-open-branch-submit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-fg px-6 py-3 text-[13px] font-medium text-bg shadow-sm transition-opacity hover:opacity-90 cursor-pointer">
+          <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <button type="button" id="btn-open-branch-submit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-fg px-7 py-3.5 text-[13px] font-medium text-bg shadow-md transition-opacity hover:opacity-90 cursor-pointer">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
               <span>Submit data here if you have it</span>
             </button>
           </div>
         </div>
-      </div>
-
-      <!-- Background Content with Slight Blur -->
-      <div id="branches-blurred-content" class="filter blur-[5px] opacity-35 select-none pointer-events-none transition-all">
-        <!-- Branch Tab Buttons -->
-        <div id="branch-tabs" role="tablist" class="-mx-1 flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none]">
-          <!-- Dynamic tabs rendered by script -->
-        </div>
-
-        <!-- Active Branch Card -->
-        <div id="branch-active-card" class="relative mt-8 overflow-hidden rounded-3xl border border-line-strong bg-panel p-6 sm:p-10">
-          <!-- Rendered dynamically -->
-        </div>
-
-        <!-- Side by Side Comparison Section -->
-        <section class="mt-20 pb-16">
-          <div class="border-t border-line pt-6">
-            <p class="label text-faint">Comparison</p>
-            <h2 class="display-m mt-3">Side by side</h2>
-            <p class="mt-2 text-[15px] text-muted">Branch-wise comparative breakdown across key recruitment metrics.</p>
-          </div>
-
-          <div class="mt-8 overflow-x-auto">
-            <table class="w-full text-left text-[14px]">
-              <thead>
-                <tr class="border-b border-line text-faint label">
-                  <th class="py-3 pr-4">Branch</th>
-                  <th class="py-3 px-4">Batch size</th>
-                  <th class="py-3 px-4">Placed students</th>
-                  <th class="py-3 px-4">Placement rate</th>
-                  <th class="py-3 px-4">Median CTC</th>
-                  <th class="py-3 px-4">Average CTC</th>
-                  <th class="py-3 px-4">Highest CTC</th>
-                  <th class="py-3 pl-4">PPOs</th>
-                </tr>
-              </thead>
-              <tbody id="branch-table-body" class="divide-y divide-line">
-                <!-- Rendered dynamically -->
-              </tbody>
-            </table>
-          </div>
-        </section>
       </div>
     </div>
 
@@ -99,19 +101,19 @@ function generateBranchesPage() {
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="label block text-[11px] text-faint mb-1.5 uppercase tracking-wider">Placement Batch *</label>
-              <select id="modal-batch-year" required class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg transition-colors">
-                <option value="2027">Class of 2027</option>
-                <option value="2028">Class of 2028</option>
+              <select id="modal-batch-year" required class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg transition-colors" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+                <option value="2027" class="bg-[#121316] text-[#ededed]">Class of 2027</option>
+                <option value="2028" class="bg-[#121316] text-[#ededed]">Class of 2028</option>
               </select>
             </div>
             <div>
               <label class="label block text-[11px] text-faint mb-1.5 uppercase tracking-wider">Branch *</label>
-              <select id="modal-branch" required class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg transition-colors">
-                <option value="">Select branch</option>
-                <option value="CSE">Computer Engineering (CSE)</option>
-                <option value="IT">Information Technology (IT)</option>
-                <option value="EXTC">Electronics & Telecom (EXTC)</option>
-                <option value="AIDS">AI & Data Science (AI & DS)</option>
+              <select id="modal-branch" required class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg transition-colors" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+                <option value="" class="bg-[#121316] text-[#ededed]">Select branch</option>
+                <option value="CSE" class="bg-[#121316] text-[#ededed]">Computer Engineering (CSE)</option>
+                <option value="IT" class="bg-[#121316] text-[#ededed]">Information Technology (IT)</option>
+                <option value="EXTC" class="bg-[#121316] text-[#ededed]">Electronics & Telecom (EXTC)</option>
+                <option value="AIDS" class="bg-[#121316] text-[#ededed]">AI & Data Science (AI & DS)</option>
               </select>
             </div>
           </div>
