@@ -33,6 +33,9 @@ try {
   console.log('10. Building About & Support Pages...');
   require('./build_about_and_forms.js');
 
+  console.log('11. Building Admin Dashboard...');
+  require('./build_admin.js');
+
   console.log('✔ All pages compiled successfully!');
 } catch (err) {
   console.error('Build error:', err);

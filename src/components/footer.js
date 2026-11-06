@@ -89,6 +89,7 @@ export function renderFooter() {
         <div class="flex items-center gap-6">
           <a class="label text-[12px] text-faint transition-colors hover:text-fg" href="${siteConfig.footer.contactLink}">Contact</a>
           <a class="label text-[12px] text-faint transition-colors hover:text-fg" href="/about/">About & Methodology</a>
+          <a class="label text-[12px] text-faint transition-colors hover:text-intern font-mono" href="/admin/">Admin</a>
           <span class="label text-[12px] text-faint">${siteConfig.collegeName} · ${siteConfig.batchLabel}</span>
         </div>
         <p class="label text-[11px] text-faint">Data maintained for student community awareness</p>
