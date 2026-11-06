@@ -413,6 +413,10 @@ function generateCompanyDetailPage() {
             </div>
           </div>
           <div class="flex items-center gap-3">
+            <a id="report-company-btn" class="label inline-flex items-center gap-1.5 rounded-full border border-line px-3.5 py-2 text-[12px] text-muted transition-colors hover:border-fg hover:text-fg" href="/corrections/">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+              <span>Report data</span>
+            </a>
             <a id="back-to-companies-btn" class="label rounded-full border border-line-strong px-4 py-2 text-muted transition-colors hover:border-fg hover:text-fg" href="/companies/">
               ← Back to Companies
             </a>
@@ -561,9 +565,11 @@ function generateCompanyDetailPage() {
       // Breadcrumb & Links
       const bcLink = document.getElementById('breadcrumb-companies-link');
       const backBtn = document.getElementById('back-to-companies-btn');
+      const reportBtn = document.getElementById('report-company-btn');
       const targetHref = matchedBatchYear === '2028' ? '/companies/?batch=2028' : '/companies/';
       if (bcLink) bcLink.href = targetHref;
       if (backBtn) backBtn.href = targetHref;
+      if (reportBtn) reportBtn.href = '/corrections/?company=' + encodeURIComponent(company.name);
 
       const bcName = document.getElementById('breadcrumb-company-name');
       if (bcName) bcName.textContent = company.name;

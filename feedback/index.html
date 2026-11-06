@@ -116,7 +116,7 @@
     <section class="wrap pb-16 pt-[clamp(48px,8vw,112px)] max-w-[680px]">
       <p class="label text-muted">Community Feedback</p>
       <h1 class="display-l mt-4">Give feedback.</h1>
-      <p class="mt-4 text-[16px] text-muted">Rate the site, tell us what metrics you want to see, or suggest new features for SPIT placement portal. Submissions are anonymous.</p>
+      <p class="mt-4 text-[16px] text-muted">Rate the site, tell us what metrics you want to see, or suggest new features for SPIT placement portal. Submissions are sent to the admin dashboard.</p>
 
       <form id="feedback-form" class="mt-10 grid gap-6">
         <div>
@@ -124,27 +124,27 @@
           <div class="flex gap-3">
             
               <label class="flex-1 text-center py-3 rounded-xl border border-line-strong bg-panel cursor-pointer hover:border-fg transition-colors">
-                <input type="radio" name="rating" value="1" class="sr-only" />
+                <input type="radio" name="rating" value="1" class="sr-only rating-input" />
                 <span class="font-display text-[18px] text-fg font-medium">1</span>
               </label>
             
               <label class="flex-1 text-center py-3 rounded-xl border border-line-strong bg-panel cursor-pointer hover:border-fg transition-colors">
-                <input type="radio" name="rating" value="2" class="sr-only" />
+                <input type="radio" name="rating" value="2" class="sr-only rating-input" />
                 <span class="font-display text-[18px] text-fg font-medium">2</span>
               </label>
             
               <label class="flex-1 text-center py-3 rounded-xl border border-line-strong bg-panel cursor-pointer hover:border-fg transition-colors">
-                <input type="radio" name="rating" value="3" class="sr-only" />
+                <input type="radio" name="rating" value="3" class="sr-only rating-input" />
                 <span class="font-display text-[18px] text-fg font-medium">3</span>
               </label>
             
               <label class="flex-1 text-center py-3 rounded-xl border border-line-strong bg-panel cursor-pointer hover:border-fg transition-colors">
-                <input type="radio" name="rating" value="4" class="sr-only" />
+                <input type="radio" name="rating" value="4" class="sr-only rating-input" />
                 <span class="font-display text-[18px] text-fg font-medium">4</span>
               </label>
             
               <label class="flex-1 text-center py-3 rounded-xl border border-line-strong bg-panel cursor-pointer hover:border-fg transition-colors">
-                <input type="radio" name="rating" value="5" class="sr-only" />
+                <input type="radio" name="rating" value="5" class="sr-only rating-input" />
                 <span class="font-display text-[18px] text-fg font-medium">5</span>
               </label>
             
@@ -153,12 +153,12 @@
 
         <div>
           <label class="label text-faint block mb-2">What could be improved or added?</label>
-          <textarea rows="4" placeholder="Tell us your suggestions or requested features..." class="w-full rounded-2xl border border-line-strong bg-panel p-4 text-[14px] text-fg outline-none focus:border-fg transition-colors placeholder:text-faint"></textarea>
+          <textarea id="feedback-comment" rows="4" required placeholder="Tell us your suggestions or requested features..." class="w-full rounded-2xl border border-line-strong bg-panel p-4 text-[14px] text-fg outline-none focus:border-fg transition-colors placeholder:text-faint"></textarea>
         </div>
 
         <div>
           <label class="label text-faint block mb-2">Your branch (optional)</label>
-          <select class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors">
+          <select id="feedback-branch" class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors">
             <option value="">Select branch</option>
             <option value="CSE">Computer Engineering (CSE)</option>
             <option value="IT">Information Technology (IT)</option>
@@ -167,10 +167,12 @@
           </select>
         </div>
 
-        <button type="submit" class="label rounded-full bg-fg py-3.5 text-bg font-medium transition-opacity hover:opacity-90 cursor-pointer">
-          Submit Feedback
+        <button type="submit" id="btn-submit-feedback" class="flex items-center justify-center gap-2 label rounded-full bg-fg py-3.5 text-bg font-medium transition-opacity hover:opacity-90 cursor-pointer">
+          <span id="feedback-btn-text">Submit Feedback</span>
+          <span id="feedback-spinner" class="hidden size-4 animate-spin rounded-full border-2 border-bg border-t-transparent"></span>
         </button>
-        <p id="feedback-success" class="hidden text-center text-intern text-[14px]">Thank you! Your feedback has been recorded.</p>
+        <p id="feedback-success" class="hidden text-center text-intern text-[14px]">Thank you! Your feedback has been sent to the admin dashboard.</p>
+        <p id="feedback-error" class="hidden text-center text-red-400 text-[14px]"></p>
       </form>
     </section>
   
@@ -203,12 +205,80 @@
   <!-- Page Specific Module -->
   <script type="module">
 
+    const SUPABASE_URL = 'https://ntdmjyexirakcaovjeia.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZG1qeWV4aXJha2Nhb3ZqZWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2NTUzNTUsImV4cCI6MjA4NjIzMTM1NX0.LFbBXU-ANjoUUi_HfMIWYAjKidRgEct_VO-588T-Y7M';
+
     const form = document.getElementById('feedback-form');
     const success = document.getElementById('feedback-success');
-    form?.addEventListener('submit', (e) => {
+    const errorEl = document.getElementById('feedback-error');
+    const btn = document.getElementById('btn-submit-feedback');
+    const spinner = document.getElementById('feedback-spinner');
+    const btnText = document.getElementById('feedback-btn-text');
+
+    // Visual selection for rating buttons
+    document.querySelectorAll('.rating-input').forEach(radio => {
+      radio.addEventListener('change', () => {
+        document.querySelectorAll('.rating-input').forEach(r => {
+          const parent = r.closest('label');
+          if (r.checked) {
+            parent?.classList.add('border-fg', 'bg-fg/10');
+          } else {
+            parent?.classList.remove('border-fg', 'bg-fg/10');
+          }
+        });
+      });
+    });
+
+    form?.addEventListener('submit', async (e) => {
       e.preventDefault();
-      success?.classList.remove('hidden');
-      form.reset();
+      if (!btn) return;
+      btn.disabled = true;
+      spinner?.classList.remove('hidden');
+      if (btnText) btnText.textContent = 'Submitting...';
+      success?.classList.add('hidden');
+      errorEl?.classList.add('hidden');
+
+      const checkedRating = document.querySelector('input[name="rating"]:checked')?.value || 'Not rated';
+      const comment = document.getElementById('feedback-comment')?.value || '';
+      const branch = document.getElementById('feedback-branch')?.value || '';
+
+      const payload = {
+        type: 'feedback',
+        batch_year: '2027',
+        branch: branch,
+        role_title: 'Rating: ' + checkedRating + ' / 5',
+        details: comment,
+        submitter_name: 'Community Visitor',
+        status: 'pending'
+      };
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/submissions`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify([payload])
+        });
+
+        if (!res.ok) throw new Error(await res.text() || 'Failed to submit feedback');
+
+        success?.classList.remove('hidden');
+        form.reset();
+        document.querySelectorAll('.rating-input').forEach(r => r.closest('label')?.classList.remove('border-fg', 'bg-fg/10'));
+      } catch (err) {
+        if (errorEl) {
+          errorEl.textContent = 'Error: ' + err.message;
+          errorEl.classList.remove('hidden');
+        }
+      } finally {
+        btn.disabled = false;
+        spinner?.classList.add('hidden');
+        if (btnText) btnText.textContent = 'Submit Feedback';
+      }
     });
   
   </script>

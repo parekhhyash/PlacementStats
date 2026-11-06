@@ -102,7 +102,30 @@ function generateAdminPage() {
         </div>
       </div>
 
-      <!-- Batch Overview Banner -->
+      <!-- Admin Workspace Navigation Tabs -->
+      <div class="mt-6 flex border-b border-line gap-2 overflow-x-auto [scrollbar-width:none]">
+        <button id="nav-btn-companies" type="button" class="admin-main-nav-btn active flex items-center gap-2 border-b-2 border-fg px-4 py-3 text-[14px] font-semibold text-fg transition-colors cursor-pointer" data-view="view-companies">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          <span>Companies & Drives</span>
+          <span id="badge-companies-count" class="rounded-full bg-line px-2 py-0.5 text-[11px] font-mono">--</span>
+        </button>
+
+        <button id="nav-btn-branch-submissions" type="button" class="admin-main-nav-btn flex items-center gap-2 border-b-2 border-transparent px-4 py-3 text-[14px] font-medium text-muted hover:text-fg transition-colors cursor-pointer" data-view="view-branch-submissions">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          <span>Branch Submissions</span>
+          <span id="badge-branch-submissions" class="rounded-full bg-intern/20 text-intern font-bold px-2 py-0.5 text-[11px] font-mono">0</span>
+        </button>
+
+        <button id="nav-btn-reports" type="button" class="admin-main-nav-btn flex items-center gap-2 border-b-2 border-transparent px-4 py-3 text-[14px] font-medium text-muted hover:text-fg transition-colors cursor-pointer" data-view="view-reports">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          <span>Reports & Feedback</span>
+          <span id="badge-reports" class="rounded-full bg-ppo/20 text-ppo font-bold px-2 py-0.5 text-[11px] font-mono">0</span>
+        </button>
+      </div>
+
+      <!-- VIEW 1: Companies & Drives Manager -->
+      <div id="view-companies" class="admin-view-tab">
+        <!-- Batch Overview Banner -->
       <div id="batch-overview-bar" class="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-line-strong bg-panel/60 p-4 text-[13px]">
         <div class="flex flex-wrap items-center gap-6">
           <span class="flex items-center gap-2">
@@ -372,6 +395,60 @@ function generateAdminPage() {
           </form>
         </div>
       </div>
+    </div> <!-- End view-companies -->
+
+    <!-- VIEW 2: Branch Data Submissions -->
+    <div id="view-branch-submissions" class="admin-view-tab hidden mt-8">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-line pb-6">
+        <div>
+          <div class="flex items-center gap-2.5">
+            <span class="chip font-mono text-[11px] text-intern border-intern/40 bg-intern/10">Department Inflow</span>
+            <span id="badge-branch-sub-total" class="label text-faint">0 submissions</span>
+          </div>
+          <h2 class="display-m mt-2 text-[24px] sm:text-[28px]">Branch Placement Submissions</h2>
+          <p class="text-[14px] text-muted mt-1 max-w-[68ch]">
+            Direct contributions from students received on the blurred branches page ("Submit data here if you have it"). Review, verify, or quickly promote them into the company directory.
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="btn-refresh-branch-submissions" type="button" class="cursor-pointer inline-flex items-center gap-2 rounded-full border border-line-strong px-4 py-2 text-[13px] text-muted hover:border-fg hover:text-fg transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+            <span>Refresh Submissions</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Submissions List Container -->
+      <div id="branch-submissions-container" class="mt-8 grid gap-4">
+        <div class="p-12 text-center text-[14px] text-muted">Connecting to Supabase...</div>
+      </div>
+    </div>
+
+    <!-- VIEW 3: Reports & Feedback -->
+    <div id="view-reports" class="admin-view-tab hidden mt-8">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-line pb-6">
+        <div>
+          <div class="flex items-center gap-2.5">
+            <span class="chip font-mono text-[11px] text-ppo border-ppo/40 bg-ppo/10">Feedback & Audits</span>
+            <span id="badge-reports-total" class="label text-faint">0 reports</span>
+          </div>
+          <h2 class="display-m mt-2 text-[24px] sm:text-[28px]">Correction Reports & Feedback</h2>
+          <p class="text-[14px] text-muted mt-1 max-w-[68ch]">
+            Audits reported by users across companies and site feedback from the community.
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="btn-refresh-reports" type="button" class="cursor-pointer inline-flex items-center gap-2 rounded-full border border-line-strong px-4 py-2 text-[13px] text-muted hover:border-fg hover:text-fg transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+            <span>Refresh Reports</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Reports List Container -->
+      <div id="reports-container" class="mt-8 grid gap-4">
+        <div class="p-12 text-center text-[14px] text-muted">Connecting to Supabase...</div>
+      </div>
     </div>
 
     <!-- Notification Toast -->
@@ -533,6 +610,7 @@ function generateAdminPage() {
       dashboard.classList.remove('hidden');
       if (userDisplay) userDisplay.textContent = user;
       loadBatchData(currentBatch);
+      fetchSubmissionsAndReports();
     }
 
     // Check Initial Auth State
@@ -1184,6 +1262,344 @@ function generateAdminPage() {
     btnSaveTop.addEventListener('click', saveCompanyHandler);
     btnSaveBottom.addEventListener('click', saveCompanyHandler);
     btnDelete.addEventListener('click', deleteCompanyHandler);
+
+    // -------------------------------------------------------------
+    // Workspace Navigation (Companies vs Branch Submissions vs Reports)
+    // -------------------------------------------------------------
+    const navBtnCompanies = document.getElementById('nav-btn-companies');
+    const navBtnBranchSubmissions = document.getElementById('nav-btn-branch-submissions');
+    const navBtnReports = document.getElementById('nav-btn-reports');
+
+    const viewCompanies = document.getElementById('view-companies');
+    const viewBranchSubmissions = document.getElementById('view-branch-submissions');
+    const viewReports = document.getElementById('view-reports');
+
+    const allNavBtns = [navBtnCompanies, navBtnBranchSubmissions, navBtnReports];
+    const allViews = [viewCompanies, viewBranchSubmissions, viewReports];
+
+    function switchAdminView(targetViewId) {
+      allNavBtns.forEach(btn => {
+        if (!btn) return;
+        const matches = btn.getAttribute('data-view') === targetViewId;
+        if (matches) {
+          btn.classList.add('active', 'border-fg', 'text-fg', 'font-semibold');
+          btn.classList.remove('border-transparent', 'text-muted');
+        } else {
+          btn.classList.remove('active', 'border-fg', 'text-fg', 'font-semibold');
+          btn.classList.add('border-transparent', 'text-muted');
+        }
+      });
+
+      allViews.forEach(v => {
+        if (!v) return;
+        if (v.id === targetViewId) {
+          v.classList.remove('hidden');
+        } else {
+          v.classList.add('hidden');
+        }
+      });
+
+      fetchSubmissionsAndReports();
+    }
+
+    allNavBtns.forEach(btn => {
+      btn?.addEventListener('click', () => {
+        const viewId = btn.getAttribute('data-view');
+        switchAdminView(viewId);
+      });
+    });
+
+    document.getElementById('btn-refresh-branch-submissions')?.addEventListener('click', fetchSubmissionsAndReports);
+    document.getElementById('btn-refresh-reports')?.addEventListener('click', fetchSubmissionsAndReports);
+
+    // -------------------------------------------------------------
+    // Branch Submissions & Reports Feed
+    // -------------------------------------------------------------
+    let allSubmissions = [];
+
+    async function fetchSubmissionsAndReports() {
+      const branchContainer = document.getElementById('branch-submissions-container');
+      const reportsContainer = document.getElementById('reports-container');
+      const badgeBranch = document.getElementById('badge-branch-submissions');
+      const badgeBranchTotal = document.getElementById('badge-branch-sub-total');
+      const badgeReports = document.getElementById('badge-reports');
+      const badgeReportsTotal = document.getElementById('badge-reports-total');
+      const badgeCompCount = document.getElementById('badge-companies-count');
+
+      if (badgeCompCount) badgeCompCount.textContent = allCompanies.length;
+
+      try {
+        const res = await fetch(\`\${SUPABASE_URL}/rest/v1/submissions?order=created_at.desc\`, {
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': \`Bearer \${SUPABASE_KEY}\`
+          }
+        });
+
+        if (!res.ok) throw new Error(await res.text());
+        allSubmissions = await res.json();
+
+        // 1. Branch Data Submissions
+        const branchSubs = allSubmissions.filter(s => s.type === 'branch_data');
+        const pendingBranchSubs = branchSubs.filter(s => s.status === 'pending');
+        if (badgeBranch) badgeBranch.textContent = pendingBranchSubs.length;
+        if (badgeBranchTotal) badgeBranchTotal.textContent = \`\${branchSubs.length} total (\${pendingBranchSubs.length} pending)\`;
+        renderBranchSubmissions(branchSubs);
+
+        // 2. Reports & Feedback
+        const reports = allSubmissions.filter(s => s.type !== 'branch_data');
+        const pendingReports = reports.filter(s => s.status === 'pending');
+        if (badgeReports) badgeReports.textContent = pendingReports.length;
+        if (badgeReportsTotal) badgeReportsTotal.textContent = \`\${reports.length} total (\${pendingReports.length} pending)\`;
+        renderReports(reports);
+
+      } catch (err) {
+        console.warn('Failed to load submissions:', err);
+        if (branchContainer) branchContainer.innerHTML = \`<div class="p-8 text-center text-red-400">Failed to load branch submissions: \${err.message}</div>\`;
+        if (reportsContainer) reportsContainer.innerHTML = \`<div class="p-8 text-center text-red-400">Failed to load reports: \${err.message}</div>\`;
+      }
+    }
+
+    function renderBranchSubmissions(list) {
+      const container = document.getElementById('branch-submissions-container');
+      if (!container) return;
+
+      if (list.length === 0) {
+        container.innerHTML = \`
+          <div class="rounded-3xl border border-line bg-panel p-12 text-center">
+            <span class="text-[32px] block mb-3">📥</span>
+            <h3 class="font-display text-[18px] font-semibold text-fg">No Branch Submissions Yet</h3>
+            <p class="text-[14px] text-muted max-w-[45ch] mx-auto mt-2">
+              When students or contributors submit branch-wise placement numbers from the branches page, they will show up here live for your review.
+            </p>
+          </div>
+        \`;
+        return;
+      }
+
+      const branchColors = {
+        'CSE': 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
+        'IT': 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+        'EXTC': 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+        'AIDS': 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+      };
+
+      container.innerHTML = list.map(s => {
+        const branchClass = branchColors[s.branch] || 'bg-line text-fg border-line-strong';
+        const isApproved = s.status === 'approved';
+        const dateStr = s.created_at ? new Date(s.created_at).toLocaleString() : 'Recent';
+
+        return \`
+          <div class="rounded-2xl border border-line-strong bg-panel p-6 shadow-sm flex flex-col gap-4">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-3">
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="rounded-full border px-3 py-1 font-mono text-[11px] font-bold \${branchClass}">
+                  \${s.branch || 'Department'}
+                </span>
+                <span class="label text-[12px] text-muted font-mono">
+                  Batch '\${(s.batch_year || '2027').slice(2)}
+                </span>
+                <span class="label text-[12px] \${isApproved ? 'text-intern' : 'text-amber-400'} font-medium">
+                  \${isApproved ? '✔ Verified / Approved' : '⏳ Pending Review'}
+                </span>
+              </div>
+              <span class="text-[12px] text-faint font-mono">\${dateStr}</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
+              <div>
+                <h3 class="font-display text-[20px] font-bold text-fg">
+                  \${s.company_name}
+                  \${s.role_title ? '<span class=\"text-muted text-[16px] font-normal\"> · ' + s.role_title + '</span>' : ''}
+                </h3>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="num text-[17px] font-semibold text-fg">\${s.compensation || 'Package not stated'}</span>
+                <span class="chip bg-line/80 text-[12px] font-semibold text-fg">\${s.offers_count || 1} \${(s.offers_count === 1) ? 'offer' : 'offers'}</span>
+              </div>
+            </div>
+
+            \${s.details ? \`
+              <div class="rounded-xl border border-line bg-bg/60 p-3.5 text-[13px] text-muted">
+                <strong class="text-fg block mb-1">Verification Reference / Proof:</strong>
+                \${s.details}
+              </div>
+            \` : ''}
+
+            <div class="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-3 text-[12px]">
+              <span class="text-faint">
+                Submitted by: <strong class="text-muted">\${s.submitter_name || 'Anonymous'}</strong>
+                \${s.submitter_contact ? '<span class=\"text-faint\"> (' + s.submitter_contact + ')</span>' : ''}
+              </span>
+
+              <div class="flex items-center gap-2">
+                \${!isApproved ? \`
+                  <button type="button" data-action="approve-sub" data-id="\${s.id}" class="cursor-pointer rounded-full bg-intern px-4 py-1.5 text-[12px] font-semibold text-bg hover:opacity-90 transition-opacity">
+                    Mark Approved
+                  </button>
+                \` : ''}
+                <button type="button" data-action="quick-add-sub" data-id="\${s.id}" class="cursor-pointer rounded-full border border-line-strong px-4 py-1.5 text-[12px] text-muted hover:border-fg hover:text-fg transition-colors">
+                  Quick Add Company
+                </button>
+                <button type="button" data-action="delete-sub" data-id="\${s.id}" class="cursor-pointer rounded-full border border-red-500/30 px-3 py-1.5 text-[12px] text-red-400 hover:bg-red-500/10 transition-colors">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        \`;
+      }).join('');
+
+      // Wire action buttons
+      container.querySelectorAll('[data-action="approve-sub"]').forEach(btn => {
+        btn.addEventListener('click', () => updateSubmissionStatus(btn.getAttribute('data-id'), 'approved'));
+      });
+      container.querySelectorAll('[data-action="quick-add-sub"]').forEach(btn => {
+        btn.addEventListener('click', () => quickAddFromSubmission(btn.getAttribute('data-id')));
+      });
+      container.querySelectorAll('[data-action="delete-sub"]').forEach(btn => {
+        btn.addEventListener('click', () => deleteSubmissionItem(btn.getAttribute('data-id')));
+      });
+    }
+
+    function renderReports(list) {
+      const container = document.getElementById('reports-container');
+      if (!container) return;
+
+      if (list.length === 0) {
+        container.innerHTML = \`
+          <div class="rounded-3xl border border-line bg-panel p-12 text-center">
+            <span class="text-[32px] block mb-3">🚩</span>
+            <h3 class="font-display text-[18px] font-semibold text-fg">No Reports or Feedback</h3>
+            <p class="text-[14px] text-muted max-w-[45ch] mx-auto mt-2">
+              User-submitted correction reports and feedback will appear here live.
+            </p>
+          </div>
+        \`;
+        return;
+      }
+
+      container.innerHTML = list.map(r => {
+        const isCorrection = r.type === 'correction';
+        const isResolved = r.status === 'resolved';
+        const dateStr = r.created_at ? new Date(r.created_at).toLocaleString() : 'Recent';
+
+        return \`
+          <div class="rounded-2xl border border-line-strong bg-panel p-6 shadow-sm flex flex-col gap-4">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-3">
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="rounded-full border px-3 py-1 font-mono text-[11px] font-bold \${isCorrection ? 'bg-red-500/20 text-red-300 border-red-500/30' : 'bg-intern/20 text-intern border-intern/30'}">
+                  \${isCorrection ? 'Correction Report' : 'Community Feedback'}
+                </span>
+                \${r.company_name ? \`<span class="label text-[13px] font-semibold text-fg">\${r.company_name}</span>\` : ''}
+                \${r.role_title ? \`<span class="label text-[12px] text-muted">\${r.role_title}</span>\` : ''}
+                <span class="label text-[12px] \${isResolved ? 'text-intern' : 'text-amber-400'} font-medium">
+                  \${isResolved ? '✔ Resolved' : '⏳ Pending'}
+                </span>
+              </div>
+              <span class="text-[12px] text-faint font-mono">\${dateStr}</span>
+            </div>
+
+            <div class="rounded-xl border border-line bg-bg/60 p-4 text-[14px] text-fg leading-relaxed">
+              \${r.details || 'No additional details provided.'}
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-3 text-[12px]">
+              <span class="text-faint">
+                From: <strong class="text-muted">\${r.submitter_name || 'Visitor'}</strong>
+                \${r.submitter_contact ? '<span class=\"text-faint\"> (' + r.submitter_contact + ')</span>' : ''}
+                \${r.branch ? '<span class=\"text-muted\"> · Branch: ' + r.branch + '</span>' : ''}
+              </span>
+
+              <div class="flex items-center gap-2">
+                \${!isResolved ? \`
+                  <button type="button" data-action="resolve-report" data-id="\${r.id}" class="cursor-pointer rounded-full bg-fg px-4 py-1.5 text-[12px] font-medium text-bg hover:opacity-90 transition-opacity">
+                    Mark Resolved
+                  </button>
+                \` : ''}
+                <button type="button" data-action="delete-report" data-id="\${r.id}" class="cursor-pointer rounded-full border border-red-500/30 px-3 py-1.5 text-[12px] text-red-400 hover:bg-red-500/10 transition-colors">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        \`;
+      }).join('');
+
+      container.querySelectorAll('[data-action="resolve-report"]').forEach(btn => {
+        btn.addEventListener('click', () => updateSubmissionStatus(btn.getAttribute('data-id'), 'resolved'));
+      });
+      container.querySelectorAll('[data-action="delete-report"]').forEach(btn => {
+        btn.addEventListener('click', () => deleteSubmissionItem(btn.getAttribute('data-id')));
+      });
+    }
+
+    async function updateSubmissionStatus(id, newStatus) {
+      try {
+        const res = await fetch(\`\${SUPABASE_URL}/rest/v1/submissions?id=eq.\${id}\`, {
+          method: 'PATCH',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': \`Bearer \${SUPABASE_KEY}\`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ status: newStatus })
+        });
+        if (!res.ok) throw new Error(await res.text());
+        showToast(\`Updated status to '\${newStatus}'\`);
+        await fetchSubmissionsAndReports();
+      } catch (err) {
+        showToast('Error updating status: ' + err.message, true);
+      }
+    }
+
+    async function deleteSubmissionItem(id) {
+      if (!confirm('Are you sure you want to permanently delete this submission record?')) return;
+      try {
+        const res = await fetch(\`\${SUPABASE_URL}/rest/v1/submissions?id=eq.\${id}\`, {
+          method: 'DELETE',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': \`Bearer \${SUPABASE_KEY}\`
+          }
+        });
+        if (!res.ok) throw new Error(await res.text());
+        showToast('Submission deleted successfully');
+        await fetchSubmissionsAndReports();
+      } catch (err) {
+        showToast('Delete error: ' + err.message, true);
+      }
+    }
+
+    function quickAddFromSubmission(id) {
+      const sub = allSubmissions.find(s => s.id === id);
+      if (!sub) return;
+
+      // Switch to companies view
+      switchAdminView('view-companies');
+      resetForm();
+
+      document.getElementById('field-name').value = sub.company_name || '';
+      document.getElementById('field-slug').value = (sub.company_name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      document.getElementById('field-pay').value = sub.compensation || '';
+      document.getElementById('field-branches').value = sub.branch ? \`\${sub.branch}, All branches open\` : 'All branches open';
+
+      if (sub.role_title) {
+        rolesData = [{
+          title: sub.role_title,
+          type: 'fulltime',
+          count: sub.offers_count || 1,
+          ctc: sub.compensation || 'Competitive',
+          stipend: null,
+          rawCompensation: sub.compensation || '',
+          notes: sub.details || ''
+        }];
+        renderRolesTable();
+      }
+
+      showToast(\`Loaded submission for '\${sub.company_name}' into form editor!\`);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     // Ctrl+S / Cmd+S Keyboard Shortcut
     window.addEventListener('keydown', (e) => {
