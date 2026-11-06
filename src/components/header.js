@@ -18,20 +18,22 @@ export function renderHeader(activePath = '/') {
   }).join('');
 
   return `
-    <div id="disclaimer-banner" class="w-full border-b border-line bg-panel/95 py-2 px-4 text-[11px] sm:text-[13px] text-muted transition-all duration-300">
-      <div class="wrap flex items-center justify-between gap-3">
-        <div class="flex items-center gap-2.5 min-w-0">
-          <span class="inline-flex size-2 rounded-full bg-amber-400 shrink-0 shadow-[0_0_8px_rgba(251,191,36,0.6)]" aria-hidden="true"></span>
-          <p class="text-left leading-snug">
-            This is not an official website. The data might be incorrect. Report or submit data at <a href="/corrections/" class="text-fg font-semibold underline underline-offset-2 hover:text-intern transition-colors">/corrections/ →</a>
-          </p>
-        </div>
-        <button id="btn-dismiss-disclaimer" type="button" aria-label="Dismiss disclaimer" class="cursor-pointer text-muted hover:text-fg transition-colors p-1 -mr-1 shrink-0 rounded-md hover:bg-line/50 flex items-center justify-center">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <path d="M2 2l10 10M12 2L2 12"/>
-          </svg>
-        </button>
+    <div id="disclaimer-banner" class="w-full border-b border-line bg-panel/95 py-2 px-8 sm:px-12 text-[11px] sm:text-[12.5px] text-muted transition-all duration-300 relative">
+      <div class="wrap flex items-center justify-center gap-2 text-center leading-snug">
+        <svg class="size-3.5 sm:size-4 shrink-0 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        <span>
+          This is not an official website. The data might be incorrect. Report or submit data at <a href="/corrections/" class="text-fg font-semibold underline underline-offset-2 hover:text-intern transition-colors">/corrections/ →</a>
+        </span>
       </div>
+      <button id="btn-dismiss-disclaimer" type="button" aria-label="Dismiss disclaimer" class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 cursor-pointer text-muted/70 hover:text-fg transition-colors p-1.5 rounded hover:bg-line/40 flex items-center justify-center">
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M1.5 1.5l9 9M10.5 1.5l-9 9"/>
+        </svg>
+      </button>
     </div>
     <header class="wrap sticky top-0 z-30 border-b border-line bg-bg/85 backdrop-blur-md [view-transition-name:site-header]">
       <div class="flex h-16 items-center justify-between gap-4">
