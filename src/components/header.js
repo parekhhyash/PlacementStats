@@ -56,9 +56,9 @@ export function renderHeader(activePath = '/') {
         </nav>
 
         <!-- Right Side: Batch Switcher & Mobile Menu Button -->
-        <div class="flex items-center gap-3">
-          <!-- Batch Switcher Pill (Desktop) -->
-          <div class="batch-switcher-container hidden sm:inline-flex items-center rounded-full border border-line-strong bg-panel p-1 text-[12px] shadow-sm" role="group" aria-label="Placement Batch">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Batch Switcher Pill (Always visible in Header on desktop AND mobile!) -->
+          <div class="batch-switcher-container inline-flex items-center rounded-full border border-line-strong bg-panel p-1 text-[12px] shadow-sm shrink-0" role="group" aria-label="Placement Batch">
             <button type="button" data-batch-btn="2027" class="batch-tab-btn flex items-center gap-1.5 rounded-full px-3 py-1 transition-all duration-200 cursor-pointer">
               <span>Batch '27</span>
               <span class="batch-dot size-1.5 rounded-full bg-intern"></span>
@@ -68,6 +68,13 @@ export function renderHeader(activePath = '/') {
               <span class="batch-dot size-1.5 rounded-full bg-intern"></span>
             </button>
           </div>
+
+          <a href="/admin/" title="Admin Portal" class="grid size-9 place-items-center rounded-full border border-line text-muted transition-colors hover:border-fg hover:text-fg max-sm:hidden" aria-label="Admin Portal">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/>
+            </svg>
+          </a>
 
           <button id="mobile-menu-btn" type="button" aria-label="Toggle navigation menu" class="grid size-9 place-items-center rounded-full border border-line text-muted transition-colors hover:border-fg hover:text-fg lg:hidden">
             <svg id="menu-icon-bars" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6">
@@ -102,10 +109,17 @@ export function renderHeader(activePath = '/') {
 export function initHeader() {
   const currentBatch = getBatchKey();
   
-  // Update header mark
+  // Update header mark with click-to-toggle
   const headerMark = document.getElementById('header-batch-mark');
   if (headerMark) {
     headerMark.textContent = currentBatch === '2028' ? "’28" : "’27";
+    headerMark.setAttribute('title', `Active: Batch ${currentBatch}. Click to toggle batch.`);
+    headerMark.style.cursor = 'pointer';
+    headerMark.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setBatch(currentBatch === '2028' ? '2027' : '2028');
+    });
   }
 
   // Update switcher buttons UI & register listeners

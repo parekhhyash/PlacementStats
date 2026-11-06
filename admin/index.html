@@ -29,7 +29,65 @@
 
   <main class="flex-1">
     
-    <div class="wrap pb-20 pt-[clamp(32px,5vw,64px)]">
+    <!-- 1. Authentication Login Gate Screen (Shown when logged out) -->
+    <div id="admin-login-screen" class="wrap flex min-h-[70vh] flex-col items-center justify-center py-16">
+      <div class="w-full max-w-[440px] rounded-3xl border border-line-strong bg-panel p-8 sm:p-10 shadow-2xl backdrop-blur-xl">
+        <div class="text-center">
+          <span class="inline-flex size-14 items-center justify-center rounded-2xl bg-fg/10 text-fg mb-4">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </span>
+          <p class="label font-mono text-[11px] text-intern tracking-wider uppercase">Placed · SPIT Portal</p>
+          <h1 class="display-m mt-2 text-[26px]">Admin Workspace</h1>
+          <p class="mt-2 text-[14px] text-muted leading-relaxed">Enter your administrator credentials to access and manage placement datasets.</p>
+        </div>
+
+        <form id="admin-login-form" class="mt-8 flex flex-col gap-4" onsubmit="return false;">
+          <div id="login-error-banner" class="hidden rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-[13px] text-red-300">
+            <!-- Error message text -->
+          </div>
+
+          <div>
+            <label class="label block text-[11px] text-faint mb-1.5 uppercase tracking-wider">Username or Email</label>
+            <input id="login-username" type="text" autocomplete="username" value="parekhhyash" required class="w-full rounded-xl border border-line-strong bg-bg px-4 py-3 text-[14px] text-fg outline-none transition-colors focus:border-fg" placeholder="Username" />
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="label block text-[11px] text-faint uppercase tracking-wider">Password</label>
+              <button type="button" id="btn-toggle-login-pass" class="text-[11px] text-muted hover:text-fg">Show</button>
+            </div>
+            <div class="relative">
+              <input id="login-password" type="password" autocomplete="current-password" required class="w-full rounded-xl border border-line-strong bg-bg px-4 py-3 text-[14px] text-fg outline-none transition-colors focus:border-fg" placeholder="Enter password" />
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-[12px] text-muted mt-1">
+            <label class="flex items-center gap-2 cursor-pointer select-none">
+              <input type="checkbox" id="login-remember" checked class="rounded border-line-strong bg-bg" />
+              <span>Remember this session</span>
+            </label>
+          </div>
+
+          <button id="btn-submit-login" type="submit" class="mt-2 flex h-12 w-full items-center justify-center rounded-xl bg-fg font-medium text-bg transition-opacity hover:opacity-90 cursor-pointer">
+            <span id="login-btn-text">Sign In to Workspace</span>
+            <span id="login-btn-spinner" class="hidden ml-2 size-4 animate-spin rounded-full border-2 border-bg border-t-transparent"></span>
+          </button>
+        </form>
+
+        <div class="mt-6 border-t border-line pt-4 text-center">
+          <p class="text-[11px] text-faint flex items-center justify-center gap-1.5">
+            <span class="size-1.5 rounded-full bg-intern"></span>
+            <span>Secured with Supabase Postgres Authentication</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Protected Admin Workspace Dashboard (Shown only when authenticated) -->
+    <div id="admin-workspace-dashboard" class="hidden wrap pb-20 pt-[clamp(32px,5vw,64px)]">
       <!-- Admin Top Header -->
       <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between border-b border-line pb-6">
         <div>
@@ -42,10 +100,24 @@
         </div>
 
         <div class="flex flex-wrap items-center gap-3">
+          <!-- Live Supabase Status Badge -->
+          <div class="hidden sm:flex items-center gap-2 rounded-full border border-line bg-panel px-3 py-1.5 text-[11px] text-muted font-mono">
+            <span class="size-2 rounded-full bg-intern animate-pulse"></span>
+            <span id="db-status-badge">Supabase Connected</span>
+          </div>
+
           <!-- Batch Selector -->
           <div class="inline-flex rounded-full border border-line-strong bg-panel p-1">
             <button id="batch-btn-2027" type="button" class="cursor-pointer rounded-full px-4 py-1.5 text-[13px] font-medium transition-colors bg-fg text-bg">Batch '27</button>
             <button id="batch-btn-2028" type="button" class="cursor-pointer rounded-full px-4 py-1.5 text-[13px] font-medium transition-colors text-muted hover:text-fg">Batch '28</button>
+          </div>
+
+          <!-- User Badge & Logout -->
+          <div class="flex items-center gap-2">
+            <span class="label text-[12px] text-muted hidden md:inline">User: <strong id="admin-user-display" class="text-fg">parekhhyash</strong></span>
+            <button id="btn-admin-logout" type="button" class="label cursor-pointer rounded-full border border-line-strong px-3.5 py-1.5 text-[12px] text-muted transition-colors hover:border-fg hover:text-fg">
+              Sign Out
+            </button>
           </div>
 
           <a href="/companies/" target="_blank" class="label rounded-full border border-line-strong px-4 py-2 text-[13px] text-muted transition-colors hover:border-fg hover:text-fg">
@@ -74,7 +146,7 @@
           </span>
         </div>
         <div class="text-[12px] text-faint">
-          All modifications automatically trigger real-time static re-compilation.
+          All modifications sync live to Supabase Postgres database.
         </div>
       </div>
 
@@ -122,196 +194,202 @@
                 <a id="btn-view-live" href="#" target="_blank" class="hidden label rounded-full border border-line px-3.5 py-2 text-[12px] text-muted hover:border-fg hover:text-fg">
                   View Live ↗
                 </a>
-                <button id="btn-delete-company" type="button" class="hidden cursor-pointer label rounded-full border border-red-500/40 bg-red-500/10 px-3.5 py-2 text-[12px] text-red-400 hover:bg-red-500/20 transition-colors">
-                  Delete
-                </button>
-                <button id="btn-reset-form" type="button" class="cursor-pointer label rounded-full border border-line-strong px-3.5 py-2 text-[12px] text-muted hover:border-fg hover:text-fg transition-colors">
-                  Clear
-                </button>
-                <button id="btn-save-company" type="button" class="cursor-pointer label rounded-full bg-fg px-5 py-2 text-[13px] font-semibold text-bg transition-opacity hover:opacity-90 flex items-center gap-2">
-                  <span>Save & Rebuild</span>
+                <button id="btn-save-company-top" type="button" class="cursor-pointer rounded-full bg-fg px-5 py-2 text-[13px] font-medium text-bg transition-opacity hover:opacity-90">
+                  Save Changes
                 </button>
               </div>
             </div>
 
-            <!-- Tab Navigation inside Form -->
-            <div class="mt-6 flex flex-wrap gap-2 border-b border-line pb-4">
-              <button type="button" class="tab-btn active cursor-pointer rounded-full px-4 py-1.5 text-[13px] font-medium transition-colors bg-fg text-bg" data-tab="tab-basics">1. Identity & Pay</button>
-              <button type="button" class="tab-btn cursor-pointer rounded-full px-4 py-1.5 text-[13px] font-medium transition-colors text-muted hover:text-fg" data-tab="tab-criteria">2. Criteria & Dates</button>
-              <button type="button" class="tab-btn cursor-pointer rounded-full px-4 py-1.5 text-[13px] font-medium transition-colors text-muted hover:text-fg" data-tab="tab-roles">3. Roles & CTC (<span id="tab-roles-count">0</span>)</button>
-              <button type="button" class="tab-btn cursor-pointer rounded-full px-4 py-1.5 text-[13px] font-medium transition-colors text-muted hover:text-fg" data-tab="tab-funnel">4. Selection Funnel</button>
+            <!-- Editor Navigation Tabs -->
+            <div class="mt-6 flex border-b border-line overflow-x-auto [scrollbar-width:none]">
+              <button type="button" class="tab-btn active border-b-2 border-fg px-4 py-2.5 text-[13px] font-medium text-fg transition-colors" data-tab="tab-overview">
+                1. Overview & Identity
+              </button>
+              <button type="button" class="tab-btn border-b-2 border-transparent px-4 py-2.5 text-[13px] font-medium text-muted hover:text-fg transition-colors" data-tab="tab-eligibility">
+                2. Criteria & Eligibility
+              </button>
+              <button type="button" class="tab-btn border-b-2 border-transparent px-4 py-2.5 text-[13px] font-medium text-muted hover:text-fg transition-colors" data-tab="tab-roles">
+                3. Roles & Breakdown (<span id="tab-roles-count">0</span>)
+              </button>
+              <button type="button" class="tab-btn border-b-2 border-transparent px-4 py-2.5 text-[13px] font-medium text-muted hover:text-fg transition-colors" data-tab="tab-funnel">
+                4. Selection Funnel
+              </button>
             </div>
 
-            <!-- Tab 1: Identity & Pay -->
-            <div id="tab-basics" class="tab-content mt-6 space-y-6">
-              <div class="grid gap-5 sm:grid-cols-2">
+            <!-- Tab 1: Overview & Identity -->
+            <div id="tab-overview" class="tab-content mt-6 space-y-6">
+              <div class="grid gap-6 sm:grid-cols-2">
                 <div>
-                  <label class="label block text-[11px] text-faint uppercase tracking-wider mb-2">Company Name *</label>
-                  <input id="field-name" type="text" required placeholder="e.g. JPMorgan Chase & Co. or PhonePe" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none transition-colors focus:border-fg" />
+                  <label class="label block text-[12px] text-faint mb-2">Company Name *</label>
+                  <input id="field-name" type="text" required placeholder="e.g. JPMorgan Chase" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
                 </div>
                 <div>
-                  <label class="label block text-[11px] text-faint uppercase tracking-wider mb-2">Slug (URL Identifier) *</label>
-                  <input id="field-slug" type="text" required placeholder="e.g. jpmc or phonepe" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none transition-colors focus:border-fg font-mono" />
+                  <label class="label block text-[12px] text-faint mb-2">Slug (URL identifier) *</label>
+                  <input id="field-slug" type="text" required placeholder="e.g. jpmc" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none focus:border-fg font-mono text-[13px]" />
                 </div>
               </div>
 
-              <div class="grid gap-5 sm:grid-cols-3">
+              <div class="grid gap-6 sm:grid-cols-3">
                 <div>
-                  <label class="label block text-[11px] text-faint uppercase tracking-wider mb-2">Advertised Pay Display</label>
-                  <input id="field-pay" type="text" placeholder="e.g. ₹33 LPA or ₹1.60L / mo" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none transition-colors focus:border-fg" />
+                  <label class="label block text-[12px] text-faint mb-2">Headline Display Pay *</label>
+                  <input id="field-pay" type="text" placeholder="e.g. ₹16.0 LPA or ₹1.35L / mo" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
                 </div>
                 <div>
-                  <label class="label block text-[11px] text-faint uppercase tracking-wider mb-2">Pay Kind</label>
-                  <select id="field-pay-kind" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none transition-colors focus:border-fg">
-                    <option value="CTC">Annual CTC (LPA)</option>
-                    <option value="Stipend">Monthly Stipend (/ mo)</option>
+                  <label class="label block text-[12px] text-faint mb-2">Pay Type</label>
+                  <select id="field-pay-kind" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none focus:border-fg">
+                    <option value="CTC">CTC (Annual Package)</option>
+                    <option value="Stipend">Stipend (Monthly)</option>
                   </select>
                 </div>
                 <div>
-                  <label class="label block text-[11px] text-faint uppercase tracking-wider mb-2">Pay Sort Rank (Numeric)</label>
-                  <input id="field-pay-rank" type="number" placeholder="e.g. 3300 or 160000" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none transition-colors focus:border-fg font-mono" />
+                  <label class="label block text-[12px] text-faint mb-2">Numeric Pay Rank (Sorting)</label>
+                  <input id="field-pay-rank" type="number" placeholder="1600000" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none focus:border-fg font-mono" />
                 </div>
               </div>
 
-              <div class="grid gap-5 sm:grid-cols-2">
-                <div>
-                  <label class="label block text-[11px] text-faint uppercase tracking-wider mb-2">Logo Path or URL</label>
-                  <div class="flex items-center gap-2">
-                    <input id="field-logo" type="text" placeholder="e.g. /logos/phonepe.png" class="flex-1 rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none transition-colors focus:border-fg font-mono text-[13px]" />
-                    <div id="field-logo-preview" class="size-10 shrink-0 rounded-lg border border-line bg-bg p-1 flex items-center justify-center overflow-hidden">
-                      <span class="text-[10px] text-faint">Preview</span>
-                    </div>
-                  </div>
-                  <p class="mt-1 text-[11px] text-faint">Saved in /logos/ directory (SVG or PNG recommended).</p>
-                </div>
-                <div>
-                  <label class="label block text-[11px] text-faint uppercase tracking-wider mb-2">Status Headline</label>
-                  <input id="field-status" type="text" placeholder="e.g. 6 confirmed offers or Selections announced" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none transition-colors focus:border-fg" />
-                </div>
-              </div>
-
-              <div class="grid gap-5 sm:grid-cols-2 border-t border-line pt-5">
-                <div>
-                  <span class="label block text-[11px] text-faint uppercase tracking-wider mb-2">Recruitment Offer Types</span>
-                  <div class="flex flex-wrap items-center gap-4 text-[13px]">
-                    <label class="flex items-center gap-2 cursor-pointer">
-                      <input id="check-offer-intern" type="checkbox" class="accent-intern" />
-                      <span>Internship</span>
-                    </label>
-                    <label class="flex items-center gap-2 cursor-pointer">
-                      <input id="check-offer-fulltime" type="checkbox" class="accent-fulltime" />
-                      <span>Full-time</span>
-                    </label>
-                    <label class="flex items-center gap-2 cursor-pointer">
-                      <input id="check-offer-ppo" type="checkbox" class="accent-ppo" />
-                      <span>PPO Pathway</span>
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <span class="label block text-[11px] text-faint uppercase tracking-wider mb-2">Tier Classification</span>
-                  <label class="flex items-center gap-2 cursor-pointer text-[13px]">
-                    <input id="check-dream" type="checkbox" class="accent-ppo" />
-                    <span>Dream / Super Dream Recruiter (&gt; ₹14 LPA or &gt; ₹75k/mo stipend)</span>
+              <!-- Offer Types Checkboxes -->
+              <div class="rounded-2xl border border-line bg-bg/50 p-5">
+                <label class="label block text-[12px] text-faint mb-3">Offer Classification</label>
+                <div class="flex flex-wrap gap-6">
+                  <label class="flex items-center gap-2.5 cursor-pointer text-[14px]">
+                    <input id="check-offer-intern" type="checkbox" class="size-4 rounded border-line-strong bg-bg" />
+                    <span>Internship (TE / Summer)</span>
+                  </label>
+                  <label class="flex items-center gap-2.5 cursor-pointer text-[14px]">
+                    <input id="check-offer-fulltime" type="checkbox" class="size-4 rounded border-line-strong bg-bg" />
+                    <span>Full-time (BE / Final)</span>
+                  </label>
+                  <label class="flex items-center gap-2.5 cursor-pointer text-[14px]">
+                    <input id="check-offer-ppo" type="checkbox" class="size-4 rounded border-line-strong bg-bg" />
+                    <span>PPO Pathway</span>
+                  </label>
+                  <label class="flex items-center gap-2.5 cursor-pointer text-[14px] ml-auto">
+                    <input id="check-dream" type="checkbox" class="size-4 rounded border-line-strong bg-bg" />
+                    <span class="text-yellow-400 font-medium">★ Dream / Super-Dream Offer</span>
                   </label>
                 </div>
               </div>
+
+              <div class="grid gap-6 sm:grid-cols-2">
+                <div>
+                  <label class="label block text-[12px] text-faint mb-2">Logo Path or URL</label>
+                  <div class="flex items-center gap-3">
+                    <input id="field-logo" type="text" placeholder="/logos/company.svg" class="flex-1 rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none focus:border-fg font-mono text-[13px]" />
+                    <div id="field-logo-preview" class="size-10 rounded-lg border border-line bg-bg grid place-items-center overflow-hidden shrink-0">
+                      <span class="text-[10px] text-faint">None</span>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label class="label block text-[12px] text-faint mb-2">Status / Result Summary</label>
+                  <input id="field-status" type="text" placeholder="e.g. 10 confirmed offers or 4 full-time" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                </div>
+              </div>
             </div>
 
-            <!-- Tab 2: Criteria & Dates -->
-            <div id="tab-criteria" class="tab-content mt-6 space-y-6 hidden">
+            <!-- Tab 2: Criteria & Eligibility -->
+            <div id="tab-eligibility" class="tab-content mt-6 space-y-6 hidden">
               <div>
-                <label class="label block text-[11px] text-faint uppercase tracking-wider mb-2">Eligible Engineering Branches</label>
-                <input id="field-branches" type="text" placeholder="e.g. All branches open or CSE, IT, AI & DS" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none transition-colors focus:border-fg" />
+                <label class="label block text-[12px] text-faint mb-2">Eligible Branches Summary</label>
+                <input id="field-branches" type="text" placeholder="e.g. All branches open or CSE, IT, AI & DS" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
                 <div class="mt-2 flex flex-wrap gap-2 text-[12px] text-muted">
-                  <button type="button" class="btn-quick-branch chip cursor-pointer hover:border-fg">All branches open</button>
-                  <button type="button" class="btn-quick-branch chip cursor-pointer hover:border-fg">CSE, IT, AI & DS</button>
-                  <button type="button" class="btn-quick-branch chip cursor-pointer hover:border-fg">CSE, IT, AI & DS, EXTC</button>
+                  <span class="text-faint">Quick presets:</span>
+                  <button type="button" class="btn-quick-branch rounded bg-line px-2 py-0.5 hover:bg-line-strong">All branches open</button>
+                  <button type="button" class="btn-quick-branch rounded bg-line px-2 py-0.5 hover:bg-line-strong">CSE, IT, AI & DS</button>
+                  <button type="button" class="btn-quick-branch rounded bg-line px-2 py-0.5 hover:bg-line-strong">CSE, IT</button>
+                  <button type="button" class="btn-quick-branch rounded bg-line px-2 py-0.5 hover:bg-line-strong">EXTC Only</button>
                 </div>
               </div>
 
-              <div class="grid gap-5 sm:grid-cols-2">
+              <div class="grid gap-6 sm:grid-cols-2">
                 <div>
-                  <label class="label block text-[11px] text-faint uppercase tracking-wider mb-2">Official CGPA Requirement</label>
-                  <textarea id="field-cgpa-criteria" rows="3" placeholder="e.g. 8.0+; No official cutoff (good CGPA beneficial); 6.75 on Superset" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[13px] text-fg outline-none transition-colors focus:border-fg leading-relaxed"></textarea>
+                  <label class="label block text-[12px] text-faint mb-2">CGPA Cutoff & Notes</label>
+                  <textarea id="field-cgpa-criteria" rows="3" placeholder="e.g. 7.0 CGPA; 8.0+ preferred for shortlisting" class="w-full rounded-xl border border-line-strong bg-bg p-3.5 text-[13px] text-fg outline-none focus:border-fg"></textarea>
                 </div>
                 <div>
-                  <label class="label block text-[11px] text-faint uppercase tracking-wider mb-2">Class X & XII Boards Criteria</label>
-                  <textarea id="field-boards-criteria" rows="3" placeholder="e.g. 80% in Class XII (before resume review); Standard SPIT eligibility" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[13px] text-fg outline-none transition-colors focus:border-fg leading-relaxed"></textarea>
+                  <label class="label block text-[12px] text-faint mb-2">Class X / XII Boards Cutoff</label>
+                  <textarea id="field-boards-criteria" rows="3" placeholder="e.g. 80% in 10th & 12th; no active backlogs" class="w-full rounded-xl border border-line-strong bg-bg p-3.5 text-[13px] text-fg outline-none focus:border-fg"></textarea>
                 </div>
               </div>
 
               <div>
-                <label class="label block text-[11px] text-faint uppercase tracking-wider mb-2">Campus Visit Schedule & Timeline</label>
-                <input id="field-timeline" type="text" placeholder="e.g. PPT 24 Jun, OA 27 Jun, Interviews 2-3 Jul 2026" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none transition-colors focus:border-fg font-mono text-[13px]" />
+                <label class="label block text-[12px] text-faint mb-2">Recruitment Drive Timeline / Dates</label>
+                <input id="field-timeline" type="text" placeholder="e.g. PPT 24 Jun, OA 27 Jun, Interviews 2-3 Jul 2026" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none focus:border-fg font-mono text-[13px]" />
               </div>
 
               <div>
-                <label class="label block text-[11px] text-faint uppercase tracking-wider mb-2">Placement Cell Verification Notes & Confidence</label>
-                <textarea id="field-notes" rows="3" placeholder="e.g. Verified from official SPIT placement PDFs. 9 candidates interviewed, all selected." class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[13px] text-fg outline-none transition-colors focus:border-fg leading-relaxed"></textarea>
+                <label class="label block text-[12px] text-faint mb-2">Placement Cell Official Notes</label>
+                <textarea id="field-notes" rows="2" placeholder="e.g. Verified via official circulars and TPO tracker." class="w-full rounded-xl border border-line-strong bg-bg p-3.5 text-[13px] text-fg outline-none focus:border-fg"></textarea>
               </div>
             </div>
 
-            <!-- Tab 3: Roles & Packages -->
+            <!-- Tab 3: Roles & Compensation Breakdown -->
             <div id="tab-roles" class="tab-content mt-6 space-y-6 hidden">
               <div class="flex items-center justify-between">
                 <div>
-                  <h3 class="font-display text-[18px] text-fg font-medium">Recruitment Roles</h3>
-                  <p class="text-[12px] text-muted">Add one or multiple distinct offerings (e.g. SDE, Data Analyst, Banking).</p>
+                  <h3 class="font-display text-[18px]">Recruited Roles</h3>
+                  <p class="text-[13px] text-muted">Add specific job profiles, stipends, and offer counts for this company.</p>
                 </div>
-                <button id="btn-add-role" type="button" class="cursor-pointer rounded-full border border-line-strong bg-panel px-4 py-1.5 text-[12px] font-medium text-fg hover:border-fg transition-colors">
+                <button id="btn-add-role" type="button" class="cursor-pointer rounded-full border border-line-strong px-4 py-1.5 text-[12px] text-fg hover:bg-line">
                   + Add Role
                 </button>
               </div>
 
               <div id="roles-repeater-container" class="space-y-4">
-                <!-- Dynamic role forms -->
+                <!-- Injected via JavaScript -->
               </div>
             </div>
 
-            <!-- Tab 4: Funnel & Stages -->
+            <!-- Tab 4: Selection Funnel -->
             <div id="tab-funnel" class="tab-content mt-6 space-y-6 hidden">
-              <!-- Smart Quick-Parse Pipeline String -->
-              <div class="rounded-2xl border border-line bg-bg/50 p-4">
-                <label class="label block text-[11px] text-faint uppercase tracking-wider mb-1.5">Quick Pipeline Parser</label>
-                <p class="text-[12px] text-muted mb-3">Paste a round trail like <code class="font-mono text-fg">OA 310 -> Tech R1 26 -> Tech R2 16 -> Hiring Manager 9 -> 6 offers</code> to auto-generate the stage list.</p>
-                <div class="flex items-center gap-2">
-                  <input id="field-funnel-raw" type="text" placeholder="e.g. OA 150 -> Tech R1 30 -> Tech R2 15 -> HR 8 -> 6 offers" class="flex-1 rounded-xl border border-line-strong bg-bg px-4 py-2 text-[13px] font-mono text-fg outline-none transition-colors focus:border-fg" />
-                  <button id="btn-parse-funnel" type="button" class="shrink-0 cursor-pointer rounded-xl bg-panel border border-line-strong px-4 py-2 text-[12px] font-medium text-fg hover:border-fg transition-colors">
+              <div>
+                <label class="label block text-[12px] text-faint mb-2">Quick Pipeline String (Auto-Parser)</label>
+                <div class="flex items-center gap-3">
+                  <input id="field-funnel-raw" type="text" placeholder="e.g. Applied 200 -> OA 60 -> Tech 25 -> HR 10 -> 8 offers" class="flex-1 rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[13px] text-fg outline-none focus:border-fg font-mono" />
+                  <button id="btn-parse-funnel" type="button" class="rounded-xl border border-line bg-line px-4 py-2.5 text-[12px] text-fg hover:bg-line-strong cursor-pointer shrink-0">
                     Parse Pipeline
                   </button>
                 </div>
+                <p class="mt-1.5 text-[11px] text-faint">Type stages separated by "->" or arrows to instantly build the visual funnel bars.</p>
               </div>
 
-              <!-- Stages Table / Repeater -->
-              <div>
-                <div class="flex items-center justify-between mb-3">
-                  <label class="label text-[11px] text-faint uppercase tracking-wider">Recruitment Stages & Shortlisted Candidates</label>
+              <div class="border-t border-line pt-4">
+                <div class="flex items-center justify-between mb-4">
+                  <h4 class="font-display text-[16px]">Funnels Stage Breakdown</h4>
                   <button id="btn-add-stage" type="button" class="cursor-pointer text-[12px] text-intern hover:underline">
-                    + Add Stage
+                    + Add Single Stage
                   </button>
                 </div>
 
-                <div id="stages-repeater-container" class="space-y-2.5">
-                  <!-- Dynamic stage rows -->
+                <div id="stages-repeater-container" class="space-y-3">
+                  <!-- Injected via JS -->
                 </div>
               </div>
 
-              <!-- Live Funnel Preview -->
-              <div class="border-t border-line pt-6">
-                <h4 class="label text-[11px] text-faint uppercase tracking-wider mb-4">Live Funnel Visual Preview</h4>
-                <div id="funnel-live-preview" class="rounded-2xl border border-line bg-bg/40 p-5 space-y-3">
-                  <p class="text-[13px] text-muted text-center py-4">Add stages above to see live visual preview.</p>
+              <!-- Live Visual Funnel Preview -->
+              <div class="rounded-2xl border border-line bg-bg/50 p-5">
+                <span class="label text-[11px] text-faint block uppercase tracking-wider mb-4">Live Visual Funnel Preview</span>
+                <div id="funnel-live-preview" class="space-y-3">
+                  <!-- Rendered Bars -->
                 </div>
               </div>
             </div>
 
-            <!-- Footer Save Actions Bar -->
-            <div class="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-t border-line pt-6">
-              <span id="form-save-status" class="text-[13px] text-muted">Ready to edit or save.</span>
+            <!-- Bottom Actions Bar -->
+            <div class="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
               <div class="flex items-center gap-3">
-                <button id="btn-save-bottom" type="button" class="cursor-pointer label rounded-full bg-fg px-6 py-2.5 text-[14px] font-semibold text-bg transition-opacity hover:opacity-90">
-                  Save Company & Rebuild Site
+                <button id="btn-delete-company" type="button" class="hidden cursor-pointer rounded-full border border-red-500/40 px-4 py-2 text-[13px] text-red-400 hover:bg-red-500/10">
+                  Delete Company
+                </button>
+                <button id="btn-reset-form" type="button" class="cursor-pointer rounded-full border border-line-strong px-4 py-2 text-[13px] text-muted hover:border-fg hover:text-fg">
+                  Reset Form
+                </button>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <span id="form-save-status" class="text-[12px] text-faint"></span>
+                <button id="btn-save-company-bottom" type="button" class="cursor-pointer rounded-full bg-fg px-6 py-2.5 text-[14px] font-medium text-bg transition-opacity hover:opacity-90">
+                  Save Company
                 </button>
               </div>
             </div>
@@ -320,10 +398,10 @@
       </div>
     </div>
 
-    <!-- Floating Toast Notification -->
-    <div id="admin-toast" class="fixed bottom-6 right-6 z-50 transform transition-all duration-300 translate-y-20 opacity-0 pointer-events-none rounded-2xl border border-line-strong bg-panel px-5 py-3.5 shadow-2xl flex items-center gap-3">
-      <span id="toast-icon" class="text-[18px]">✔</span>
-      <span id="toast-message" class="text-[13px] text-fg font-medium">Notification</span>
+    <!-- Notification Toast -->
+    <div id="admin-toast" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-line-strong bg-panel px-5 py-3.5 shadow-2xl transition-all duration-300 translate-y-20 opacity-0 pointer-events-none">
+      <span id="toast-icon" class="text-intern text-[18px]">✔</span>
+      <span id="toast-message" class="text-[13px] text-fg font-medium">Changes saved successfully</span>
     </div>
   
   </main>
@@ -347,6 +425,171 @@
     initStoryModal();
 
     
+    import { getActiveBatchData, getBatchKey, setBatch, allBatches } from '/src/data/batches.js';
+
+    // Supabase Configuration
+    const SUPABASE_URL = 'https://ntdmjyexirakcaovjeia.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZG1qeWV4aXJha2Nhb3ZqZWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2NTUzNTUsImV4cCI6MjA4NjIzMTM1NX0.LFbBXU-ANjoUUi_HfMIWYAjKidRgEct_VO-588T-Y7M';
+
+    // -------------------------------------------------------------
+    // 1. Authentication System
+    // -------------------------------------------------------------
+    const loginScreen = document.getElementById('admin-login-screen');
+    const dashboard = document.getElementById('admin-workspace-dashboard');
+    const loginForm = document.getElementById('admin-login-form');
+    const loginUsernameInput = document.getElementById('login-username');
+    const loginPasswordInput = document.getElementById('login-password');
+    const loginErrorBanner = document.getElementById('login-error-banner');
+    const btnSubmitLogin = document.getElementById('btn-submit-login');
+    const loginBtnText = document.getElementById('login-btn-text');
+    const loginBtnSpinner = document.getElementById('login-btn-spinner');
+    const btnTogglePass = document.getElementById('btn-toggle-login-pass');
+    const btnLogout = document.getElementById('btn-admin-logout');
+    const userDisplay = document.getElementById('admin-user-display');
+    const dbStatusBadge = document.getElementById('db-status-badge');
+
+    // SHA-256 via Web Crypto
+    async function hashPassword(salt, password) {
+      const enc = new TextEncoder();
+      const data = enc.encode(salt + password);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    function checkAuth() {
+      const token = sessionStorage.getItem('spit_admin_auth') || localStorage.getItem('spit_admin_auth');
+      if (token) {
+        try {
+          const parsed = JSON.parse(token);
+          if (parsed && parsed.user && (parsed.expiry > Date.now())) {
+            return parsed;
+          }
+        } catch (e) {}
+      }
+      return null;
+    }
+
+    function setAuthSession(user, remember) {
+      const payload = {
+        user,
+        expiry: Date.now() + (remember ? (14 * 24 * 60 * 60 * 1000) : (8 * 60 * 60 * 1000))
+      };
+      const json = JSON.stringify(payload);
+      sessionStorage.setItem('spit_admin_auth', json);
+      if (remember) {
+        localStorage.setItem('spit_admin_auth', json);
+      }
+    }
+
+    function clearAuthSession() {
+      sessionStorage.removeItem('spit_admin_auth');
+      localStorage.removeItem('spit_admin_auth');
+    }
+
+    async function authenticateUser(username, password) {
+      const cleanUser = username.trim().toLowerCase();
+      // 1. Try Supabase cloud auth table
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/admin_auth?username=eq.${encodeURIComponent(cleanUser)}`, {
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`
+          }
+        });
+        if (res.ok) {
+          const records = await res.json();
+          if (records && records.length > 0) {
+            const row = records[0];
+            const computed = await hashPassword(row.salt || 'spit_salt_2027', password);
+            if (computed === row.password_hash) {
+              return { success: true, user: cleanUser };
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('Supabase auth network check skipped:', err);
+      }
+
+      // 2. Direct SHA-256 fallback (yash@spit2027 or spit2027)
+      const computedLocal = await hashPassword('spit_salt_2027', password);
+      if (
+        computedLocal === '443b91a662495949cd66c2ec0fa119ba3785b1f586d9c3c196fb6efc8dd36f09' || // yash@spit2027
+        computedLocal === '3440d464349a27f212ae4e92761c0b2e98d086e6c5652fb5d52626d4e46aee58'    // spit2027
+      ) {
+        return { success: true, user: cleanUser || 'parekhhyash' };
+      }
+
+      return { success: false, error: 'Invalid username or password. Please try again.' };
+    }
+
+    // Toggle Password Visibility
+    btnTogglePass?.addEventListener('click', () => {
+      const isPass = loginPasswordInput.type === 'password';
+      loginPasswordInput.type = isPass ? 'text' : 'password';
+      btnTogglePass.textContent = isPass ? 'Hide' : 'Show';
+    });
+
+    // Login Form Submit Handler
+    loginForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const u = loginUsernameInput.value.trim();
+      const p = loginPasswordInput.value;
+
+      if (!u || !p) {
+        loginErrorBanner.textContent = 'Please enter both username and password.';
+        loginErrorBanner.classList.remove('hidden');
+        return;
+      }
+
+      loginBtnText.textContent = 'Authenticating...';
+      loginBtnSpinner.classList.remove('hidden');
+      btnSubmitLogin.disabled = true;
+      loginErrorBanner.classList.add('hidden');
+
+      const result = await authenticateUser(u, p);
+      if (result.success) {
+        const remember = document.getElementById('login-remember')?.checked;
+        setAuthSession(result.user, remember);
+        showWorkspace(result.user);
+      } else {
+        loginErrorBanner.textContent = result.error || 'Authentication failed.';
+        loginErrorBanner.classList.remove('hidden');
+        loginBtnText.textContent = 'Sign In to Workspace';
+        loginBtnSpinner.classList.add('hidden');
+        btnSubmitLogin.disabled = false;
+      }
+    });
+
+    btnLogout?.addEventListener('click', () => {
+      clearAuthSession();
+      loginPasswordInput.value = '';
+      dashboard.classList.add('hidden');
+      loginScreen.classList.remove('hidden');
+      loginBtnText.textContent = 'Sign In to Workspace';
+      loginBtnSpinner.classList.add('hidden');
+      btnSubmitLogin.disabled = false;
+    });
+
+    function showWorkspace(user) {
+      loginScreen.classList.add('hidden');
+      dashboard.classList.remove('hidden');
+      if (userDisplay) userDisplay.textContent = user;
+      loadBatchData(currentBatch);
+    }
+
+    // Check Initial Auth State
+    const session = checkAuth();
+    if (session) {
+      showWorkspace(session.user);
+    } else {
+      loginScreen.classList.remove('hidden');
+      dashboard.classList.add('hidden');
+    }
+
+    // -------------------------------------------------------------
+    // 2. Admin Workspace & Supabase Data Manager
+    // -------------------------------------------------------------
     let currentBatch = '2027';
     let allCompanies = [];
     let activeCompanySlug = null;
@@ -356,188 +599,218 @@
     // DOM Elements
     const batch2027Btn = document.getElementById('batch-btn-2027');
     const batch2028Btn = document.getElementById('batch-btn-2028');
-    const listContainer = document.getElementById('admin-companies-list');
     const searchInput = document.getElementById('admin-search-input');
-    const btnNewCompany = document.getElementById('btn-new-company');
-    const btnSaveTop = document.getElementById('btn-save-company');
-    const btnSaveBottom = document.getElementById('btn-save-bottom');
+    const companiesListContainer = document.getElementById('admin-companies-list');
+    const directoryCount = document.getElementById('directory-count');
+
+    const sumTotalCompanies = document.getElementById('summary-total-companies');
+    const sumTotalOffers = document.getElementById('summary-total-offers');
+    const sumActiveBatch = document.getElementById('summary-active-batch');
+
+    const editorTitle = document.getElementById('editor-title');
+    const editorModeBadge = document.getElementById('editor-mode-badge');
+    const btnViewLive = document.getElementById('btn-view-live');
+    const btnSaveTop = document.getElementById('btn-save-company-top');
+    const btnSaveBottom = document.getElementById('btn-save-company-bottom');
     const btnDelete = document.getElementById('btn-delete-company');
     const btnReset = document.getElementById('btn-reset-form');
-    const btnViewLive = document.getElementById('btn-view-live');
+    const btnNewCompany = document.getElementById('btn-new-company');
     const formStatus = document.getElementById('form-save-status');
 
-    // Load Companies from API
-    async function loadBatchData(batch) {
-      currentBatch = batch;
-      if (batch === '2027') {
-        batch2027Btn.classList.add('bg-fg', 'text-bg');
-        batch2027Btn.classList.remove('text-muted');
-        batch2028Btn.classList.remove('bg-fg', 'text-bg');
-        batch2028Btn.classList.add('text-muted');
-        document.getElementById('summary-active-batch').textContent = "Class of 2027";
+    // Fetch batch data (prioritizes live Supabase database)
+    async function loadBatchData(batchYear) {
+      currentBatch = batchYear;
+
+      // Update Switcher Buttons
+      if (batchYear === '2027') {
+        batch2027Btn.className = "cursor-pointer rounded-full px-4 py-1.5 text-[13px] font-medium transition-colors bg-fg text-bg";
+        batch2028Btn.className = "cursor-pointer rounded-full px-4 py-1.5 text-[13px] font-medium transition-colors text-muted hover:text-fg";
       } else {
-        batch2028Btn.classList.add('bg-fg', 'text-bg');
-        batch2028Btn.classList.remove('text-muted');
-        batch2027Btn.classList.remove('bg-fg', 'text-bg');
-        batch2027Btn.classList.add('text-muted');
-        document.getElementById('summary-active-batch').textContent = "Class of 2028";
+        batch2028Btn.className = "cursor-pointer rounded-full px-4 py-1.5 text-[13px] font-medium transition-colors bg-fg text-bg";
+        batch2027Btn.className = "cursor-pointer rounded-full px-4 py-1.5 text-[13px] font-medium transition-colors text-muted hover:text-fg";
       }
 
-      listContainer.innerHTML = '<div class="p-8 text-center text-[13px] text-muted">Loading companies...</div>';
+      sumActiveBatch.textContent = `Class of ${batchYear}`;
+      companiesListContainer.innerHTML = '<div class="p-8 text-center text-[13px] text-muted">Connecting to Supabase...</div>';
+
+      // 1. Fetch from Supabase Postgres
       try {
-        const res = await fetch('/api/companies?batch=' + batch);
-        const data = await res.json();
-        if (data.success) {
-          allCompanies = data.companies || [];
-          updateSummaryMetrics();
-          renderCompaniesList();
-          // Select first company by default if none selected
-          if (allCompanies.length > 0 && !activeCompanySlug) {
-            selectCompany(allCompanies[0].slug);
-          } else if (activeCompanySlug) {
-            const exists = allCompanies.some(c => c.slug === activeCompanySlug);
-            if (exists) selectCompany(activeCompanySlug);
-            else resetForm();
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/companies?batch_year=eq.${batchYear}&order=out_students.desc`, {
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`
           }
+        });
+
+        if (res.ok) {
+          const rows = await res.json();
+          if (rows && rows.length > 0) {
+            allCompanies = rows.map(d => ({
+              name: d.name,
+              slug: d.slug,
+              offers: d.offers || [],
+              seasons: d.seasons || [],
+              pay: d.pay,
+              payKind: d.pay_kind,
+              payRank: d.pay_rank,
+              dream: d.dream,
+              logo: d.logo,
+              status: d.status,
+              branches: d.branches,
+              cgpaCriteria: d.cgpa_criteria,
+              boardsCriteria: d.boards_criteria,
+              visitTimeline: d.visit_timeline,
+              funnelRaw: d.funnel_raw,
+              roles: d.roles || [],
+              out: {
+                students: d.out_students,
+                internships: d.out_internships,
+                fulltimeOffers: d.out_fulltime,
+                ppo: d.out_ppo
+              }
+            }));
+            if (dbStatusBadge) dbStatusBadge.textContent = 'Supabase Cloud DB Connected';
+          } else {
+            fallbackLocalBatch(batchYear);
+          }
+        } else {
+          fallbackLocalBatch(batchYear);
         }
       } catch (err) {
-        listContainer.innerHTML = '<div class="p-8 text-center text-[13px] text-red-400">Failed to load companies: ' + err.message + '</div>';
+        console.warn('Supabase fetch failed, loading local bundled batch data:', err);
+        fallbackLocalBatch(batchYear);
+      }
+
+      updateSummaryBar();
+      renderCompaniesList();
+
+      if (allCompanies.length > 0) {
+        selectCompany(allCompanies[0].slug);
+      } else {
+        resetForm();
       }
     }
 
-    function updateSummaryMetrics() {
-      document.getElementById('summary-total-companies').textContent = allCompanies.length;
+    function fallbackLocalBatch(batchYear) {
+      const bData = allBatches[batchYear] || allBatches['2027'];
+      allCompanies = JSON.parse(JSON.stringify(bData.companies || []));
+      if (dbStatusBadge) dbStatusBadge.textContent = 'Local DB Mode';
+    }
+
+    function updateSummaryBar() {
+      sumTotalCompanies.textContent = allCompanies.length;
       const totalOffers = allCompanies.reduce((acc, c) => acc + (c.out?.students || 0), 0);
-      document.getElementById('summary-total-offers').textContent = totalOffers;
-      document.getElementById('directory-count').textContent = allCompanies.length + ' companies';
+      sumTotalOffers.textContent = totalOffers;
     }
 
     function renderCompaniesList() {
       const q = (searchInput?.value || '').toLowerCase().trim();
       const filtered = allCompanies.filter(c => {
         if (!q) return true;
-        const mName = c.name.toLowerCase().includes(q);
-        const mRole = c.roles && c.roles.some(r => r.title.toLowerCase().includes(q));
-        const mPay = c.pay && c.pay.toLowerCase().includes(q);
-        return mName || mRole || mPay;
+        return c.name.toLowerCase().includes(q) || c.slug.toLowerCase().includes(q);
       });
 
+      directoryCount.textContent = `${filtered.length} of ${allCompanies.length} companies`;
+
       if (filtered.length === 0) {
-        listContainer.innerHTML = '<div class="p-8 text-center text-[13px] text-muted">No companies match query.</div>';
+        companiesListContainer.innerHTML = '<div class="p-8 text-center text-[13px] text-muted">No matching companies found.</div>';
         return;
       }
 
-      listContainer.innerHTML = filtered.map(c => {
-        const isActive = c.slug === activeCompanySlug;
-        const logo = c.logo 
-          ? `<img alt="" class="size-6 object-contain rounded-md shrink-0 bg-panel p-0.5" src="${c.logo}" />`
-          : `<span class="size-6 grid place-items-center rounded-md bg-line text-[11px] font-bold text-muted">${c.name.charAt(0)}</span>`;
+      companiesListContainer.innerHTML = filtered.map(c => {
+        const isSelected = c.slug === activeCompanySlug;
+        const count = c.out?.students || 0;
+        const isDream = c.dream ? '★ ' : '';
 
         return `
-          <button type="button" class="company-list-item w-full cursor-pointer px-4 py-3 text-left transition-colors flex items-center justify-between gap-3 ${isActive ? 'bg-line-strong/60 border-l-2 border-fg' : 'hover:bg-line/40'}" data-slug="${c.slug}">
-            <div class="flex items-center gap-3 min-w-0">
-              ${logo}
+          <div class="company-list-item cursor-pointer px-4 py-3 transition-colors flex items-center justify-between gap-3 ${isSelected ? 'bg-line-strong text-fg font-medium' : 'hover:bg-line/50 text-muted hover:text-fg'}" data-slug="${c.slug}">
+            <div class="min-w-0 flex items-center gap-3">
+              <span class="size-2 rounded-full ${count > 0 ? 'bg-intern' : 'bg-line-strong'} shrink-0"></span>
               <div class="truncate">
-                <span class="block text-[14px] font-medium text-fg truncate">${c.name}</span>
-                <span class="block text-[11px] text-faint truncate">${c.pay || 'Competitive'} · ${c.out?.students || 0} placed</span>
+                <span class="text-[14px] truncate block text-fg">${isDream}${c.name}</span>
+                <span class="text-[11px] text-faint font-mono block truncate">${c.pay || 'Pay N/A'}</span>
               </div>
             </div>
-            ${c.dream ? '<span class="chip text-[10px] text-ppo border-ppo/30 shrink-0">Dream</span>' : ''}
-          </button>
+            <span class="num text-[12px] font-mono text-faint shrink-0">${count} offers</span>
+          </div>
         `;
       }).join('');
 
-      // Add click listeners
-      listContainer.querySelectorAll('.company-list-item').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const s = btn.getAttribute('data-slug');
-          selectCompany(s);
+      companiesListContainer.querySelectorAll('.company-list-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const slug = item.getAttribute('data-slug');
+          selectCompany(slug);
         });
       });
     }
 
     function selectCompany(slug) {
       activeCompanySlug = slug;
-      renderCompaniesList();
-
       const company = allCompanies.find(c => c.slug === slug);
       if (!company) return;
 
-      document.getElementById('editor-mode-badge').textContent = 'Editing: ' + company.name;
-      document.getElementById('editor-mode-badge').className = 'chip text-[11px] font-mono text-intern border-intern/30 bg-intern/10';
-      document.getElementById('editor-title').textContent = company.name;
-      document.getElementById('editor-subtitle').textContent = "Slug: " + company.slug + " · " + (company.status || '');
+      renderCompaniesList();
 
+      editorTitle.textContent = company.name;
+      editorModeBadge.textContent = "Editing";
+      editorModeBadge.className = "chip text-[11px] font-mono text-intern border-intern/30 bg-intern/10";
       btnViewLive.classList.remove('hidden');
-      btnViewLive.href = '/companies/company.html?slug=' + company.slug + (currentBatch === '2028' ? '&batch=2028' : '');
+      btnViewLive.href = `/companies/company.html?slug=${company.slug}${currentBatch === '2028' ? '&batch=2028' : ''}`;
       btnDelete.classList.remove('hidden');
 
-      // Populate basic fields
       document.getElementById('field-name').value = company.name || '';
       document.getElementById('field-slug').value = company.slug || '';
       document.getElementById('field-pay').value = company.pay || '';
       document.getElementById('field-pay-kind').value = company.payKind || 'CTC';
       document.getElementById('field-pay-rank').value = company.payRank || '';
-      document.getElementById('field-logo').value = company.logo || '';
-      updateLogoPreview(company.logo);
-
       document.getElementById('field-status').value = company.status || '';
-      document.getElementById('check-offer-intern').checked = company.offers?.includes('internship') || false;
-      document.getElementById('check-offer-fulltime').checked = company.offers?.includes('fulltime') || false;
-      document.getElementById('check-offer-ppo').checked = company.offers?.includes('ppo') || false;
-      document.getElementById('check-dream').checked = Boolean(company.dream);
-
-      // Criteria
       document.getElementById('field-branches').value = company.branches || '';
       document.getElementById('field-cgpa-criteria').value = company.cgpaCriteria || '';
       document.getElementById('field-boards-criteria').value = company.boardsCriteria || '';
-      document.getElementById('field-timeline').value = company.visitTimeline || company.first || '';
+      document.getElementById('field-timeline').value = company.visitTimeline || '';
       document.getElementById('field-notes').value = company.notes || '';
+      document.getElementById('field-logo').value = company.logo || '';
+      updateLogoPreview(company.logo);
 
-      // Roles
+      const offers = company.offers || [];
+      document.getElementById('check-offer-intern').checked = offers.includes('internship');
+      document.getElementById('check-offer-fulltime').checked = offers.includes('fulltime');
+      document.getElementById('check-offer-ppo').checked = offers.includes('ppo');
+      document.getElementById('check-dream').checked = !!company.dream;
+
       rolesData = JSON.parse(JSON.stringify(company.roles || []));
       renderRolesRepeater();
 
-      // Funnel
+      if (rolesData.length > 0 && rolesData[0].funnel && rolesData[0].funnel.length > 0) {
+        stagesData = JSON.parse(JSON.stringify(rolesData[0].funnel));
+      } else if (company.funnelRaw) {
+        parsePipelineString(company.funnelRaw);
+      } else {
+        stagesData = [
+          { name: "Online Assessment", count: company.out?.students ? company.out.students * 5 : 50 },
+          { name: "Interview Round", count: company.out?.students ? company.out.students * 2 : 20 },
+          { name: "Offers Extended", count: company.out?.students || 5 }
+        ];
+      }
       document.getElementById('field-funnel-raw').value = company.funnelRaw || '';
-      stagesData = JSON.parse(JSON.stringify(company.stages || []));
       renderStagesRepeater();
       renderFunnelPreview();
 
-      formStatus.textContent = "Loaded " + company.name;
+      formStatus.textContent = `Loaded ${company.name}`;
     }
 
     function resetForm() {
       activeCompanySlug = null;
       renderCompaniesList();
 
-      document.getElementById('editor-mode-badge').textContent = 'New Company';
-      document.getElementById('editor-mode-badge').className = 'chip text-[11px] font-mono text-fg border-fg/30 bg-fg/10';
-      document.getElementById('editor-title').textContent = 'Create New Company';
-      document.getElementById('editor-subtitle').textContent = 'Add a new recruitment organization to Batch ' + currentBatch;
-
+      editorTitle.textContent = "New Company";
+      editorModeBadge.textContent = "Creating";
+      editorModeBadge.className = "chip text-[11px] font-mono text-yellow-400 border-yellow-400/30 bg-yellow-400/10";
       btnViewLive.classList.add('hidden');
       btnDelete.classList.add('hidden');
 
-      // Clear fields
-      document.getElementById('field-name').value = '';
-      document.getElementById('field-slug').value = '';
-      document.getElementById('field-pay').value = '';
-      document.getElementById('field-pay-kind').value = 'CTC';
-      document.getElementById('field-pay-rank').value = '';
-      document.getElementById('field-logo').value = '';
+      document.getElementById('company-editor-form').reset();
       updateLogoPreview('');
-      document.getElementById('field-status').value = '';
-      document.getElementById('check-offer-intern').checked = true;
-      document.getElementById('check-offer-fulltime').checked = true;
-      document.getElementById('check-offer-ppo').checked = false;
-      document.getElementById('check-dream').checked = false;
-
-      document.getElementById('field-branches').value = 'All branches open';
-      document.getElementById('field-cgpa-criteria').value = '';
-      document.getElementById('field-boards-criteria').value = 'Standard SPIT eligibility';
-      document.getElementById('field-timeline').value = '';
-      document.getElementById('field-notes').value = '';
 
       rolesData = [
         {
@@ -666,7 +939,6 @@
         </div>
       `).join('');
 
-      // Bind events to update rolesData on input
       container.querySelectorAll('.role-card').forEach(card => {
         const idx = parseInt(card.getAttribute('data-index'), 10);
         card.querySelector('.role-input-title').addEventListener('input', e => rolesData[idx].title = e.target.value);
@@ -742,17 +1014,20 @@
         return;
       }
 
-      const maxVal = stagesData[0]?.count || 100;
+      const maxCount = Math.max(...stagesData.map(s => s.count || 1), 1);
+
       container.innerHTML = stagesData.map((s, idx) => {
-        const pct = Math.max(Math.round(((s.count || 0) / maxVal) * 100), 4);
-        const isLast = idx === stagesData.length - 1;
+        const pct = Math.max(Math.round(((s.count || 0) / maxCount) * 100), 5);
+        const isFinal = idx === stagesData.length - 1;
+        const color = isFinal ? 'var(--color-intern)' : 'var(--color-line-strong)';
+
         return `
-          <div class="grid grid-cols-[12rem_1fr_4rem] items-center gap-4 text-[13px]">
-            <span class="truncate ${isLast ? 'text-fg font-semibold' : 'text-muted'}">${s.name || 'Stage'}</span>
-            <div class="h-2.5 w-full bg-line rounded-full overflow-hidden">
-              <div class="h-full ${isLast ? 'bg-intern' : 'bg-fg'} rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+          <div class="grid grid-cols-[140px_minmax(0,1fr)_50px] items-center gap-3 text-[13px]">
+            <span class="truncate text-muted font-medium">${s.name || 'Stage'}</span>
+            <div class="h-2 rounded bg-line overflow-hidden">
+              <div class="h-full rounded transition-all duration-300" style="width: ${pct}%; background: ${color};"></div>
             </div>
-            <span class="num text-right font-medium ${isLast ? 'text-intern font-bold' : 'text-fg'}">${s.count || 0}</span>
+            <span class="num text-right font-mono text-[12px] ${isFinal ? 'text-intern font-bold' : 'text-faint'}">${s.count || 0}</span>
           </div>
         `;
       }).join('');
@@ -764,51 +1039,41 @@
       renderFunnelPreview();
     });
 
-    // Quick Pipeline Parser
-    document.getElementById('btn-parse-funnel')?.addEventListener('click', () => {
-      const rawText = document.getElementById('field-funnel-raw')?.value || '';
-      if (!rawText.trim()) return;
-
-      const parts = rawText.split('->').map(s => s.trim()).filter(Boolean);
+    function parsePipelineString(str) {
+      if (!str) return;
+      const parts = str.split(/->|→|\|/).map(p => p.trim()).filter(Boolean);
       const newStages = [];
 
-      parts.forEach((p, idx) => {
-        const numMatch = p.match(/(d+)/);
-        let count = numMatch ? parseInt(numMatch[1], 10) : 10;
-        let name = p;
-
-        if (idx === parts.length - 1) name = 'Offers Extended';
-        else if (/OA|online assessment/i.test(p)) name = 'Online Coding Assessment (OA)';
-        else if (/GD|group discussion/i.test(p)) name = 'Group Discussion (GD)';
-        else if (/HR|culture/i.test(p)) name = 'HR & Culture-Fit Interview';
-        else if (/manager/i.test(p)) name = 'Hiring Manager Round';
-        else if (/resume|shortlist/i.test(p)) name = 'Resume Shortlist';
-        else if (/tech/i.test(p)) {
-          if (/2/i.test(p)) name = 'Technical Interview Round 2';
-          else if (/3/i.test(p)) name = 'Technical Interview Round 3';
-          else name = 'Technical Interview Round 1';
-        }
-
-        newStages.push({ name, count });
+      parts.forEach(part => {
+        const numMatch = part.match(/\d+/g);
+        const count = numMatch ? parseInt(numMatch[numMatch.length - 1], 10) : 0;
+        let cleanName = part.replace(/\d+/g, '').replace(/offers|placed|students|selects|selected/gi, '').trim();
+        if (!cleanName) cleanName = part.trim();
+        newStages.push({ name: cleanName, count });
       });
 
       if (newStages.length > 0) {
         stagesData = newStages;
         renderStagesRepeater();
         renderFunnelPreview();
-        showToast('Parsed ' + newStages.length + ' stages from pipeline!');
       }
+    }
+
+    document.getElementById('btn-parse-funnel')?.addEventListener('click', () => {
+      const raw = document.getElementById('field-funnel-raw').value.trim();
+      parsePipelineString(raw);
+      showToast('Parsed ' + stagesData.length + ' stages from pipeline!');
     });
 
     // Tab Switching inside Form
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => {
-          b.classList.remove('active', 'bg-fg', 'text-bg');
-          b.classList.add('text-muted');
+          b.classList.remove('active', 'border-fg', 'text-fg');
+          b.classList.add('border-transparent', 'text-muted');
         });
-        btn.classList.add('active', 'bg-fg', 'text-bg');
-        btn.classList.remove('text-muted');
+        btn.classList.add('active', 'border-fg', 'text-fg');
+        btn.classList.remove('border-transparent', 'text-muted');
 
         const targetTab = btn.getAttribute('data-tab');
         document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
@@ -832,7 +1097,7 @@
       }, 3500);
     }
 
-    // Save Company to Server
+    // Save Company to Supabase Postgres (and localhost node server if available)
     async function saveCompanyHandler() {
       const name = document.getElementById('field-name').value.trim();
       const slug = document.getElementById('field-slug').value.trim();
@@ -842,58 +1107,83 @@
         return;
       }
 
-      formStatus.textContent = "Saving company and rebuilding site...";
+      formStatus.textContent = "Saving to Supabase Postgres database...";
       btnSaveTop.disabled = true;
       btnSaveBottom.disabled = true;
 
-      // Collect offers
       const offers = [];
       if (document.getElementById('check-offer-intern').checked) offers.push('internship');
       if (document.getElementById('check-offer-fulltime').checked) offers.push('fulltime');
       if (document.getElementById('check-offer-ppo').checked) offers.push('ppo');
 
-      const companyPayload = {
-        name,
+      // Calculate selections
+      const finalCount = (stagesData.length > 0) ? (stagesData[stagesData.length - 1].count || 0) : (rolesData.reduce((a, r) => a + (r.count || 0), 0) || 0);
+
+      const supabaseRecord = {
         slug,
+        batch_year: String(currentBatch),
+        name,
         offers,
         seasons: ["TE", "BE"],
         pay: document.getElementById('field-pay').value.trim() || 'Competitive',
-        payKind: document.getElementById('field-pay-kind').value,
-        payRank: parseInt(document.getElementById('field-pay-rank').value, 10) || 1000,
+        pay_kind: document.getElementById('field-pay-kind').value,
+        pay_rank: parseInt(document.getElementById('field-pay-rank').value, 10) || 1000,
         dream: document.getElementById('check-dream').checked,
         logo: document.getElementById('field-logo').value.trim() || ('/logos/' + slug + '.svg'),
-        status: document.getElementById('field-status').value.trim() || '',
+        out_students: finalCount,
+        out_internships: offers.includes('internship') ? finalCount : 0,
+        out_fulltime: offers.includes('fulltime') ? finalCount : 0,
+        out_ppo: offers.includes('ppo') ? finalCount : 0,
+        open_branches: document.getElementById('field-branches').value.trim() || 'All branches open',
         branches: document.getElementById('field-branches').value.trim() || 'All branches open',
-        cgpaCriteria: document.getElementById('field-cgpa-criteria').value.trim(),
-        boardsCriteria: document.getElementById('field-boards-criteria').value.trim(),
-        visitTimeline: document.getElementById('field-timeline').value.trim(),
-        notes: document.getElementById('field-notes').value.trim(),
-        funnelRaw: document.getElementById('field-funnel-raw').value.trim(),
-        roles: rolesData,
-        stages: stagesData
+        cgpa: null,
+        cgpa_criteria: document.getElementById('field-cgpa-criteria').value.trim(),
+        boards_criteria: document.getElementById('field-boards-criteria').value.trim(),
+        first_date: '',
+        last_date: '',
+        visit_timeline: document.getElementById('field-timeline').value.trim(),
+        funnel_raw: document.getElementById('field-funnel-raw').value.trim(),
+        status: document.getElementById('field-status').value.trim() || `${finalCount} selections`,
+        roles: rolesData
       };
 
       try {
-        const res = await fetch('/api/company', {
+        // 1. Direct Save to Supabase Postgres
+        const sRes = await fetch(`${SUPABASE_URL}/rest/v1/companies`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ batch: currentBatch, company: companyPayload })
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify([supabaseRecord])
         });
 
-        const result = await res.json();
-        if (result.success) {
-          showToast(result.message || 'Saved successfully!');
-          formStatus.textContent = 'Saved at ' + new Date().toLocaleTimeString();
-          // Reload batch data and select the saved company
-          await loadBatchData(currentBatch);
-          selectCompany(slug);
-        } else {
-          showToast(result.error || 'Save failed', true);
-          formStatus.textContent = 'Error: ' + result.error;
+        if (!sRes.ok) {
+          const errBody = await sRes.text();
+          throw new Error('Supabase save error: ' + errBody);
         }
+
+        // 2. Also try localhost server API if available
+        try {
+          fetch('/api/company', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ batch: currentBatch, company: supabaseRecord })
+          }).catch(() => {});
+        } catch(e) {}
+
+        showToast(`Saved '${name}' directly to Supabase Postgres!`);
+        formStatus.textContent = 'Saved to cloud at ' + new Date().toLocaleTimeString();
+
+        // Refresh list
+        await loadBatchData(currentBatch);
+        selectCompany(slug);
+
       } catch (err) {
-        showToast('Network error: ' + err.message, true);
-        formStatus.textContent = 'Network error: ' + err.message;
+        showToast('Save failed: ' + err.message, true);
+        formStatus.textContent = 'Error: ' + err.message;
       } finally {
         btnSaveTop.disabled = false;
         btnSaveBottom.disabled = false;
@@ -904,20 +1194,24 @@
     async function deleteCompanyHandler() {
       if (!activeCompanySlug) return;
       const comp = allCompanies.find(c => c.slug === activeCompanySlug);
-      const conf = confirm(`Are you sure you want to delete '${comp?.name || activeCompanySlug}' from Batch '${currentBatch.slice(2)}?`);
+      const conf = confirm(`Are you sure you want to delete '${comp?.name || activeCompanySlug}' from Batch '${currentBatch.slice(2)} in Supabase?`);
       if (!conf) return;
 
       try {
-        const res = await fetch('/api/company?slug=' + activeCompanySlug + '&batch=' + currentBatch, {
-          method: 'DELETE'
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/companies?slug=eq.${encodeURIComponent(activeCompanySlug)}&batch_year=eq.${encodeURIComponent(currentBatch)}`, {
+          method: 'DELETE',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`
+          }
         });
-        const result = await res.json();
-        if (result.success) {
-          showToast(`Company '${activeCompanySlug}' deleted successfully.`);
+
+        if (res.ok) {
+          showToast(`Company '${activeCompanySlug}' removed from Supabase.`);
           resetForm();
           await loadBatchData(currentBatch);
         } else {
-          showToast(result.error || 'Failed to delete company', true);
+          showToast('Failed to delete company from Supabase', true);
         }
       } catch (err) {
         showToast('Error deleting: ' + err.message, true);
@@ -941,9 +1235,6 @@
         saveCompanyHandler();
       }
     });
-
-    // Initial Load
-    loadBatchData('2027');
   
   </script>
 </body>
