@@ -61,24 +61,11 @@ function generateHighlightsPage() {
         </div>
       </section>
 
-      <!-- Section 02: Placed by Branch -->
-      <section class="mt-20">
-        <div class="border-t border-line pt-6">
-          <p class="label text-faint">02 — Distribution</p>
-          <h2 class="display-m mt-3">Placed, by branch</h2>
-          <p class="mt-2 text-[15px] text-muted">Branch-wise placement rate and verified student selections.</p>
-        </div>
-
-        <div id="branch-bars" class="mt-8 grid gap-5">
-          <!-- Rendered dynamically -->
-        </div>
-      </section>
-
-      <!-- Section 03: Selections by Company Leaderboard -->
+      <!-- Section 02: Selections by Company Leaderboard -->
       <section class="mt-20">
         <div class="border-t border-line pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <p class="label text-faint">03 — Recruiters</p>
+            <p class="label text-faint">02 — Recruiters</p>
             <h2 class="display-m mt-3">Selections by company</h2>
           </div>
           <div class="flex items-center gap-4 text-[12px] text-muted">
@@ -93,7 +80,7 @@ function generateHighlightsPage() {
         </div>
       </section>
 
-      <!-- Section 04: Community Submission CTA -->
+      <!-- Section 03: Community Submission CTA -->
       <section class="mt-20 rounded-3xl border border-line-strong bg-panel p-8 sm:p-12 text-center">
         <h3 class="font-display text-[26px] sm:text-[30px] font-medium text-fg">Have updated placement data?</h3>
         <p class="mt-3 text-[15px] text-muted max-w-[52ch] mx-auto leading-relaxed">
@@ -117,7 +104,6 @@ function generateHighlightsPage() {
     const batch = getActiveBatchData();
     const is2028 = batch.year === '2028';
     const companies = batch.companies || [];
-    const branches = batch.branches || [];
 
     // Header Badge & Desc
     const badgeEl = document.getElementById('highlights-page-badge');
@@ -308,31 +294,6 @@ function generateHighlightsPage() {
           </div>
         \`;
       }
-    }
-
-    // Render Branch Distribution Bars
-    const branchBarsEl = document.getElementById('branch-bars');
-    if (branchBarsEl) {
-      const filteredBranches = branches.filter(b => b.id !== 'all');
-      branchBarsEl.innerHTML = filteredBranches.map(b => \`
-        <div class="rounded-2xl border border-line bg-panel p-5">
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            <div class="flex items-center gap-3">
-              <span class="size-3 rounded-full shrink-0" style="background:\${b.color || 'var(--color-fg)'}"></span>
-              <h3 class="font-display text-[17px] font-medium text-fg">\${b.name}</h3>
-              <span class="label text-[11px] text-faint font-mono">(\${b.shortName})</span>
-            </div>
-            <div class="flex items-center gap-4 text-[13px]">
-              <span class="text-fg font-medium">\${b.placedStudents} / \${b.totalStudents} placed</span>
-              <span class="num text-[15px] font-bold text-fg">\${b.placedPercentage}%</span>
-            </div>
-          </div>
-          <div class="mt-3 h-2 w-full overflow-hidden rounded-full bg-line">
-            <div class="h-full rounded-full transition-all duration-700" style="width:\${b.placedPercentage}%; background:\${b.color || 'var(--color-fg)'}"></div>
-          </div>
-          <p class="mt-3 text-[12px] text-muted leading-relaxed">\${b.summary || ''}</p>
-        </div>
-      \`).join('');
     }
 
     // Render Company Offers List
