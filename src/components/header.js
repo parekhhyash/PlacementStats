@@ -18,6 +18,33 @@ export function renderHeader(activePath = '/') {
   }).join('');
 
   return `
+    <!-- Top Announcement / Disclaimer Banner (Crossable) -->
+    <aside id="site-top-disclaimer" class="relative z-40 border-b border-line bg-panel text-center text-[12px] sm:text-[13px] text-muted py-2 px-4 transition-all duration-300">
+      <div class="wrap flex items-center justify-center gap-2 pr-7 sm:pr-8">
+        <span class="inline-flex items-center gap-1.5 flex-wrap justify-center text-center">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-amber-400 shrink-0 inline" aria-hidden="true">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          <span>This is not an official website. The data might be incorrect. Report or submit data at <a href="/corrections/" class="font-medium text-fg underline underline-offset-2 hover:text-intern transition-colors">/corrections/ →</a></span>
+        </span>
+      </div>
+      <button id="close-disclaimer-btn" type="button" aria-label="Dismiss banner" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-1 text-muted hover:text-fg transition-colors cursor-pointer rounded-full hover:bg-line" title="Dismiss notice">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <script>
+        try {
+          if (sessionStorage.getItem('spit_disclaimer_closed') === 'true') {
+            document.getElementById('site-top-disclaimer').style.display = 'none';
+          }
+        } catch(e) {}
+      </script>
+    </aside>
+
     <header class="wrap sticky top-0 z-30 border-b border-line bg-bg/85 backdrop-blur-md [view-transition-name:site-header]">
       <div class="flex h-16 items-center justify-between gap-4">
         <a aria-label="${siteConfig.siteTitle}, home" class="group -my-2 py-2 shrink-0" href="/">
@@ -159,6 +186,37 @@ export function initHeader() {
       if (href && !href.includes('?') && !href.startsWith('//')) {
         a.setAttribute('href', href + '?batch=2028');
       }
+    });
+  }
+
+  // Crossable Top Disclaimer Banner Close Handler
+  const disclaimerEl = document.getElementById('site-top-disclaimer');
+  const closeBtn = document.getElementById('close-disclaimer-btn');
+
+  try {
+    if (sessionStorage.getItem('spit_disclaimer_closed') === 'true' && disclaimerEl) {
+      disclaimerEl.style.display = 'none';
+    }
+  } catch (e) {}
+
+  if (closeBtn && disclaimerEl) {
+    closeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      disclaimerEl.style.transition = 'opacity 0.2s ease, max-height 0.25s ease, padding 0.2s ease';
+      disclaimerEl.style.overflow = 'hidden';
+      disclaimerEl.style.maxHeight = disclaimerEl.offsetHeight + 'px';
+      // Force repaint
+      void disclaimerEl.offsetHeight;
+      disclaimerEl.style.opacity = '0';
+      disclaimerEl.style.maxHeight = '0px';
+      disclaimerEl.style.paddingTop = '0px';
+      disclaimerEl.style.paddingBottom = '0px';
+      setTimeout(() => {
+        disclaimerEl.style.display = 'none';
+      }, 250);
+      try {
+        sessionStorage.setItem('spit_disclaimer_closed', 'true');
+      } catch (err) {}
     });
   }
 }
