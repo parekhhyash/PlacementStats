@@ -330,6 +330,55 @@ function generateCompaniesPage() {
       });
 
       // Sorting
+      const monthMap = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
+
+      function parseCompanyVisitTimestamp(c) {
+        if (typeof c.visitTimestamp === 'number' && c.visitTimestamp > 0) return c.visitTimestamp;
+        if (typeof c.timestamp === 'number' && c.timestamp > 0) return c.timestamp;
+
+        const candidates = [
+          c.last,
+          c.first,
+          c.visitTimeline,
+          c.visit_timeline,
+          c.last_date,
+          c.first_date,
+          ...(c.roles || []).map(r => r.visitDate)
+        ].filter(Boolean);
+
+        let maxTs = 0;
+
+        for (const raw of candidates) {
+          const text = String(raw).trim();
+          
+          // 1. Try ISO YYYY-MM-DD
+          const isoMatches = text.match(/(\\d{4})-(\\d{1,2})-(\\d{1,2})/g);
+          if (isoMatches) {
+            for (const iso of isoMatches) {
+              const t = new Date(iso).getTime();
+              if (!isNaN(t) && t > maxTs) maxTs = t;
+            }
+          }
+
+          // 2. Try text dates like '26 Oct 2026', '22-26 Oct', 'Oct 2026', 'results 28 Oct', 'OA 9 Oct; interviews 15 Oct'
+          const regex = /(?:(\\d{1,2})(?:\\s*(?:-|–|to|&)\\s*(\\d{1,2}))?\\s+)?(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)(?:\\s+(\\d{4}))?/gi;
+          let match;
+          while ((match = regex.exec(text)) !== null) {
+            const day = parseInt(match[2] || match[1] || '15', 10);
+            const mStr = match[3].toLowerCase().slice(0, 3);
+            const mIdx = monthMap[mStr];
+            let y = match[4] ? parseInt(match[4], 10) : 2026;
+            if (mIdx !== undefined && !isNaN(day)) {
+              const d = new Date(y, mIdx, day);
+              const ts = d.getTime();
+              if (ts > maxTs) maxTs = ts;
+            }
+          }
+        }
+
+        return maxTs;
+      }
+
       function getCompanySortPay(c) {
         if (typeof c.payRank === 'number' && c.payRank > 0 && c.payRank < 10000) {
           return c.payRank;
@@ -365,7 +414,11 @@ function generateCompaniesPage() {
       } else if (sort === 'name') {
         filtered.sort((a, b) => a.name.localeCompare(b.name));
       } else if (sort === 'latest') {
-        filtered.sort((a, b) => (b.last || '').localeCompare(a.last || ''));
+        filtered.sort((a, b) => {
+          const diff = parseCompanyVisitTimestamp(b) - parseCompanyVisitTimestamp(a);
+          if (diff !== 0) return diff;
+          return getCompanyTotalOffers(b) - getCompanyTotalOffers(a);
+        });
       }
 
       if (countEl) {

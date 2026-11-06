@@ -357,10 +357,68 @@
       latestHeadingLink.href = is2028 ? '/companies/?batch=2028' : '/companies/';
     }
 
-    // 2. Populate latest companies list
-    const latestList = document.getElementById('home-latest-companies');
-    if (latestList) {
-      const topCompanies = batch.companies.slice(0, 7);
+    // Helper to extract visit date timestamp for accurate chronological sorting
+    const monthMap = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
+
+    function parseCompanyVisitTimestamp(c) {
+      if (typeof c.visitTimestamp === 'number' && c.visitTimestamp > 0) return c.visitTimestamp;
+      if (typeof c.timestamp === 'number' && c.timestamp > 0) return c.timestamp;
+
+      const candidates = [
+        c.last,
+        c.first,
+        c.visitTimeline,
+        c.visit_timeline,
+        c.last_date,
+        c.first_date,
+        ...(c.roles || []).map(r => r.visitDate)
+      ].filter(Boolean);
+
+      let maxTs = 0;
+
+      for (const raw of candidates) {
+        const text = String(raw).trim();
+        
+        // 1. Try ISO YYYY-MM-DD
+        const isoMatches = text.match(/(\d{4})-(\d{1,2})-(\d{1,2})/g);
+        if (isoMatches) {
+          for (const iso of isoMatches) {
+            const t = new Date(iso).getTime();
+            if (!isNaN(t) && t > maxTs) maxTs = t;
+          }
+        }
+
+        // 2. Try text dates like '26 Oct 2026', '22-26 Oct', 'Oct 2026', 'results 28 Oct', 'OA 9 Oct; interviews 15 Oct'
+        const regex = /(?:(\d{1,2})(?:\s*(?:-|–|to|&)\s*(\d{1,2}))?\s+)?(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)(?:\s+(\d{4}))?/gi;
+        let match;
+        while ((match = regex.exec(text)) !== null) {
+          const day = parseInt(match[2] || match[1] || '15', 10);
+          const mStr = match[3].toLowerCase().slice(0, 3);
+          const mIdx = monthMap[mStr];
+          let y = match[4] ? parseInt(match[4], 10) : 2026;
+          if (mIdx !== undefined && !isNaN(day)) {
+            const d = new Date(y, mIdx, day);
+            const ts = d.getTime();
+            if (ts > maxTs) maxTs = ts;
+          }
+        }
+      }
+
+      return maxTs;
+    }
+
+    // 2. Populate latest companies list based on visit date
+    function renderLatestList() {
+      const latestList = document.getElementById('home-latest-companies');
+      if (!latestList) return;
+
+      const sortedByVisit = [...batch.companies].sort((a, b) => {
+        const diff = parseCompanyVisitTimestamp(b) - parseCompanyVisitTimestamp(a);
+        if (diff !== 0) return diff;
+        return (b.out?.students || 0) - (a.out?.students || 0);
+      });
+
+      const topCompanies = sortedByVisit.slice(0, 7);
       latestList.innerHTML = topCompanies.map((c, idx) => {
         const num = String(idx + 1).padStart(3, '0');
         const logo = c.logo ? '<img alt="' + c.name + '" loading="lazy" width="34" height="34" class="shrink-0 object-contain rounded-md bg-panel p-0.5" src="' + c.logo + '" />' : '<span class="grid size-[34px] shrink-0 place-items-center rounded-md bg-line font-display text-[15px] font-bold text-muted">' + c.name.charAt(0) + '</span>';
@@ -399,6 +457,65 @@
         `;
       }).join('');
     }
+
+    renderLatestList();
+
+    // Background live Supabase sync
+    async function syncLiveHome() {
+      try {
+        const SUPABASE_URL = 'https://ntdmjyexirakcaovjeia.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZG1qeWV4aXJha2Nhb3ZqZWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2NTUzNTUsImV4cCI6MjA4NjIzMTM1NX0.LFbBXU-ANjoUUi_HfMIWYAjKidRgEct_VO-588T-Y7M';
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 6000);
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/companies?batch_year=eq.${batch.year}&order=out_students.desc`, {
+          signal: controller.signal,
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`
+          }
+        });
+        clearTimeout(timeoutId);
+        if (res.ok) {
+          const rows = await res.json();
+          if (rows && rows.length > 0) {
+            rows.forEach(d => {
+              const mapped = {
+                name: d.name,
+                slug: d.slug,
+                offers: d.offers || [],
+                seasons: d.seasons || [],
+                pay: d.pay,
+                payKind: d.pay_kind,
+                payRank: d.pay_rank,
+                dream: d.dream,
+                logo: d.logo,
+                status: d.status,
+                branches: d.branches,
+                cgpaCriteria: d.cgpa_criteria,
+                boardsCriteria: d.boards_criteria,
+                visitTimeline: d.visit_timeline,
+                funnelRaw: d.funnel_raw,
+                roles: d.roles || [],
+                out: {
+                  students: d.out_students,
+                  internships: d.out_internships,
+                  fulltimeOffers: d.out_fulltime,
+                  ppo: d.out_ppo
+                }
+              };
+              const idx = batch.companies.findIndex(c => c.slug === d.slug);
+              if (idx >= 0) {
+                batch.companies[idx] = Object.assign(batch.companies[idx], mapped);
+              } else {
+                batch.companies.push(mapped);
+              }
+            });
+            renderLatestList();
+          }
+        }
+      } catch (e) {}
+    }
+    syncLiveHome();
 
     // 4. Populate Recap Teaser Cards
     const recapSeason = document.getElementById('home-recap-season');
