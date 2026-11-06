@@ -40,14 +40,16 @@ try {
   console.log('3. Building Branches Page...');
   require('./build_branches.js');
 
-  console.log('4. Building Recap Page...');
-  require('./build_recap.js');
+  console.log('4. Building Highlights Page...');
+  require('./build_highlights.js');
 
   console.log('5. Building Pay Page...');
   require('./build_pay.js');
 
-  console.log('6. Building Selections Page...');
-  require('./build_selections.js');
+  // Maintain redirect stubs for old selections & recap URLs
+  const redirectHtml = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Redirecting...</title><meta http-equiv="refresh" content="0; url=/highlights/"><script>window.location.replace('/highlights/' + window.location.search);</script></head><body></body></html>`;
+  fs.writeFileSync(path.join(rootDir, 'selections', 'index.html'), redirectHtml);
+  fs.writeFileSync(path.join(rootDir, 'recap', 'index.html'), redirectHtml);
 
   console.log('7. Building Timeline Page...');
   require('./build_timeline.js');

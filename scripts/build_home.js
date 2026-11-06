@@ -65,7 +65,7 @@ function generateHomePage() {
           </span>
           Latest results
         </p>
-        <a class="label link-underline text-fg" href="/recap/">All recaps →</a>
+        <a class="label link-underline text-fg" href="/highlights/">Full highlights →</a>
       </div>
       <section class="glow-ring rounded-[28px] p-px">
         <div class="relative overflow-hidden rounded-[27px] bg-bg p-5 sm:p-7">
@@ -148,7 +148,7 @@ function generateHomePage() {
           <h2 class="display-m mt-3 max-w-[18ch]">Where students got offers</h2>
         </div>
         <div class="flex flex-col justify-end gap-4 lg:items-start">
-          <a class="label link-underline text-fg" href="/selections/">Offers breakdown →</a>
+          <a class="label link-underline text-fg" href="/highlights/">Offers breakdown →</a>
         </div>
       </div>
       <div class="mt-10">
@@ -172,7 +172,7 @@ function generateHomePage() {
           <h2 class="display-m mt-3 max-w-[18ch]">How many made it through</h2>
         </div>
         <div class="flex flex-col justify-end gap-4 lg:items-start">
-          <a class="label link-underline text-fg" href="/selections/">Every funnel →</a>
+          <a class="label link-underline text-fg" href="/companies/">Browse all companies →</a>
         </div>
       </div>
       <div class="mt-10">

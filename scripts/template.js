@@ -3,12 +3,12 @@ const path = require('path');
 
 function getHeaderHtml(activePath = '/') {
   const navLinks = [
+    { label: "Highlights", href: "/highlights/", glow: true },
     { label: "Companies", href: "/companies/" },
-    { label: "Recap", href: "/recap/", glow: true },
     { label: "Pay", href: "/pay/" },
-    { label: "Offers", href: "/selections/" },
     { label: "Branches", href: "/branches/" },
     { label: "Timeline", href: "/timeline/" },
+    { label: "Submit Data", href: "/corrections/" },
     { label: "About", href: "/about/" }
   ];
 

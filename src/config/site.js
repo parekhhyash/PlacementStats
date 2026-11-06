@@ -37,14 +37,14 @@ export const siteConfig = {
     busiestMonth: "Jul 2026"
   },
 
-  // Navigation Links (Eligibility removed per previous request)
+  // Navigation Links
   navLinks: [
+    { label: "Highlights", href: "/highlights/", glow: true },
     { label: "Companies", href: "/companies/" },
-    { label: "Recap", href: "/recap/", glow: true },
     { label: "Pay", href: "/pay/" },
-    { label: "Offers", href: "/selections/" },
     { label: "Branches", href: "/branches/" },
     { label: "Timeline", href: "/timeline/" },
+    { label: "Submit Data", href: "/corrections/" },
     { label: "About", href: "/about/" }
   ],
 

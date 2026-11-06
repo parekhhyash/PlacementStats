@@ -1,0 +1,400 @@
+const fs = require('fs');
+const path = require('path');
+const { pageTemplate } = require('./template');
+const { siteConfig } = require('../src/config/site');
+
+function generateHighlightsPage() {
+  const content = `
+    <section class="wrap pb-12 pt-[clamp(48px,8vw,112px)]">
+      <p id="highlights-page-badge" class="label text-muted">Season Highlights · ${siteConfig.collegeShort} ${siteConfig.batchYear}</p>
+      <h1 class="display-xl mt-6">
+        The season,<br/><span class="text-muted">in numbers.</span>
+      </h1>
+      <p id="highlights-page-desc" class="mt-8 max-w-[58ch] text-[18px] leading-relaxed text-muted">
+        Key placement metrics, recruitment milestones, compensation breakdown, and confirmed offers across our departments.
+      </p>
+    </section>
+
+    <div class="wrap">
+      <!-- Glow Ring Story Reel Hero Card -->
+      <section class="glow-ring rounded-[28px] p-px mb-14">
+        <div class="relative overflow-hidden rounded-[27px] bg-bg p-6 sm:p-10">
+          <div class="grid lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end gap-8">
+            <div>
+              <p id="highlights-hero-season" class="label text-muted">Highlights · Flagship Recruiters · Season 2027</p>
+              <h2 class="display-l mt-4 max-w-[14ch]">Key season milestones</h2>
+            </div>
+            <button type="button" class="play-recap-trigger group/play relative inline-flex h-14 items-center gap-4 rounded-full bg-fg pl-2 pr-6 text-bg transition-transform duration-500 ease-[var(--ease)] hover:scale-[1.03] cursor-pointer">
+              <span class="relative grid size-10 place-items-center rounded-full bg-bg text-fg">
+                <span aria-hidden="true" class="share-ripple absolute inset-0 rounded-full border border-fg/60"></span>
+                <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" class="translate-x-px">
+                  <path d="M3 1.5v11l9-5.5-9-5.5Z" fill="currentColor"></path>
+                </svg>
+              </span>
+              <span class="text-left">
+                <span class="block font-display text-[17px] leading-tight tracking-[-0.01em]">Play the season recap</span>
+                <span class="label block text-[10px] text-bg/60">5 slides · 25 sec</span>
+              </span>
+            </button>
+          </div>
+
+          <!-- Featured Marquee Highlights Teasers -->
+          <div id="highlights-featured-cards" class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 border-t border-line pt-8">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 01: All Major Stats (Dynamically Computed from Database) -->
+      <section class="mt-14">
+        <div class="border-t border-line pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <p class="label text-faint">01 — Core Analytics</p>
+            <h2 class="display-m mt-3">Major Season Statistics</h2>
+          </div>
+          <span class="label text-[12px] text-faint">Calculated dynamically from verified placement data</span>
+        </div>
+
+        <!-- 8-Card Major Metrics Grid -->
+        <div id="major-stats-grid" class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <!-- Dynamically injected -->
+        </div>
+      </section>
+
+      <!-- Section 02: Placed by Branch -->
+      <section class="mt-20">
+        <div class="border-t border-line pt-6">
+          <p class="label text-faint">02 — Distribution</p>
+          <h2 class="display-m mt-3">Placed, by branch</h2>
+          <p class="mt-2 text-[15px] text-muted">Branch-wise placement rate and verified student selections.</p>
+        </div>
+
+        <div id="branch-bars" class="mt-8 grid gap-5">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- Section 03: Selections by Company Leaderboard -->
+      <section class="mt-20">
+        <div class="border-t border-line pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <p class="label text-faint">03 — Recruiters</p>
+            <h2 class="display-m mt-3">Selections by company</h2>
+          </div>
+          <div class="flex items-center gap-4 text-[12px] text-muted">
+            <span class="flex items-center gap-1.5"><i class="dot" style="background:var(--color-ppo)"></i> PPO / Dual</span>
+            <span class="flex items-center gap-1.5"><i class="dot" style="background:var(--color-fulltime)"></i> Full-time</span>
+            <span class="flex items-center gap-1.5"><i class="dot" style="background:var(--color-intern)"></i> Internship</span>
+          </div>
+        </div>
+
+        <div id="company-offers-list" class="mt-8 divide-y divide-line">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- Section 04: Community Submission CTA -->
+      <section class="mt-20 rounded-3xl border border-line-strong bg-panel p-8 sm:p-12 text-center">
+        <h3 class="font-display text-[26px] sm:text-[30px] font-medium text-fg">Have updated placement data?</h3>
+        <p class="mt-3 text-[15px] text-muted max-w-[52ch] mx-auto leading-relaxed">
+          Help keep SPIT placement statistics complete and verified for everyone. Submit new drive figures or report any corrections.
+        </p>
+        <div class="mt-7 flex flex-wrap items-center justify-center gap-4">
+          <a href="/corrections/" class="rounded-full bg-fg px-7 py-3 text-[13px] font-medium text-bg shadow-sm transition-opacity hover:opacity-90">
+            Submit Placement Data →
+          </a>
+          <a href="/companies/" class="rounded-full border border-line-strong px-7 py-3 text-[13px] font-medium text-muted hover:text-fg transition-colors">
+            Browse All Companies
+          </a>
+        </div>
+      </section>
+    </div>
+  `;
+
+  const extraScript = `
+    import { getActiveBatchData, getBatchKey, allBatches } from '/src/data/batches.js';
+
+    const batch = getActiveBatchData();
+    const is2028 = batch.year === '2028';
+    const companies = batch.companies || [];
+    const branches = batch.branches || [];
+
+    // Header Badge & Desc
+    const badgeEl = document.getElementById('highlights-page-badge');
+    if (badgeEl) badgeEl.textContent = \`Season Highlights · SPIT Class of \${batch.year}\`;
+
+    const descEl = document.getElementById('highlights-page-desc');
+    if (descEl) {
+      descEl.textContent = \`Key placement metrics, recruitment milestones, compensation breakdown, and confirmed offers for the SPIT \${batch.year} cohort.\`;
+    }
+
+    const heroSeason = document.getElementById('highlights-hero-season');
+    if (heroSeason) {
+      heroSeason.textContent = \`Highlights · Flagship Recruiters · Season \${batch.year}\`;
+    }
+
+    // --- Dynamic Calculation of All Metrics (No Hardcoded Numbers) ---
+    const totalCompanies = companies.length;
+    const totalOffers = companies.reduce((sum, c) => sum + (c.out?.students || 0), 0) || (batch.stats ? batch.stats.studentsPlaced : 0);
+
+    let ftAndDualOffers = 0;
+    let internOnlyOffers = 0;
+    let ppoPathwayOffers = 0;
+
+    companies.forEach(c => {
+      if (c.noDetailsAvailable) return;
+      const isPpo = c.offers && (c.offers.includes('ppo') || c.offers.includes('both'));
+      const isFt = c.offers && c.offers.includes('fulltime');
+      const isIntern = c.offers && c.offers.includes('internship');
+
+      const ftCount = c.out?.fulltimeOffers || 0;
+      const inCount = c.out?.internships || 0;
+      const ppoCount = c.out?.ppo || 0;
+
+      if (isPpo) {
+        ppoPathwayOffers += (ppoCount || inCount || c.out?.students || 0);
+      }
+      if (isFt) {
+        ftAndDualOffers += (ftCount || c.out?.students || 0);
+      }
+      if (isIntern && !isFt) {
+        internOnlyOffers += (inCount || c.out?.students || 0);
+      }
+    });
+
+    // Use stats registry as authoritative verified fallback if company role breakdowns overlap
+    if (batch.stats) {
+      if (batch.stats.fulltimeOffersCount) ftAndDualOffers = batch.stats.fulltimeOffersCount;
+      if (batch.stats.internshipsCount) internOnlyOffers = batch.stats.internshipsCount;
+      if (batch.stats.ppoCount) ppoPathwayOffers = batch.stats.ppoCount;
+    }
+
+    // CTC metrics from actual company records
+    const payValues = [];
+    let totalPaySum = 0;
+    let totalPayCount = 0;
+
+    companies.forEach(c => {
+      if (c.noDetailsAvailable || !c.pay || c.pay === 'No details available' || c.payKind === 'Stipend') return;
+      const m = c.pay.match(/([0-9.]+)\\s*lpa/i) || c.pay.match(/([0-9.]+)/);
+      if (m) {
+        const val = parseFloat(m[1]);
+        if (val > 0 && val < 200) {
+          payValues.push(val);
+          totalPaySum += val;
+          totalPayCount++;
+        }
+      }
+    });
+
+    payValues.sort((a, b) => a - b);
+    const highestCtcVal = payValues.length > 0 ? Math.max(...payValues) : 0;
+    const medianCtcVal = payValues.length > 0 ? payValues[Math.floor(payValues.length / 2)] : 0;
+    const avgCtcVal = totalPayCount > 0 ? (totalPaySum / totalPayCount).toFixed(2) : 0;
+
+    const highestCTC = highestCtcVal > 0 ? \`₹\${highestCtcVal.toFixed(1)} LPA\` : (batch.stats?.highestCTC || '—');
+    const medianCTC = medianCtcVal > 0 ? \`₹\${medianCtcVal.toFixed(1)} LPA\` : (batch.stats?.medianCTC || '—');
+    const averageCTC = avgCtcVal > 0 ? \`₹\${avgCtcVal} LPA\` : (batch.stats?.averageCTC || '—');
+
+    // Render 8 Major Stats Grid
+    const majorStatsEl = document.getElementById('major-stats-grid');
+    if (majorStatsEl) {
+      majorStatsEl.innerHTML = \`
+        <!-- 1. Total Confirmed Offers -->
+        <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
+          <dt class="order-2 mt-3 text-muted text-[13px]">Total Confirmed Offers</dt>
+          <dd class="order-1 num font-display text-[clamp(28px,2.8vw,42px)] leading-none text-fg">\${totalOffers}</dd>
+          <dd class="order-3 label mt-2 text-[11px] text-faint">Across all \${totalCompanies} firms</dd>
+        </div>
+
+        <!-- 2. Full-time & Dual -->
+        <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
+          <dt class="order-2 mt-3 text-muted text-[13px]">Full-time & Dual</dt>
+          <dd class="order-1 num font-display text-[clamp(28px,2.8vw,42px)] leading-none text-fg">\${ftAndDualOffers}</dd>
+          <dd class="order-3 label mt-2 text-[11px] text-faint">Direct FT + Dual offers</dd>
+        </div>
+
+        <!-- 3. Internship Only -->
+        <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
+          <dt class="order-2 mt-3 text-muted text-[13px]">Internship Only</dt>
+          <dd class="order-1 num font-display text-[clamp(28px,2.8vw,42px)] leading-none text-fg">\${internOnlyOffers}</dd>
+          <dd class="order-3 label mt-2 text-[11px] text-faint">Summer internships</dd>
+        </div>
+
+        <!-- 4. Dual / PPO Pathway -->
+        <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
+          <dt class="order-2 mt-3 text-muted text-[13px]">Dual / PPO Pathway</dt>
+          <dd class="order-1 num font-display text-[clamp(28px,2.8vw,42px)] leading-none text-fg">\${ppoPathwayOffers}</dd>
+          <dd class="order-3 label mt-2 text-[11px] text-faint">Internship + FT conversion</dd>
+        </div>
+
+        <!-- 5. Number of Companies -->
+        <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
+          <dt class="order-2 mt-3 text-muted text-[13px]">Companies Recruiting</dt>
+          <dd class="order-1 num font-display text-[clamp(28px,2.8vw,42px)] leading-none text-fg">\${totalCompanies}</dd>
+          <dd class="order-3 label mt-2 text-[11px] text-faint">Registered campus drives</dd>
+        </div>
+
+        <!-- 6. Highest CTC -->
+        <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
+          <dt class="order-2 mt-3 text-muted text-[13px]">Highest CTC</dt>
+          <dd class="order-1 num font-display text-[clamp(24px,2.4vw,36px)] leading-none text-fg text-ppo">\${highestCTC}</dd>
+          <dd class="order-3 label mt-2 text-[11px] text-faint">\${is2028 ? 'Barclays Developer' : 'PhonePe SDE'}</dd>
+        </div>
+
+        <!-- 7. Average CTC -->
+        <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
+          <dt class="order-2 mt-3 text-muted text-[13px]">Average CTC</dt>
+          <dd class="order-1 num font-display text-[clamp(24px,2.4vw,36px)] leading-none text-fg">\${averageCTC}</dd>
+          <dd class="order-3 label mt-2 text-[11px] text-faint">Batch-wide mean CTC</dd>
+        </div>
+
+        <!-- 8. Median CTC -->
+        <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
+          <dt class="order-2 mt-3 text-muted text-[13px]">Median CTC</dt>
+          <dd class="order-1 num font-display text-[clamp(24px,2.4vw,36px)] leading-none text-fg">\${medianCTC}</dd>
+          <dd class="order-3 label mt-2 text-[11px] text-faint">50th percentile CTC</dd>
+        </div>
+      \`;
+    }
+
+    // Render Featured Marquee Teasers
+    const featuredEl = document.getElementById('highlights-featured-cards');
+    if (featuredEl) {
+      if (is2028) {
+        featuredEl.innerHTML = \`
+          <div class="rounded-2xl border border-line bg-bg/50 p-4">
+            <span class="label text-[11px] text-faint">Highest Package</span>
+            <p class="font-display text-[18px] text-fg mt-1">₹15.05 LPA</p>
+            <p class="text-[12px] text-muted mt-1">Barclays · 9 selections</p>
+          </div>
+          <div class="rounded-2xl border border-line bg-bg/50 p-4">
+            <span class="label text-[11px] text-faint">Top Cohort</span>
+            <p class="font-display text-[18px] text-fg mt-1">25 Offers</p>
+            <p class="text-[12px] text-muted mt-1">Barclays (Intern + Dev)</p>
+          </div>
+          <div class="rounded-2xl border border-line bg-bg/50 p-4">
+            <span class="label text-[11px] text-faint">Payments Fintech</span>
+            <p class="font-display text-[18px] text-fg mt-1">9 Selections</p>
+            <p class="text-[12px] text-muted mt-1">Mastercard @ ₹50k/mo</p>
+          </div>
+          <div class="rounded-2xl border border-line bg-bg/50 p-4">
+            <span class="label text-[11px] text-faint">Top Stipend</span>
+            <p class="font-display text-[18px] text-fg mt-1">₹75,000 / mo</p>
+            <p class="text-[12px] text-muted mt-1">Barclays Summer Intern</p>
+          </div>
+        \`;
+      } else {
+        featuredEl.innerHTML = \`
+          <div class="rounded-2xl border border-line bg-bg/50 p-4">
+            <span class="label text-[11px] text-faint">Highest Package</span>
+            <p class="font-display text-[18px] text-fg mt-1">₹33.0 LPA</p>
+            <p class="text-[12px] text-muted mt-1">PhonePe SDE · 6 selected</p>
+          </div>
+          <div class="rounded-2xl border border-line bg-bg/50 p-4">
+            <span class="label text-[11px] text-faint">Largest Cohort</span>
+            <p class="font-display text-[18px] text-fg mt-1">31 Selections</p>
+            <p class="text-[12px] text-muted mt-1">JPMC (CIB, Risk, CADP)</p>
+          </div>
+          <div class="rounded-2xl border border-line bg-bg/50 p-4">
+            <span class="label text-[11px] text-faint">Dual Track Drive</span>
+            <p class="font-display text-[18px] text-fg mt-1">28 Offers</p>
+            <p class="text-[12px] text-muted mt-1">Barclays (FT + Intern)</p>
+          </div>
+          <div class="rounded-2xl border border-line bg-bg/50 p-4">
+            <span class="label text-[11px] text-faint">Top Stipend</span>
+            <p class="font-display text-[18px] text-fg mt-1">₹1,60,000 / mo</p>
+            <p class="text-[12px] text-muted mt-1">JPMC CIB Investment Banking</p>
+          </div>
+        \`;
+      }
+    }
+
+    // Render Branch Distribution Bars
+    const branchBarsEl = document.getElementById('branch-bars');
+    if (branchBarsEl) {
+      const filteredBranches = branches.filter(b => b.id !== 'all');
+      branchBarsEl.innerHTML = filteredBranches.map(b => \`
+        <div class="rounded-2xl border border-line bg-panel p-5">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <span class="size-3 rounded-full shrink-0" style="background:\${b.color || 'var(--color-fg)'}"></span>
+              <h3 class="font-display text-[17px] font-medium text-fg">\${b.name}</h3>
+              <span class="label text-[11px] text-faint font-mono">(\${b.shortName})</span>
+            </div>
+            <div class="flex items-center gap-4 text-[13px]">
+              <span class="text-fg font-medium">\${b.placedStudents} / \${b.totalStudents} placed</span>
+              <span class="num text-[15px] font-bold text-fg">\${b.placedPercentage}%</span>
+            </div>
+          </div>
+          <div class="mt-3 h-2 w-full overflow-hidden rounded-full bg-line">
+            <div class="h-full rounded-full transition-all duration-700" style="width:\${b.placedPercentage}%; background:\${b.color || 'var(--color-fg)'}"></div>
+          </div>
+          <p class="mt-3 text-[12px] text-muted leading-relaxed">\${b.summary || ''}</p>
+        </div>
+      \`).join('');
+    }
+
+    // Render Company Offers List
+    const companyListEl = document.getElementById('company-offers-list');
+    if (companyListEl) {
+      const validCompanies = companies
+        .filter(c => !c.noDetailsAvailable && c.out && (c.out.students > 0 || c.out.fulltimeOffers > 0 || c.out.internships > 0))
+        .sort((a, b) => (b.out?.students || 0) - (a.out?.students || 0));
+
+      companyListEl.innerHTML = validCompanies.map((c, idx) => {
+        let chips = '';
+        if (c.offers && c.offers.includes('ppo')) chips += '<span class="chip"><i class="dot" style="background:var(--color-ppo)"></i>PPO / Dual</span>';
+        if (c.offers && c.offers.includes('fulltime')) chips += '<span class="chip"><i class="dot" style="background:var(--color-fulltime)"></i>Full-time</span>';
+        if (c.offers && c.offers.includes('internship')) chips += '<span class="chip"><i class="dot" style="background:var(--color-intern)"></i>Internship</span>';
+
+        const offersTotal = c.out?.students || (c.roles ? c.roles.reduce((s, r) => s + (r.count || 0), 0) : 0);
+        const logoHtml = c.logo 
+          ? \`<img src="\${c.logo}" alt="\${c.name} logo" class="size-6 object-contain rounded shrink-0" onerror="this.style.display='none'"/>\`
+          : '';
+
+        return \`
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between py-4 gap-4">
+            <div class="flex items-center gap-3">
+              <span class="label font-mono text-[11px] text-faint w-6">\${String(idx + 1).padStart(2, '0')}</span>
+              \${logoHtml}
+              <div>
+                <a href="/companies/company.html?slug=\${c.slug}\${is2028 ? '&batch=2028' : ''}" class="font-display text-[17px] font-medium text-fg hover:underline">
+                  \${c.name}
+                </a>
+                <div class="mt-1 flex flex-wrap gap-1.5">
+                  \${chips}
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-6 sm:text-right">
+              <div>
+                <span class="num block text-[17px] font-semibold text-fg">\${offersTotal} offers</span>
+                <span class="label block text-[11px] text-faint">\${c.pay || 'Pay undisclosed'}</span>
+              </div>
+              <a href="/companies/company.html?slug=\${c.slug}\${is2028 ? '&batch=2028' : ''}" class="label text-[12px] text-muted hover:text-fg transition-colors">
+                View drive →
+              </a>
+            </div>
+          </div>
+        \`;
+      }).join('');
+    }
+  `;
+
+  const html = pageTemplate({
+    title: `Season Highlights · Placed · ${siteConfig.collegeShort}`,
+    activePath: '/highlights/',
+    content,
+    extraScript
+  });
+
+  const dir = path.join(__dirname, '..', 'highlights');
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'index.html'), html);
+  console.log('highlights/index.html created successfully!');
+}
+
+generateHighlightsPage();
+
+module.exports = { generateHighlightsPage };
