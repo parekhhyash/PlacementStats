@@ -773,6 +773,80 @@
     sortSelect?.addEventListener('change', renderCompanies);
 
     renderCompanies();
+
+    // Background live Supabase sync so newly added/edited companies appear without full redeploy
+    async function syncLiveSupabase() {
+      try {
+        const SUPABASE_URL = 'https://ntdmjyexirakcaovjeia.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZG1qeWV4aXJha2Nhb3ZqZWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2NTUzNTUsImV4cCI6MjA4NjIzMTM1NX0.LFbBXU-ANjoUUi_HfMIWYAjKidRgEct_VO-588T-Y7M';
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 6000);
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/companies?batch_year=eq.${batch.year}&order=out_students.desc`, {
+          signal: controller.signal,
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`
+          }
+        });
+        clearTimeout(timeoutId);
+        if (res.ok) {
+          const rows = await res.json();
+          if (rows && rows.length > 0) {
+            let changed = false;
+            rows.forEach(d => {
+              const mapped = {
+                name: d.name,
+                slug: d.slug,
+                offers: d.offers || [],
+                seasons: d.seasons || [],
+                pay: d.pay,
+                payKind: d.pay_kind,
+                payRank: d.pay_rank,
+                dream: d.dream,
+                logo: d.logo,
+                status: d.status,
+                branches: d.branches,
+                cgpaCriteria: d.cgpa_criteria,
+                boardsCriteria: d.boards_criteria,
+                visitTimeline: d.visit_timeline,
+                funnelRaw: d.funnel_raw,
+                roles: d.roles || [],
+                out: {
+                  students: d.out_students,
+                  internships: d.out_internships,
+                  fulltimeOffers: d.out_fulltime,
+                  ppo: d.out_ppo
+                }
+              };
+              const idx = companies.findIndex(c => c.slug === d.slug);
+              if (idx >= 0) {
+                companies[idx] = Object.assign(companies[idx], mapped);
+                changed = true;
+              } else {
+                companies.push(mapped);
+                changed = true;
+              }
+            });
+            if (changed) {
+              renderCompanies();
+              if (!is2028) {
+                const internCount = companies.filter(c => c.offers && c.offers.includes('internship')).length;
+                const ppoCount = companies.filter(c => c.offers && c.offers.includes('ppo')).length;
+                const ftCount = companies.filter(c => c.offers && c.offers.includes('fulltime')).length;
+                const bothCount = companies.filter(c => c.offers && c.offers.includes('internship') && c.offers.includes('fulltime')).length;
+                if (statInternships) statInternships.textContent = internCount;
+                if (statInternshipsSub) statInternshipsSub.textContent = `${ppoCount} with a PPO path`;
+                if (statFulltime) statFulltime.textContent = ftCount;
+                if (statFulltimeSub) statFulltimeSub.textContent = `${bothCount} offered both`;
+              }
+            }
+          }
+        }
+      } catch (e) {
+        // Fallback silently to static dataset
+      }
+    }
+    syncLiveSupabase();
   
   </script>
 </body>

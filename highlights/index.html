@@ -276,13 +276,6 @@
       }
     });
 
-    // Use stats registry as authoritative verified fallback if company role breakdowns overlap
-    if (batch.stats) {
-      if (batch.stats.fulltimeOffersCount) ftAndDualOffers = batch.stats.fulltimeOffersCount;
-      if (batch.stats.internshipsCount) internOnlyOffers = batch.stats.internshipsCount;
-      if (batch.stats.ppoCount) ppoPathwayOffers = batch.stats.ppoCount;
-    }
-
     // CTC metrics from actual company records
     const payValues = [];
     let totalPaySum = 0;

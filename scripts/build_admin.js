@@ -756,16 +756,9 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
       dashboard.classList.remove('hidden');
       if (userDisplay) userDisplay.textContent = user;
       loadBatchData(currentBatch);
-      fetchSubmissionsAndReports();
-    }
-
-    // Check Initial Auth State
-    const session = checkAuth();
-    if (session) {
-      showWorkspace(session.user);
-    } else {
-      loginScreen.classList.remove('hidden');
-      dashboard.classList.add('hidden');
+      if (typeof fetchSubmissionsAndReports === 'function') {
+        fetchSubmissionsAndReports();
+      }
     }
 
     // -------------------------------------------------------------
@@ -812,16 +805,27 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
       }
 
       sumActiveBatch.textContent = \`Class of \${batchYear}\`;
-      companiesListContainer.innerHTML = '<div class="p-8 text-center text-[13px] text-muted">Connecting to Supabase...</div>';
 
-      // 1. Fetch from Supabase Postgres
+      // 1. Immediately load local bundled data so UI renders instantly with 0ms delay
+      fallbackLocalBatch(batchYear);
+      updateSummaryBar();
+      renderCompaniesList();
+      if (allCompanies.length > 0 && !activeCompanySlug) {
+        selectCompany(allCompanies[0].slug);
+      }
+
+      // 2. Fetch from Supabase Postgres in background with 6-second timeout
       try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 6000);
         const res = await fetch(\`\${SUPABASE_URL}/rest/v1/companies?batch_year=eq.\${batchYear}&order=out_students.desc\`, {
+          signal: controller.signal,
           headers: {
             'apikey': SUPABASE_KEY,
             'Authorization': \`Bearer \${SUPABASE_KEY}\`
           }
         });
+        clearTimeout(timeoutId);
 
         if (res.ok) {
           const rows = await res.json();
@@ -851,24 +855,17 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
               }
             }));
             if (dbStatusBadge) dbStatusBadge.textContent = 'Supabase Cloud DB Connected';
-          } else {
-            fallbackLocalBatch(batchYear);
+            updateSummaryBar();
+            renderCompaniesList();
+            if (activeCompanySlug && allCompanies.some(c => c.slug === activeCompanySlug)) {
+              selectCompany(activeCompanySlug);
+            } else if (allCompanies.length > 0) {
+              selectCompany(allCompanies[0].slug);
+            }
           }
-        } else {
-          fallbackLocalBatch(batchYear);
         }
       } catch (err) {
-        console.warn('Supabase fetch failed, loading local bundled batch data:', err);
-        fallbackLocalBatch(batchYear);
-      }
-
-      updateSummaryBar();
-      renderCompaniesList();
-
-      if (allCompanies.length > 0) {
-        selectCompany(allCompanies[0].slug);
-      } else {
-        resetForm();
+        console.warn('Supabase fetch failed or timed out, remaining on local batch:', err);
       }
     }
 
@@ -1226,8 +1223,14 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
       const newStages = [];
 
       parts.forEach(part => {
-        const numMatch = part.match(/\\d+/g);
-        const count = numMatch ? parseInt(numMatch[numMatch.length - 1], 10) : 0;
+        let count = 0;
+        const offerMatch = part.match(/(\d+)\s*(?:offers?|selections?|selects?|placed|students?|hires?)/i);
+        if (offerMatch) {
+          count = parseInt(offerMatch[1], 10);
+        } else {
+          const numMatch = part.match(/\\d+/g);
+          count = numMatch ? parseInt(numMatch[numMatch.length - 1], 10) : 0;
+        }
         let cleanName = part.replace(/\\d+/g, '').replace(/offers|placed|students|selects|selected/gi, '').trim();
         if (!cleanName) cleanName = part.trim();
         newStages.push({ name: cleanName, count });
@@ -1297,8 +1300,13 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
       if (document.getElementById('check-offer-fulltime').checked) offers.push('fulltime');
       if (document.getElementById('check-offer-ppo').checked) offers.push('ppo');
 
-      // Calculate selections
-      const finalCount = (stagesData.length > 0) ? (stagesData[stagesData.length - 1].count || 0) : (rolesData.reduce((a, r) => a + (r.count || 0), 0) || 0);
+      // Robust selections count extraction
+      const roleSum = rolesData.reduce((a, r) => a + (parseInt(r.count, 10) || 0), 0);
+      const stageFinal = (stagesData.length > 0) ? (parseInt(stagesData[stagesData.length - 1].count, 10) || 0) : 0;
+      const statusText = document.getElementById('field-status')?.value || '';
+      const statusMatch = statusText.match(/\\d+/);
+      const statusCount = statusMatch ? parseInt(statusMatch[0], 10) : 0;
+      const finalCount = roleSum > 0 ? roleSum : (stageFinal > 0 ? stageFinal : (statusCount > 0 ? statusCount : 0));
 
       const supabaseRecord = {
         slug,
@@ -1312,9 +1320,9 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
         dream: document.getElementById('check-dream').checked,
         logo: document.getElementById('field-logo').value.trim() || ('/logos/' + slug + '.svg'),
         out_students: finalCount,
-        out_internships: offers.includes('internship') ? finalCount : 0,
-        out_fulltime: offers.includes('fulltime') ? finalCount : 0,
-        out_ppo: offers.includes('ppo') ? finalCount : 0,
+        out_internships: (offers.includes('internship') || rolesData.some(r => (r.type || '').includes('intern'))) ? finalCount : 0,
+        out_fulltime: (offers.includes('fulltime') || offers.includes('ppo') || rolesData.some(r => (r.type || '').includes('ppo') || (r.type || '').includes('fulltime'))) ? finalCount : 0,
+        out_ppo: (offers.includes('ppo') || rolesData.some(r => (r.type || '').includes('ppo'))) ? finalCount : 0,
         open_branches: document.getElementById('field-branches').value.trim() || 'All branches open',
         branches: document.getElementById('field-branches').value.trim() || 'All branches open',
         cgpa: null,
@@ -1358,9 +1366,43 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
         showToast(\`Saved '\${name}' directly to Supabase Postgres!\`);
         formStatus.textContent = 'Saved to cloud at ' + new Date().toLocaleTimeString();
 
-        // Refresh list
-        await loadBatchData(currentBatch);
+        // 3. Immediately update in-memory allCompanies so changes appear instantly with zero delay
+        const existingIdx = allCompanies.findIndex(c => c.slug === slug);
+        const mappedLocal = {
+          name,
+          slug,
+          offers,
+          seasons: ["TE", "BE"],
+          pay: supabaseRecord.pay,
+          payKind: supabaseRecord.pay_kind,
+          payRank: supabaseRecord.pay_rank,
+          dream: supabaseRecord.dream,
+          logo: supabaseRecord.logo,
+          status: supabaseRecord.status,
+          branches: supabaseRecord.branches,
+          cgpaCriteria: supabaseRecord.cgpa_criteria,
+          boardsCriteria: supabaseRecord.boards_criteria,
+          visitTimeline: supabaseRecord.visit_timeline,
+          funnelRaw: supabaseRecord.funnel_raw,
+          roles: rolesData,
+          out: {
+            students: supabaseRecord.out_students,
+            internships: supabaseRecord.out_internships,
+            fulltimeOffers: supabaseRecord.out_fulltime,
+            ppo: supabaseRecord.out_ppo
+          }
+        };
+        if (existingIdx >= 0) {
+          allCompanies[existingIdx] = mappedLocal;
+        } else {
+          allCompanies.unshift(mappedLocal);
+        }
+        updateSummaryBar();
+        renderCompaniesList();
         selectCompany(slug);
+
+        // Refresh list from Supabase in background
+        loadBatchData(currentBatch).catch(() => {});
 
       } catch (err) {
         showToast('Save failed: ' + err.message, true);
@@ -1389,8 +1431,11 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
 
         if (res.ok) {
           showToast(\`Company '\${activeCompanySlug}' removed from Supabase.\`);
+          allCompanies = allCompanies.filter(c => c.slug !== activeCompanySlug);
+          updateSummaryBar();
+          renderCompaniesList();
           resetForm();
-          await loadBatchData(currentBatch);
+          loadBatchData(currentBatch).catch(() => {});
         } else {
           showToast('Failed to delete company from Supabase', true);
         }
@@ -2166,6 +2211,15 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
         saveCompanyHandler();
       }
     });
+
+    // Check existing auth session on startup
+    const session = checkAuth();
+    if (session) {
+      showWorkspace(session.user);
+    } else {
+      loginScreen.classList.remove('hidden');
+      dashboard.classList.add('hidden');
+    }
   `;
 
   const html = pageTemplate({

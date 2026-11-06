@@ -13,7 +13,7 @@
     ],
     "pay": "₹1.60L / mo",
     "payKind": "Stipend",
-    "payRank": 160000,
+    "payRank": 1920,
     "dream": true,
     "logo": "/logos/jpmc.svg",
     "out": {
@@ -108,7 +108,7 @@
         "title": "Corporate Risk (Global Risk & Compliance Program)",
         "type": "both",
         "count": 10,
-        "ctc": "₹24 LPA",
+        "ctc": "PPO Pathway",
         "stipend": "₹80k / mo",
         "rawCompensation": "Stipend 80k/month + 1L relocation; CTC not declared (est. 18-24 LPA)",
         "visitDate": "PPT 24 Jun, OA 27 Jun, result 3 Jul 2026",
@@ -259,9 +259,9 @@
       "TE",
       "BE"
     ],
-    "pay": "₹75k / mo",
-    "payKind": "Stipend",
-    "payRank": 75000,
+    "pay": "₹15.05 LPA",
+    "payKind": "CTC",
+    "payRank": 1505,
     "dream": true,
     "logo": "/logos/barclays.png",
     "out": {
@@ -696,7 +696,7 @@
     "pay": "₹9 LPA",
     "payKind": "CTC",
     "payRank": 900,
-    "dream": null,
+    "dream": false,
     "logo": "/logos/gep.svg",
     "out": {
       "internships": 9,
@@ -794,10 +794,10 @@
       "TE",
       "BE"
     ],
-    "pay": "Comp. 14 base + 2 retention (over 2 yrs) as PPO",
+    "pay": "₹14 LPA",
     "payKind": "CTC",
-    "payRank": 1000,
-    "dream": null,
+    "payRank": 1400,
+    "dream": true,
     "logo": "/logos/mahindra-finance.svg",
     "out": {
       "internships": 9,
@@ -821,7 +821,7 @@
         "title": "Data Analytics (2-month summer intern)",
         "type": "both",
         "count": 9,
-        "ctc": "Comp. 14 base + 2 retention (over 2 yrs) as PPO",
+        "ctc": "₹14 LPA",
         "stipend": null,
         "rawCompensation": "Comp. 14 base + 2 retention (over 2 yrs) as PPO",
         "visitDate": "Not mentioned (summer intern cycle)",
@@ -1114,7 +1114,7 @@
     ],
     "pay": "₹25k / mo",
     "payKind": "Stipend",
-    "payRank": 25000,
+    "payRank": 300,
     "dream": false,
     "logo": "/logos/colgate-palmolive.svg",
     "out": {
@@ -1211,22 +1211,22 @@
     "dream": true,
     "logo": "/logos/idfc.svg",
     "out": {
-      "internships": 8,
-      "fulltimeOffers": 8,
-      "ppo": 8,
-      "newHires": 8,
-      "students": 8
+      "internships": 11,
+      "fulltimeOffers": 11,
+      "ppo": 11,
+      "newHires": 11,
+      "students": 11
     },
     "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "All branches open",
+    "branches": "All branches open (APM selected from Computer Engineering)",
     "cgpa": 6.75,
-    "cgpaCriteria": "6.75 (one PDF says no CGPA criterion); CE/CSE only, no standing backlogs",
-    "boardsCriteria": "Standard SPIT eligibility",
+    "cgpaCriteria": "6.75+ CGPA; CE/CSE only, no standing backlogs",
+    "boardsCriteria": "60% in Class 10 and 60% in Class 12",
     "first": "PPT 25 Jun, OA 4 Jul, interviews 8 Jul 2026",
-    "last": "PPT 25 Jun, OA 4 Jul, interviews 8 Jul 2026",
-    "visitTimeline": "PPT 25 Jun, OA 4 Jul, interviews 8 Jul 2026",
-    "funnelRaw": "OA ~165 -> L1 tech 48-50 -> L2 tech 20-22 -> L3 tech 10 -> HR 10 -> 8 offers",
-    "status": "8 confirmed offers",
+    "last": "PPT 22 Oct 2026, results 31 Oct",
+    "visitTimeline": "Jun–Oct 2026 (Application Engineer & APM drives)",
+    "funnelRaw": "App Eng (OA ~165 -> 8 offers) | APM (OA ~130 -> 3 SPIT offers)",
+    "status": "11 confirmed offers",
     "roles": [
       {
         "title": "Application Engineer",
@@ -1264,9 +1264,34 @@
         ],
         "funnelRaw": "OA ~165 -> L1 tech 48-50 -> L2 tech 20-22 -> L3 tech 10 -> HR 10 -> 8 offers",
         "notes": "4 PDFs; 8 offers"
+      },
+      {
+        "title": "Associate Product Manager",
+        "type": "both",
+        "count": 3,
+        "ctc": "₹18.1 LPA",
+        "stipend": "₹40,000/month",
+        "rawCompensation": "14L base + 2L joining bonus + 15% variable",
+        "visitDate": "PPT 22 Oct 2026; OA 23 Oct; Techno-HR 29 Oct; results 31 Oct",
+        "notes": "Performance-based PPO. Pooled drive with DJ Sanghvi: 5 offers in total (3 SPIT + 2 DJ Sanghvi); Gold Loans vertical interviews postponed, so more offers may follow. Bond: Rs 1 lakh if leaving within a year.",
+        "funnelRaw": "OA ~130 SPIT -> Techno-HR 41 SPIT + 21 DJ Sanghvi -> 5 offers (3 SPIT + 2 DJ Sanghvi)",
+        "funnel": [
+          {
+            "name": "Online Assessment (OA)",
+            "count": 130
+          },
+          {
+            "name": "Techno-HR Round",
+            "count": 41
+          },
+          {
+            "name": "Offers Extended (SPIT)",
+            "count": 3
+          }
+        ]
       }
     ],
-    "notes": "4 PDFs; 8 offers",
+    "notes": "Application Engineer (8 offers) + Associate Product Manager (3 SPIT offers from pooled DJ Sanghvi drive). Total 11 offers.",
     "stages": [
       {
         "name": "Online Coding Assessment (OA)",
@@ -1306,9 +1331,9 @@
       "TE",
       "BE"
     ],
-    "pay": "₹75k / mo",
-    "payKind": "Stipend",
-    "payRank": 75000,
+    "pay": "₹15.7 LPA",
+    "payKind": "CTC",
+    "payRank": 1570,
     "dream": true,
     "logo": "/logos/nomura.svg",
     "out": {
@@ -1333,7 +1358,7 @@
         "title": "Global Markets - Electronic Trading Product Mgmt Intern",
         "type": "both",
         "count": 1,
-        "ctc": "PPO Pathway",
+        "ctc": "₹13.9 LPA",
         "stipend": "₹75k / mo",
         "rawCompensation": "Stipend 75k/month; CTC 13.9L (12.45L fixed)",
         "visitDate": "14 Jul 2026",
@@ -1553,7 +1578,7 @@
     ],
     "pay": "₹60k / mo",
     "payKind": "Stipend",
-    "payRank": 60000,
+    "payRank": 720,
     "dream": false,
     "logo": "/logos/russell-investments.svg",
     "out": {
@@ -2146,7 +2171,7 @@
     "pay": "₹13 LPA",
     "payKind": "CTC",
     "payRank": 1300,
-    "dream": null,
+    "dream": false,
     "logo": "/logos/capgemini.png",
     "out": {
       "internships": 0,
@@ -2330,7 +2355,7 @@
     "pay": "₹12 LPA",
     "payKind": "CTC",
     "payRank": 1200,
-    "dream": null,
+    "dream": false,
     "logo": "/logos/aspect-ratio.png",
     "out": {
       "internships": 0,
@@ -2412,7 +2437,7 @@
     ],
     "pay": "₹30k / mo",
     "payKind": "Stipend",
-    "payRank": 30000,
+    "payRank": 360,
     "dream": false,
     "logo": "/logos/bny.png",
     "out": {
@@ -2740,7 +2765,7 @@
     ],
     "pay": "₹50k / mo",
     "payKind": "Stipend",
-    "payRank": 50000,
+    "payRank": 600,
     "dream": false,
     "logo": "/logos/pfizer.svg",
     "out": {
@@ -2824,7 +2849,7 @@
     "pay": "₹8.23 LPA",
     "payKind": "CTC",
     "payRank": 823,
-    "dream": null,
+    "dream": false,
     "logo": "/logos/axis-mutual-fund.svg",
     "out": {
       "internships": 0,
@@ -2967,6 +2992,358 @@
       {
         "name": "Offers Extended",
         "count": 1
+      }
+    ]
+  },
+  {
+    "slug": "bnp-paribas",
+    "name": "BNP Paribas",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/bnp-paribas.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Sep 2026",
+    "last": "Sep 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "dolat-capital",
+    "name": "Dolat Capital",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/dolat-capital.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Sep 2026",
+    "last": "Sep 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "versor",
+    "name": "Versor",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/versor.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Sep 2026",
+    "last": "Sep 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "kelp-global",
+    "name": "Kelp Global",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/kelp-global.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "loginext",
+    "name": "LogiNext",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/loginext.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "nxpec-technologies",
+    "name": "Nxpec Technologies",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/nxpec-technologies.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "kpmg",
+    "name": "KPMG",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/kpmg.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "blackrock",
+    "name": "BlackRock",
+    "offers": [
+      "internship",
+      "fulltime",
+      "ppo"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "₹15 LPA",
+    "payKind": "CTC",
+    "payRank": 1500,
+    "dream": true,
+    "logo": "/logos/blackrock.svg",
+    "out": {
+      "internships": 8,
+      "fulltimeOffers": 8,
+      "ppo": 8,
+      "newHires": 8,
+      "students": 8
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 7.5,
+    "cgpaCriteria": "7.5+ CGPA",
+    "boardsCriteria": "Standard eligibility",
+    "first": "Aug 2026",
+    "last": "20 Aug 2026",
+    "visitTimeline": "Aug 2026 · PPT 6 Aug 2026, OA 12 Aug, interviews 19 Aug, results 20 Aug",
+    "funnelRaw": "OA ~285 -> Tech R1 38 (SDE: 28 shortlisted + 10 waitlisted; Aladdin: 8 + 6 waitlisted) -> Tech R2 / Techno-HR 16-19 -> 8 offers (7 SDE + 1 Aladdin Data)",
+    "status": "8 confirmed offers",
+    "roles": [
+      {
+        "title": "Software Engineer (SDE)",
+        "type": "internship+ppo",
+        "count": 7,
+        "ctc": "₹15 LPA",
+        "stipend": "₹50,000/month",
+        "rawCompensation": "50k/month stipend; 15 LPA performance-based PPO",
+        "visitDate": "PPT 6 Aug 2026; OA 12 Aug; interviews 19 Aug; results 20 Aug",
+        "notes": "Locations: Mumbai / Gurgaon / Bangalore. Interview shortlist: 28 shortlisted + 10 waitlisted.",
+        "funnel": [
+          {
+            "name": "Online Assessment (OA)",
+            "count": 285
+          },
+          {
+            "name": "Technical Round 1",
+            "count": 38
+          },
+          {
+            "name": "Technical Round 2 / HR",
+            "count": 19
+          },
+          {
+            "name": "Offers Extended",
+            "count": 7
+          }
+        ]
+      },
+      {
+        "title": "Aladdin Data Engineer",
+        "type": "internship+ppo",
+        "count": 1,
+        "ctc": "₹15 LPA",
+        "stipend": "₹50,000/month",
+        "rawCompensation": "50k/month stipend; 15 LPA performance-based PPO",
+        "visitDate": "PPT 6 Aug 2026; OA 12 Aug; interviews 19 Aug; results 20 Aug",
+        "notes": "Interview shortlist: 8 shortlisted + 6 waitlisted.",
+        "funnel": [
+          {
+            "name": "Online Assessment (OA)",
+            "count": 285
+          },
+          {
+            "name": "Technical Round 1",
+            "count": 38
+          },
+          {
+            "name": "Technical Round 2 / HR",
+            "count": 19
+          },
+          {
+            "name": "Offers Extended",
+            "count": 1
+          }
+        ]
       }
     ]
   }

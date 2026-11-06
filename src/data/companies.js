@@ -3256,6 +3256,75 @@ export const companies = [
     "status": "No details available",
     "roles": [],
     "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "blackrock",
+    "name": "BlackRock",
+    "offers": [
+      "internship",
+      "fulltime",
+      "ppo"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "₹15 LPA",
+    "payKind": "CTC",
+    "payRank": 1500,
+    "dream": true,
+    "logo": "/logos/blackrock.svg",
+    "out": {
+      "internships": 8,
+      "fulltimeOffers": 8,
+      "ppo": 8,
+      "newHires": 8,
+      "students": 8
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": 7.5,
+    "cgpaCriteria": "7.5+ CGPA",
+    "boardsCriteria": "Standard eligibility",
+    "first": "Aug 2026",
+    "last": "20 Aug 2026",
+    "visitTimeline": "Aug 2026 · PPT 6 Aug 2026, OA 12 Aug, interviews 19 Aug, results 20 Aug",
+    "funnelRaw": "OA ~285 -> Tech R1 38 (SDE: 28 shortlisted + 10 waitlisted; Aladdin: 8 + 6 waitlisted) -> Tech R2 / Techno-HR 16-19 -> 8 offers (7 SDE + 1 Aladdin Data)",
+    "status": "8 confirmed offers",
+    "roles": [
+      {
+        "title": "Software Engineer (SDE)",
+        "type": "internship+ppo",
+        "count": 7,
+        "ctc": "₹15 LPA",
+        "stipend": "₹50,000/month",
+        "rawCompensation": "50k/month stipend; 15 LPA performance-based PPO",
+        "visitDate": "PPT 6 Aug 2026; OA 12 Aug; interviews 19 Aug; results 20 Aug",
+        "notes": "Locations: Mumbai / Gurgaon / Bangalore. Interview shortlist: 28 shortlisted + 10 waitlisted.",
+        "funnel": [
+          { "name": "Online Assessment (OA)", "count": 285 },
+          { "name": "Technical Round 1", "count": 38 },
+          { "name": "Technical Round 2 / HR", "count": 19 },
+          { "name": "Offers Extended", "count": 7 }
+        ]
+      },
+      {
+        "title": "Aladdin Data Engineer",
+        "type": "internship+ppo",
+        "count": 1,
+        "ctc": "₹15 LPA",
+        "stipend": "₹50,000/month",
+        "rawCompensation": "50k/month stipend; 15 LPA performance-based PPO",
+        "visitDate": "PPT 6 Aug 2026; OA 12 Aug; interviews 19 Aug; results 20 Aug",
+        "notes": "Interview shortlist: 8 shortlisted + 6 waitlisted.",
+        "funnel": [
+          { "name": "Online Assessment (OA)", "count": 285 },
+          { "name": "Technical Round 1", "count": 38 },
+          { "name": "Technical Round 2 / HR", "count": 19 },
+          { "name": "Offers Extended", "count": 1 }
+        ]
+      }
+    ]
   }
 ];
 
