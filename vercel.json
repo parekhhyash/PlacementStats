@@ -1,7 +1,8 @@
 {
   "buildCommand": "node scripts/build_all.js",
+  "outputDirectory": ".",
   "cleanUrls": true,
-  "trailingSlash": false,
+  "trailingSlash": true,
   "headers": [
     {
       "source": "/fonts/(.*)",
