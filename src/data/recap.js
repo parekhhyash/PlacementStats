@@ -3,57 +3,57 @@
 
 export const recapData = {
   seasonTitle: "The Season, Replayed · SPIT 2027",
-  latestPeriod: "July – October 2026",
+  latestPeriod: "October 2026",
   lastFiveCompanies: [
     {
-      company: "PhonePe",
-      slug: "phonepe",
-      logo: "/logos/phonepe.png",
-      date: "28 Oct 2026",
-      headline: "6 SDE selections at ₹33 LPA",
-      pay: "₹33 LPA",
-      type: "fulltime",
-      details: "Top package on campus: ₹19.25 LPA base + ₹5L joining bonus + stocks and ₹80k/mo stipend."
+      company: "Nouryon",
+      slug: "nouryon",
+      logo: "/logos/nouryon.svg",
+      date: "26 Oct 2026",
+      headline: "6 selections in Digital Apps & Engineering",
+      pay: "₹35k/mo · ~14 LPA",
+      type: "ppo",
+      details: "6 confirmed selections in software engineering and enterprise digital applications."
     },
     {
-      company: "JPMorgan Chase & Co. (JPMC)",
-      slug: "jpmc",
-      logo: "/logos/jpmc.svg",
-      date: "24 Oct 2026",
-      headline: "31 offers across 5 banking & risk tracks",
-      pay: "₹1.60L / mo",
-      type: "internship",
-      details: "Premier financial recruiter with 31 selections across CIB Banking, Corporate Risk, CADP, and FinTech tracks."
+      company: "GEP Worldwide",
+      slug: "gep-worldwide",
+      logo: "/logos/gep.svg",
+      date: "22 Oct 2026",
+      headline: "9 consulting & technical selections",
+      pay: "CTC 9 LPA",
+      type: "fulltime",
+      details: "9 Senior Analyst Trainees selected across supply chain technology and digital consulting."
     },
     {
       company: "Barclays",
       slug: "barclays",
       logo: "/logos/barclays.png",
-      date: "20 Oct 2026",
-      headline: "28 total offers in Technology & Summer Interns",
-      pay: "₹15.05 LPA",
+      date: "15 Oct 2026",
+      headline: "12 Technology Graduate Developers",
+      pay: "CTC 15.05 LPA",
       type: "fulltime",
-      details: "12 Technology Graduate Developers (₹15.05 LPA) and 16 Summer Interns (₹75k/mo)."
+      details: "12 graduate developers confirmed at ₹15.05 LPA, bringing Barclays' season total to 28 offers."
     },
     {
-      company: "ISS / STOXX",
-      slug: "iss-stoxx",
-      logo: "/logos/iss-stoxx.svg",
-      date: "14 Oct 2026",
-      headline: "15 SDE selections",
-      pay: "₹14.7 LPA",
-      type: "fulltime",
-      details: "Major tech recruitment with 15 offers at ₹14.7 LPA and ₹60k/mo internship stipend."
-    },
-    {
-      company: "UBS",
-      slug: "ubs",
-      logo: "/logos/ubs.svg",
+      company: "Capgemini",
+      slug: "capgemini",
+      logo: "/logos/capgemini.png",
       date: "08 Oct 2026",
-      headline: "14 offers across Tech & Agentic AI",
-      pay: "₹16.0 LPA",
+      headline: "4 Alpha Stack developer selections",
+      pay: "CTC 13 LPA",
       type: "fulltime",
-      details: "10 Graduate Engineering Trainees and 4 Agentic AI Specialist engineers."
+      details: "4 candidates offered Capgemini's premier Alpha Stack role at ₹13.0 LPA."
+    },
+    {
+      company: "AspectRatio",
+      slug: "aspectratio",
+      logo: "/logos/aspect-ratio.svg",
+      date: "06 Oct 2026",
+      headline: "3 Analyst selections",
+      pay: "CTC 12 LPA",
+      type: "fulltime",
+      details: "3 candidates offered analytical and engineering roles at ₹12.0 LPA."
     }
   ],
 

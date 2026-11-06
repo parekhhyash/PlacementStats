@@ -22,18 +22,17 @@ export const siteConfig = {
     studentsPlaced: 225,
     totalBatchSize: 360,
     placementPercentage: "63%",
-    fulltimeOffersCount: 183,
-    internshipsCount: 134,
-    ppoCount: 153,
+    fulltimeOffersCount: 111,
+    internshipsCount: 114,
+    ppoCount: 72,
     highestCTC: "₹33.0 LPA",
     medianCTC: "₹13.0 LPA",
-    averageCTC: "₹13.80 LPA",
+    averageCTC: "₹14.06 LPA",
     highestStipend: "₹1,60,000 / mo",
-    medianStipend: "₹50,000 / mo",
-    averageStipend: "₹58,000 / mo",
-    drivesCount: 42,
-    busiestMonth: "Jul – Oct 2026",
-    medianWaitDays: "12 days"
+    medianStipend: "₹40,000 / mo",
+    averageStipend: "₹53,600 / mo",
+    drivesCount: 35,
+    busiestMonth: "Jul 2026"
   },
 
   // Navigation Links (Eligibility removed per previous request)

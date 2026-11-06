@@ -3,7 +3,7 @@
 
 export const payData = {
   summary: {
-    overallAverageCTC: "₹13.80 LPA",
+    overallAverageCTC: "₹14.06 LPA",
     overallMedianCTC: "₹13.00 LPA",
     drivesWithSelections: 29,
     fulltimeAverageCTC: "₹14.10 LPA",
@@ -15,24 +15,24 @@ export const payData = {
     highestCTC: "₹33.00 LPA",
     lowestCTC: "₹8.23 LPA",
     highestStipend: "₹1,60,000 / mo",
-    medianStipend: "₹50,000 / mo",
-    averageStipend: "₹58,000 / mo"
+    medianStipend: "₹40,000 / mo",
+    averageStipend: "₹53,600 / mo"
   },
 
   // CTC Package Distribution Brackets
   brackets: [
-    { tier: "Super Dream (> ₹20 LPA)", count: 6, percentage: "15%", color: "var(--color-ppo)", description: "PhonePe SDE (₹33 LPA) & marquee product roles" },
-    { tier: "Dream (₹14 – ₹20 LPA)", count: 18, percentage: "45%", color: "var(--color-fulltime)", description: "IDFC, Barclays, ISS/STOXX, WorkIndia, AuxoAI, UBS, Nomura, Futures First" },
-    { tier: "Core Tech (₹10 – ₹14 LPA)", count: 9, percentage: "25%", color: "var(--color-intern)", description: "Capgemini, AspectRatio, InCred, InSync, Baker Hughes, Infosys" },
-    { tier: "Standard (< ₹10 LPA)", count: 6, percentage: "15%", color: "var(--color-muted)", description: "GEP Worldwide, TransUnion, Quantiphi, Wissen, Revvity, Axis MF" }
+    { tier: "Super Dream (> ₹20 LPA)", count: 6, percentage: "3%", color: "var(--color-ppo)", description: "PhonePe SDE (₹33 LPA) & marquee product engineering roles" },
+    { tier: "Dream (₹14 – ₹20 LPA)", count: 67, percentage: "30%", color: "var(--color-fulltime)", description: "IDFC FIRST, Barclays, ISS/STOXX, WorkIndia, AuxoAI, UBS, Nomura, Futures First" },
+    { tier: "Core Tech (₹10 – ₹14 LPA)", count: 56, percentage: "25%", color: "var(--color-intern)", description: "Capgemini, AspectRatio, InCred, InSync, Baker Hughes, Infosys, Colgate" },
+    { tier: "Standard (< ₹10 LPA)", count: 96, percentage: "42%", color: "var(--color-muted)", description: "GEP Worldwide, TransUnion, Quantiphi, Wissen, Revvity, Axis MF, JPMC Risk" }
   ],
 
   // Stipend Distribution Brackets
   stipendBrackets: [
-    { tier: "Premier (> ₹1,00,000 / mo)", count: 24, percentage: "28%", description: "JPMC (₹1.60L/mo CTC Risk, ₹1.35L/mo CIB/FinTech)" },
-    { tier: "High (₹60k – ₹1,00,000 / mo)", count: 32, percentage: "35%", description: "PhonePe (₹80k), Barclays (₹75k), Nomura (₹75k), AuxoAI (₹60k), UBS (₹60k), Russell (₹60k)" },
-    { tier: "Core (₹30k – ₹60k / mo)", count: 21, percentage: "24%", description: "Baker Hughes (₹50k), Pfizer (₹50k), WorkIndia (₹40k), Nouryon (₹35k), BNY (₹30k)" },
-    { tier: "Base (< ₹30,000 / mo)", count: 12, percentage: "13%", description: "Colgate-Palmolive (₹25k), InSync (₹25k), Infosys (₹25k), TransUnion (₹25k)" }
+    { tier: "Premier (> ₹1,00,000 / mo)", count: 24, percentage: "21%", description: "JPMC (₹1.60L/mo CTC Risk, ₹1.35L/mo CIB/FinTech)" },
+    { tier: "High (₹60k – ₹1,00,000 / mo)", count: 47, percentage: "41%", description: "PhonePe (₹80k), Barclays (₹75k), Nomura (₹75k), AuxoAI (₹60k), UBS (₹60k), Russell (₹60k)" },
+    { tier: "Core (₹30k – ₹60k / mo)", count: 26, percentage: "23%", description: "Baker Hughes (₹50k), Pfizer (₹50k), WorkIndia (₹40k), IDFC (₹40k), Nouryon (₹35k), BNY (₹30k), Revvity (₹30k)" },
+    { tier: "Base (< ₹30,000 / mo)", count: 17, percentage: "15%", description: "Colgate-Palmolive (₹25k), InSync (₹25k), Infosys (₹25k), TransUnion (₹25k), InCred (₹25k), Quantiphi (₹24k)" }
   ],
 
   // Real data points for CTC scatter / strip chart

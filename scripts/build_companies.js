@@ -24,28 +24,28 @@ function generateCompaniesPage() {
         <dl class="grid grid-cols-2 border-t border-line" style="--cols:5">
           <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
             <dt class="order-2 mt-2 text-muted">Offered internships</dt>
-            <dd id="stat-internships" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">--</dd>
-            <dd id="stat-internships-sub" class="label order-3 mt-1 text-[11px] text-faint">--</dd>
+            <dd id="stat-internships" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">23</dd>
+            <dd id="stat-internships-sub" class="label order-3 mt-1 text-[11px] text-faint">19 with a PPO path</dd>
           </div>
           <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
             <dt class="order-2 mt-2 text-muted">Hired full-time</dt>
-            <dd id="stat-fulltime" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">--</dd>
-            <dd id="stat-fulltime-sub" class="label order-3 mt-1 text-[11px] text-faint">--</dd>
+            <dd id="stat-fulltime" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">17</dd>
+            <dd id="stat-fulltime-sub" class="label order-3 mt-1 text-[11px] text-faint">11 offered both</dd>
           </div>
           <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
             <dt class="order-2 mt-2 text-muted">Average CTC</dt>
-            <dd id="stat-avg-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">--</dd>
-            <dd id="stat-avg-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">--</dd>
+            <dd id="stat-avg-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">₹14.06<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
+            <dd id="stat-avg-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">29 drives with selections</dd>
           </div>
           <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
             <dt class="order-2 mt-2 text-muted">Median CTC</dt>
-            <dd id="stat-med-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">--</dd>
-            <dd id="stat-med-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">--</dd>
+            <dd id="stat-med-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">₹13<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
+            <dd id="stat-med-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">Range ₹8.23–33.0 LPA</dd>
           </div>
           <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r max-lg:col-span-2 max-lg:!border-r-0">
             <dt class="order-2 mt-2 text-muted">Average, full-time only</dt>
-            <dd id="stat-avg-ft" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">--</dd>
-            <dd id="stat-avg-ft-sub" class="label order-3 mt-1 text-[11px] text-faint">--</dd>
+            <dd id="stat-avg-ft" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">₹14.1<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
+            <dd id="stat-avg-ft-sub" class="label order-3 mt-1 text-[11px] text-faint">Median ₹13.5 LPA · 225 offers in all</dd>
           </div>
           <style>@media (min-width:1024px){dl[style*="--cols"]{grid-template-columns:repeat(var(--cols),minmax(0,1fr))}}</style>
         </dl>
@@ -185,15 +185,15 @@ function generateCompaniesPage() {
 
     if (is2028) {
       if (statInternships) statInternships.textContent = '5';
-      if (statInternshipsSub) statInternshipsSub.textContent = '5 with a PPO path';
+      if (statInternshipsSub) statInternshipsSub.textContent = '4 with a PPO path';
       if (statFulltime) statFulltime.textContent = '1';
-      if (statFulltimeSub) statFulltimeSub.textContent = 'Early summer drives';
-      if (statAvgCtc) statAvgCtc.innerHTML = '₹14.2<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
+      if (statFulltimeSub) statFulltimeSub.textContent = '1 dual developer drive';
+      if (statAvgCtc) statAvgCtc.innerHTML = '₹14.05<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
       if (statAvgCtcSub) statAvgCtcSub.textContent = '5 drives with selections';
       if (statMedCtc) statMedCtc.innerHTML = '₹14<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
-      if (statMedCtcSub) statMedCtcSub.textContent = 'Range ₹13–15.05 LPA';
+      if (statMedCtcSub) statMedCtcSub.textContent = 'Range ₹12.5–15.05 LPA';
       if (statAvgFt) statAvgFt.innerHTML = '₹15.05<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
-      if (statAvgFtSub) statAvgFtSub.textContent = '45 total selections announced';
+      if (statAvgFtSub) statAvgFtSub.textContent = '50 total selections announced';
     } else {
       const internCount = companies.filter(c => c.offers && c.offers.includes('internship')).length;
       const ppoCount = companies.filter(c => c.offers && c.offers.includes('ppo')).length;
@@ -204,12 +204,12 @@ function generateCompaniesPage() {
       if (statInternshipsSub) statInternshipsSub.textContent = \`\${ppoCount || 19} with a PPO path\`;
       if (statFulltime) statFulltime.textContent = ftCount || '17';
       if (statFulltimeSub) statFulltimeSub.textContent = \`\${bothCount || 11} offered both\`;
-      if (statAvgCtc) statAvgCtc.innerHTML = '₹18.6<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
+      if (statAvgCtc) statAvgCtc.innerHTML = '₹14.06<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
       if (statAvgCtcSub) statAvgCtcSub.textContent = '29 drives with selections';
-      if (statMedCtc) statMedCtc.innerHTML = '₹15<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
-      if (statMedCtcSub) statMedCtcSub.textContent = 'Range ₹6–44 LPA';
-      if (statAvgFt) statAvgFt.innerHTML = '₹19.2<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
-      if (statAvgFtSub) statAvgFtSub.textContent = 'Median ₹15 LPA · 287 offers in all';
+      if (statMedCtc) statMedCtc.innerHTML = '₹13<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
+      if (statMedCtcSub) statMedCtcSub.textContent = 'Range ₹8.23–33.0 LPA';
+      if (statAvgFt) statAvgFt.innerHTML = '₹14.1<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
+      if (statAvgFtSub) statAvgFtSub.textContent = 'Median ₹13.5 LPA · 225 offers in all';
     }
 
     const listEl = document.getElementById('companies-list');

@@ -191,8 +191,8 @@ function generatePayPage() {
             <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Dream Tier</h4>
             <p class="text-[13px] text-muted mt-1">₹14 – ₹20 LPA</p>
             <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
-              <span class="num text-[28px] font-bold text-fg">93 offers</span>
-              <span class="label text-[12px] text-muted">Barclays, BlackRock, ISS</span>
+              <span class="num text-[28px] font-bold text-fg">67 offers</span>
+              <span class="label text-[12px] text-muted">Barclays, IDFC, ISS/STOXX, UBS</span>
             </div>
           </div>
           <div class="rounded-2xl border border-line bg-panel p-5">
@@ -200,8 +200,8 @@ function generatePayPage() {
             <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Core Tech</h4>
             <p class="text-[13px] text-muted mt-1">₹10 – ₹14 LPA</p>
             <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
-              <span class="num text-[28px] font-bold text-fg">65 offers</span>
-              <span class="label text-[12px] text-muted">UBS, Capgemini, InCred</span>
+              <span class="num text-[28px] font-bold text-fg">56 offers</span>
+              <span class="label text-[12px] text-muted">Capgemini, AspectRatio, InCred</span>
             </div>
           </div>
           <div class="rounded-2xl border border-line bg-panel p-5">
@@ -209,8 +209,8 @@ function generatePayPage() {
             <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Standard</h4>
             <p class="text-[13px] text-muted mt-1">&lt; ₹10 LPA</p>
             <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
-              <span class="num text-[28px] font-bold text-fg">71 offers</span>
-              <span class="label text-[12px] text-muted">GEP, TransUnion, Wissen</span>
+              <span class="num text-[28px] font-bold text-fg">96 offers</span>
+              <span class="label text-[12px] text-muted">TransUnion, GEP, Quantiphi, Wissen</span>
             </div>
           </div>
         \`;
