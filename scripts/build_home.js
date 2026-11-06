@@ -26,9 +26,6 @@ function generateHomePage() {
     </section>
   `;
 
-  // Flip-flap Departure Ticker container (rendered by ticker.js)
-  const sec2 = `<div id="ticker-root"></div>`;
-
   // Section 01: Latest on campus (Dynamic SPIT companies)
   const sec3 = `
     <section class="wrap mt-[clamp(56px,6.5vw,96px)]">
@@ -188,7 +185,6 @@ function generateHomePage() {
 
   const mainContent = `
     ${sec1}
-    ${sec2}
     ${sec3}
     ${sec4}
     ${sec5}
@@ -198,7 +194,6 @@ function generateHomePage() {
   `;
 
   const extraScript = `
-    import { renderTicker, initTicker } from '/src/components/ticker.js';
     import { getActiveBatchData, getBatchKey } from '/src/data/batches.js';
 
     const batch = getActiveBatchData();
@@ -231,14 +226,7 @@ function generateHomePage() {
       latestHeadingLink.href = is2028 ? '/companies/?batch=2028' : '/companies/';
     }
 
-    // 2. Initialize Ticker
-    const tickerEl = document.getElementById('ticker-root');
-    if (tickerEl) {
-      tickerEl.innerHTML = renderTicker();
-      initTicker();
-    }
-
-    // 3. Populate latest companies list
+    // 2. Populate latest companies list
     const latestList = document.getElementById('home-latest-companies');
     if (latestList) {
       const topCompanies = batch.companies.slice(0, 7);
