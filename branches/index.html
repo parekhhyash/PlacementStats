@@ -113,10 +113,43 @@
 
   <main class="flex-1">
     
+    <!-- Dedicated Styles for Guaranteed Cross-Browser Blur and Overlay -->
+    <style>
+      .branches-blur-underlay {
+        filter: blur(16px) !important;
+        -webkit-filter: blur(16px) !important;
+        opacity: 0.12 !important;
+        pointer-events: none !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        touch-action: none !important;
+        overflow: hidden !important;
+        max-height: calc(100vh - 65px) !important;
+      }
+      .branches-lock-overlay {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        z-index: 25 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 1rem !important;
+        background: rgba(0, 0, 0, 0.72) !important;
+        backdrop-filter: blur(14px) !important;
+        -webkit-backdrop-filter: blur(14px) !important;
+      }
+      body {
+        overflow: hidden !important;
+      }
+    </style>
+
     <!-- Full-page Container with Complete Blur and Centered Data Not Available Overlay -->
-    <div class="relative min-h-[85vh] w-full overflow-hidden">
+    <div class="relative min-h-[calc(100vh-65px)] w-full overflow-hidden">
       <!-- 1. The whole branches page content underneath - deeply blurred, low opacity, unclickable, unselectable -->
-      <div id="branches-blurred-content" class="filter blur-[16px] opacity-15 select-none pointer-events-none transition-all" aria-hidden="true" tabindex="-1">
+      <div id="branches-blurred-content" class="branches-blur-underlay" style="filter: blur(16px) !important; -webkit-filter: blur(16px) !important; opacity: 0.12 !important; pointer-events: none !important; user-select: none !important; -webkit-user-select: none !important; touch-action: none !important; overflow: hidden !important; max-height: calc(100vh - 65px) !important;" aria-hidden="true" tabindex="-1">
         <section class="wrap pb-12 pt-[clamp(48px,8vw,112px)]">
           <p id="branches-page-badge" class="label text-muted">Branches · Pay and placement</p>
           <h1 class="display-l mt-6 max-w-[16ch]">Every branch, by the numbers.</h1>
@@ -168,7 +201,7 @@
       </div>
 
       <!-- 2. Full-page overlay: ONLY this card is sharp, visible and accessible -->
-      <div class="absolute inset-0 z-20 flex items-center justify-center p-4 backdrop-blur-[6px] bg-bg/50">
+      <div class="branches-lock-overlay" style="position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 25 !important; display: flex !important; align-items: center !important; justify-content: center !important; padding: 1rem !important; background: rgba(0, 0, 0, 0.72) !important; backdrop-filter: blur(14px) !important; -webkit-backdrop-filter: blur(14px) !important;">
         <div class="w-full max-w-[540px] rounded-3xl border border-line-strong bg-[#0e0f12]/95 p-8 sm:p-12 shadow-[0_24px_80px_rgba(0,0,0,0.9)] backdrop-blur-2xl text-center">
           <div class="inline-flex size-14 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-400 mb-5 border border-amber-500/20">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
