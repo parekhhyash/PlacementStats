@@ -1,0 +1,20 @@
+{
+  "name": "placed-27-clone",
+  "version": "1.0.0",
+  "description": "Campus Placement Statistics & Recruitment Analytics Dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node scripts/build_all.js"
+  },
+  "keywords": [
+    "placement",
+    "campus-recruitment",
+    "college-dashboard",
+    "placed-27",
+    "analytics"
+  ],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-bg text-fg CWomsa_variable Z1YhAq_variable _0T2Ldq_variable">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Placed · SPIT Placement Statistics & Analytics</title>
+  <meta name="description" content="Campus recruitment, roles, pay and selection analytics." />
+  <meta name="theme-color" content="#000000" />
+  
+  <!-- Google Fonts Preconnect & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..700&display=swap" rel="stylesheet" />
+
+  <!-- Local Font Preloads -->
+  <link rel="preload" href="/fonts/FunnelDisplay-s.p.2xty_ze311ap2.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/fonts/Geist-s.p.2xgg6xh-upisd.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/fonts/GeistMono-s.p.1r21m8mjt8-gs.woff2" as="font" type="font/woff2" crossorigin="" />
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  
+</head>
+<body class="min-h-full bg-bg font-sans text-fg antialiased flex flex-col justify-between selection:bg-fg selection:text-bg">
+  <div id="site-header-root"></div>
+
+  <main class="flex-1">
+    
+    
+    <section class="wrap pb-10 pt-[clamp(56px,10vw,140px)]">
+      <h1 id="hero-title" class="display-xl">
+        31 companies so far.<br/>
+        <span class="text-muted">235 students placed, and counting.</span>
+      </h1>
+      <p id="hero-desc" class="mt-10 max-w-[56ch] text-[18px] leading-relaxed text-muted">
+        Every company that recruited Sardar Patel Institute of Technology’s 2027 batch on campus, from internships to final placements: what each one offered, what it advertised, roles, and selection outcomes.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a id="hero-browse-btn" class="label rounded-full bg-fg px-5 py-3 text-bg transition-opacity hover:opacity-85" href="/companies/">Browse all 31 companies</a>
+        <a class="label rounded-full border border-line-strong px-5 py-3 transition-colors hover:border-fg" href="/about/">How this is made</a>
+        <span class="label flex items-center gap-2.5 px-2 text-muted">
+          <span class="relative flex size-2" aria-hidden="true">
+            <span class="absolute inline-flex size-full animate-ping rounded-full bg-intern opacity-60"></span>
+            <span class="relative inline-flex size-2 rounded-full bg-intern"></span>
+          </span>
+          <span id="hero-status-badge">Placements in progress</span>
+        </span>
+      </div>
+    </section>
+  
+    <div id="ticker-root"></div>
+    
+    <section class="wrap mt-[clamp(56px,6.5vw,96px)]">
+      <div class="grid gap-6 border-t border-line pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
+        <div>
+          <p class="label text-faint">01 — Latest</p>
+          <h2 class="display-m mt-3 max-w-[18ch]">Latest on campus</h2>
+        </div>
+        <div class="flex flex-col justify-end gap-4 lg:items-start">
+          <a id="latest-heading-link" class="label link-underline text-fg" href="/companies/">All 31 companies →</a>
+        </div>
+      </div>
+      <div class="mt-10">
+        <div class="label hidden grid-cols-[3.5rem_minmax(0,1fr)_9rem_12rem_9rem_11rem] gap-4 border-b border-line py-3 text-faint lg:grid">
+          <span>No.</span>
+          <span>Company</span>
+          <span>Offered</span>
+          <span>Advertised pay</span>
+          <span>Offers made</span>
+          <span>Branches</span>
+        </div>
+        <ol id="home-latest-companies">
+          <!-- Injected via script from active batch dataset -->
+        </ol>
+      </div>
+    </section>
+  
+    
+    <section class="wrap mt-[clamp(56px,6.5vw,96px)]">
+      <div class="mb-8 flex items-center justify-between gap-4 border-t border-line pt-6">
+        <p class="label flex items-center gap-2.5 text-faint">
+          <span class="relative flex size-2" aria-hidden="true">
+            <span class="absolute inline-flex size-full animate-ping rounded-full bg-intern opacity-60"></span>
+            <span class="relative inline-flex size-2 rounded-full bg-intern"></span>
+          </span>
+          Latest results
+        </p>
+        <a class="label link-underline text-fg" href="/recap/">All recaps →</a>
+      </div>
+      <section class="glow-ring rounded-[28px] p-px">
+        <div class="relative overflow-hidden rounded-[27px] bg-bg p-5 sm:p-7">
+          <div class="grid lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end gap-5">
+            <div>
+              <p id="home-recap-season" class="label text-muted">Recap · Marquee Recruiters · Season 2027</p>
+              <h2 class="display-m mt-3">The flagship recruiters</h2>
+            </div>
+            <button type="button" class="play-recap-trigger group/play relative inline-flex h-14 items-center gap-4 rounded-full bg-fg pl-2 pr-6 text-bg transition-transform duration-500 ease-[var(--ease)] hover:scale-[1.03] cursor-pointer">
+              <span class="relative grid size-10 place-items-center rounded-full bg-bg text-fg">
+                <span aria-hidden="true" class="share-ripple absolute inset-0 rounded-full border border-fg/60"></span>
+                <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" class="translate-x-px">
+                  <path d="M3 1.5v11l9-5.5-9-5.5Z" fill="currentColor"></path>
+                </svg>
+              </span>
+              <span class="text-left">
+                <span class="block font-display text-[17px] leading-tight tracking-[-0.01em]">Play recap</span>
+                <span class="label block text-[10px] text-bg/60">5 slides · 25 sec</span>
+              </span>
+            </button>
+          </div>
+          <div id="home-recap-cards" class="mt-8 grid gap-3 border-t border-line pt-6 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </section>
+    </section>
+  
+    
+    <section class="wrap mt-[clamp(56px,6.5vw,96px)]">
+      <div class="grid gap-6 border-t border-line pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
+        <div>
+          <p class="label text-faint">02 — Timeline</p>
+          <h2 class="display-m mt-3 max-w-[18ch]">When companies came to campus</h2>
+        </div>
+        <div class="flex flex-col justify-end gap-4 lg:items-start">
+          <a class="label link-underline text-fg" href="/timeline/">Full timeline →</a>
+        </div>
+      </div>
+      <div class="mt-10">
+        <div id="home-timeline-container" class="relative overflow-x-auto rounded-2xl border border-line-strong bg-panel p-6 [scrollbar-width:none]">
+          <!-- Rendered dynamically based on active batch -->
+        </div>
+      </div>
+    </section>
+  
+    
+    <section class="wrap mt-[clamp(56px,6.5vw,96px)]">
+      <div class="grid gap-6 border-t border-line pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
+        <div>
+          <p class="label text-faint">03 — Pay</p>
+          <h2 class="display-m mt-3 max-w-[18ch]">What the offers advertised</h2>
+        </div>
+        <div class="flex flex-col justify-end gap-4 lg:items-start">
+          <a class="label link-underline text-fg" href="/pay/">All pay figures →</a>
+        </div>
+      </div>
+      <div class="mt-10">
+        <div id="home-pay-chips" class="mb-4 flex flex-wrap gap-x-6 gap-y-2">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <div id="home-pay-tiers" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-6">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+  
+    
+    <section class="wrap mt-[clamp(56px,6.5vw,96px)]">
+      <div class="grid gap-6 border-t border-line pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
+        <div>
+          <p class="label text-faint">04 — Offers</p>
+          <h2 class="display-m mt-3 max-w-[18ch]">Where students got offers</h2>
+        </div>
+        <div class="flex flex-col justify-end gap-4 lg:items-start">
+          <a class="label link-underline text-fg" href="/selections/">Offers breakdown →</a>
+        </div>
+      </div>
+      <div class="mt-10">
+        <a id="home-branch-stat-link" class="group mb-8 grid gap-2 border-y border-line py-6 transition-colors hover:bg-panel sm:grid-cols-[auto_1fr] sm:items-baseline sm:gap-8" href="/branches/">
+          <!-- Rendered dynamically -->
+        </a>
+
+        <div id="home-top-hiring-companies" class="mt-6 grid gap-4">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+  
+    
+    <section class="wrap mt-[clamp(56px,6.5vw,96px)]">
+      <div class="grid gap-6 border-t border-line pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
+        <div>
+          <p class="label text-faint">05 — Selectivity</p>
+          <h2 class="display-m mt-3 max-w-[18ch]">How many made it through</h2>
+        </div>
+        <div class="flex flex-col justify-end gap-4 lg:items-start">
+          <a class="label link-underline text-fg" href="/selections/">Every funnel →</a>
+        </div>
+      </div>
+      <div class="mt-10">
+        <div id="home-funnels" class="grid gap-x-10 gap-y-12 md:grid-cols-2 xl:grid-cols-3">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+  
+  
+  </main>
+
+  <div id="site-footer-root"></div>
+  <div id="story-modal-root"></div>
+
+  <!-- Shared Application Scripts -->
+  <script type="module">
+    import { siteConfig } from '/src/config/site.js';
+    import { renderHeader, initHeader } from '/src/components/header.js';
+    import { renderFooter, initFooter } from '/src/components/footer.js';
+    import { renderStoryModal, initStoryModal } from '/src/components/story-modal.js';
+
+    document.getElementById('site-header-root').innerHTML = renderHeader('/');
+    document.getElementById('site-footer-root').innerHTML = renderFooter();
+    document.getElementById('story-modal-root').innerHTML = renderStoryModal();
+
+    initHeader();
+    initFooter();
+    initStoryModal();
+
+    
+    import { renderTicker, initTicker } from '/src/components/ticker.js';
+    import { getActiveBatchData, getBatchKey } from '/src/data/batches.js';
+
+    const batch = getActiveBatchData();
+    const is2028 = batch.year === '2028';
+
+    // 1. Update Hero
+    const heroTitle = document.getElementById('hero-title');
+    if (heroTitle) {
+      heroTitle.innerHTML = `
+        ${batch.stats.totalCompanies} companies so far.<br/>
+        <span class="text-muted">${batch.stats.studentsPlaced} students placed, and counting.</span>
+      `;
+    }
+    const heroDesc = document.getElementById('hero-desc');
+    if (heroDesc) {
+      heroDesc.textContent = `Every company that recruited SPIT’s ${batch.year} batch on campus, from internships to final placements: what each one offered, what it advertised, roles, and selection outcomes.`;
+    }
+    const heroBrowseBtn = document.getElementById('hero-browse-btn');
+    if (heroBrowseBtn) {
+      heroBrowseBtn.textContent = `Browse all ${batch.stats.totalCompanies} companies`;
+      heroBrowseBtn.href = is2028 ? '/companies/?batch=2028' : '/companies/';
+    }
+    const heroStatusBadge = document.getElementById('hero-status-badge');
+    if (heroStatusBadge) {
+      heroStatusBadge.textContent = batch.statusBadge;
+    }
+    const latestHeadingLink = document.getElementById('latest-heading-link');
+    if (latestHeadingLink) {
+      latestHeadingLink.textContent = `All ${batch.stats.totalCompanies} companies →`;
+      latestHeadingLink.href = is2028 ? '/companies/?batch=2028' : '/companies/';
+    }
+
+    // 2. Initialize Ticker
+    const tickerEl = document.getElementById('ticker-root');
+    if (tickerEl) {
+      tickerEl.innerHTML = renderTicker();
+      initTicker();
+    }
+
+    // 3. Populate latest companies list
+    const latestList = document.getElementById('home-latest-companies');
+    if (latestList) {
+      const topCompanies = batch.companies.slice(0, 7);
+      latestList.innerHTML = topCompanies.map((c, idx) => {
+        const num = String(idx + 1).padStart(3, '0');
+        const logo = c.logo ? '<img alt="' + c.name + '" loading="lazy" width="34" height="34" class="shrink-0 object-contain rounded-md bg-panel p-0.5" src="' + c.logo + '" />' : '<span class="grid size-[34px] shrink-0 place-items-center rounded-md bg-line font-display text-[15px] font-bold text-muted">' + c.name.charAt(0) + '</span>';
+        
+        let chips = '';
+        if (c.offers && c.offers.includes('internship')) chips += '<span class="chip"><i class="dot" style="background:var(--color-intern)"></i>Intern</span>';
+        if (c.offers && c.offers.includes('fulltime')) chips += '<span class="chip"><i class="dot" style="background:var(--color-fulltime)"></i>Full-time</span>';
+        if (c.offers && c.offers.includes('ppo')) chips += '<span class="chip"><i class="dot" style="background:var(--color-ppo)"></i>PPO</span>';
+
+        const offersMade = (c.out && c.out.students) ? c.out.students + ' placed' : (c.status || 'Announced');
+        const paySubtitle = c.payKind === 'Stipend' ? 'Monthly Stipend' : 'Advertised CTC';
+
+        return `
+          <li>
+            <a class="group relative isolate grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-4 gap-y-2 py-4 lg:grid-cols-[3.5rem_minmax(0,1fr)_9rem_12rem_9rem_11rem] lg:items-center lg:py-3.5 border-b border-line" href="/companies/company.html?slug=${c.slug}${is2028 ? '&batch=2028' : ''}">
+              <span aria-hidden="true" class="row-curtain absolute inset-y-0 -inset-x-4 z-0 origin-bottom scale-y-0 bg-fg transition-transform duration-[320ms] ease-[var(--ease)] group-hover:origin-top group-hover:scale-y-100 group-focus-visible:scale-y-100"></span>
+              <span class="label num text-faint group-hover:text-bg max-lg:hidden relative z-10">${num}</span>
+              <span class="flex min-w-0 items-center gap-3 lg:gap-4 transition-transform duration-[350ms] ease-[var(--ease)] group-hover:translate-x-3 relative z-10">
+                ${logo}
+                <span class="truncate pb-[0.06em] font-display text-[clamp(20px,2.8vw,36px)] leading-[1.08] tracking-[-0.035em] text-fg group-hover:text-bg">${c.name}</span>
+              </span>
+              <span class="flex flex-wrap gap-x-2 gap-y-1 group-hover:text-bg max-lg:col-span-2 max-lg:row-start-2 relative z-10">
+                ${chips}
+              </span>
+              <span class="group-hover:text-bg max-lg:col-start-2 max-lg:row-start-1 max-lg:text-right relative z-10">
+                <span class="num block text-[15px] text-fg group-hover:text-bg">${c.pay || 'Competitive'}</span>
+                <span class="label block text-[11px] text-faint group-hover:text-bg/60">${paySubtitle}</span>
+              </span>
+              <span class="group-hover:text-bg max-lg:col-span-2 max-lg:row-start-3 max-lg:flex max-lg:gap-4 relative z-10">
+                <span class="num block text-[15px] text-fg group-hover:text-bg">${offersMade}</span>
+                <span class="label block text-[11px] text-faint group-hover:text-bg/60">${c.status || ''}</span>
+              </span>
+              <span class="label truncate text-muted group-hover:text-bg max-lg:hidden relative z-10">${c.branches || 'All branches open'}</span>
+            </a>
+          </li>
+        `;
+      }).join('');
+    }
+
+    // 4. Populate Recap Teaser Cards
+    const recapSeason = document.getElementById('home-recap-season');
+    if (recapSeason) {
+      recapSeason.textContent = `Recap · Flagship Recruiters · Season ${batch.year}`;
+    }
+    const recapCards = document.getElementById('home-recap-cards');
+    if (recapCards) {
+      if (is2028) {
+        recapCards.innerHTML = `
+          <div class="rounded-2xl border border-line-strong bg-panel p-4">
+            <div class="flex items-center gap-3">
+              <img src="/logos/barclays.png" alt="Barclays" class="size-8 object-contain" />
+              <div>
+                <h4 class="font-display font-medium text-fg">Barclays</h4>
+                <p class="text-[12px] text-muted">25 selections (16 Interns + 9 Dev)</p>
+              </div>
+            </div>
+            <div class="mt-3 flex gap-2">
+              <span class="chip"><i class="dot" style="background:var(--color-intern)"></i>₹75k/mo</span>
+              <span class="chip"><i class="dot" style="background:var(--color-fulltime)"></i>₹15.05 LPA</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line-strong bg-panel p-4">
+            <div class="flex items-center gap-3">
+              <img src="/logos/mastercard.svg" alt="Mastercard" class="size-8 object-contain" />
+              <div>
+                <h4 class="font-display font-medium text-fg">Mastercard</h4>
+                <p class="text-[12px] text-muted">9 software intern selections</p>
+              </div>
+            </div>
+            <div class="mt-3 flex gap-2">
+              <span class="chip"><i class="dot" style="background:var(--color-intern)"></i>₹50k/mo</span>
+              <span class="chip"><i class="dot" style="background:var(--color-ppo)"></i>PPO Opportunity</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line-strong bg-panel p-4 col-span-2 sm:col-span-1">
+            <div class="flex items-center gap-3">
+              <img src="/logos/general-mills.png" alt="General Mills" class="size-8 object-contain" />
+              <div>
+                <h4 class="font-display font-medium text-fg">General Mills & IBM</h4>
+                <p class="text-[12px] text-muted">11 combined summer offers</p>
+              </div>
+            </div>
+            <div class="mt-3 flex gap-2">
+              <span class="chip"><i class="dot" style="background:var(--color-intern)"></i>Gen Mills: 6</span>
+              <span class="chip"><i class="dot" style="background:var(--color-intern)"></i>IBM: 5</span>
+            </div>
+          </div>
+        `;
+      } else {
+        recapCards.innerHTML = `
+          <div class="rounded-2xl border border-line-strong bg-panel p-4">
+            <div class="flex items-center gap-3">
+              <img src="/logos/phonepe.png" alt="PhonePe" class="size-8 object-contain" />
+              <div>
+                <h4 class="font-display font-medium text-fg">PhonePe</h4>
+                <p class="text-[12px] text-muted">6 SDEs · ₹33.5 LPA (₹80k/mo)</p>
+              </div>
+            </div>
+            <div class="mt-3 flex gap-2">
+              <span class="chip"><i class="dot" style="background:var(--color-fulltime)"></i>Full-time</span>
+              <span class="chip"><i class="dot" style="background:var(--color-intern)"></i>Intern</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line-strong bg-panel p-4">
+            <div class="flex items-center gap-3">
+              <img src="/logos/jpmc.svg" alt="JPMC" class="size-8 object-contain" />
+              <div>
+                <h4 class="font-display font-medium text-fg">JPMorgan Chase</h4>
+                <p class="text-[12px] text-muted">41 selections · up to ₹1.60L/mo</p>
+              </div>
+            </div>
+            <div class="mt-3 flex gap-2">
+              <span class="chip"><i class="dot" style="background:var(--color-ppo)"></i>PPO</span>
+              <span class="chip"><i class="dot" style="background:var(--color-intern)"></i>6 Tracks</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line-strong bg-panel p-4 col-span-2 sm:col-span-1">
+            <div class="flex items-center gap-3">
+              <img src="/logos/barclays.png" alt="Barclays" class="size-8 object-contain" />
+              <div>
+                <h4 class="font-display font-medium text-fg">Barclays</h4>
+                <p class="text-[12px] text-muted">28 total offers · ₹15.05 LPA</p>
+              </div>
+            </div>
+            <div class="mt-3 flex gap-2">
+              <span class="chip"><i class="dot" style="background:var(--color-fulltime)"></i>Full-time</span>
+              <span class="chip"><i class="dot" style="background:var(--color-intern)"></i>₹75k/mo</span>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // 5. Timeline Chart Container
+    const timelineContainer = document.getElementById('home-timeline-container');
+    if (timelineContainer) {
+      if (is2028) {
+        timelineContainer.innerHTML = `
+          <div class="flex items-center justify-between pb-4 border-b border-line text-[13px] text-faint">
+            <span>Drives by month: Sep – Nov 2026</span>
+            <span class="flex items-center gap-4">
+              <span class="flex items-center gap-1.5"><i class="dot" style="background:var(--color-intern)"></i>Internships</span>
+              <span class="flex items-center gap-1.5"><i class="dot" style="background:var(--color-fulltime)"></i>Full-time</span>
+            </span>
+          </div>
+          <div class="mt-6 grid grid-cols-3 gap-6 items-end h-[180px] pt-4 max-w-md mx-auto">
+            <div class="flex flex-col items-center gap-2 h-full justify-end">
+              <span class="num text-[13px] text-fg font-medium">1</span>
+              <div class="w-full max-w-[60px] bg-line rounded-t-lg overflow-hidden flex flex-col justify-end" style="height: 30%;">
+                <div style="height: 100%; background: var(--color-intern)"></div>
+              </div>
+              <span class="label text-[11px] text-muted">Sep '26</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 h-full justify-end">
+              <span class="num text-[13px] text-fg font-medium">3</span>
+              <div class="w-full max-w-[60px] bg-line rounded-t-lg overflow-hidden flex flex-col justify-end" style="height: 90%;">
+                <div style="height: 65%; background: var(--color-intern)"></div>
+                <div style="height: 35%; background: var(--color-fulltime)"></div>
+              </div>
+              <span class="label text-[11px] text-fg font-medium">Oct '26 (Peak)</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 h-full justify-end">
+              <span class="num text-[13px] text-fg font-medium">1</span>
+              <div class="w-full max-w-[60px] bg-line rounded-t-lg overflow-hidden flex flex-col justify-end" style="height: 30%;">
+                <div style="height: 100%; background: var(--color-intern)"></div>
+              </div>
+              <span class="label text-[11px] text-muted">Nov '26</span>
+            </div>
+          </div>
+        `;
+      } else {
+        timelineContainer.innerHTML = `
+          <div class="flex items-center justify-between pb-4 border-b border-line text-[13px] text-faint">
+            <span>Drives by month: Jun – Oct 2026</span>
+            <span class="flex items-center gap-4">
+              <span class="flex items-center gap-1.5"><i class="dot" style="background:var(--color-intern)"></i>Internships</span>
+              <span class="flex items-center gap-1.5"><i class="dot" style="background:var(--color-fulltime)"></i>Full-time</span>
+              <span class="flex items-center gap-1.5"><i class="dot" style="background:var(--color-ppo)"></i>PPO</span>
+            </span>
+          </div>
+          <div class="mt-6 grid grid-cols-5 gap-4 items-end h-[180px] pt-4">
+            <div class="flex flex-col items-center gap-2 h-full justify-end">
+              <span class="num text-[13px] text-fg font-medium">4</span>
+              <div class="w-full max-w-[50px] bg-line rounded-t-lg overflow-hidden flex flex-col justify-end" style="height: 28%;">
+                <div style="height: 100%; background: var(--color-intern)"></div>
+              </div>
+              <span class="label text-[11px] text-muted">Jun '26</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 h-full justify-end">
+              <span class="num text-[13px] text-fg font-medium">8</span>
+              <div class="w-full max-w-[50px] bg-line rounded-t-lg overflow-hidden flex flex-col justify-end" style="height: 57%;">
+                <div style="height: 60%; background: var(--color-intern)"></div>
+                <div style="height: 40%; background: var(--color-fulltime)"></div>
+              </div>
+              <span class="label text-[11px] text-muted">Jul '26</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 h-full justify-end">
+              <span class="num text-[13px] text-fg font-medium">14</span>
+              <div class="w-full max-w-[50px] bg-line rounded-t-lg overflow-hidden flex flex-col justify-end" style="height: 100%;">
+                <div style="height: 30%; background: var(--color-intern)"></div>
+                <div style="height: 55%; background: var(--color-fulltime)"></div>
+                <div style="height: 15%; background: var(--color-ppo)"></div>
+              </div>
+              <span class="label text-[11px] text-fg font-medium">Aug '26 (Peak)</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 h-full justify-end">
+              <span class="num text-[13px] text-fg font-medium">7</span>
+              <div class="w-full max-w-[50px] bg-line rounded-t-lg overflow-hidden flex flex-col justify-end" style="height: 50%;">
+                <div style="height: 30%; background: var(--color-intern)"></div>
+                <div style="height: 55%; background: var(--color-fulltime)"></div>
+                <div style="height: 15%; background: var(--color-ppo)"></div>
+              </div>
+              <span class="label text-[11px] text-muted">Sep '26</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 h-full justify-end">
+              <span class="num text-[13px] text-fg font-medium">5</span>
+              <div class="w-full max-w-[50px] bg-line rounded-t-lg overflow-hidden flex flex-col justify-end" style="height: 35%;">
+                <div style="height: 80%; background: var(--color-fulltime)"></div>
+                <div style="height: 20%; background: var(--color-ppo)"></div>
+              </div>
+              <span class="label text-[11px] text-muted">Oct '26</span>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // 6. Pay chips & tiers
+    const payChips = document.getElementById('home-pay-chips');
+    if (payChips) {
+      payChips.innerHTML = `
+        <span class="chip text-fg">
+          <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="4 4"></line></svg>
+          Median ${batch.stats.medianCTC}
+        </span>
+        <span class="chip text-fg">
+          <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="1 3"></line></svg>
+          Average ${batch.stats.averageCTC}
+        </span>
+        <span class="chip text-fg">
+          <i class="dot" style="background:var(--color-ppo)"></i>
+          Highest ${batch.stats.highestCTC} ${is2028 ? '(Barclays)' : '(PhonePe)'}
+        </span>
+        <span class="chip text-fg">
+          <i class="dot" style="background:var(--color-intern)"></i>
+          Top Stipend ${batch.stats.highestStipend} ${is2028 ? '(Barclays)' : '(JPMC)'}
+        </span>
+      `;
+    }
+
+    const payTiers = document.getElementById('home-pay-tiers');
+    if (payTiers) {
+      if (is2028) {
+        payTiers.innerHTML = `
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Highest Drive</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Barclays Tech</h4>
+            <p class="text-[13px] text-muted mt-1">₹15.05 LPA · ₹75k Stipend</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">25 offers</span>
+              <span class="label text-[12px] text-muted">16 Intern + 9 Dev</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Dream Intern</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Mastercard</h4>
+            <p class="text-[13px] text-muted mt-1">₹50k/mo (13–15 LPA PPO)</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">9 offers</span>
+              <span class="label text-[12px] text-muted">Software Intern</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Tech & Analytics</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">General Mills</h4>
+            <p class="text-[13px] text-muted mt-1">₹45k/mo (12–14 LPA PPO)</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">6 offers</span>
+              <span class="label text-[12px] text-muted">Software & Data</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Core Cloud</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">IBM & Russell</h4>
+            <p class="text-[13px] text-muted mt-1">₹40k–₹60k/mo Stipend</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">10 offers</span>
+              <span class="label text-[12px] text-muted">IBM: 5 · Russell: 5</span>
+            </div>
+          </div>
+        `;
+      } else {
+        payTiers.innerHTML = `
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Tier 1</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Super Dream</h4>
+            <p class="text-[13px] text-muted mt-1">&gt; ₹20 LPA</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">6 offers</span>
+              <span class="label text-[12px] text-muted">PhonePe SDE (₹33.5L)</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Tier 2</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Dream Tier</h4>
+            <p class="text-[13px] text-muted mt-1">₹14 – ₹20 LPA</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">93 offers</span>
+              <span class="label text-[12px] text-muted">Barclays, BlackRock, ISS</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Tier 3</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Core Tech</h4>
+            <p class="text-[13px] text-muted mt-1">₹10 – ₹14 LPA</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">65 offers</span>
+              <span class="label text-[12px] text-muted">UBS, Capgemini, InCred</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Tier 4</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Standard</h4>
+            <p class="text-[13px] text-muted mt-1">&lt; ₹10 LPA</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">71 offers</span>
+              <span class="label text-[12px] text-muted">GEP, TransUnion, Wissen</span>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // 7. Branch stat link & top hiring companies
+    const branchStatLink = document.getElementById('home-branch-stat-link');
+    if (branchStatLink) {
+      branchStatLink.href = is2028 ? '/branches/?batch=2028' : '/branches/';
+      branchStatLink.innerHTML = `
+        <span class="num font-display text-[clamp(44px,5vw,72px)] leading-none tracking-[-0.05em] text-fg">${batch.stats.placementPercentage}<span class="text-muted">+</span></span>
+        <span class="text-[17px] text-muted">
+          <span class="text-fg">${batch.stats.studentsPlaced} selections</span> across all 4 engineering branches at SPIT. <span class="link-underline text-fg">See branch comparison →</span>
+        </span>
+      `;
+    }
+
+    const topHiringCompanies = document.getElementById('home-top-hiring-companies');
+    if (topHiringCompanies) {
+      if (is2028) {
+        topHiringCompanies.innerHTML = `
+          <div class="rounded-xl border border-line bg-panel p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="/logos/barclays.png" alt="Barclays" class="size-6 object-contain" />
+              <span class="font-display font-medium text-fg">Barclays</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-36 sm:w-64 h-2.5 bg-line rounded-full overflow-hidden">
+                <div class="h-full rounded-full" style="width: 100%; background: var(--color-fulltime)"></div>
+              </div>
+              <span class="num text-[15px] font-semibold text-fg">25 offers</span>
+            </div>
+          </div>
+          <div class="rounded-xl border border-line bg-panel p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="/logos/mastercard.svg" alt="Mastercard" class="size-6 object-contain" />
+              <span class="font-display font-medium text-fg">Mastercard</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-36 sm:w-64 h-2.5 bg-line rounded-full overflow-hidden">
+                <div class="h-full rounded-full" style="width: 36%; background: var(--color-intern)"></div>
+              </div>
+              <span class="num text-[15px] font-semibold text-fg">9 offers</span>
+            </div>
+          </div>
+          <div class="rounded-xl border border-line bg-panel p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="/logos/general-mills.png" alt="General Mills" class="size-6 object-contain" />
+              <span class="font-display font-medium text-fg">General Mills</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-36 sm:w-64 h-2.5 bg-line rounded-full overflow-hidden">
+                <div class="h-full rounded-full" style="width: 24%; background: var(--color-intern)"></div>
+              </div>
+              <span class="num text-[15px] font-semibold text-fg">6 offers</span>
+            </div>
+          </div>
+          <div class="rounded-xl border border-line bg-panel p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="/logos/ibm.svg" alt="IBM" class="size-6 object-contain" />
+              <span class="font-display font-medium text-fg">IBM</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-36 sm:w-64 h-2.5 bg-line rounded-full overflow-hidden">
+                <div class="h-full rounded-full" style="width: 20%; background: var(--color-intern)"></div>
+              </div>
+              <span class="num text-[15px] font-semibold text-fg">5 offers</span>
+            </div>
+          </div>
+          <div class="rounded-xl border border-line bg-panel p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="/logos/russell-investments.svg" alt="Russell Investments" class="size-6 object-contain" />
+              <span class="font-display font-medium text-fg">Russell Investments</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-36 sm:w-64 h-2.5 bg-line rounded-full overflow-hidden">
+                <div class="h-full rounded-full" style="width: 20%; background: var(--color-ppo)"></div>
+              </div>
+              <span class="num text-[15px] font-semibold text-fg">5 offers</span>
+            </div>
+          </div>
+        `;
+      } else {
+        topHiringCompanies.innerHTML = `
+          <div class="rounded-xl border border-line bg-panel p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="/logos/jpmc.svg" alt="JPMC" class="size-6 object-contain" />
+              <span class="font-display font-medium text-fg">JPMorgan Chase & Co.</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-36 sm:w-64 h-2.5 bg-line rounded-full overflow-hidden">
+                <div class="h-full rounded-full" style="width: 100%; background: var(--color-ppo)"></div>
+              </div>
+              <span class="num text-[15px] font-semibold text-fg">41 offers</span>
+            </div>
+          </div>
+          <div class="rounded-xl border border-line bg-panel p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="/logos/barclays.png" alt="Barclays" class="size-6 object-contain" />
+              <span class="font-display font-medium text-fg">Barclays</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-36 sm:w-64 h-2.5 bg-line rounded-full overflow-hidden">
+                <div class="h-full rounded-full" style="width: 68%; background: var(--color-fulltime)"></div>
+              </div>
+              <span class="num text-[15px] font-semibold text-fg">28 offers</span>
+            </div>
+          </div>
+          <div class="rounded-xl border border-line bg-panel p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="/logos/iss-stoxx.svg" alt="ISS / STOXX" class="size-6 object-contain" />
+              <span class="font-display font-medium text-fg">ISS / STOXX</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-36 sm:w-64 h-2.5 bg-line rounded-full overflow-hidden">
+                <div class="h-full rounded-full" style="width: 36%; background: var(--color-fulltime)"></div>
+              </div>
+              <span class="num text-[15px] font-semibold text-fg">15 offers</span>
+            </div>
+          </div>
+          <div class="rounded-xl border border-line bg-panel p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="/logos/ubs.svg" alt="UBS" class="size-6 object-contain" />
+              <span class="font-display font-medium text-fg">UBS</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-36 sm:w-64 h-2.5 bg-line rounded-full overflow-hidden">
+                <div class="h-full rounded-full" style="width: 32%; background: var(--color-fulltime)"></div>
+              </div>
+              <span class="num text-[15px] font-semibold text-fg">13 offers</span>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // 8. Funnels
+    const funnelsContainer = document.getElementById('home-funnels');
+    if (funnelsContainer) {
+      if (is2028) {
+        funnelsContainer.innerHTML = `
+          <figure class="flex flex-col border-t border-line pt-4">
+            <figcaption class="flex items-baseline justify-between gap-4">
+              <a class="font-display text-[22px] tracking-[-0.02em] hover:underline text-fg" href="/companies/company.html?slug=barclays&batch=2028">Barclays</a>
+              <span class="label num text-muted">25 offers (16 int + 9 dev)</span>
+            </figcaption>
+            <ol class="mt-4 grid gap-2">
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Online Assessment</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:100%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">240</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Technical Round 1</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:29%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">70</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Final Interview</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:16%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">40</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-fg font-medium">Offers Extended</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:10.4%;background:var(--color-fulltime)"></span></span>
+                <span class="num text-right text-fg font-bold">25</span>
+              </li>
+            </ol>
+          </figure>
+
+          <figure class="flex flex-col border-t border-line pt-4">
+            <figcaption class="flex items-baseline justify-between gap-4">
+              <a class="font-display text-[22px] tracking-[-0.02em] hover:underline text-fg" href="/companies/company.html?slug=mastercard&batch=2028">Mastercard</a>
+              <span class="label num text-muted">9 offers</span>
+            </figcaption>
+            <ol class="mt-4 grid gap-2">
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Coding Assessment</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:100%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">180</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Technical Interview</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:19%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">35</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Final HR</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:8%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">15</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-fg font-medium">Selected Interns</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:5%;background:var(--color-intern)"></span></span>
+                <span class="num text-right text-fg font-bold">9</span>
+              </li>
+            </ol>
+          </figure>
+
+          <figure class="flex flex-col border-t border-line pt-4 col-span-2 md:col-span-1">
+            <figcaption class="flex items-baseline justify-between gap-4">
+              <a class="font-display text-[22px] tracking-[-0.02em] hover:underline text-fg" href="/companies/company.html?slug=general-mills&batch=2028">General Mills</a>
+              <span class="label num text-muted">6 offers</span>
+            </figcaption>
+            <ol class="mt-4 grid gap-2">
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Aptitude & Coding</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:100%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">140</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Technical Round</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:20%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">28</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Management Round</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:9%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">12</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-fg font-medium">Offers</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:4.2%;background:var(--color-intern)"></span></span>
+                <span class="num text-right text-fg font-bold">6</span>
+              </li>
+            </ol>
+          </figure>
+        `;
+      } else {
+        funnelsContainer.innerHTML = `
+          <figure class="flex flex-col border-t border-line pt-4">
+            <figcaption class="flex items-baseline justify-between gap-4">
+              <a class="font-display text-[22px] tracking-[-0.02em] hover:underline text-fg" href="/companies/company.html?slug=phonepe">PhonePe</a>
+              <span class="label num text-muted">1 in 30 (6 SDEs)</span>
+            </figcaption>
+            <ol class="mt-4 grid gap-2">
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Shortlisted for test</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:100%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">180</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Technical Round 1</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:25%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">45</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Final Interview</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:8%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">15</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-fg font-medium">Selected</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:3.3%;background:var(--color-ppo)"></span></span>
+                <span class="num text-right text-fg font-bold">6</span>
+              </li>
+            </ol>
+          </figure>
+
+          <figure class="flex flex-col border-t border-line pt-4">
+            <figcaption class="flex items-baseline justify-between gap-4">
+              <a class="font-display text-[22px] tracking-[-0.02em] hover:underline text-fg" href="/companies/company.html?slug=jpmc">JPMorgan Chase</a>
+              <span class="label num text-muted">41 selections</span>
+            </figcaption>
+            <ol class="mt-4 grid gap-2">
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Applied / Test</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:100%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">260</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Interview Shortlist</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:38%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">98</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Final Evaluation</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:23%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">60</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-fg font-medium">Offers Extended</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:15.7%;background:var(--color-fulltime)"></span></span>
+                <span class="num text-right text-fg font-bold">41</span>
+              </li>
+            </ol>
+          </figure>
+
+          <figure class="flex flex-col border-t border-line pt-4 col-span-2 md:col-span-1">
+            <figcaption class="flex items-baseline justify-between gap-4">
+              <a class="font-display text-[22px] tracking-[-0.02em] hover:underline text-fg" href="/companies/company.html?slug=barclays">Barclays</a>
+              <span class="label num text-muted">28 offers</span>
+            </figcaption>
+            <ol class="mt-4 grid gap-2">
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Online Assessment</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:100%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">220</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">Technical Round</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:34%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">75</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-muted">HR / Behavioral</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:19%;background:var(--color-line-strong)"></span></span>
+                <span class="num text-right text-muted">42</span>
+              </li>
+              <li class="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-[13px]">
+                <span class="truncate text-fg font-medium">Placed (Dev + Intern)</span>
+                <span class="h-2.5"><span class="block h-full rounded-[2px]" style="width:12.7%;background:var(--color-intern)"></span></span>
+                <span class="num text-right text-fg font-bold">28</span>
+              </li>
+            </ol>
+          </figure>
+        `;
+      }
+    }
+  
+  </script>
+</body>
+</html>

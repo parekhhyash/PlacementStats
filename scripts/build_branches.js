@@ -1,0 +1,206 @@
+const fs = require('fs');
+const { pageTemplate } = require('./template');
+const { siteConfig } = require('../src/config/site');
+
+function generateBranchesPage() {
+  const content = `
+    <section class="wrap pb-12 pt-[clamp(48px,8vw,112px)]">
+      <p id="branches-page-badge" class="label text-muted">Branches · Pay and placement</p>
+      <h1 class="display-l mt-6 max-w-[16ch]">Every branch, by the numbers.</h1>
+      <p id="branches-page-desc" class="mt-8 max-w-[62ch] text-[17px] leading-relaxed text-muted">
+        Pick a branch to see what its students were offered: the typical package, the spread from lowest to highest, how many are placed and who hired them.
+      </p>
+    </section>
+
+    <!-- Branch Tab Buttons -->
+    <div class="wrap">
+      <div id="branch-tabs" role="tablist" class="-mx-1 flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none]">
+        <!-- Dynamic tabs rendered by script -->
+      </div>
+
+      <!-- Active Branch Card -->
+      <div id="branch-active-card" class="relative mt-8 overflow-hidden rounded-3xl border border-line-strong bg-panel p-6 sm:p-10">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Side by Side Comparison Section -->
+      <section class="mt-20">
+        <div class="border-t border-line pt-6">
+          <p class="label text-faint">Comparison</p>
+          <h2 class="display-m mt-3">Side by side</h2>
+          <p class="mt-2 text-[15px] text-muted">Branch-wise comparative breakdown across key recruitment metrics.</p>
+        </div>
+
+        <div class="mt-8 overflow-x-auto">
+          <table class="w-full text-left text-[14px]">
+            <thead>
+              <tr class="border-b border-line text-faint label">
+                <th class="py-3 pr-4">Branch</th>
+                <th class="py-3 px-4">Batch size</th>
+                <th class="py-3 px-4">Placed students</th>
+                <th class="py-3 px-4">Placement rate</th>
+                <th class="py-3 px-4">Median CTC</th>
+                <th class="py-3 px-4">Average CTC</th>
+                <th class="py-3 px-4">Highest CTC</th>
+                <th class="py-3 pl-4">PPOs</th>
+              </tr>
+            </thead>
+            <tbody id="branch-table-body" class="divide-y divide-line">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  `;
+
+  const extraScript = `
+    import { getActiveBatchData } from '/src/data/batches.js';
+
+    const batch = getActiveBatchData();
+    const is2028 = batch.year === '2028';
+    const branches = batch.branches || [];
+
+    const badgeEl = document.getElementById('branches-page-badge');
+    if (badgeEl) {
+      badgeEl.textContent = \`Branches · SPIT Class of \${batch.year}\`;
+    }
+    const descEl = document.getElementById('branches-page-desc');
+    if (descEl) {
+      descEl.textContent = \`Recruitment analytics for \${branches.length} departments across the \${batch.year} cohort: package distribution, selection volumes, and top recruiting firms.\`;
+    }
+
+    let selectedBranchId = branches[0]?.id || 'ce';
+
+    const tabsContainer = document.getElementById('branch-tabs');
+    const cardContainer = document.getElementById('branch-active-card');
+    const tableBody = document.getElementById('branch-table-body');
+
+    function renderTabs() {
+      tabsContainer.innerHTML = branches.map(b => {
+        const isSelected = b.id === selectedBranchId;
+        const baseClass = "group relative flex shrink-0 items-center gap-2.5 rounded-full border px-4 py-2.5 transition-all duration-300 cursor-pointer ";
+        const activeClass = isSelected 
+          ? "border-fg bg-fg text-bg" 
+          : "border-line-strong text-muted hover:border-fg hover:text-fg";
+
+        return \`
+          <button role="tab" type="button" data-id="\${b.id}" aria-selected="\${isSelected}" class="\${baseClass} \${activeClass}">
+            <i class="dot" style="background:\${b.color}"></i>
+            <span class="label">\${b.shortName}</span>
+            <span class="num text-[12px] \${isSelected ? 'text-bg/70' : 'text-faint'}">\${b.placedPercentage}%</span>
+          </button>
+        \`;
+      }).join('');
+
+      // Add click events
+      tabsContainer.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          selectedBranchId = btn.getAttribute('data-id');
+          renderTabs();
+          renderCard();
+        });
+      });
+    }
+
+    function renderCard() {
+      const b = branches.find(item => item.id === selectedBranchId) || branches[0];
+      if (!b) return;
+
+      cardContainer.innerHTML = \`
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <div class="flex items-center gap-3">
+              <i class="dot size-3" style="background:\${b.color}"></i>
+              <h3 class="font-display text-[clamp(28px,4vw,44px)] font-bold text-fg leading-none">\${b.name}</h3>
+            </div>
+            <p class="mt-3 text-[16px] text-muted max-w-[50ch]">\${b.summary || 'Department placement report'}</p>
+          </div>
+
+          <div class="flex items-baseline gap-2 shrink-0">
+            <span class="num font-display text-[clamp(48px,6vw,72px)] font-bold text-fg leading-none">\${b.placedPercentage}%</span>
+            <span class="label text-muted">placed</span>
+          </div>
+        </div>
+
+        <!-- 4-Column Branch Highlights -->
+        <dl class="mt-10 grid grid-cols-2 border-t border-line sm:grid-cols-4 pt-6 gap-6">
+          <div>
+            <dt class="label text-faint text-[12px]">Placed Students</dt>
+            <dd class="num font-display text-[28px] text-fg mt-1">\${b.placedStudents} <span class="text-[14px] text-muted font-sans font-normal">/ \${b.totalStudents}</span></dd>
+          </div>
+          <div>
+            <dt class="label text-faint text-[12px]">Median CTC</dt>
+            <dd class="num font-display text-[28px] text-fg mt-1">\${b.medianCTC}</dd>
+          </div>
+          <div>
+            <dt class="label text-faint text-[12px]">Average CTC</dt>
+            <dd class="num font-display text-[28px] text-fg mt-1">\${b.averageCTC}</dd>
+          </div>
+          <div>
+            <dt class="label text-faint text-[12px]">Highest CTC</dt>
+            <dd class="num font-display text-[28px] text-fg mt-1">\${b.highestCTC}</dd>
+          </div>
+        </dl>
+
+        <!-- Top Recruiters in this Branch -->
+        <div class="mt-10 border-t border-line pt-6">
+          <p class="label text-faint text-[12px] mb-4">Top Recruiters for \${b.shortName}</p>
+          <div class="flex flex-wrap gap-2.5">
+            \${b.topRecruiters ? b.topRecruiters.map(r => \`
+              <span class="chip text-fg font-medium bg-line/60">
+                <i class="dot" style="background:\${b.color}"></i>
+                \${r}
+              </span>
+            \`).join('') : '<span class="text-muted">Recruiters active</span>'}
+          </div>
+        </div>
+      \`;
+    }
+
+    function renderTable() {
+      tableBody.innerHTML = branches.map(b => \`
+        <tr class="hover:bg-panel transition-colors cursor-pointer" data-row-id="\${b.id}">
+          <td class="py-4 pr-4">
+            <div class="flex items-center gap-2.5 font-medium text-fg">
+              <i class="dot" style="background:\${b.color}"></i>
+              \${b.name}
+            </div>
+          </td>
+          <td class="py-4 px-4 num text-muted">\${b.totalStudents}</td>
+          <td class="py-4 px-4 num text-fg font-semibold">\${b.placedStudents}</td>
+          <td class="py-4 px-4 num text-fg font-bold">\${b.placedPercentage}%</td>
+          <td class="py-4 px-4 num text-muted">\${b.medianCTC}</td>
+          <td class="py-4 px-4 num text-muted">\${b.averageCTC}</td>
+          <td class="py-4 px-4 num text-fg font-semibold">\${b.highestCTC}</td>
+          <td class="py-4 pl-4 num text-muted">\${b.ppoCount || 0}</td>
+        </tr>
+      \`).join('');
+
+      tableBody.querySelectorAll('tr').forEach(row => {
+        row.addEventListener('click', () => {
+          selectedBranchId = row.getAttribute('data-row-id');
+          renderTabs();
+          renderCard();
+          window.scrollTo({ top: 120, behavior: 'smooth' });
+        });
+      });
+    }
+
+    renderTabs();
+    renderCard();
+    renderTable();
+  `;
+
+  const html = pageTemplate({
+    title: `Branches · Placed · ${siteConfig.collegeShort}`,
+    activePath: '/branches/',
+    content,
+    extraScript
+  });
+
+  fs.writeFileSync('branches/index.html', html);
+  console.log('branches/index.html created successfully with Multi-Batch support!');
+}
+
+generateBranchesPage();

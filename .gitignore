@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# OS and temporary files
+.DS_Store
+Thumbs.db
+*.log
+
+# Local scratch and dumps
+dump/
+*.drawio
+build_drawio_diagrams.js

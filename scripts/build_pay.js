@@ -1,0 +1,274 @@
+const fs = require('fs');
+const { pageTemplate } = require('./template');
+const { siteConfig } = require('../src/config/site');
+
+function generatePayPage() {
+  const content = `
+    <section class="wrap pb-12 pt-[clamp(48px,8vw,112px)]">
+      <p id="pay-page-badge" class="label text-muted">Pay · Advertised figures · ${siteConfig.collegeShort} ${siteConfig.batchYear}</p>
+      <h1 class="display-l mt-6 max-w-[16ch]">What the offers advertised.</h1>
+      <p id="pay-page-desc" class="mt-8 max-w-[62ch] text-[17px] leading-relaxed text-muted">
+        Averages, medians, CTC packages and monthly internship stipends compiled directly from confirmed recruitment drives.
+      </p>
+    </section>
+
+    <div class="wrap">
+      <!-- 4-Column Headline Metrics -->
+      <dl id="pay-headline-metrics" class="grid grid-cols-2 border-t border-line sm:grid-cols-4">
+        <!-- Rendered dynamically -->
+      </dl>
+
+      <!-- Section 01: Full-time and PPO Packages -->
+      <section class="mt-20">
+        <div class="border-t border-line pt-6">
+          <p class="label text-faint">01 — Packages</p>
+          <h2 class="display-m mt-3">Full-time and PPO packages</h2>
+        </div>
+
+        <div class="mt-8">
+          <div id="pay-chips-bar" class="mb-4 flex flex-wrap gap-x-6 gap-y-2">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <!-- CTC Tiers Breakdown Cards -->
+          <div id="pay-tiers-grid" class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 02: Full Compensation Directory -->
+      <section class="mt-20">
+        <div class="border-t border-line pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <p class="label text-faint">02 — Directory</p>
+            <h2 class="display-m mt-3">All packages by company</h2>
+          </div>
+          <!-- Filter Search -->
+          <div class="relative min-w-[280px]">
+            <input id="pay-search" type="search" placeholder="Search company, stipend or role..." class="w-full rounded-full border border-line-strong bg-panel px-4 py-2 text-[14px] text-fg outline-none focus:border-fg transition-colors" />
+          </div>
+        </div>
+
+        <div class="mt-8 overflow-x-auto">
+          <table class="w-full text-left text-[14px]">
+            <thead>
+              <tr class="border-b border-line text-faint label">
+                <th class="py-3 pr-4">Company</th>
+                <th class="py-3 px-4">Type</th>
+                <th class="py-3 px-4">Advertised CTC</th>
+                <th class="py-3 px-4">Internship Stipend</th>
+                <th class="py-3 px-4">Selections</th>
+                <th class="py-3 pl-4">Eligible Branches</th>
+              </tr>
+            </thead>
+            <tbody id="pay-table-body" class="divide-y divide-line">
+              <!-- Rendered by script -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  `;
+
+  const extraScript = `
+    import { getActiveBatchData, getBatchKey } from '/src/data/batches.js';
+
+    const batch = getActiveBatchData();
+    const is2028 = batch.year === '2028';
+    const companies = batch.companies || [];
+
+    // Header badge & desc
+    const badgeEl = document.getElementById('pay-page-badge');
+    if (badgeEl) badgeEl.textContent = \`Pay · Advertised figures · SPIT Class of \${batch.year}\`;
+
+    const descEl = document.getElementById('pay-page-desc');
+    if (descEl) {
+      descEl.textContent = \`Averages, medians, CTC packages and monthly internship stipends compiled directly from confirmed recruitment drives for SPIT Class of \${batch.year}.\`;
+    }
+
+    // Headline metrics
+    const headlineEl = document.getElementById('pay-headline-metrics');
+    if (headlineEl) {
+      headlineEl.innerHTML = \`
+        <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5 sm:first:pl-0">
+          <dt class="order-2 mt-2 text-muted text-[13px]">Average CTC</dt>
+          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">\${batch.stats.averageCTC}</dd>
+          <dd class="label order-3 mt-1 text-[11px] text-faint">Median \${batch.stats.medianCTC} · \${companies.length} companies</dd>
+        </div>
+        <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
+          <dt class="order-2 mt-2 text-muted text-[13px]">Highest Compensation</dt>
+          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">\${batch.stats.highestCTC}</dd>
+          <dd class="label order-3 mt-1 text-[11px] text-faint">\${is2028 ? 'Barclays Developer' : 'PhonePe SDE'}</dd>
+        </div>
+        <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
+          <dt class="order-2 mt-2 text-muted text-[13px]">Highest Stipend</dt>
+          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">\${batch.stats.highestStipend}</dd>
+          <dd class="label order-3 mt-1 text-[11px] text-faint">\${is2028 ? 'Barclays Summer Intern' : 'JPMC (CTC Risk)'}</dd>
+        </div>
+        <div class="flex flex-col py-5 pr-4 sm:px-5">
+          <dt class="order-2 mt-2 text-muted text-[13px]">Average Stipend</dt>
+          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">\${batch.stats.averageStipend}</dd>
+          <dd class="label order-3 mt-1 text-[11px] text-faint">Median \${batch.stats.medianStipend}</dd>
+        </div>
+      \`;
+    }
+
+    // Chips
+    const chipsEl = document.getElementById('pay-chips-bar');
+    if (chipsEl) {
+      chipsEl.innerHTML = \`
+        <span class="chip text-fg">
+          <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="4 4"></line></svg>
+          Median \${batch.stats.medianCTC}
+        </span>
+        <span class="chip text-fg">
+          <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="1 3"></line></svg>
+          Average \${batch.stats.averageCTC}
+        </span>
+        <span class="chip text-muted">
+          <svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"></circle></svg>
+          \${companies.length} recruiting companies with selections
+        </span>
+      \`;
+    }
+
+    // Tiers Grid
+    const tiersEl = document.getElementById('pay-tiers-grid');
+    if (tiersEl) {
+      if (is2028) {
+        tiersEl.innerHTML = \`
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Tier 1</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Marquee Graduate</h4>
+            <p class="text-[13px] text-muted mt-1">₹15.05 LPA</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">9 offers</span>
+              <span class="label text-[12px] text-muted">Barclays Dev</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Tier 2</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Premier Summer Intern</h4>
+            <p class="text-[13px] text-muted mt-1">₹75,000 / month</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">16 offers</span>
+              <span class="label text-[12px] text-muted">Barclays Intern</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Tier 3</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Global Fintech & Quant</h4>
+            <p class="text-[13px] text-muted mt-1">₹50k – ₹60k / mo</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">14 offers</span>
+              <span class="label text-[12px] text-muted">Mastercard, Russell</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Tier 4</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Enterprise Tech</h4>
+            <p class="text-[13px] text-muted mt-1">₹40k – ₹45k / mo</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">11 offers</span>
+              <span class="label text-[12px] text-muted">General Mills, IBM</span>
+            </div>
+          </div>
+        \`;
+      } else {
+        tiersEl.innerHTML = \`
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Tier 1</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Super Dream</h4>
+            <p class="text-[13px] text-muted mt-1">&gt; ₹20 LPA</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">6 offers</span>
+              <span class="label text-[12px] text-muted">PhonePe (₹33.5L)</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Tier 2</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Dream Tier</h4>
+            <p class="text-[13px] text-muted mt-1">₹14 – ₹20 LPA</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">93 offers</span>
+              <span class="label text-[12px] text-muted">Barclays, BlackRock, ISS</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Tier 3</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Core Tech</h4>
+            <p class="text-[13px] text-muted mt-1">₹10 – ₹14 LPA</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">65 offers</span>
+              <span class="label text-[12px] text-muted">UBS, Capgemini, InCred</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Tier 4</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Standard</h4>
+            <p class="text-[13px] text-muted mt-1">&lt; ₹10 LPA</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">71 offers</span>
+              <span class="label text-[12px] text-muted">GEP, TransUnion, Wissen</span>
+            </div>
+          </div>
+        \`;
+      }
+    }
+
+    // Pay Directory Table
+    const searchInput = document.getElementById('pay-search');
+    const tableBody = document.getElementById('pay-table-body');
+
+    function renderPayTable(query = '') {
+      const q = query.toLowerCase();
+      const filtered = companies.filter(c => 
+        c.name.toLowerCase().includes(q) || 
+        (c.branches && c.branches.toLowerCase().includes(q)) ||
+        (c.pay && c.pay.toLowerCase().includes(q)) ||
+        (c.roles && c.roles.some(r => r.title.toLowerCase().includes(q) || (r.stipend && r.stipend.toLowerCase().includes(q))))
+      );
+
+      tableBody.innerHTML = filtered.map(c => {
+        let chips = '';
+        if (c.offers?.includes('internship')) chips += '<span class="chip"><i class="dot" style="background:var(--color-intern)"></i>Intern</span>';
+        if (c.offers?.includes('fulltime')) chips += '<span class="chip"><i class="dot" style="background:var(--color-fulltime)"></i>Full-time</span>';
+        if (c.offers?.includes('ppo')) chips += '<span class="chip"><i class="dot" style="background:var(--color-ppo)"></i>PPO</span>';
+
+        const stipendStr = c.roles?.find(r => r.stipend)?.stipend || '—';
+
+        return \`
+          <tr class="hover:bg-panel transition-colors">
+            <td class="py-4 pr-4">
+              <a href="/companies/company.html?slug=\${c.slug}\${is2028 ? '&batch=2028' : ''}" class="flex items-center gap-3 font-medium text-fg hover:underline">
+                \${c.logo ? '<img src="' + c.logo + '" class="size-6 object-contain rounded" />' : ''}
+                \${c.name}
+              </a>
+            </td>
+            <td class="py-4 px-4"><div class="flex gap-1.5">\${chips}</div></td>
+            <td class="py-4 px-4 num font-semibold text-fg">\${c.pay || 'Competitive'}</td>
+            <td class="py-4 px-4 num text-muted">\${stipendStr}</td>
+            <td class="py-4 px-4 num text-fg font-medium">\${c.out?.students || 0} placed</td>
+            <td class="py-4 pl-4 text-muted">\${c.branches || 'All branches open'}</td>
+          </tr>
+        \`;
+      }).join('');
+    }
+
+    searchInput?.addEventListener('input', (e) => renderPayTable(e.target.value));
+    renderPayTable();
+  `;
+
+  const html = pageTemplate({
+    title: `Pay · Placed · ${siteConfig.collegeShort}`,
+    activePath: '/pay/',
+    content,
+    extraScript
+  });
+
+  fs.writeFileSync('pay/index.html', html);
+  console.log('pay/index.html created successfully with Multi-Batch support!');
+}
+
+generatePayPage();

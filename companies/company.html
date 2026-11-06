@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-bg text-fg CWomsa_variable Z1YhAq_variable _0T2Ldq_variable">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Company Details · Placed · SPIT</title>
+  <meta name="description" content="Campus recruitment, roles, pay and selection analytics." />
+  <meta name="theme-color" content="#000000" />
+  
+  <!-- Google Fonts Preconnect & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..700&display=swap" rel="stylesheet" />
+
+  <!-- Local Font Preloads -->
+  <link rel="preload" href="/fonts/FunnelDisplay-s.p.2xty_ze311ap2.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/fonts/Geist-s.p.2xgg6xh-upisd.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/fonts/GeistMono-s.p.1r21m8mjt8-gs.woff2" as="font" type="font/woff2" crossorigin="" />
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  
+</head>
+<body class="min-h-full bg-bg font-sans text-fg antialiased flex flex-col justify-between selection:bg-fg selection:text-bg">
+  <div id="site-header-root"></div>
+
+  <main class="flex-1">
+    
+    <div class="wrap pb-16 pt-[clamp(40px,6vw,80px)]">
+      <!-- Breadcrumb navigation -->
+      <nav aria-label="Breadcrumb" class="label mb-8 flex items-center gap-2 text-[13px] text-muted">
+        <a href="/" class="hover:text-fg transition-colors">Home</a>
+        <span>/</span>
+        <a id="breadcrumb-companies-link" href="/companies/" class="hover:text-fg transition-colors">Companies</a>
+        <span>/</span>
+        <span id="breadcrumb-company-name" class="text-fg font-medium">Company Details</span>
+      </nav>
+
+      <div id="company-loading" class="py-20 text-center text-muted">
+        Loading company details...
+      </div>
+
+      <div id="company-content" class="hidden">
+        <!-- Company Header Section -->
+        <header class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between border-b border-line pb-8">
+          <div class="flex items-center gap-5">
+            <div id="company-logo-container" class="size-16 sm:size-20 shrink-0 rounded-2xl border border-line-strong bg-panel p-2 flex items-center justify-center overflow-hidden">
+              <!-- Company Logo -->
+            </div>
+            <div>
+              <div class="flex items-center gap-3">
+                <h1 id="company-title" class="display-l leading-none"></h1>
+                <span id="company-batch-pill" class="chip text-fg font-mono text-[11px]">Batch '27</span>
+              </div>
+              <div id="company-chips" class="mt-3 flex flex-wrap gap-2">
+                <!-- Chips -->
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <a id="back-to-companies-btn" class="label rounded-full border border-line-strong px-4 py-2 text-muted transition-colors hover:border-fg hover:text-fg" href="/companies/">
+              ← Back to Companies
+            </a>
+          </div>
+        </header>
+
+        <!-- 5-Column Stats Grid -->
+        <dl id="company-stats-grid" class="mt-12 grid grid-cols-2 border-t border-line sm:grid-cols-5">
+          <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5 sm:first:pl-0">
+            <dt class="order-2 mt-2 text-muted text-[13px]">Advertised Pay</dt>
+            <dd id="stat-pay" class="num order-1 font-display text-[clamp(26px,2.5vw,40px)] leading-none text-fg"></dd>
+            <dd id="stat-pay-kind" class="label order-3 mt-1 text-[11px] text-faint"></dd>
+          </div>
+          <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
+            <dt class="order-2 mt-2 text-muted text-[13px]">Full-time / PPO</dt>
+            <dd id="stat-fulltime" class="num order-1 font-display text-[clamp(26px,2.5vw,40px)] leading-none text-fg"></dd>
+            <dd id="stat-ppo" class="label order-3 mt-1 text-[11px] text-faint"></dd>
+          </div>
+          <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
+            <dt class="order-2 mt-2 text-muted text-[13px]">Internships</dt>
+            <dd id="stat-interns" class="num order-1 font-display text-[clamp(26px,2.5vw,40px)] leading-none text-fg"></dd>
+            <dd class="label order-3 mt-1 text-[11px] text-faint">Students selected</dd>
+          </div>
+          <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
+            <dt class="order-2 mt-2 text-muted text-[13px]">Total Offers</dt>
+            <dd id="stat-total" class="num order-1 font-display text-[clamp(26px,2.5vw,40px)] leading-none text-fg"></dd>
+            <dd id="stat-cohort-label" class="label order-3 mt-1 text-[11px] text-faint">Cohort Selections</dd>
+          </div>
+          <div class="flex flex-col py-5 pr-4 sm:px-5">
+            <dt class="order-2 mt-2 text-muted text-[13px]">Branch Criteria</dt>
+            <dd id="stat-branches" class="num order-1 font-display text-[18px] sm:text-[20px] leading-tight text-fg truncate"></dd>
+            <dd class="label order-3 mt-1 text-[11px] text-faint">Open branches</dd>
+          </div>
+        </dl>
+
+        <!-- Recruitment Drives & Roles Breakdown -->
+        <section class="mt-16">
+          <div class="border-t border-line pt-6">
+            <p class="label text-faint">Roles & Details</p>
+            <h2 class="display-m mt-2">Roles, Compensation & Notes</h2>
+          </div>
+
+          <div id="company-roles-list" class="mt-8 grid gap-4">
+            <!-- Dynamic role cards -->
+          </div>
+        </section>
+
+        <!-- Selection Stages / Funnel -->
+        <section class="mt-16">
+          <div class="border-t border-line pt-6">
+            <p class="label text-faint">Selectivity</p>
+            <h2 class="display-m mt-2">Recruitment Funnel & Selection Stages</h2>
+          </div>
+
+          <div id="company-funnel" class="mt-8 rounded-3xl border border-line-strong bg-panel p-6 sm:p-8">
+            <!-- Dynamic funnel bars -->
+          </div>
+        </section>
+      </div>
+
+      <div id="company-not-found" class="hidden py-24 text-center">
+        <h2 class="display-m">Company not found</h2>
+        <p class="mt-4 text-muted">The requested company record could not be found.</p>
+        <a class="label mt-8 inline-block rounded-full bg-fg px-5 py-3 text-bg" href="/companies/">Browse all companies</a>
+      </div>
+    </div>
+  
+  </main>
+
+  <div id="site-footer-root"></div>
+  <div id="story-modal-root"></div>
+
+  <!-- Shared Application Scripts -->
+  <script type="module">
+    import { siteConfig } from '/src/config/site.js';
+    import { renderHeader, initHeader } from '/src/components/header.js';
+    import { renderFooter, initFooter } from '/src/components/footer.js';
+    import { renderStoryModal, initStoryModal } from '/src/components/story-modal.js';
+
+    document.getElementById('site-header-root').innerHTML = renderHeader('/companies/');
+    document.getElementById('site-footer-root').innerHTML = renderFooter();
+    document.getElementById('story-modal-root').innerHTML = renderStoryModal();
+
+    initHeader();
+    initFooter();
+    initStoryModal();
+
+    
+    import { getActiveBatchData, getBatchKey, allBatches } from '/src/data/batches.js';
+
+    const params = new URLSearchParams(window.location.search);
+    const slug = (params.get('slug') || '').toLowerCase().trim();
+    const batchParam = params.get('batch');
+    
+    // Choose active batch from URL param or global
+    const currentBatch = batchParam === '2028' || batchParam === '2027' ? batchParam : getBatchKey();
+    const batchData = allBatches[currentBatch] || getActiveBatchData();
+    const is2028 = currentBatch === '2028';
+
+    // Find company in current batch first, then in alternate batch as fallback
+    let company = batchData.companies.find(c => c.slug.toLowerCase() === slug);
+    let matchedBatchYear = currentBatch;
+    if (!company) {
+      const altYear = currentBatch === '2028' ? '2027' : '2028';
+      company = allBatches[altYear]?.companies.find(c => c.slug.toLowerCase() === slug);
+      if (company) matchedBatchYear = altYear;
+    }
+
+    const loadingEl = document.getElementById('company-loading');
+    const contentEl = document.getElementById('company-content');
+    const notFoundEl = document.getElementById('company-not-found');
+
+    if (!company) {
+      loadingEl?.classList.add('hidden');
+      notFoundEl?.classList.remove('hidden');
+    } else {
+      loadingEl?.classList.add('hidden');
+      contentEl?.classList.remove('hidden');
+
+      document.title = company.name + ' · Placed ’' + matchedBatchYear.slice(2) + ' · SPIT';
+
+      // Breadcrumb & Links
+      const bcLink = document.getElementById('breadcrumb-companies-link');
+      const backBtn = document.getElementById('back-to-companies-btn');
+      const targetHref = matchedBatchYear === '2028' ? '/companies/?batch=2028' : '/companies/';
+      if (bcLink) bcLink.href = targetHref;
+      if (backBtn) backBtn.href = targetHref;
+
+      const bcName = document.getElementById('breadcrumb-company-name');
+      if (bcName) bcName.textContent = company.name;
+
+      // Title & Logo
+      document.getElementById('company-title').textContent = company.name;
+      const batchPill = document.getElementById('company-batch-pill');
+      if (batchPill) {
+        batchPill.textContent = "Batch '" + matchedBatchYear.slice(2);
+      }
+
+      const logoContainer = document.getElementById('company-logo-container');
+      if (company.logo) {
+        logoContainer.innerHTML = '<img alt="' + company.name + '" src="' + company.logo + '" class="size-full object-contain" />';
+      } else {
+        logoContainer.innerHTML = '<span class="font-display text-[24px] font-bold text-muted">' + company.name.charAt(0) + '</span>';
+      }
+
+      // Chips
+      const chipsEl = document.getElementById('company-chips');
+      let chips = '';
+      if (company.offers?.includes('internship')) chips += '<span class="chip"><i class="dot" style="background:var(--color-intern)"></i>Internship</span>';
+      if (company.offers?.includes('fulltime')) chips += '<span class="chip"><i class="dot" style="background:var(--color-fulltime)"></i>Full-time</span>';
+      if (company.offers?.includes('ppo')) chips += '<span class="chip"><i class="dot" style="background:var(--color-ppo)"></i>PPO</span>';
+      chips += '<span class="chip text-muted">' + (company.status || 'Active') + '</span>';
+      chipsEl.innerHTML = chips;
+
+      // Stats
+      document.getElementById('stat-pay').textContent = company.pay || 'Competitive';
+      document.getElementById('stat-pay-kind').textContent = company.payKind === 'Stipend' ? 'Monthly Stipend' : 'Annual CTC';
+      
+      document.getElementById('stat-fulltime').textContent = company.out?.fulltimeOffers || 0;
+      document.getElementById('stat-ppo').textContent = (company.out?.ppo || 0) + ' PPO conversions';
+
+      document.getElementById('stat-interns').textContent = company.out?.internships || 0;
+      document.getElementById('stat-total').textContent = company.out?.students || 0;
+      
+      const cohortLabel = document.getElementById('stat-cohort-label');
+      if (cohortLabel) cohortLabel.textContent = "Batch '" + matchedBatchYear.slice(2) + " offers";
+
+      document.getElementById('stat-branches').textContent = company.branches || 'All branches open';
+
+      // Roles
+      const rolesEl = document.getElementById('company-roles-list');
+      if (company.roles && company.roles.length > 0) {
+        rolesEl.innerHTML = company.roles.map(r => `
+          <div class="rounded-2xl border border-line-strong bg-panel p-5 flex flex-col justify-between gap-4">
+            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+              <div>
+                <div class="flex items-center gap-2.5">
+                  <span class="chip"><i class="dot" style="background:${r.type === 'internship' ? 'var(--color-intern)' : 'var(--color-fulltime)'}"></i>${r.type === 'internship' ? 'Internship' : (r.type === 'both' ? 'Intern + Full-time' : 'Full-time')}</span>
+                  <h3 class="font-display text-[18px] text-fg font-medium">${r.title}</h3>
+                </div>
+                ${r.notes ? '<p class="mt-2 text-[13px] text-muted italic">Note: ' + r.notes + '</p>' : ''}
+              </div>
+              <div class="text-right shrink-0">
+                <span class="num font-display text-[22px] text-fg font-semibold block">${r.ctc || 'Competitive'}</span>
+                ${r.stipend ? '<span class="label block text-[12px] text-muted mt-0.5">Stipend: ' + r.stipend + '</span>' : ''}
+                <span class="label block text-[11px] text-faint mt-1">${r.count} offers confirmed</span>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      } else {
+        rolesEl.innerHTML = '<p class="text-muted">Standard campus roles advertised.</p>';
+      }
+
+      // Funnel
+      const funnelEl = document.getElementById('company-funnel');
+      if (company.stages && company.stages.length > 0) {
+        const maxVal = company.stages[0].count || 100;
+        funnelEl.innerHTML = `
+          <div class="grid gap-4">
+            ${company.stages.map(s => {
+              const pct = Math.max(Math.round((s.count / maxVal) * 100), 5);
+              return `
+                <div class="grid grid-cols-[10rem_1fr_4rem] sm:grid-cols-[16rem_1fr_4rem] items-center gap-4 text-[14px]">
+                  <span class="truncate text-muted">${s.name}</span>
+                  <div class="h-3 w-full bg-line rounded-full overflow-hidden">
+                    <div class="h-full bg-fg rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+                  </div>
+                  <span class="num text-right font-medium text-fg">${s.count}</span>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      }
+    }
+  
+  </script>
+</body>
+</html>

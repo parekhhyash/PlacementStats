@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-bg text-fg CWomsa_variable Z1YhAq_variable _0T2Ldq_variable">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Give Feedback · Placed ’27 · SPIT</title>
+  <meta name="description" content="Campus recruitment, roles, pay and selection analytics." />
+  <meta name="theme-color" content="#000000" />
+  
+  <!-- Google Fonts Preconnect & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..700&display=swap" rel="stylesheet" />
+
+  <!-- Local Font Preloads -->
+  <link rel="preload" href="/fonts/FunnelDisplay-s.p.2xty_ze311ap2.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/fonts/Geist-s.p.2xgg6xh-upisd.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/fonts/GeistMono-s.p.1r21m8mjt8-gs.woff2" as="font" type="font/woff2" crossorigin="" />
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  
+</head>
+<body class="min-h-full bg-bg font-sans text-fg antialiased flex flex-col justify-between selection:bg-fg selection:text-bg">
+  <div id="site-header-root"></div>
+
+  <main class="flex-1">
+    
+    <section class="wrap pb-16 pt-[clamp(48px,8vw,112px)] max-w-[680px]">
+      <p class="label text-muted">Community Feedback</p>
+      <h1 class="display-l mt-4">Give feedback.</h1>
+      <p class="mt-4 text-[16px] text-muted">Rate the site, tell us what metrics you want to see, or suggest new features for SPIT placement portal. Submissions are anonymous.</p>
+
+      <form id="feedback-form" class="mt-10 grid gap-6">
+        <div>
+          <label class="label text-faint block mb-2">How helpful do you find this dashboard?</label>
+          <div class="flex gap-3">
+            
+              <label class="flex-1 text-center py-3 rounded-xl border border-line-strong bg-panel cursor-pointer hover:border-fg transition-colors">
+                <input type="radio" name="rating" value="1" class="sr-only" />
+                <span class="font-display text-[18px] text-fg font-medium">1</span>
+              </label>
+            
+              <label class="flex-1 text-center py-3 rounded-xl border border-line-strong bg-panel cursor-pointer hover:border-fg transition-colors">
+                <input type="radio" name="rating" value="2" class="sr-only" />
+                <span class="font-display text-[18px] text-fg font-medium">2</span>
+              </label>
+            
+              <label class="flex-1 text-center py-3 rounded-xl border border-line-strong bg-panel cursor-pointer hover:border-fg transition-colors">
+                <input type="radio" name="rating" value="3" class="sr-only" />
+                <span class="font-display text-[18px] text-fg font-medium">3</span>
+              </label>
+            
+              <label class="flex-1 text-center py-3 rounded-xl border border-line-strong bg-panel cursor-pointer hover:border-fg transition-colors">
+                <input type="radio" name="rating" value="4" class="sr-only" />
+                <span class="font-display text-[18px] text-fg font-medium">4</span>
+              </label>
+            
+              <label class="flex-1 text-center py-3 rounded-xl border border-line-strong bg-panel cursor-pointer hover:border-fg transition-colors">
+                <input type="radio" name="rating" value="5" class="sr-only" />
+                <span class="font-display text-[18px] text-fg font-medium">5</span>
+              </label>
+            
+          </div>
+        </div>
+
+        <div>
+          <label class="label text-faint block mb-2">What could be improved or added?</label>
+          <textarea rows="4" placeholder="Tell us your suggestions or requested features..." class="w-full rounded-2xl border border-line-strong bg-panel p-4 text-[14px] text-fg outline-none focus:border-fg transition-colors placeholder:text-faint"></textarea>
+        </div>
+
+        <div>
+          <label class="label text-faint block mb-2">Your branch (optional)</label>
+          <select class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors">
+            <option value="">Select branch</option>
+            <option value="CSE">Computer Engineering (CSE)</option>
+            <option value="IT">Information Technology (IT)</option>
+            <option value="EXTC">Electronics & Telecom (EXTC)</option>
+            <option value="AIDS">AI & Data Science (AI & DS)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="label rounded-full bg-fg py-3.5 text-bg font-medium transition-opacity hover:opacity-90 cursor-pointer">
+          Submit Feedback
+        </button>
+        <p id="feedback-success" class="hidden text-center text-intern text-[14px]">Thank you! Your feedback has been recorded.</p>
+      </form>
+    </section>
+  
+  </main>
+
+  <div id="site-footer-root"></div>
+  <div id="story-modal-root"></div>
+
+  <!-- Shared Application Scripts -->
+  <script type="module">
+    import { siteConfig } from '/src/config/site.js';
+    import { renderHeader, initHeader } from '/src/components/header.js';
+    import { renderFooter, initFooter } from '/src/components/footer.js';
+    import { renderStoryModal, initStoryModal } from '/src/components/story-modal.js';
+
+    document.getElementById('site-header-root').innerHTML = renderHeader('/feedback/');
+    document.getElementById('site-footer-root').innerHTML = renderFooter();
+    document.getElementById('story-modal-root').innerHTML = renderStoryModal();
+
+    initHeader();
+    initFooter();
+    initStoryModal();
+
+    
+    const form = document.getElementById('feedback-form');
+    const success = document.getElementById('feedback-success');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      success?.classList.remove('hidden');
+      form.reset();
+    });
+  
+  </script>
+</body>
+</html>
