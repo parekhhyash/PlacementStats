@@ -219,47 +219,89 @@
     // Headline metrics
     const headlineEl = document.getElementById('pay-headline-metrics');
     if (headlineEl) {
-      headlineEl.innerHTML = `
-        <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5 sm:first:pl-0">
-          <dt class="order-2 mt-2 text-muted text-[13px]">Average CTC</dt>
-          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">${batch.stats.averageCTC}</dd>
-          <dd class="label order-3 mt-1 text-[11px] text-faint">Median ${batch.stats.medianCTC} · ${companies.length} companies</dd>
-        </div>
-        <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
-          <dt class="order-2 mt-2 text-muted text-[13px]">Highest Compensation</dt>
-          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">${batch.stats.highestCTC}</dd>
-          <dd class="label order-3 mt-1 text-[11px] text-faint">${is2028 ? 'Barclays Developer' : 'PhonePe SDE'}</dd>
-        </div>
-        <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
-          <dt class="order-2 mt-2 text-muted text-[13px]">Highest Stipend</dt>
-          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">${batch.stats.highestStipend}</dd>
-          <dd class="label order-3 mt-1 text-[11px] text-faint">${is2028 ? 'Barclays Summer Intern' : 'JPMC (CTC Risk)'}</dd>
-        </div>
-        <div class="flex flex-col py-5 pr-4 sm:px-5">
-          <dt class="order-2 mt-2 text-muted text-[13px]">Average Stipend</dt>
-          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">${batch.stats.averageStipend}</dd>
-          <dd class="label order-3 mt-1 text-[11px] text-faint">Median ${batch.stats.medianStipend}</dd>
-        </div>
-      `;
+      if (is2028) {
+        headlineEl.innerHTML = `
+          <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5 sm:first:pl-0">
+            <dt class="order-2 mt-2 text-muted text-[13px]">Highest Stipend</dt>
+            <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">${batch.stats.highestStipend}</dd>
+            <dd class="label order-3 mt-1 text-[11px] text-faint">Barclays Summer Intern</dd>
+          </div>
+          <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
+            <dt class="order-2 mt-2 text-muted text-[13px]">Median Stipend</dt>
+            <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">${batch.stats.medianStipend}</dd>
+            <dd class="label order-3 mt-1 text-[11px] text-faint">${companies.length} companies recruiting</dd>
+          </div>
+          <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
+            <dt class="order-2 mt-2 text-muted text-[13px]">Average Stipend</dt>
+            <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">${batch.stats.averageStipend}</dd>
+            <dd class="label order-3 mt-1 text-[11px] text-faint">Company mean stipend</dd>
+          </div>
+          <div class="flex flex-col py-5 pr-4 sm:px-5">
+            <dt class="order-2 mt-2 text-muted text-[13px]">Total Summer Offers</dt>
+            <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">${batch.stats.internshipsCount}</dd>
+            <dd class="label order-3 mt-1 text-[11px] text-faint">100% Summer Internship</dd>
+          </div>
+        `;
+      } else {
+        headlineEl.innerHTML = `
+          <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5 sm:first:pl-0">
+            <dt class="order-2 mt-2 text-muted text-[13px]">Average CTC</dt>
+            <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">${batch.stats.averageCTC}</dd>
+            <dd class="label order-3 mt-1 text-[11px] text-faint">Median ${batch.stats.medianCTC} · ${companies.length} companies</dd>
+          </div>
+          <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
+            <dt class="order-2 mt-2 text-muted text-[13px]">Highest Compensation</dt>
+            <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">${batch.stats.highestCTC}</dd>
+            <dd class="label order-3 mt-1 text-[11px] text-faint">PhonePe SDE</dd>
+          </div>
+          <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
+            <dt class="order-2 mt-2 text-muted text-[13px]">Highest Stipend</dt>
+            <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">${batch.stats.highestStipend}</dd>
+            <dd class="label order-3 mt-1 text-[11px] text-faint">JPMC (CTC Risk)</dd>
+          </div>
+          <div class="flex flex-col py-5 pr-4 sm:px-5">
+            <dt class="order-2 mt-2 text-muted text-[13px]">Average Stipend</dt>
+            <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight">${batch.stats.averageStipend}</dd>
+            <dd class="label order-3 mt-1 text-[11px] text-faint">Median ${batch.stats.medianStipend}</dd>
+          </div>
+        `;
+      }
     }
 
     // Chips
     const chipsEl = document.getElementById('pay-chips-bar');
     if (chipsEl) {
-      chipsEl.innerHTML = `
-        <span class="chip text-fg">
-          <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="4 4"></line></svg>
-          Median ${batch.stats.medianCTC}
-        </span>
-        <span class="chip text-fg">
-          <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="1 3"></line></svg>
-          Average ${batch.stats.averageCTC}
-        </span>
-        <span class="chip text-muted">
-          <svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"></circle></svg>
-          ${companies.length} recruiting companies with selections
-        </span>
-      `;
+      if (is2028) {
+        chipsEl.innerHTML = `
+          <span class="chip text-fg">
+            <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="4 4"></line></svg>
+            Median Stipend ${batch.stats.medianStipend}
+          </span>
+          <span class="chip text-fg">
+            <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="1 3"></line></svg>
+            Average Stipend ${batch.stats.averageStipend}
+          </span>
+          <span class="chip text-muted">
+            <svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"></circle></svg>
+            ${companies.length} recruiting companies · 100% Summer Internships
+          </span>
+        `;
+      } else {
+        chipsEl.innerHTML = `
+          <span class="chip text-fg">
+            <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="4 4"></line></svg>
+            Median ${batch.stats.medianCTC}
+          </span>
+          <span class="chip text-fg">
+            <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="1 3"></line></svg>
+            Average ${batch.stats.averageCTC}
+          </span>
+          <span class="chip text-muted">
+            <svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"></circle></svg>
+            ${companies.length} recruiting companies with selections
+          </span>
+        `;
+      }
     }
 
     // Tiers Grid
@@ -269,38 +311,38 @@
         tiersEl.innerHTML = `
           <div class="rounded-2xl border border-line bg-panel p-5">
             <span class="label text-faint">Tier 1</span>
-            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Marquee Graduate</h4>
-            <p class="text-[13px] text-muted mt-1">₹15.05 LPA</p>
-            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
-              <span class="num text-[28px] font-bold text-fg">9 offers</span>
-              <span class="label text-[12px] text-muted">Barclays Dev</span>
-            </div>
-          </div>
-          <div class="rounded-2xl border border-line bg-panel p-5">
-            <span class="label text-faint">Tier 2</span>
-            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Premier Summer Intern</h4>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">High Stipend</h4>
             <p class="text-[13px] text-muted mt-1">₹75,000 / month</p>
             <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
-              <span class="num text-[28px] font-bold text-fg">16 offers</span>
+              <span class="num text-[28px] font-bold text-fg">25 offers</span>
               <span class="label text-[12px] text-muted">Barclays Intern</span>
             </div>
           </div>
           <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Tier 2</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Quant & Research</h4>
+            <p class="text-[13px] text-muted mt-1">₹60,000 / month</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">5 offers</span>
+              <span class="label text-[12px] text-muted">Russell Investments</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line bg-panel p-5">
             <span class="label text-faint">Tier 3</span>
-            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Global Fintech & Quant</h4>
-            <p class="text-[13px] text-muted mt-1">₹50k – ₹60k / mo</p>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Fintech & Sales</h4>
+            <p class="text-[13px] text-muted mt-1">₹50,000 / month</p>
             <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
               <span class="num text-[28px] font-bold text-fg">14 offers</span>
-              <span class="label text-[12px] text-muted">Mastercard, Russell</span>
+              <span class="label text-[12px] text-muted">Mastercard (9), IBM (5)</span>
             </div>
           </div>
           <div class="rounded-2xl border border-line bg-panel p-5">
             <span class="label text-faint">Tier 4</span>
             <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Enterprise Tech</h4>
-            <p class="text-[13px] text-muted mt-1">₹40k – ₹45k / mo</p>
+            <p class="text-[13px] text-muted mt-1">₹35,000 / month</p>
             <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
-              <span class="num text-[28px] font-bold text-fg">11 offers</span>
-              <span class="label text-[12px] text-muted">General Mills, IBM</span>
+              <span class="num text-[28px] font-bold text-fg">6 offers</span>
+              <span class="label text-[12px] text-muted">General Mills</span>
             </div>
           </div>
         `;

@@ -456,24 +456,45 @@ function generateHomePage() {
     // 6. Pay chips & tiers
     const payChips = document.getElementById('home-pay-chips');
     if (payChips) {
-      payChips.innerHTML = \`
-        <span class="chip text-fg">
-          <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="4 4"></line></svg>
-          Median \${batch.stats.medianCTC}
-        </span>
-        <span class="chip text-fg">
-          <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="1 3"></line></svg>
-          Average \${batch.stats.averageCTC}
-        </span>
-        <span class="chip text-fg">
-          <i class="dot" style="background:var(--color-ppo)"></i>
-          Highest \${batch.stats.highestCTC} \${is2028 ? '(Barclays)' : '(PhonePe)'}
-        </span>
-        <span class="chip text-fg">
-          <i class="dot" style="background:var(--color-intern)"></i>
-          Top Stipend \${batch.stats.highestStipend} \${is2028 ? '(Barclays)' : '(JPMC)'}
-        </span>
-      \`;
+      if (is2028) {
+        payChips.innerHTML = \`
+          <span class="chip text-fg">
+            <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="4 4"></line></svg>
+            Median Stipend \${batch.stats.medianStipend}
+          </span>
+          <span class="chip text-fg">
+            <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="1 3"></line></svg>
+            Average Stipend \${batch.stats.averageStipend}
+          </span>
+          <span class="chip text-fg">
+            <i class="dot" style="background:var(--color-intern)"></i>
+            Top Stipend \${batch.stats.highestStipend} (Barclays)
+          </span>
+          <span class="chip text-muted">
+            <svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"></circle></svg>
+            \${companies.length} recruiting companies · 100% Summer Intern
+          </span>
+        \`;
+      } else {
+        payChips.innerHTML = \`
+          <span class="chip text-fg">
+            <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="4 4"></line></svg>
+            Median \${batch.stats.medianCTC}
+          </span>
+          <span class="chip text-fg">
+            <svg width="18" height="10" aria-hidden="true"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-dasharray="1 3"></line></svg>
+            Average \${batch.stats.averageCTC}
+          </span>
+          <span class="chip text-fg">
+            <i class="dot" style="background:var(--color-ppo)"></i>
+            Highest \${batch.stats.highestCTC} (PhonePe)
+          </span>
+          <span class="chip text-fg">
+            <i class="dot" style="background:var(--color-intern)"></i>
+            Top Stipend \${batch.stats.highestStipend} (JPMC)
+          </span>
+        \`;
+      }
     }
 
     const payTiers = document.getElementById('home-pay-tiers');
@@ -481,39 +502,39 @@ function generateHomePage() {
       if (is2028) {
         payTiers.innerHTML = \`
           <div class="rounded-2xl border border-line bg-panel p-5">
-            <span class="label text-faint">Highest Drive</span>
-            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Barclays Tech</h4>
-            <p class="text-[13px] text-muted mt-1">₹15.05 LPA · ₹75k Stipend</p>
+            <span class="label text-faint">Top Stipend</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Barclays</h4>
+            <p class="text-[13px] text-muted mt-1">₹75,000 / month</p>
             <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
               <span class="num text-[28px] font-bold text-fg">25 offers</span>
-              <span class="label text-[12px] text-muted">16 Intern + 9 Dev</span>
+              <span class="label text-[12px] text-muted">Summer Intern</span>
             </div>
           </div>
           <div class="rounded-2xl border border-line bg-panel p-5">
-            <span class="label text-faint">Dream Intern</span>
-            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Mastercard</h4>
-            <p class="text-[13px] text-muted mt-1">₹50k/mo (13–15 LPA PPO)</p>
+            <span class="label text-faint">Fintech & Quant</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">Mastercard & Russell</h4>
+            <p class="text-[13px] text-muted mt-1">₹50k – ₹60k / mo</p>
             <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
-              <span class="num text-[28px] font-bold text-fg">9 offers</span>
-              <span class="label text-[12px] text-muted">Software Intern</span>
+              <span class="num text-[28px] font-bold text-fg">14 offers</span>
+              <span class="label text-[12px] text-muted">Mastercard: 9 · Russell: 5</span>
             </div>
           </div>
           <div class="rounded-2xl border border-line bg-panel p-5">
-            <span class="label text-faint">Tech & Analytics</span>
+            <span class="label text-faint">Global Sales</span>
+            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">IBM</h4>
+            <p class="text-[13px] text-muted mt-1">₹50,000 / month</p>
+            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
+              <span class="num text-[28px] font-bold text-fg">5 offers</span>
+              <span class="label text-[12px] text-muted">Global Sales Intern</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <span class="label text-faint">Enterprise</span>
             <h4 class="font-display text-[22px] font-semibold text-fg mt-1">General Mills</h4>
-            <p class="text-[13px] text-muted mt-1">₹45k/mo (12–14 LPA PPO)</p>
+            <p class="text-[13px] text-muted mt-1">₹35,000 / month</p>
             <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
               <span class="num text-[28px] font-bold text-fg">6 offers</span>
-              <span class="label text-[12px] text-muted">Software & Data</span>
-            </div>
-          </div>
-          <div class="rounded-2xl border border-line bg-panel p-5">
-            <span class="label text-faint">Core Cloud</span>
-            <h4 class="font-display text-[22px] font-semibold text-fg mt-1">IBM & Russell</h4>
-            <p class="text-[13px] text-muted mt-1">₹40k–₹60k/mo Stipend</p>
-            <div class="mt-4 flex items-baseline justify-between border-t border-line pt-3">
-              <span class="num text-[28px] font-bold text-fg">10 offers</span>
-              <span class="label text-[12px] text-muted">IBM: 5 · Russell: 5</span>
+              <span class="label text-[12px] text-muted">Digital & Tech Intern</span>
             </div>
           </div>
         \`;

@@ -6,23 +6,21 @@ export const companies2028 = [
     "slug": "barclays",
     "name": "Barclays",
     "offers": [
-      "internship",
-      "fulltime",
-      "ppo"
+      "internship"
     ],
     "seasons": [
       "TE"
     ],
-    "pay": "₹15.05 LPA",
-    "payKind": "CTC",
-    "payRank": 1505,
+    "pay": "₹75k / mo",
+    "payKind": "Stipend",
+    "payRank": 7500,
     "dream": true,
     "logo": "/logos/barclays.png",
     "out": {
-      "internships": 16,
-      "fulltimeOffers": 9,
-      "ppo": 16,
-      "newHires": 9,
+      "internships": 25,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
       "students": 25
     },
     "open": "CSE, IT, EXTC, AI & DS",
@@ -30,26 +28,18 @@ export const companies2028 = [
     "cgpa": 7,
     "first": "2026-10-15",
     "last": "2026-10-20",
-    "status": "25 selections (16 Interns + 9 Dev)",
+    "status": "25 summer intern selections",
     "roles": [
       {
         "title": "Summer Internship 2028",
         "type": "internship",
-        "ctc": "PPO Opportunity",
+        "ctc": "—",
         "stipend": "₹75,000 / month",
-        "count": 16,
-        "notes": "16 summer internship selections with full-time PPO pathway"
-      },
-      {
-        "title": "Technology Graduate Developer",
-        "type": "fulltime",
-        "ctc": "15.05 LPA",
-        "stipend": null,
-        "count": 9,
-        "notes": "9 Technology Graduate Developer selections for 2028 cohort"
+        "count": 25,
+        "notes": "25 summer internship selections at ₹75,000/month"
       }
     ],
-    "notes": "Total 25 selections: 16 summer internships + 9 graduate developers",
+    "notes": "25 summer internship selections at ₹75,000/month stipend",
     "stages": [
       {
         "name": "Online Coding Assessment",
@@ -73,21 +63,20 @@ export const companies2028 = [
     "slug": "mastercard",
     "name": "Mastercard",
     "offers": [
-      "internship",
-      "ppo"
+      "internship"
     ],
     "seasons": [
       "TE"
     ],
-    "pay": "₹14.0 LPA",
-    "payKind": "CTC",
-    "payRank": 1400,
+    "pay": "₹50k / mo",
+    "payKind": "Stipend",
+    "payRank": 5000,
     "dream": false,
     "logo": "/logos/mastercard.svg",
     "out": {
       "internships": 9,
       "fulltimeOffers": 0,
-      "ppo": 9,
+      "ppo": 0,
       "newHires": 0,
       "students": 9
     },
@@ -96,18 +85,18 @@ export const companies2028 = [
     "cgpa": 7,
     "first": "2026-10-22",
     "last": "2026-10-25",
-    "status": "9 selections announced",
+    "status": "9 summer intern selections",
     "roles": [
       {
         "title": "Software Engineering Intern",
         "type": "internship",
-        "ctc": "13–15 LPA (on PPO)",
+        "ctc": "—",
         "stipend": "₹50,000 / month",
         "count": 9,
-        "notes": "9 candidates selected for internship with PPO conversion"
+        "notes": "9 candidates selected for summer internship at ₹50,000/month"
       }
     ],
-    "notes": "9 summer internship selections with PPO conversion opportunity",
+    "notes": "9 summer internship selections at ₹50,000/month stipend",
     "stages": [
       {
         "name": "Online Aptitude & Coding Test",
@@ -131,21 +120,20 @@ export const companies2028 = [
     "slug": "general-mills",
     "name": "General Mills",
     "offers": [
-      "internship",
-      "ppo"
+      "internship"
     ],
     "seasons": [
       "TE"
     ],
-    "pay": "₹12.5 LPA",
-    "payKind": "CTC",
-    "payRank": 1250,
+    "pay": "₹35k / mo",
+    "payKind": "Stipend",
+    "payRank": 3500,
     "dream": false,
     "logo": "/logos/general-mills.png",
     "out": {
       "internships": 6,
       "fulltimeOffers": 0,
-      "ppo": 6,
+      "ppo": 0,
       "newHires": 0,
       "students": 6
     },
@@ -154,18 +142,18 @@ export const companies2028 = [
     "cgpa": 6.5,
     "first": "2026-10-26",
     "last": "2026-10-28",
-    "status": "6 selections announced",
+    "status": "6 summer intern selections",
     "roles": [
       {
         "title": "Digital & Technology Intern",
         "type": "internship",
-        "ctc": "12–13 LPA (on PPO)",
-        "stipend": "₹45,000 / month",
+        "ctc": "—",
+        "stipend": "₹35,000 / month",
         "count": 6,
-        "notes": "6 candidates selected across Data & Software tracks"
+        "notes": "6 candidates selected for summer internship at ₹35,000/month"
       }
     ],
-    "notes": "6 selections in Digital & Technology Internship",
+    "notes": "6 summer internship selections at ₹35,000/month stipend",
     "stages": [
       {
         "name": "Online Assessment",
@@ -189,21 +177,20 @@ export const companies2028 = [
     "slug": "ibm",
     "name": "IBM",
     "offers": [
-      "internship",
-      "ppo"
+      "internship"
     ],
     "seasons": [
       "TE"
     ],
-    "pay": "₹13.0 LPA",
-    "payKind": "CTC",
-    "payRank": 1300,
+    "pay": "₹50k / mo",
+    "payKind": "Stipend",
+    "payRank": 5000,
     "dream": false,
     "logo": "/logos/ibm.svg",
     "out": {
       "internships": 5,
       "fulltimeOffers": 0,
-      "ppo": 5,
+      "ppo": 0,
       "newHires": 0,
       "students": 5
     },
@@ -212,21 +199,21 @@ export const companies2028 = [
     "cgpa": 7,
     "first": "2026-10-29",
     "last": "2026-10-31",
-    "status": "5 selections announced",
+    "status": "5 summer intern selections",
     "roles": [
       {
-        "title": "Cloud & Cognitive Software Intern",
+        "title": "Global Sales Intern",
         "type": "internship",
-        "ctc": "12–14 LPA (on PPO)",
-        "stipend": "₹40,000 / month",
+        "ctc": "—",
+        "stipend": "₹50,000 / month",
         "count": 5,
-        "notes": "5 selections in Software Development & Cloud Platforms"
+        "notes": "5 selections for Global Sales Internship at ₹50,000/month"
       }
     ],
-    "notes": "5 summer intern selections in Cloud & Cognitive Software",
+    "notes": "5 summer intern selections for Global Sales Intern at ₹50,000/month stipend",
     "stages": [
       {
-        "name": "Cognitive & Coding Test",
+        "name": "Cognitive & Aptitude Test",
         "count": 160
       },
       {
@@ -254,13 +241,13 @@ export const companies2028 = [
     ],
     "pay": "₹60k / mo",
     "payKind": "Stipend",
-    "payRank": 720,
+    "payRank": 6000,
     "dream": false,
     "logo": "/logos/russell-investments.svg",
     "out": {
       "internships": 5,
       "fulltimeOffers": 0,
-      "ppo": 5,
+      "ppo": 0,
       "newHires": 0,
       "students": 5
     },
@@ -269,18 +256,18 @@ export const companies2028 = [
     "cgpa": 7,
     "first": "2026-11-02",
     "last": "2026-11-04",
-    "status": "5 selections announced",
+    "status": "5 summer intern selections",
     "roles": [
       {
         "title": "Technology & Investment Research Intern",
         "type": "internship",
-        "ctc": "PPO Pathway",
+        "ctc": "—",
         "stipend": "₹60,000 / month",
         "count": 5,
-        "notes": "5 selections in Technology & Investment Research"
+        "notes": "5 selections in Technology & Investment Research at ₹60,000/month"
       }
     ],
-    "notes": "5 summer intern selections in Technology & Research",
+    "notes": "5 summer intern selections in Technology & Research at ₹60,000/month stipend",
     "stages": [
       {
         "name": "Aptitude & Programming Test",

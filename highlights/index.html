@@ -363,25 +363,25 @@
           <dd class="order-3 label mt-2 text-[11px] text-faint">Registered campus drives</dd>
         </div>
 
-        <!-- 6. Highest CTC -->
+        <!-- 6. Highest CTC / Stipend -->
         <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
-          <dt class="order-2 mt-3 text-muted text-[13px]">Highest CTC</dt>
-          <dd class="order-1 num font-display text-[clamp(24px,2.4vw,36px)] leading-none text-fg text-ppo">${highestCTC}</dd>
-          <dd class="order-3 label mt-2 text-[11px] text-faint">${is2028 ? 'Barclays Developer' : 'PhonePe SDE'}</dd>
+          <dt class="order-2 mt-3 text-muted text-[13px]">${is2028 ? 'Highest Stipend' : 'Highest CTC'}</dt>
+          <dd class="order-1 num font-display text-[clamp(24px,2.4vw,36px)] leading-none text-fg text-ppo">${is2028 ? batch.stats?.highestStipend : highestCTC}</dd>
+          <dd class="order-3 label mt-2 text-[11px] text-faint">${is2028 ? 'Barclays Summer Intern' : 'PhonePe SDE'}</dd>
         </div>
 
-        <!-- 7. Average CTC -->
+        <!-- 7. Average CTC / Stipend -->
         <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
-          <dt class="order-2 mt-3 text-muted text-[13px]">Average CTC</dt>
-          <dd class="order-1 num font-display text-[clamp(24px,2.4vw,36px)] leading-none text-fg">${averageCTC}</dd>
-          <dd class="order-3 label mt-2 text-[11px] text-faint">Batch-wide mean CTC</dd>
+          <dt class="order-2 mt-3 text-muted text-[13px]">${is2028 ? 'Average Stipend' : 'Average CTC'}</dt>
+          <dd class="order-1 num font-display text-[clamp(24px,2.4vw,36px)] leading-none text-fg">${is2028 ? batch.stats?.averageStipend : averageCTC}</dd>
+          <dd class="order-3 label mt-2 text-[11px] text-faint">${is2028 ? 'Batch-wide mean stipend' : 'Batch-wide mean CTC'}</dd>
         </div>
 
-        <!-- 8. Median CTC -->
+        <!-- 8. Median CTC / Stipend -->
         <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
-          <dt class="order-2 mt-3 text-muted text-[13px]">Median CTC</dt>
-          <dd class="order-1 num font-display text-[clamp(24px,2.4vw,36px)] leading-none text-fg">${medianCTC}</dd>
-          <dd class="order-3 label mt-2 text-[11px] text-faint">50th percentile CTC</dd>
+          <dt class="order-2 mt-3 text-muted text-[13px]">${is2028 ? 'Median Stipend' : 'Median CTC'}</dt>
+          <dd class="order-1 num font-display text-[clamp(24px,2.4vw,36px)] leading-none text-fg">${is2028 ? batch.stats?.medianStipend : medianCTC}</dd>
+          <dd class="order-3 label mt-2 text-[11px] text-faint">${is2028 ? '50th percentile stipend' : '50th percentile CTC'}</dd>
         </div>
       `;
     }
@@ -392,19 +392,19 @@
       if (is2028) {
         featuredEl.innerHTML = `
           <div class="rounded-2xl border border-line bg-bg/50 p-4">
-            <span class="label text-[11px] text-faint">Highest Package</span>
-            <p class="font-display text-[18px] text-fg mt-1">₹15.05 LPA</p>
-            <p class="text-[12px] text-muted mt-1">Barclays · 9 selections</p>
+            <span class="label text-[11px] text-faint">Drive Format</span>
+            <p class="font-display text-[18px] text-fg mt-1">Summer Interns</p>
+            <p class="text-[12px] text-muted mt-1">100% Summer Internship</p>
           </div>
           <div class="rounded-2xl border border-line bg-bg/50 p-4">
-            <span class="label text-[11px] text-faint">Top Cohort</span>
+            <span class="label text-[11px] text-faint">Top Recruiter</span>
             <p class="font-display text-[18px] text-fg mt-1">25 Offers</p>
-            <p class="text-[12px] text-muted mt-1">Barclays (Intern + Dev)</p>
+            <p class="text-[12px] text-muted mt-1">Barclays Summer Intern</p>
           </div>
           <div class="rounded-2xl border border-line bg-bg/50 p-4">
-            <span class="label text-[11px] text-faint">Payments Fintech</span>
-            <p class="font-display text-[18px] text-fg mt-1">9 Selections</p>
-            <p class="text-[12px] text-muted mt-1">Mastercard @ ₹50k/mo</p>
+            <span class="label text-[11px] text-faint">Payments & Sales</span>
+            <p class="font-display text-[18px] text-fg mt-1">14 Selections</p>
+            <p class="text-[12px] text-muted mt-1">Mastercard & IBM @ ₹50k/mo</p>
           </div>
           <div class="rounded-2xl border border-line bg-bg/50 p-4">
             <span class="label text-[11px] text-faint">Top Stipend</span>

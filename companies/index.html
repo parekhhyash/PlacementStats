@@ -372,15 +372,15 @@
 
     if (is2028) {
       if (statInternships) statInternships.textContent = '5';
-      if (statInternshipsSub) statInternshipsSub.textContent = '4 with a PPO path';
-      if (statFulltime) statFulltime.textContent = '1';
-      if (statFulltimeSub) statFulltimeSub.textContent = '1 dual developer drive';
-      if (statAvgCtc) statAvgCtc.innerHTML = '₹14.05<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
-      if (statAvgCtcSub) statAvgCtcSub.textContent = '5 drives with selections';
-      if (statMedCtc) statMedCtc.innerHTML = '₹14<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
-      if (statMedCtcSub) statMedCtcSub.textContent = 'Range ₹12.5–15.05 LPA';
-      if (statAvgFt) statAvgFt.innerHTML = '₹15.05<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
-      if (statAvgFtSub) statAvgFtSub.textContent = '50 total selections announced';
+      if (statInternshipsSub) statInternshipsSub.textContent = 'All 5 summer intern drives';
+      if (statFulltime) statFulltime.textContent = '0';
+      if (statFulltimeSub) statFulltimeSub.textContent = 'Summer internship phase';
+      if (statAvgCtc) statAvgCtc.innerHTML = '₹54k<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">/mo</span>';
+      if (statAvgCtcSub) statAvgCtcSub.textContent = 'Average monthly stipend';
+      if (statMedCtc) statMedCtc.innerHTML = '₹50k<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">/mo</span>';
+      if (statMedCtcSub) statMedCtcSub.textContent = 'Median monthly stipend';
+      if (statAvgFt) statAvgFt.innerHTML = '50<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">offers</span>';
+      if (statAvgFtSub) statAvgFtSub.textContent = '100% summer internships';
     } else {
       const internCount = companies.filter(c => c.offers && c.offers.includes('internship')).length;
       const ppoCount = companies.filter(c => c.offers && c.offers.includes('ppo')).length;
