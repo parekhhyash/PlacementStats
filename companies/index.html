@@ -374,10 +374,33 @@
       });
 
       // Sorting
+      function getCompanySortPay(c) {
+        if (typeof c.payRank === 'number' && c.payRank > 0 && c.payRank < 10000) {
+          return c.payRank;
+        }
+        const payStr = (c.pay || '').toLowerCase();
+        if (c.payKind === 'Stipend' || payStr.includes('/ mo') || payStr.includes('per month') || payStr.includes('/mo')) {
+          let monthlyLakhs = 0;
+          if (payStr.includes('l')) {
+            const m = payStr.match(/([0-9.]+)/);
+            if (m) monthlyLakhs = parseFloat(m[1]);
+          } else if (payStr.includes('k')) {
+            const m = payStr.match(/([0-9.]+)/);
+            if (m) monthlyLakhs = parseFloat(m[1]) / 100;
+          }
+          return Math.round(monthlyLakhs * 12 * 100);
+        }
+        const lpaM = payStr.match(/([0-9.]+)s*lpa/i) || payStr.match(/([0-9.]+)/);
+        if (lpaM) {
+          return Math.round(parseFloat(lpaM[1]) * 100);
+        }
+        return 0;
+      }
+
       if (sort === 'placed') {
         filtered.sort((a, b) => (b.out?.students || 0) - (a.out?.students || 0));
       } else if (sort === 'pay') {
-        filtered.sort((a, b) => (b.payRank || 0) - (a.payRank || 0));
+        filtered.sort((a, b) => getCompanySortPay(b) - getCompanySortPay(a));
       } else if (sort === 'name') {
         filtered.sort((a, b) => a.name.localeCompare(b.name));
       } else if (sort === 'latest') {

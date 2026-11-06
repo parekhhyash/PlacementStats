@@ -125,14 +125,15 @@ for (const [name, rows] of companyGroups.entries()) {
     const maxStipend = Math.max(...stipendNumbers);
     payDisplay = `₹${(maxStipend / 1000).toLocaleString('en-IN')}k / mo`;
     payKind = 'Stipend';
-    payRank = maxStipend / 10;
+    // User logic: for comparison between per month and lpa ctc use per month * 12
+    payRank = Math.round((maxStipend * 12) / 1000);
   }
 
   // Handle JPMC specifically
   if (slug === 'jpmc') {
     payDisplay = '₹1.60L / mo';
     payKind = 'Stipend';
-    payRank = 16000;
+    payRank = 1920; // 1.60L * 12 = 19.2 LPA equivalent
   }
 
   // Logo detection

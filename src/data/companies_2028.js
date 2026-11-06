@@ -254,7 +254,7 @@ export const companies2028 = [
     ],
     "pay": "₹60k / mo",
     "payKind": "Stipend",
-    "payRank": 6000,
+    "payRank": 720,
     "dream": false,
     "logo": "/logos/russell-investments.svg",
     "out": {

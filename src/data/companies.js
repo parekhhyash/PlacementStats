@@ -16,7 +16,7 @@ export const companies = [
     ],
     "pay": "₹1.60L / mo",
     "payKind": "Stipend",
-    "payRank": 160000,
+    "payRank": 1920,
     "dream": true,
     "logo": "/logos/jpmc.svg",
     "out": {
@@ -111,7 +111,7 @@ export const companies = [
         "title": "Corporate Risk (Global Risk & Compliance Program)",
         "type": "both",
         "count": 10,
-        "ctc": "₹24 LPA",
+        "ctc": "PPO Pathway",
         "stipend": "₹80k / mo",
         "rawCompensation": "Stipend 80k/month + 1L relocation; CTC not declared (est. 18-24 LPA)",
         "visitDate": "PPT 24 Jun, OA 27 Jun, result 3 Jul 2026",
@@ -262,9 +262,9 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "₹75k / mo",
-    "payKind": "Stipend",
-    "payRank": 75000,
+    "pay": "₹15.05 LPA",
+    "payKind": "CTC",
+    "payRank": 1505,
     "dream": true,
     "logo": "/logos/barclays.png",
     "out": {
@@ -699,7 +699,7 @@ export const companies = [
     "pay": "₹9 LPA",
     "payKind": "CTC",
     "payRank": 900,
-    "dream": null,
+    "dream": false,
     "logo": "/logos/gep.svg",
     "out": {
       "internships": 9,
@@ -797,10 +797,10 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "Comp. 14 base + 2 retention (over 2 yrs) as PPO",
+    "pay": "₹14 LPA",
     "payKind": "CTC",
-    "payRank": 1000,
-    "dream": null,
+    "payRank": 1400,
+    "dream": true,
     "logo": "/logos/mahindra-finance.svg",
     "out": {
       "internships": 9,
@@ -824,7 +824,7 @@ export const companies = [
         "title": "Data Analytics (2-month summer intern)",
         "type": "both",
         "count": 9,
-        "ctc": "Comp. 14 base + 2 retention (over 2 yrs) as PPO",
+        "ctc": "₹14 LPA",
         "stipend": null,
         "rawCompensation": "Comp. 14 base + 2 retention (over 2 yrs) as PPO",
         "visitDate": "Not mentioned (summer intern cycle)",
@@ -1117,7 +1117,7 @@ export const companies = [
     ],
     "pay": "₹25k / mo",
     "payKind": "Stipend",
-    "payRank": 25000,
+    "payRank": 300,
     "dream": false,
     "logo": "/logos/colgate-palmolive.svg",
     "out": {
@@ -1309,9 +1309,9 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "₹75k / mo",
-    "payKind": "Stipend",
-    "payRank": 75000,
+    "pay": "₹15.7 LPA",
+    "payKind": "CTC",
+    "payRank": 1570,
     "dream": true,
     "logo": "/logos/nomura.svg",
     "out": {
@@ -1336,7 +1336,7 @@ export const companies = [
         "title": "Global Markets - Electronic Trading Product Mgmt Intern",
         "type": "both",
         "count": 1,
-        "ctc": "PPO Pathway",
+        "ctc": "₹13.9 LPA",
         "stipend": "₹75k / mo",
         "rawCompensation": "Stipend 75k/month; CTC 13.9L (12.45L fixed)",
         "visitDate": "14 Jul 2026",
@@ -1556,7 +1556,7 @@ export const companies = [
     ],
     "pay": "₹60k / mo",
     "payKind": "Stipend",
-    "payRank": 60000,
+    "payRank": 720,
     "dream": false,
     "logo": "/logos/russell-investments.svg",
     "out": {
@@ -2149,7 +2149,7 @@ export const companies = [
     "pay": "₹13 LPA",
     "payKind": "CTC",
     "payRank": 1300,
-    "dream": null,
+    "dream": false,
     "logo": "/logos/capgemini.png",
     "out": {
       "internships": 0,
@@ -2333,7 +2333,7 @@ export const companies = [
     "pay": "₹12 LPA",
     "payKind": "CTC",
     "payRank": 1200,
-    "dream": null,
+    "dream": false,
     "logo": "/logos/aspect-ratio.png",
     "out": {
       "internships": 0,
@@ -2415,7 +2415,7 @@ export const companies = [
     ],
     "pay": "₹30k / mo",
     "payKind": "Stipend",
-    "payRank": 30000,
+    "payRank": 360,
     "dream": false,
     "logo": "/logos/bny.png",
     "out": {
@@ -2743,7 +2743,7 @@ export const companies = [
     ],
     "pay": "₹50k / mo",
     "payKind": "Stipend",
-    "payRank": 50000,
+    "payRank": 600,
     "dream": false,
     "logo": "/logos/pfizer.svg",
     "out": {
@@ -2827,7 +2827,7 @@ export const companies = [
     "pay": "₹8.23 LPA",
     "payKind": "CTC",
     "payRank": 823,
-    "dream": null,
+    "dream": false,
     "logo": "/logos/axis-mutual-fund.svg",
     "out": {
       "internships": 0,

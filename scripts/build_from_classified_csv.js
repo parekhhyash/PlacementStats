@@ -66,16 +66,30 @@ function parseCompensation(str) {
   }
 
   // Check CTC
-  if (str.includes('8,22,651')) ctcVal = 8.23;
-  else {
-    const ctcMatch = str.match(/CTC\s*(?:~|Rs\s*)?\s*([0-9.]+)(?:\s*[–-]\s*([0-9.]+))?\s*LPA/i) || str.match(/([0-9.]+)\s*LPA/i) || str.match(/([0-9.]+)L\s*\(fixed\)/i);
+  if (/CTC\s+not\s+(declared|disclosed)/i.test(str)) {
+    ctcVal = null;
+  } else if (str.includes('8,22,651')) {
+    ctcVal = 8.23;
+  } else if (/Comp\.\s*(\d+)\s*base/i.test(str)) {
+    const m = str.match(/Comp\.\s*(\d+)\s*base/i);
+    ctcVal = m ? parseFloat(m[1]) : 14;
+  } else {
+    const ctcMatch = str.match(/CTC\s*(?:~|Rs\s*)?\s*([0-9.]+)(?:\s*[–-]\s*([0-9.]+))?\s*LPA/i) || 
+                     str.match(/([0-9.]+)\s*LPA/i) || 
+                     str.match(/([0-9.]+)L\s*\(fixed\)/i) ||
+                     str.match(/CTC\s*([0-9.]+)L/i);
     if (ctcMatch) {
       if (ctcMatch[2]) ctcVal = (parseFloat(ctcMatch[1]) + parseFloat(ctcMatch[2])) / 2;
       else ctcVal = parseFloat(ctcMatch[1]);
     }
   }
 
-  if (ctcVal) {
+  if (ctcVal && stipendVal) {
+    displayPay = `₹${ctcVal} LPA`;
+    payKind = 'CTC';
+    const stipAnnual = (stipendVal * 12) / 100000;
+    payRank = Math.round(Math.max(ctcVal, stipAnnual) * 100);
+  } else if (ctcVal) {
     displayPay = `₹${ctcVal} LPA`;
     payKind = 'CTC';
     payRank = Math.round(ctcVal * 100);
@@ -83,7 +97,9 @@ function parseCompensation(str) {
     if (stipendVal >= 100000) displayPay = `₹${(stipendVal / 100000).toFixed(2).replace(/\.00$/, '')}L / mo`;
     else displayPay = `₹${Math.round(stipendVal / 1000)}k / mo`;
     payKind = 'Stipend';
-    payRank = stipendVal;
+    // User logic: for comparison between per month and lpa ctc use per month * 12
+    const stipAnnual = (stipendVal * 12) / 100000;
+    payRank = Math.round(stipAnnual * 100);
   }
 
   return { displayPay, payKind, payRank, ctcVal, stipendVal };
@@ -313,7 +329,7 @@ groups.forEach((rows, cName) => {
     pay: bestPay.displayPay,
     payKind: bestPay.payKind,
     payRank: bestPay.payRank,
-    dream: (bestPay.ctcVal && bestPay.ctcVal >= 14) || (bestPay.stipendVal && bestPay.stipendVal >= 75000),
+    dream: (bestPay.ctcVal && bestPay.ctcVal >= 14) || (bestPay.stipendVal && bestPay.stipendVal >= 75000) || bestPay.payRank >= 1400,
     logo,
     out: {
       internships: internCount,

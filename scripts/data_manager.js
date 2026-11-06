@@ -60,10 +60,11 @@ function normalizeCompany(c) {
   if (lpaMatch) {
     payRank = Math.round(parseFloat(lpaMatch[1]) * 100);
   } else if (stipMatch) {
+    // For comparison between per month and lpa ctc use per month * 12 (annual equivalent)
     if (payStr.toLowerCase().includes('l')) {
-      payRank = Math.round(parseFloat(stipMatch[1]) * 100000);
+      payRank = Math.round(parseFloat(stipMatch[1]) * 12 * 100);
     } else {
-      payRank = Math.round(parseFloat(stipMatch[1]) * 1000);
+      payRank = Math.round(parseFloat(stipMatch[1]) * 12);
     }
   }
 
@@ -82,7 +83,7 @@ function normalizeCompany(c) {
     pay: c.pay || 'Competitive',
     payKind: c.payKind || (payStr.includes('/ mo') ? 'Stipend' : 'CTC'),
     payRank,
-    dream: c.dream !== undefined ? Boolean(c.dream) : (payRank >= 1400 || payRank >= 75000),
+    dream: c.dream !== undefined ? Boolean(c.dream) : (payRank >= 1400),
     logo: c.logo || `/logos/${c.slug}.svg`,
     out: {
       internships: internCount,
