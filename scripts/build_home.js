@@ -5,13 +5,6 @@ const { siteConfig } = require('../src/config/site');
 function generateHomePage() {
   const sec1 = `
     <section class="wrap pb-10 pt-[clamp(56px,10vw,140px)]">
-      <!-- Prominent Batch Switcher Banner -->
-      <div class="mb-8 inline-flex flex-wrap items-center gap-2 rounded-full border border-line-strong bg-panel p-1.5 text-[13px] shadow-sm">
-        <span class="px-3 text-muted text-[12px] font-mono tracking-wider">PLACEMENT BATCH:</span>
-        <button type="button" data-batch-btn="2027" class="cursor-pointer rounded-full px-4 py-1.5 font-medium transition-all">Class of 2027 · Placements</button>
-        <button type="button" data-batch-btn="2028" class="cursor-pointer rounded-full px-4 py-1.5 font-medium transition-all">Class of 2028 · Internships</button>
-      </div>
-
       <h1 id="hero-title" class="display-xl">
         ${siteConfig.stats.totalCompanies} companies so far.<br/>
         <span class="text-muted">${siteConfig.stats.studentsPlaced} students placed, and counting.</span>

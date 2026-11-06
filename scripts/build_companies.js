@@ -6,18 +6,8 @@ function generateCompaniesPage() {
   const content = `
     <div vt-update="none">
       <section class="wrap pb-12 pt-[clamp(48px,8vw,112px)]">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-          <div>
-            <p id="companies-page-badge" class="label text-muted">Companies · SPIT Class of 2027</p>
-            <h1 class="display-l mt-4 max-w-[16ch]">Every company, every offer.</h1>
-          </div>
-          <!-- Prominent Batch Switcher on Companies Page -->
-          <div class="inline-flex items-center rounded-full border border-line-strong bg-panel p-1 text-[13px] shadow-sm shrink-0">
-            <span class="px-3 text-muted text-[11px] font-mono tracking-wider">BATCH:</span>
-            <button type="button" data-batch-btn="2027" class="cursor-pointer rounded-full px-3.5 py-1.5 font-medium transition-all">Batch '27</button>
-            <button type="button" data-batch-btn="2028" class="cursor-pointer rounded-full px-3.5 py-1.5 font-medium transition-all">Batch '28</button>
-          </div>
-        </div>
+        <p id="companies-page-badge" class="label text-muted">Companies · SPIT Class of 2027</p>
+        <h1 class="display-l mt-4 max-w-[16ch]">Every company, every offer.</h1>
       </section>
 
       <div class="wrap">
@@ -64,18 +54,6 @@ function generateCompaniesPage() {
               </label>
 
               <div class="-mx-[var(--gutter)] flex gap-2 overflow-x-auto px-[var(--gutter)] [scrollbar-width:none] lg:mx-0 lg:overflow-visible lg:px-0">
-                <div class="relative shrink-0">
-                  <button type="button" aria-haspopup="listbox" aria-expanded="false" class="flex h-10 items-center gap-2 rounded-full border px-4 text-[13px] transition-colors border-line-strong hover:border-faint">
-                    <span class="text-muted">Batch</span>
-                    <span class="font-medium" id="batch-val">Batch '27</span>
-                    <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" class="transition-transform"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg>
-                  </button>
-                  <select id="batch-filter" class="absolute inset-0 cursor-pointer opacity-0 w-full h-full">
-                    <option value="2027">Batch '27 (29 companies)</option>
-                    <option value="2028">Batch '28 (5 companies)</option>
-                  </select>
-                </div>
-
                 <div class="relative shrink-0">
                   <button type="button" aria-haspopup="listbox" aria-expanded="false" class="flex h-10 items-center gap-2 rounded-full border px-4 text-[13px] transition-colors border-line-strong hover:border-faint">
                     <span class="text-muted">Role</span>
@@ -158,17 +136,6 @@ function generateCompaniesPage() {
     const badgeEl = document.getElementById('companies-page-badge');
     if (badgeEl) {
       badgeEl.textContent = \`Companies · SPIT Class of \${batch.year}\`;
-    }
-
-    // Batch filter pill
-    const batchFilter = document.getElementById('batch-filter');
-    const batchVal = document.getElementById('batch-val');
-    if (batchFilter && batchVal) {
-      batchFilter.value = batch.year;
-      batchVal.textContent = \`Batch '\${batch.year.slice(2)}\`;
-      batchFilter.addEventListener('change', () => {
-        setBatch(batchFilter.value);
-      });
     }
 
     // Populate Top KPI Summary Stats
@@ -659,7 +626,7 @@ function generateCompanyDetailPage() {
                 
                 \${r.rawCompensation ? \`
                   <div class="inline-flex items-center gap-2 rounded-lg bg-bg/80 px-3 py-1.5 border border-line text-[13px] text-fg">
-                    <span class="text-faint">💰 Compensation Breakdown:</span>
+                    <span class="text-faint">Compensation Breakdown:</span>
                     <span class="font-medium">\${r.rawCompensation}</span>
                   </div>
                 \` : ''}
