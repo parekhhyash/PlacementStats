@@ -1330,7 +1330,7 @@ Kelp DAO,kelp-dao,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+ CGPA,
 
       try {
         // 1. Direct Save to Supabase Postgres
-        const sRes = await fetch(\`\${SUPABASE_URL}/rest/v1/companies\`, {
+        const sRes = await fetch(\`\${SUPABASE_URL}/rest/v1/companies?on_conflict=slug,batch_year\`, {
           method: 'POST',
           headers: {
             'apikey': SUPABASE_KEY,
