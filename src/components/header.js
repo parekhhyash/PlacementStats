@@ -20,7 +20,7 @@ export function renderHeader(activePath = '/') {
   return `
     <div id="disclaimer-banner" class="w-full border-b border-line bg-panel/95 py-2 px-8 sm:px-12 text-[11px] sm:text-[12.5px] text-muted transition-all duration-300 relative">
       <div class="wrap flex items-center justify-center gap-2 text-center leading-snug">
-        <svg class="size-3 shrink-0 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg width="13" height="13" style="width: 13px; height: 13px; min-width: 13px; min-height: 13px; display: inline-block; vertical-align: -1px;" class="shrink-0 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
           <line x1="12" y1="9" x2="12" y2="13"/>
           <line x1="12" y1="17" x2="12.01" y2="17"/>
