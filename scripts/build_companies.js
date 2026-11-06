@@ -60,11 +60,11 @@ function generateCompaniesPage() {
                     <span class="font-medium" id="role-val">All</span>
                     <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" class="transition-transform"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg>
                   </button>
-                  <select id="role-filter" class="absolute inset-0 cursor-pointer opacity-0 w-full h-full">
-                    <option value="all">All</option>
-                    <option value="internship">Intern</option>
-                    <option value="fulltime">Full-time</option>
-                    <option value="ppo">PPO</option>
+                  <select id="role-filter" class="absolute inset-0 cursor-pointer opacity-0 w-full h-full" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+                    <option value="all" class="bg-[#121316] text-[#ededed]">All</option>
+                    <option value="internship" class="bg-[#121316] text-[#ededed]">Intern</option>
+                    <option value="fulltime" class="bg-[#121316] text-[#ededed]">Full-time</option>
+                    <option value="ppo" class="bg-[#121316] text-[#ededed]">PPO</option>
                   </select>
                 </div>
 
@@ -74,12 +74,12 @@ function generateCompaniesPage() {
                     <span class="font-medium" id="branch-val">Any</span>
                     <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" class="transition-transform"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg>
                   </button>
-                  <select id="branch-filter" class="absolute inset-0 cursor-pointer opacity-0 w-full h-full">
-                    <option value="all">Any</option>
-                    <option value="cse">CSE</option>
-                    <option value="it">IT</option>
-                    <option value="extc">EXTC</option>
-                    <option value="aids">AI &amp; DS</option>
+                  <select id="branch-filter" class="absolute inset-0 cursor-pointer opacity-0 w-full h-full" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+                    <option value="all" class="bg-[#121316] text-[#ededed]">Any</option>
+                    <option value="cse" class="bg-[#121316] text-[#ededed]">CSE</option>
+                    <option value="it" class="bg-[#121316] text-[#ededed]">IT</option>
+                    <option value="extc" class="bg-[#121316] text-[#ededed]">EXTC</option>
+                    <option value="aids" class="bg-[#121316] text-[#ededed]">AI &amp; DS</option>
                   </select>
                 </div>
 
@@ -89,11 +89,11 @@ function generateCompaniesPage() {
                     <span class="font-medium" id="sort-val">Latest</span>
                     <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" class="transition-transform"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg>
                   </button>
-                  <select id="sort-order" class="absolute inset-0 cursor-pointer opacity-0 w-full h-full">
-                    <option value="latest">Latest</option>
-                    <option value="placed">Selections</option>
-                    <option value="pay">Highest CTC</option>
-                    <option value="name">Name</option>
+                  <select id="sort-order" class="absolute inset-0 cursor-pointer opacity-0 w-full h-full" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+                    <option value="latest" class="bg-[#121316] text-[#ededed]">Latest</option>
+                    <option value="placed" class="bg-[#121316] text-[#ededed]">Selections</option>
+                    <option value="pay" class="bg-[#121316] text-[#ededed]">Highest CTC</option>
+                    <option value="name" class="bg-[#121316] text-[#ededed]">Name</option>
                   </select>
                 </div>
               </div>
@@ -119,6 +119,97 @@ function generateCompaniesPage() {
 
           <div id="no-results" class="hidden py-16 text-center text-muted">
             No companies found matching your query.
+          </div>
+
+          <!-- Submit Company Data Modal for Companies Directory -->
+          <div id="quick-submit-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 hidden">
+            <div class="relative w-full max-w-[560px] rounded-3xl border border-line-strong bg-panel p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+              <div class="flex items-start justify-between gap-4 border-b border-line pb-4">
+                <div>
+                  <span class="label text-intern font-mono">Contribute Verified Data</span>
+                  <h3 id="quick-modal-title" class="font-display text-[22px] font-semibold text-fg mt-1">Submit Placement Data</h3>
+                </div>
+                <button id="quick-modal-close-btn" type="button" class="cursor-pointer rounded-full p-2 text-muted hover:text-fg hover:bg-line transition-colors">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+              </div>
+
+              <form id="quick-submit-form" class="mt-6 space-y-4">
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Company Name</label>
+                  <input id="quick-comp-name" type="text" readonly class="w-full rounded-xl border border-line-strong bg-bg/50 px-3.5 py-2.5 text-[14px] text-fg font-medium outline-none" />
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="label block text-[11px] text-faint mb-1.5">Batch</label>
+                    <select id="quick-comp-batch" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+                      <option value="2027" class="bg-[#121316] text-[#ededed]">Class of 2027</option>
+                      <option value="2028" class="bg-[#121316] text-[#ededed]">Class of 2028</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="label block text-[11px] text-faint mb-1.5">Branch</label>
+                    <select id="quick-comp-branch" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+                      <option value="All branches" class="bg-[#121316] text-[#ededed]">All Branches Open</option>
+                      <option value="CSE" class="bg-[#121316] text-[#ededed]">CSE</option>
+                      <option value="IT" class="bg-[#121316] text-[#ededed]">IT</option>
+                      <option value="AI & DS" class="bg-[#121316] text-[#ededed]">AI &amp; DS</option>
+                      <option value="EXTC" class="bg-[#121316] text-[#ededed]">EXTC</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="label block text-[11px] text-faint mb-1.5">Role Title</label>
+                    <input id="quick-comp-role" type="text" placeholder="e.g. SDE, Associate Analyst" required class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                  </div>
+                  <div>
+                    <label class="label block text-[11px] text-faint mb-1.5">Package / Compensation</label>
+                    <input id="quick-comp-pay" type="text" placeholder="e.g. ₹15 LPA or ₹50,000 / mo" required class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="label block text-[11px] text-faint mb-1.5">Offers Made / Placed Count</label>
+                    <input id="quick-comp-offers" type="number" min="1" placeholder="e.g. 5" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                  </div>
+                  <div>
+                    <label class="label block text-[11px] text-faint mb-1.5">Eligibility / CGPA Cutoff</label>
+                    <input id="quick-comp-cgpa" type="text" placeholder="e.g. 8.0+ CGPA, no active backlogs" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Additional Details / Drive Rounds / Dates</label>
+                  <textarea id="quick-comp-details" rows="3" placeholder="Provide any details about rounds, assessment dates, interview stages, or verification references..." class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="label block text-[11px] text-faint mb-1.5">Your Name (Optional)</label>
+                    <input id="quick-comp-name-sub" type="text" placeholder="Anonymous or Name" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                  </div>
+                  <div>
+                    <label class="label block text-[11px] text-faint mb-1.5">Contact (Optional)</label>
+                    <input id="quick-comp-contact" type="text" placeholder="Email / Phone for verification" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                  </div>
+                </div>
+
+                <div id="quick-comp-status" class="hidden"></div>
+
+                <div class="flex items-center justify-end gap-3 pt-4 border-t border-line">
+                  <button id="quick-modal-cancel-btn" type="button" class="cursor-pointer rounded-full px-5 py-2.5 font-mono text-[13px] text-muted hover:text-fg transition-colors">
+                    Cancel
+                  </button>
+                  <button id="quick-modal-submit-btn" type="submit" class="cursor-pointer inline-flex items-center gap-2 rounded-full bg-intern px-6 py-2.5 font-mono text-[13px] font-semibold text-bg transition-opacity hover:opacity-90">
+                    <span id="quick-modal-btn-text">Submit Data</span>
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -295,8 +386,15 @@ function generateCompaniesPage() {
         if (c.offers && c.offers.includes('fulltime')) chips += '<span class="chip"><i class="dot" style="background:var(--color-fulltime)"></i>Full-time</span>';
         if (c.offers && c.offers.includes('ppo')) chips += '<span class="chip"><i class="dot" style="background:var(--color-ppo)"></i>PPO</span>';
 
+        const isNoDetails = c.noDetailsAvailable || c.pay === 'No details available';
+
         let paySubtitle = '&nbsp;';
-        if (c.pay && c.pay !== 'Not disclosed') {
+        let payMain = c.pay || 'Not disclosed';
+
+        if (isNoDetails) {
+          payMain = '<span class="text-amber-400 font-medium">No details available</span>';
+          paySubtitle = 'Submit data if you have →';
+        } else if (c.pay && c.pay !== 'Not disclosed') {
           if (c.payKind === 'Stipend') {
             paySubtitle = 'Stipend';
           } else if (c.offers && c.offers.includes('fulltime')) {
@@ -312,7 +410,10 @@ function generateCompaniesPage() {
         let offersSub = '&nbsp;';
         const hasOffers = (c.out && (c.out.students || c.out.fulltimeOffers || c.out.internships));
 
-        if (c.out && c.out.fulltimeOffers && c.out.internships) {
+        if (isNoDetails) {
+          offersMain = '—';
+          offersSub = 'Awaiting data';
+        } else if (c.out && c.out.fulltimeOffers && c.out.internships) {
           offersMain = \`\${c.out.fulltimeOffers} full-time\`;
           offersSub = \`\${c.out.internships} internships\`;
         } else if (c.out && c.out.fulltimeOffers) {
@@ -335,7 +436,7 @@ function generateCompaniesPage() {
 
         return \`
           <li style="view-transition-name:c-\${c.slug};view-transition-class:row">
-            <a class="group relative isolate grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-4 gap-y-2 border-b border-line py-4 lg:grid-cols-[3.5rem_minmax(0,1fr)_9rem_12rem_9rem_11rem] lg:items-center lg:py-3.5" href="/companies/company.html?slug=\${c.slug}\${is2028 ? '&batch=2028' : ''}">
+            <a class="group relative isolate grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-4 gap-y-2 border-b border-line py-4 lg:grid-cols-[3.5rem_minmax(0,1fr)_9rem_12rem_9rem_11rem] lg:items-center lg:py-3.5" href="/companies/company.html?slug=\${c.slug}\${is2028 ? '&batch=2028' : ''}\${isNoDetails ? '&submit=1' : ''}">
               <span aria-hidden="true" class="absolute inset-y-0 -inset-x-[var(--gutter)] -z-10 origin-bottom scale-y-0 bg-fg transition-transform duration-[350ms] ease-[var(--ease)] group-hover:origin-top group-hover:scale-y-100 group-focus-visible:scale-y-100"></span>
               <span class="label num text-faint group-hover:text-bg max-lg:hidden">\${num}</span>
               <span class="flex min-w-0 items-center gap-3 lg:gap-4 transition-transform duration-[350ms] ease-[var(--ease)] group-hover:translate-x-3">
@@ -346,10 +447,16 @@ function generateCompaniesPage() {
                 \${chips}
               </span>
               <span class="group-hover:text-bg max-lg:col-start-2 max-lg:row-start-1 max-lg:text-right">
-                <span class="num block text-[15px]">\${c.pay || 'Not disclosed'}</span>
-                <span class="label block text-[11px] text-faint group-hover:text-bg/60">\${paySubtitle}</span>
+                <span class="num block text-[15px]">\${payMain}</span>
+                \${isNoDetails ? \`
+                  <button type="button" class="btn-open-quick-sub label block text-[11px] text-intern group-hover:text-bg font-medium hover:underline cursor-pointer" data-slug="\${c.slug}" data-name="\${c.name}">
+                    \${paySubtitle}
+                  </button>
+                \` : \`
+                  <span class="label block text-[11px] text-faint group-hover:text-bg/60">\${paySubtitle}</span>
+                \`}
               </span>
-              <span class="group-hover:text-bg max-lg:col-span-2 max-lg:row-start-3 max-lg:flex max-lg:gap-4 \${(!hasOffers && !c.status) ? 'max-lg:hidden' : ''}">
+              <span class="group-hover:text-bg max-lg:col-span-2 max-lg:row-start-3 max-lg:flex max-lg:gap-4 \${(!hasOffers && !c.status && !isNoDetails) ? 'max-lg:hidden' : ''}">
                 <span class="num block text-[15px]">\${offersMain}</span>
                 <span class="label block text-[11px] text-faint group-hover:text-bg/60">\${offersSub}</span>
               </span>
@@ -358,7 +465,124 @@ function generateCompaniesPage() {
           </li>
         \`;
       }).join('');
+
+      listEl.querySelectorAll('.btn-open-quick-sub').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const compName = btn.getAttribute('data-name');
+          openQuickSubmitModal(compName);
+        });
+      });
     }
+
+    // Quick Submission Modal Logic on Companies Page
+    const SUPABASE_URL = 'https://ntdmjyexirakcaovjeia.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZG1qeWV4aXJha2Nhb3ZqZWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2NTUzNTUsImV4cCI6MjA4NjIzMTM1NX0.LFbBXU-ANjoUUi_HfMIWYAjKidRgEct_VO-588T-Y7M';
+
+    const quickModal = document.getElementById('quick-submit-modal');
+    const quickModalTitle = document.getElementById('quick-modal-title');
+    const quickCompName = document.getElementById('quick-comp-name');
+    const quickCompBatch = document.getElementById('quick-comp-batch');
+    const quickForm = document.getElementById('quick-submit-form');
+    const quickStatus = document.getElementById('quick-comp-status');
+    const quickBtnText = document.getElementById('quick-modal-btn-text');
+    const quickSubmitBtn = document.getElementById('quick-modal-submit-btn');
+
+    function openQuickSubmitModal(compName) {
+      if (!quickModal) return;
+      if (quickCompName) quickCompName.value = compName;
+      if (quickModalTitle) quickModalTitle.textContent = 'Submit Data · ' + compName;
+      if (quickCompBatch) quickCompBatch.value = is2028 ? '2028' : '2027';
+      if (quickStatus) {
+        quickStatus.classList.add('hidden');
+        quickStatus.textContent = '';
+      }
+      quickModal.classList.remove('hidden');
+    }
+
+    function closeQuickSubmitModal() {
+      if (quickModal) quickModal.classList.add('hidden');
+    }
+
+    document.getElementById('quick-modal-close-btn')?.addEventListener('click', closeQuickSubmitModal);
+    document.getElementById('quick-modal-cancel-btn')?.addEventListener('click', closeQuickSubmitModal);
+
+    quickModal?.addEventListener('click', (e) => {
+      if (e.target === quickModal) closeQuickSubmitModal();
+    });
+
+    quickForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!quickSubmitBtn) return;
+      quickSubmitBtn.disabled = true;
+      if (quickBtnText) quickBtnText.textContent = 'Submitting...';
+
+      const compName = quickCompName?.value || 'Company';
+      const batchYear = quickCompBatch?.value || (is2028 ? '2028' : '2027');
+      const branchVal = document.getElementById('quick-comp-branch')?.value || 'All branches';
+      const roleVal = document.getElementById('quick-comp-role')?.value || '';
+      const payVal = document.getElementById('quick-comp-pay')?.value || '';
+      const offersVal = parseInt(document.getElementById('quick-comp-offers')?.value, 10) || 1;
+      const cgpaVal = document.getElementById('quick-comp-cgpa')?.value || '';
+      const detailsVal = document.getElementById('quick-comp-details')?.value || '';
+      const nameVal = document.getElementById('quick-comp-name-sub')?.value || 'Anonymous';
+      const contactVal = document.getElementById('quick-comp-contact')?.value || '';
+
+      const combinedDetails = [
+        cgpaVal ? ('Eligibility: ' + cgpaVal) : '',
+        detailsVal
+      ].filter(Boolean).join(' | ');
+
+      const payload = {
+        type: 'branch_data',
+        batch: batchYear,
+        batch_year: batchYear,
+        branch: branchVal,
+        company_name: compName,
+        role_title: roleVal,
+        offers_count: offersVal,
+        compensation: payVal,
+        details: combinedDetails,
+        submitter_name: nameVal,
+        submitter_contact: contactVal,
+        status: 'pending'
+      };
+
+      try {
+        const res = await fetch(\`\${SUPABASE_URL}/rest/v1/submissions\`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': \`Bearer \${SUPABASE_KEY}\`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify([payload])
+        });
+
+        if (!res.ok) throw new Error(await res.text() || 'Failed to submit data');
+
+        if (quickStatus) {
+          quickStatus.className = 'rounded-xl p-3 text-[13px] bg-intern/10 border border-intern/30 text-intern';
+          quickStatus.textContent = '✔ Thank you! Placement data for ' + compName + ' has been submitted and sent to the admin dashboard for verification.';
+          quickStatus.classList.remove('hidden');
+        }
+        quickForm.reset();
+        setTimeout(() => {
+          closeQuickSubmitModal();
+        }, 2200);
+      } catch (err) {
+        if (quickStatus) {
+          quickStatus.className = 'rounded-xl p-3 text-[13px] bg-red-500/10 border border-red-500/30 text-red-300';
+          quickStatus.textContent = 'Submission error: ' + (err.message || 'Please try again.');
+          quickStatus.classList.remove('hidden');
+        }
+      } finally {
+        quickSubmitBtn.disabled = false;
+        if (quickBtnText) quickBtnText.textContent = 'Submit Data';
+      }
+    });
 
     searchInput?.addEventListener('input', renderCompanies);
     roleSelect?.addEventListener('change', renderCompanies);
@@ -422,6 +646,23 @@ function generateCompanyDetailPage() {
             </a>
           </div>
         </header>
+
+        <!-- No Details Available Banner -->
+        <div id="company-no-details-card" class="mt-8 rounded-3xl border border-amber-500/30 bg-amber-500/5 p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 hidden">
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="rounded-full bg-amber-500/20 text-amber-300 font-bold px-3 py-1 text-[11px] font-mono tracking-wider">STATUS: NO DETAILS AVAILABLE</span>
+            </div>
+            <h3 class="font-display text-[22px] sm:text-[26px] text-fg font-medium">Placement data for this company is currently unavailable</h3>
+            <p class="text-[14px] text-muted max-w-[65ch] leading-relaxed">
+              Official campus recruitment packages, eligibility criteria, and selection lists have not yet been published or confirmed for this company. If you participated in this drive or have official placement records, submit your data below to update the portal.
+            </p>
+          </div>
+          <button id="btn-open-company-submit-modal" type="button" class="cursor-pointer shrink-0 inline-flex items-center justify-center gap-2 rounded-full bg-intern px-5 py-3 font-mono text-[13px] font-semibold text-bg transition-opacity hover:opacity-90">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            <span>Submit data if you have it</span>
+          </button>
+        </div>
 
         <!-- 6-Column Stats Grid -->
         <dl id="company-stats-grid" class="mt-12 grid grid-cols-2 border-t border-line sm:grid-cols-3 lg:grid-cols-6">
@@ -518,6 +759,97 @@ function generateCompanyDetailPage() {
             </div>
           </div>
         </section>
+
+        <!-- Submit Company Data Modal -->
+        <div id="submit-company-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 hidden">
+          <div class="relative w-full max-w-[560px] rounded-3xl border border-line-strong bg-panel p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex items-start justify-between gap-4 border-b border-line pb-4">
+              <div>
+                <span class="label text-intern font-mono">Contribute Verified Data</span>
+                <h3 id="modal-company-title" class="font-display text-[22px] font-semibold text-fg mt-1">Submit Placement Data</h3>
+              </div>
+              <button id="modal-close-btn" type="button" class="cursor-pointer rounded-full p-2 text-muted hover:text-fg hover:bg-line transition-colors">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+
+            <form id="submit-company-form" class="mt-6 space-y-4">
+              <div>
+                <label class="label block text-[11px] text-faint mb-1.5">Company Name</label>
+                <input id="modal-comp-name" type="text" readonly class="w-full rounded-xl border border-line-strong bg-bg/50 px-3.5 py-2.5 text-[14px] text-fg font-medium outline-none" />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Batch</label>
+                  <select id="modal-comp-batch" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+                    <option value="2027" class="bg-[#121316] text-[#ededed]">Class of 2027</option>
+                    <option value="2028" class="bg-[#121316] text-[#ededed]">Class of 2028</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Branch</label>
+                  <select id="modal-comp-branch" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+                    <option value="All branches" class="bg-[#121316] text-[#ededed]">All Branches Open</option>
+                    <option value="CSE" class="bg-[#121316] text-[#ededed]">CSE</option>
+                    <option value="IT" class="bg-[#121316] text-[#ededed]">IT</option>
+                    <option value="AI & DS" class="bg-[#121316] text-[#ededed]">AI &amp; DS</option>
+                    <option value="EXTC" class="bg-[#121316] text-[#ededed]">EXTC</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Role Title</label>
+                  <input id="modal-comp-role" type="text" placeholder="e.g. SDE, Associate Analyst" required class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                </div>
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Package / Compensation</label>
+                  <input id="modal-comp-pay" type="text" placeholder="e.g. ₹15 LPA or ₹50,000 / mo" required class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Offers Made / Placed Count</label>
+                  <input id="modal-comp-offers" type="number" min="1" placeholder="e.g. 5" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                </div>
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Eligibility / CGPA Cutoff</label>
+                  <input id="modal-comp-cgpa" type="text" placeholder="e.g. 8.0+ CGPA, no active backlogs" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                </div>
+              </div>
+
+              <div>
+                <label class="label block text-[11px] text-faint mb-1.5">Additional Details / Drive Rounds / Dates</label>
+                <textarea id="modal-comp-details" rows="3" placeholder="Provide any details about rounds, assessment dates, interview stages, or verification references..." class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg"></textarea>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Your Name (Optional)</label>
+                  <input id="modal-comp-name-sub" type="text" placeholder="Anonymous or Name" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                </div>
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Contact (Optional)</label>
+                  <input id="modal-comp-contact" type="text" placeholder="Email / Phone for verification" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                </div>
+              </div>
+
+              <div id="modal-comp-status" class="hidden"></div>
+
+              <div class="flex items-center justify-end gap-3 pt-4 border-t border-line">
+                <button id="modal-cancel-btn" type="button" class="cursor-pointer rounded-full px-5 py-2.5 font-mono text-[13px] text-muted hover:text-fg transition-colors">
+                  Cancel
+                </button>
+                <button id="modal-submit-btn" type="submit" class="cursor-pointer inline-flex items-center gap-2 rounded-full bg-intern px-6 py-2.5 font-mono text-[13px] font-semibold text-bg transition-opacity hover:opacity-90">
+                  <span id="modal-btn-text">Submit Data</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
 
       <div id="company-not-found" class="hidden py-24 text-center">
@@ -598,30 +930,56 @@ function generateCompanyDetailPage() {
       chipsEl.innerHTML = chips;
 
       // Stats
-      document.getElementById('stat-pay').textContent = company.pay || 'Competitive';
-      document.getElementById('stat-pay-kind').textContent = company.payKind === 'Stipend' ? 'Monthly Stipend' : 'Annual CTC';
-      
-      document.getElementById('stat-total').textContent = company.out?.students || 0;
-      const cohortLabel = document.getElementById('stat-cohort-label');
-      if (cohortLabel) cohortLabel.textContent = "Batch '" + matchedBatchYear.slice(2) + " offers";
+      const isNoDetails = company.noDetailsAvailable || company.pay === 'No details available';
 
-      document.getElementById('stat-fulltime').textContent = company.out?.fulltimeOffers || 0;
-      document.getElementById('stat-ppo').textContent = (company.out?.ppo || 0) + ' PPO conversions';
+      if (isNoDetails) {
+        const noDetailsCard = document.getElementById('company-no-details-card');
+        if (noDetailsCard) noDetailsCard.classList.remove('hidden');
 
-      document.getElementById('stat-interns').textContent = company.out?.internships || 0;
+        const statPay = document.getElementById('stat-pay');
+        if (statPay) statPay.innerHTML = '<span class="text-amber-400 text-[18px] sm:text-[20px] font-medium">No details</span>';
+        
+        const statPayKind = document.getElementById('stat-pay-kind');
+        if (statPayKind) statPayKind.textContent = 'Awaiting data';
 
-      // Criteria Stats
-      const statCgpa = document.getElementById('stat-cgpa');
-      if (statCgpa) {
-        const cVal = company.cgpa ? (company.cgpa + (company.cgpa < 10 ? '+' : '')) : 'Open';
-        statCgpa.textContent = cVal;
-      }
-      const statBoards = document.getElementById('stat-boards');
-      if (statBoards) {
-        let bVal = 'Standard';
-        if (company.boardsCriteria && company.boardsCriteria.includes('80%')) bVal = '80% XII';
-        else if (company.boardsCriteria && company.boardsCriteria.includes('60%')) bVal = '60% X/XII';
-        statBoards.textContent = bVal;
+        document.getElementById('stat-total').textContent = '—';
+        const cohortLabel = document.getElementById('stat-cohort-label');
+        if (cohortLabel) cohortLabel.textContent = "Awaiting verification";
+
+        document.getElementById('stat-fulltime').textContent = '—';
+        document.getElementById('stat-ppo').textContent = 'Awaiting data';
+        document.getElementById('stat-interns').textContent = '—';
+
+        const statCgpa = document.getElementById('stat-cgpa');
+        if (statCgpa) statCgpa.textContent = '—';
+        const statBoards = document.getElementById('stat-boards');
+        if (statBoards) statBoards.textContent = '—';
+      } else {
+        document.getElementById('stat-pay').textContent = company.pay || 'Competitive';
+        document.getElementById('stat-pay-kind').textContent = company.payKind === 'Stipend' ? 'Monthly Stipend' : 'Annual CTC';
+        
+        document.getElementById('stat-total').textContent = company.out?.students || 0;
+        const cohortLabel = document.getElementById('stat-cohort-label');
+        if (cohortLabel) cohortLabel.textContent = "Batch '" + matchedBatchYear.slice(2) + " offers";
+
+        document.getElementById('stat-fulltime').textContent = company.out?.fulltimeOffers || 0;
+        document.getElementById('stat-ppo').textContent = (company.out?.ppo || 0) + ' PPO conversions';
+
+        document.getElementById('stat-interns').textContent = company.out?.internships || 0;
+
+        // Criteria Stats
+        const statCgpa = document.getElementById('stat-cgpa');
+        if (statCgpa) {
+          const cVal = company.cgpa ? (company.cgpa + (company.cgpa < 10 ? '+' : '')) : 'Open';
+          statCgpa.textContent = cVal;
+        }
+        const statBoards = document.getElementById('stat-boards');
+        if (statBoards) {
+          let bVal = 'Standard';
+          if (company.boardsCriteria && company.boardsCriteria.includes('80%')) bVal = '80% XII';
+          else if (company.boardsCriteria && company.boardsCriteria.includes('60%')) bVal = '60% X/XII';
+          statBoards.textContent = bVal;
+        }
       }
 
       // Detailed Criteria Box
@@ -632,7 +990,7 @@ function generateCompanyDetailPage() {
       // Visit Date Badge
       const visitBadge = document.getElementById('company-visit-badge');
       if (visitBadge && (company.visitTimeline || company.first)) {
-        visitBadge.innerHTML = '<span>📅 Drive Date:</span> <span class="text-fg">' + (company.visitTimeline || company.first) + '</span>';
+        visitBadge.innerHTML = '<span>Drive Date:</span> <span class="text-fg">' + (company.visitTimeline || company.first) + '</span>';
       }
 
       // Notes
@@ -662,7 +1020,7 @@ function generateCompanyDetailPage() {
 
                 \${r.visitDate ? \`
                   <div class="text-[12px] text-muted font-mono flex items-center gap-1.5">
-                    <span>📅 Timeline:</span>
+                    <span>Timeline:</span>
                     <span>\${r.visitDate}</span>
                   </div>
                 \` : ''}
@@ -685,7 +1043,11 @@ function generateCompanyDetailPage() {
           </div>
         \`).join('');
       } else {
-        rolesEl.innerHTML = '<p class="text-muted">Standard campus roles advertised.</p>';
+        if (isNoDetails) {
+          rolesEl.closest('section')?.classList.add('hidden');
+        } else {
+          rolesEl.innerHTML = '<p class="text-muted">Standard campus roles advertised.</p>';
+        }
       }
 
       // Funnel
@@ -714,7 +1076,127 @@ function generateCompanyDetailPage() {
             </div>
           \`;
         }).join('');
+      } else {
+        if (isNoDetails) {
+          funnelBarsEl.closest('section')?.classList.add('hidden');
+        }
       }
+
+      // Modal Wiring
+      const modal = document.getElementById('submit-company-modal');
+      const openBtn = document.getElementById('btn-open-company-submit-modal');
+      const closeBtn = document.getElementById('modal-close-btn');
+      const cancelBtn = document.getElementById('modal-cancel-btn');
+      const modalTitle = document.getElementById('modal-company-title');
+      const compNameInput = document.getElementById('modal-comp-name');
+      const batchSelect = document.getElementById('modal-comp-batch');
+      const submitForm = document.getElementById('submit-company-form');
+      const statusEl = document.getElementById('modal-comp-status');
+      const submitBtn = document.getElementById('modal-submit-btn');
+      const submitBtnText = document.getElementById('modal-btn-text');
+
+      function openModal() {
+        if (!modal) return;
+        if (compNameInput) compNameInput.value = company.name;
+        if (modalTitle) modalTitle.textContent = 'Submit Placement Data · ' + company.name;
+        if (batchSelect) batchSelect.value = matchedBatchYear;
+        if (statusEl) {
+          statusEl.classList.add('hidden');
+          statusEl.textContent = '';
+        }
+        modal.classList.remove('hidden');
+      }
+
+      function closeModal() {
+        if (modal) modal.classList.add('hidden');
+      }
+
+      openBtn?.addEventListener('click', openModal);
+      closeBtn?.addEventListener('click', closeModal);
+      cancelBtn?.addEventListener('click', closeModal);
+
+      modal?.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      // Auto-open modal if URL query has ?submit=1 or #submit
+      if (params.get('submit') === '1' || window.location.hash === '#submit') {
+        setTimeout(openModal, 150);
+      }
+
+      submitForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!submitBtn) return;
+        submitBtn.disabled = true;
+        if (submitBtnText) submitBtnText.textContent = 'Submitting...';
+
+        const SUPABASE_URL = 'https://ntdmjyexirakcaovjeia.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZG1qeWV4aXJha2Nhb3ZqZWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2NTUzNTUsImV4cCI6MjA4NjIzMTM1NX0.LFbBXU-ANjoUUi_HfMIWYAjKidRgEct_VO-588T-Y7M';
+
+        const batchYear = batchSelect?.value || matchedBatchYear;
+        const branchVal = document.getElementById('modal-comp-branch')?.value || 'All branches';
+        const roleVal = document.getElementById('modal-comp-role')?.value || '';
+        const payVal = document.getElementById('modal-comp-pay')?.value || '';
+        const offersVal = parseInt(document.getElementById('modal-comp-offers')?.value, 10) || 1;
+        const cgpaVal = document.getElementById('modal-comp-cgpa')?.value || '';
+        const detailsVal = document.getElementById('modal-comp-details')?.value || '';
+        const nameVal = document.getElementById('modal-comp-name-sub')?.value || 'Anonymous';
+        const contactVal = document.getElementById('modal-comp-contact')?.value || '';
+
+        const combinedDetails = [
+          cgpaVal ? ('Eligibility: ' + cgpaVal) : '',
+          detailsVal
+        ].filter(Boolean).join(' | ');
+
+        const payload = {
+          type: 'branch_data',
+          batch: batchYear,
+          batch_year: batchYear,
+          branch: branchVal,
+          company_name: company.name,
+          role_title: roleVal,
+          offers_count: offersVal,
+          compensation: payVal,
+          details: combinedDetails,
+          submitter_name: nameVal,
+          submitter_contact: contactVal,
+          status: 'pending'
+        };
+
+        try {
+          const res = await fetch(\`\${SUPABASE_URL}/rest/v1/submissions\`, {
+            method: 'POST',
+            headers: {
+              'apikey': SUPABASE_KEY,
+              'Authorization': \`Bearer \${SUPABASE_KEY}\`,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify([payload])
+          });
+
+          if (!res.ok) throw new Error(await res.text() || 'Failed to submit data');
+
+          if (statusEl) {
+            statusEl.className = 'rounded-xl p-3 text-[13px] bg-intern/10 border border-intern/30 text-intern';
+            statusEl.textContent = '✔ Thank you! Placement data for ' + company.name + ' has been submitted and sent to the admin dashboard for verification.';
+            statusEl.classList.remove('hidden');
+          }
+          submitForm.reset();
+          setTimeout(() => {
+            closeModal();
+          }, 2200);
+        } catch (err) {
+          if (statusEl) {
+            statusEl.className = 'rounded-xl p-3 text-[13px] bg-red-500/10 border border-red-500/30 text-red-300';
+            statusEl.textContent = 'Submission error: ' + (err.message || 'Please try again.');
+            statusEl.classList.remove('hidden');
+          }
+        } finally {
+          submitBtn.disabled = false;
+          if (submitBtnText) submitBtnText.textContent = 'Submit Data';
+        }
+      });
     }
   `;
 

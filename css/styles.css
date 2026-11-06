@@ -182,3 +182,16 @@ tr.hover\:bg-panel:hover th {
 tr.hover\:bg-panel:hover a {
   color: var(--color-fg) !important;
 }
+
+/* Fix dropdown menu contrast and white popover bug across all browsers and OS */
+select, select option, optgroup {
+  color-scheme: dark !important;
+  background-color: #121316 !important;
+  color: #ededed !important;
+}
+
+select option:checked, select option:hover {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+}
+

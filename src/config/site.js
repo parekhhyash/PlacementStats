@@ -18,7 +18,7 @@ export const siteConfig = {
 
   // Top summary headline stats from SPIT 2027 classified data
   stats: {
-    totalCompanies: 29,
+    totalCompanies: 32,
     studentsPlaced: 225,
     totalBatchSize: 360,
     placementPercentage: "63%",
