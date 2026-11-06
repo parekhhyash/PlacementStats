@@ -406,7 +406,7 @@ export const allBatches = {
     title: "Placed ’27 · SPIT",
     statusBadge: "Placements in progress",
     stats: {
-      totalCompanies: 29,
+      totalCompanies: companies2027.length,
       studentsPlaced: 225,
       totalBatchSize: 360,
       placementPercentage: "63%",
@@ -435,7 +435,7 @@ export const allBatches = {
     title: "Placed ’28 · SPIT",
     statusBadge: "Summer internship drives ongoing",
     stats: {
-      totalCompanies: 5,
+      totalCompanies: companies2028.length,
       studentsPlaced: 50,
       totalBatchSize: 360,
       placementPercentage: "14%",

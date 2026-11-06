@@ -198,12 +198,13 @@ function generateHomePage() {
 
     const batch = getActiveBatchData();
     const is2028 = batch.year === '2028';
+    const totalComps = batch.companies ? batch.companies.length : (batch.stats?.totalCompanies || 33);
 
     // 1. Update Hero
     const heroTitle = document.getElementById('hero-title');
     if (heroTitle) {
       heroTitle.innerHTML = \`
-        \${batch.stats.totalCompanies} companies so far.<br/>
+        \${totalComps} companies so far.<br/>
         <span class="text-muted">\${batch.stats.studentsPlaced} students placed, and counting.</span>
       \`;
     }
@@ -213,7 +214,7 @@ function generateHomePage() {
     }
     const heroBrowseBtn = document.getElementById('hero-browse-btn');
     if (heroBrowseBtn) {
-      heroBrowseBtn.textContent = \`Browse all \${batch.stats.totalCompanies} companies\`;
+      heroBrowseBtn.textContent = \`Browse all \${totalComps} companies\`;
       heroBrowseBtn.href = is2028 ? '/companies/?batch=2028' : '/companies/';
     }
     const heroStatusBadge = document.getElementById('hero-status-badge');
@@ -222,7 +223,7 @@ function generateHomePage() {
     }
     const latestHeadingLink = document.getElementById('latest-heading-link');
     if (latestHeadingLink) {
-      latestHeadingLink.textContent = \`All \${batch.stats.totalCompanies} companies →\`;
+      latestHeadingLink.textContent = \`All \${totalComps} companies →\`;
       latestHeadingLink.href = is2028 ? '/companies/?batch=2028' : '/companies/';
     }
 

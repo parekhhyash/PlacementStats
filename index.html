@@ -116,14 +116,14 @@
     
     <section class="wrap pb-10 pt-[clamp(56px,10vw,140px)]">
       <h1 id="hero-title" class="display-xl">
-        32 companies so far.<br/>
+        33 companies so far.<br/>
         <span class="text-muted">225 students placed, and counting.</span>
       </h1>
       <p id="hero-desc" class="mt-10 max-w-[56ch] text-[18px] leading-relaxed text-muted">
         Every company that recruited Sardar Patel Institute of Technology’s 2027 batch on campus, from internships to final placements: what each one offered, what it advertised, roles, and selection outcomes.
       </p>
       <div class="mt-8 flex flex-wrap items-center gap-3">
-        <a id="hero-browse-btn" class="label rounded-full bg-fg px-5 py-3 text-bg transition-opacity hover:opacity-85" href="/companies/">Browse all 32 companies</a>
+        <a id="hero-browse-btn" class="label rounded-full bg-fg px-5 py-3 text-bg transition-opacity hover:opacity-85" href="/companies/">Browse all 33 companies</a>
         <a class="label rounded-full border border-line-strong px-5 py-3 transition-colors hover:border-fg" href="/about/">How this is made</a>
         <span class="label flex items-center gap-2.5 px-2 text-muted">
           <span class="relative flex size-2" aria-hidden="true">
@@ -143,7 +143,7 @@
           <h2 class="display-m mt-3 max-w-[18ch]">Latest on campus</h2>
         </div>
         <div class="flex flex-col justify-end gap-4 lg:items-start">
-          <a id="latest-heading-link" class="label link-underline text-fg" href="/companies/">All 32 companies →</a>
+          <a id="latest-heading-link" class="label link-underline text-fg" href="/companies/">All 33 companies →</a>
         </div>
       </div>
       <div class="mt-10">
@@ -314,12 +314,13 @@
 
     const batch = getActiveBatchData();
     const is2028 = batch.year === '2028';
+    const totalComps = batch.companies ? batch.companies.length : (batch.stats?.totalCompanies || 33);
 
     // 1. Update Hero
     const heroTitle = document.getElementById('hero-title');
     if (heroTitle) {
       heroTitle.innerHTML = `
-        ${batch.stats.totalCompanies} companies so far.<br/>
+        ${totalComps} companies so far.<br/>
         <span class="text-muted">${batch.stats.studentsPlaced} students placed, and counting.</span>
       `;
     }
@@ -329,7 +330,7 @@
     }
     const heroBrowseBtn = document.getElementById('hero-browse-btn');
     if (heroBrowseBtn) {
-      heroBrowseBtn.textContent = `Browse all ${batch.stats.totalCompanies} companies`;
+      heroBrowseBtn.textContent = `Browse all ${totalComps} companies`;
       heroBrowseBtn.href = is2028 ? '/companies/?batch=2028' : '/companies/';
     }
     const heroStatusBadge = document.getElementById('hero-status-badge');
@@ -338,7 +339,7 @@
     }
     const latestHeadingLink = document.getElementById('latest-heading-link');
     if (latestHeadingLink) {
-      latestHeadingLink.textContent = `All ${batch.stats.totalCompanies} companies →`;
+      latestHeadingLink.textContent = `All ${totalComps} companies →`;
       latestHeadingLink.href = is2028 ? '/companies/?batch=2028' : '/companies/';
     }
 

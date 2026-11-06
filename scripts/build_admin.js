@@ -161,6 +161,9 @@ function generateAdminPage() {
             <button id="btn-new-company" type="button" class="shrink-0 cursor-pointer rounded-full bg-fg px-4 py-2.5 text-[13px] font-medium text-bg transition-opacity hover:opacity-90">
               + New
             </button>
+            <button id="btn-open-import" type="button" class="shrink-0 cursor-pointer rounded-full border border-line-strong bg-panel px-3.5 py-2.5 text-[13px] font-medium text-fg transition-colors hover:border-fg hover:bg-line/50" title="Import from CSV or JSON">
+              <span class="hidden sm:inline">Import</span> CSV/JSON
+            </button>
           </div>
 
           <div class="rounded-2xl border border-line-strong bg-panel overflow-hidden">
@@ -190,6 +193,10 @@ function generateAdminPage() {
               </div>
 
               <div class="flex flex-wrap items-center gap-2.5">
+                <button id="btn-editor-open-import" type="button" class="cursor-pointer rounded-full border border-line-strong px-4 py-2 text-[12px] font-medium text-muted hover:border-fg hover:text-fg transition-colors inline-flex items-center gap-1.5">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <span>Import CSV / JSON</span>
+                </button>
                 <a id="btn-view-live" href="#" target="_blank" class="hidden label rounded-full border border-line px-3.5 py-2 text-[12px] text-muted hover:border-fg hover:text-fg">
                   View Live ↗
                 </a>
@@ -217,6 +224,16 @@ function generateAdminPage() {
 
             <!-- Tab 1: Overview & Identity -->
             <div id="tab-overview" class="tab-content mt-6 space-y-6">
+              <!-- Quick CSV / JSON Importer Banner -->
+              <div class="rounded-2xl border border-line bg-bg/40 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[13px]">
+                <div class="flex items-center gap-2.5 text-muted">
+                  <span class="text-[18px]">📄</span>
+                  <span>Have CSV or JSON data? Use the automated extractor to auto-fill this company.</span>
+                </div>
+                <button id="btn-banner-open-import" type="button" class="cursor-pointer text-intern font-semibold hover:underline shrink-0 text-left">
+                  Open CSV / JSON Importer →
+                </button>
+              </div>
               <div class="grid gap-6 sm:grid-cols-2">
                 <div>
                   <label class="label block text-[12px] text-faint mb-2">Company Name *</label>
@@ -448,6 +465,135 @@ function generateAdminPage() {
       <!-- Reports List Container -->
       <div id="reports-container" class="mt-8 grid gap-4">
         <div class="p-12 text-center text-[14px] text-muted">Connecting to Supabase...</div>
+      </div>
+    </div>
+
+    <!-- CSV / JSON Import Modal -->
+    <div id="import-company-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto">
+      <div class="relative w-full max-w-2xl rounded-3xl border border-line-strong bg-panel p-6 sm:p-8 shadow-2xl my-8">
+        <!-- Header -->
+        <div class="flex items-start justify-between gap-4 border-b border-line pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="chip font-mono text-[11px] text-intern border-intern/40 bg-intern/10">Automated Extractor</span>
+              <span class="label text-[12px] text-faint">CSV & JSON Supported</span>
+            </div>
+            <h3 class="font-display text-[22px] font-bold text-fg mt-1">Import Company Data</h3>
+            <p class="text-[13px] text-muted mt-1">
+              Upload a file or paste raw content below. The parser extracts company info, eligibility, and roles straight into the editor.
+            </p>
+          </div>
+          <button id="btn-close-import-modal" type="button" class="size-8 rounded-full border border-line grid place-items-center text-muted hover:text-fg hover:border-fg transition-colors cursor-pointer text-[16px]">
+            ✕
+          </button>
+        </div>
+
+        <!-- Required Format Reference Section -->
+        <div class="mt-6 rounded-2xl border border-line bg-bg/60 p-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-line pb-3 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="label text-[12px] text-fg font-medium">Format Reference:</span>
+              <div class="inline-flex rounded-full border border-line bg-panel p-0.5 text-[11px]">
+                <button id="fmt-tab-csv" type="button" class="cursor-pointer rounded-full px-3 py-1 font-medium bg-fg text-bg transition-colors">CSV Format</button>
+                <button id="fmt-tab-json" type="button" class="cursor-pointer rounded-full px-3 py-1 font-medium text-muted hover:text-fg transition-colors">JSON Format</button>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button id="btn-copy-csv-fmt" type="button" class="cursor-pointer inline-flex items-center gap-1.5 rounded-full border border-line-strong bg-panel px-3 py-1 text-[11px] font-medium text-muted hover:border-fg hover:text-fg transition-colors">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span id="btn-copy-csv-label">Copy CSV Format</span>
+              </button>
+              <button id="btn-copy-json-fmt" type="button" class="hidden cursor-pointer inline-flex items-center gap-1.5 rounded-full border border-line-strong bg-panel px-3 py-1 text-[11px] font-medium text-muted hover:border-fg hover:text-fg transition-colors">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span id="btn-copy-json-label">Copy JSON Format</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- CSV Format Display -->
+          <div id="fmt-display-csv" class="space-y-2">
+            <p class="text-[12px] text-muted">
+              Supported Columns: <code class="font-mono text-intern bg-intern/10 px-1.5 py-0.5 rounded text-[11px]">name, slug, pay, payKind, offers, branches, cgpaCriteria, boardsCriteria, visitTimeline, students, roles, notes</code>
+            </p>
+            <div class="relative overflow-x-auto rounded-xl border border-line bg-panel p-3 font-mono text-[11px] text-faint select-all whitespace-pre leading-relaxed">name,slug,pay,payKind,offers,branches,cgpaCriteria,boardsCriteria,visitTimeline,students,roles,notes
+Kelp DAO,kelp-dao,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+ CGPA,Standard eligibility,Oct 2026,5,Blockchain Engineer:fulltime:5:₹16 LPA,Official campus recruitment drive</div>
+            <p class="text-[11px] text-faint">💡 Tip: In CSV, multiple roles can be separated by <code class="font-mono text-muted">;</code> formatted as <code class="font-mono text-muted">Title:Type:Count:CTC</code>.</p>
+          </div>
+
+          <!-- JSON Format Display -->
+          <div id="fmt-display-json" class="hidden space-y-2">
+            <p class="text-[12px] text-muted">
+              JSON Structure (single company object or array of companies):
+            </p>
+            <div class="relative max-h-48 overflow-y-auto rounded-xl border border-line bg-panel p-3 font-mono text-[11px] text-faint select-all whitespace-pre leading-relaxed">{
+  "name": "Kelp DAO",
+  "slug": "kelp-dao",
+  "pay": "₹16 LPA",
+  "payKind": "CTC",
+  "offers": ["internship", "fulltime"],
+  "dream": false,
+  "branches": "All branches open",
+  "cgpaCriteria": "8.0+ CGPA",
+  "boardsCriteria": "Standard eligibility",
+  "visitTimeline": "Oct 2026",
+  "out": {
+    "students": 5,
+    "fulltimeOffers": 5,
+    "internships": 5
+  },
+  "roles": [
+    {
+      "title": "Blockchain Engineer",
+      "type": "fulltime",
+      "count": 5,
+      "ctc": "₹16 LPA",
+      "stipend": null,
+      "rawCompensation": "14L fixed + 2L bonus",
+      "visitDate": "Oct 2026",
+      "notes": ""
+    }
+  ],
+  "funnelRaw": "Applied 120 -> OA 40 -> Tech 15 -> 5 offers",
+  "notes": "Official campus recruitment drive"
+}</div>
+          </div>
+        </div>
+
+        <!-- Drag & Drop / File Input Box -->
+        <div class="mt-6">
+          <label class="label block text-[12px] text-faint mb-2">Option A: Upload File (.csv or .json)</label>
+          <div id="drop-zone" class="relative rounded-2xl border-2 border-dashed border-line-strong hover:border-fg bg-bg/40 p-6 text-center transition-colors cursor-pointer">
+            <input id="import-file-input" type="file" accept=".csv, .json, text/csv, application/json" class="absolute inset-0 size-full opacity-0 cursor-pointer" />
+            <div class="flex flex-col items-center gap-2 pointer-events-none">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-muted"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <p class="text-[13px] text-fg font-medium">Click to select or drag and drop your CSV / JSON file</p>
+              <p id="file-chosen-name" class="text-[11px] text-faint font-mono">Accepts .csv or .json files</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Raw Paste Textarea -->
+        <div class="mt-4">
+          <div class="flex items-center justify-between mb-2">
+            <label class="label block text-[12px] text-faint">Option B: Or Paste Raw Content Directly</label>
+            <button id="btn-clear-paste" type="button" class="text-[11px] text-muted hover:text-fg cursor-pointer">Clear</button>
+          </div>
+          <textarea id="import-text-input" rows="6" placeholder="Paste raw CSV lines or JSON code here..." class="w-full rounded-2xl border border-line-strong bg-bg p-4 font-mono text-[12px] text-fg outline-none focus:border-fg placeholder:text-faint"></textarea>
+          <div id="import-parse-status" class="mt-2 text-[12px] text-red-400 hidden"></div>
+        </div>
+
+        <!-- Modal Footer Actions -->
+        <div class="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-4">
+          <button id="btn-cancel-import" type="button" class="cursor-pointer rounded-full border border-line-strong px-5 py-2 text-[13px] text-muted hover:border-fg hover:text-fg transition-colors">
+            Cancel
+          </button>
+
+          <button id="btn-do-extract" type="button" class="cursor-pointer inline-flex items-center gap-2 rounded-full bg-fg px-6 py-2.5 text-[13px] font-medium text-bg hover:opacity-90 transition-opacity">
+            <span>Extract & Populate Form</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -1594,12 +1740,424 @@ function generateAdminPage() {
           rawCompensation: sub.compensation || '',
           notes: sub.details || ''
         }];
-        renderRolesTable();
+        renderRolesRepeater();
       }
 
       showToast(\`Loaded submission for '\${sub.company_name}' into form editor!\`);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // -------------------------------------------------------------
+    // CSV / JSON Importer & Template System
+    // -------------------------------------------------------------
+    const importModal = document.getElementById('import-company-modal');
+    const btnOpenImportSidebar = document.getElementById('btn-open-import');
+    const btnOpenImportEditor = document.getElementById('btn-editor-open-import');
+    const btnOpenImportBanner = document.getElementById('btn-banner-open-import');
+    const btnCloseImport = document.getElementById('btn-close-import-modal');
+    const btnCancelImport = document.getElementById('btn-cancel-import');
+
+    const fmtTabCsv = document.getElementById('fmt-tab-csv');
+    const fmtTabJson = document.getElementById('fmt-tab-json');
+    const fmtDisplayCsv = document.getElementById('fmt-display-csv');
+    const fmtDisplayJson = document.getElementById('fmt-display-json');
+    const btnCopyCsvFmt = document.getElementById('btn-copy-csv-fmt');
+    const btnCopyJsonFmt = document.getElementById('btn-copy-json-fmt');
+
+    const dropZone = document.getElementById('drop-zone');
+    const importFileInput = document.getElementById('import-file-input');
+    const fileChosenName = document.getElementById('file-chosen-name');
+    const importTextInput = document.getElementById('import-text-input');
+    const btnClearPaste = document.getElementById('btn-clear-paste');
+    const importParseStatus = document.getElementById('import-parse-status');
+    const btnDoExtract = document.getElementById('btn-do-extract');
+
+    const CSV_TEMPLATE = 'name,slug,pay,payKind,offers,branches,cgpaCriteria,boardsCriteria,visitTimeline,students,roles,notes\\nKelp DAO,kelp-dao,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+ CGPA,Standard eligibility,Oct 2026,5,Blockchain Engineer:fulltime:5:₹16 LPA,Official campus recruitment drive';
+
+    const JSON_TEMPLATE = JSON.stringify({
+      name: "Kelp DAO",
+      slug: "kelp-dao",
+      pay: "₹16 LPA",
+      payKind: "CTC",
+      offers: ["internship", "fulltime"],
+      dream: false,
+      branches: "All branches open",
+      cgpaCriteria: "8.0+ CGPA",
+      boardsCriteria: "Standard eligibility",
+      visitTimeline: "Oct 2026",
+      out: {
+        students: 5,
+        fulltimeOffers: 5,
+        internships: 5
+      },
+      roles: [
+        {
+          title: "Blockchain Engineer",
+          type: "fulltime",
+          count: 5,
+          ctc: "₹16 LPA",
+          stipend: null,
+          rawCompensation: "14L fixed + 2L bonus",
+          visitDate: "Oct 2026",
+          notes: ""
+        }
+      ],
+      funnelRaw: "Applied 120 -> OA 40 -> Tech 15 -> 5 offers",
+      notes: "Official campus recruitment drive"
+    }, null, 2);
+
+    function openImportModal() {
+      if (!importModal) return;
+      importModal.classList.remove('hidden');
+      importModal.classList.add('flex');
+      importParseStatus?.classList.add('hidden');
+    }
+
+    function closeImportModal() {
+      if (!importModal) return;
+      importModal.classList.add('hidden');
+      importModal.classList.remove('flex');
+    }
+
+    [btnOpenImportSidebar, btnOpenImportEditor, btnOpenImportBanner].forEach(btn => {
+      btn?.addEventListener('click', openImportModal);
+    });
+
+    [btnCloseImport, btnCancelImport].forEach(btn => {
+      btn?.addEventListener('click', closeImportModal);
+    });
+
+    importModal?.addEventListener('click', (e) => {
+      if (e.target === importModal) closeImportModal();
+    });
+
+    // Format Tab Switching
+    fmtTabCsv?.addEventListener('click', () => {
+      fmtTabCsv.className = "cursor-pointer rounded-full px-3 py-1 font-medium bg-fg text-bg transition-colors";
+      fmtTabJson.className = "cursor-pointer rounded-full px-3 py-1 font-medium text-muted hover:text-fg transition-colors";
+      fmtDisplayCsv?.classList.remove('hidden');
+      fmtDisplayJson?.classList.add('hidden');
+      btnCopyCsvFmt?.classList.remove('hidden');
+      btnCopyJsonFmt?.classList.add('hidden');
+    });
+
+    fmtTabJson?.addEventListener('click', () => {
+      fmtTabJson.className = "cursor-pointer rounded-full px-3 py-1 font-medium bg-fg text-bg transition-colors";
+      fmtTabCsv.className = "cursor-pointer rounded-full px-3 py-1 font-medium text-muted hover:text-fg transition-colors";
+      fmtDisplayJson?.classList.remove('hidden');
+      fmtDisplayCsv?.classList.add('hidden');
+      btnCopyJsonFmt?.classList.remove('hidden');
+      btnCopyCsvFmt?.classList.add('hidden');
+    });
+
+    // Copy Format Buttons
+    btnCopyCsvFmt?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(CSV_TEMPLATE);
+        const label = document.getElementById('btn-copy-csv-label');
+        if (label) {
+          const orig = label.textContent;
+          label.textContent = '✔ Copied!';
+          setTimeout(() => { label.textContent = orig; }, 2000);
+        }
+        showToast('CSV format template copied to clipboard!');
+      } catch (err) {
+        showToast('Failed to copy: ' + err.message, true);
+      }
+    });
+
+    btnCopyJsonFmt?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(JSON_TEMPLATE);
+        const label = document.getElementById('btn-copy-json-label');
+        if (label) {
+          const orig = label.textContent;
+          label.textContent = '✔ Copied!';
+          setTimeout(() => { label.textContent = orig; }, 2000);
+        }
+        showToast('JSON format template copied to clipboard!');
+      } catch (err) {
+        showToast('Failed to copy: ' + err.message, true);
+      }
+    });
+
+    // File Input & Drag and Drop Handling
+    function handleFileSelected(file) {
+      if (!file) return;
+      if (fileChosenName) {
+        fileChosenName.textContent = file.name + ' (' + (file.size < 1024 ? file.size + ' B' : Math.round(file.size / 1024) + ' KB') + ')';
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (importTextInput) {
+          importTextInput.value = e.target.result;
+          importParseStatus?.classList.add('hidden');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    importFileInput?.addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      handleFileSelected(file);
+    });
+
+    if (dropZone) {
+      ['dragenter', 'dragover'].forEach(name => {
+        dropZone.addEventListener(name, (e) => {
+          e.preventDefault();
+          dropZone.classList.add('border-fg', 'bg-line/40');
+        });
+      });
+      ['dragleave', 'drop'].forEach(name => {
+        dropZone.addEventListener(name, (e) => {
+          e.preventDefault();
+          dropZone.classList.remove('border-fg', 'bg-line/40');
+        });
+      });
+      dropZone.addEventListener('drop', (e) => {
+        const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+        handleFileSelected(file);
+      });
+    }
+
+    btnClearPaste?.addEventListener('click', () => {
+      if (importTextInput) importTextInput.value = '';
+      if (fileChosenName) fileChosenName.textContent = 'Accepts .csv or .json files';
+      importParseStatus?.classList.add('hidden');
+    });
+
+    // CSV Parsing Algorithm
+    function parseCSVText(text) {
+      const lines = [];
+      let row = [''];
+      let inQuotes = false;
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        const next = text[i + 1];
+        if (c === '"') {
+          if (inQuotes && next === '"') {
+            row[row.length - 1] += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (c === ',' && !inQuotes) {
+          row.push('');
+        } else if ((c === '\\r' || c === '\\n') && !inQuotes) {
+          if (c === '\\r' && next === '\\n') i++;
+          lines.push(row);
+          row = [''];
+        } else {
+          row[row.length - 1] += c;
+        }
+      }
+      if (row.length > 1 || (row.length === 1 && row[0].trim() !== '')) {
+        lines.push(row);
+      }
+      if (lines.length < 2) return [];
+
+      const headers = lines[0].map(h => h.trim().toLowerCase().replace(/[^a-z0-9]/g, ''));
+      const results = [];
+
+      for (let i = 1; i < lines.length; i++) {
+        const values = lines[i];
+        if (values.every(v => !v.trim())) continue;
+        const obj = {};
+        headers.forEach((h, idx) => {
+          obj[h] = values[idx] ? values[idx].trim() : '';
+        });
+        results.push(obj);
+      }
+      return results;
+    }
+
+    // Extraction & Form Population
+    function extractAndPopulateForm() {
+      const raw = (importTextInput?.value || '').trim();
+      if (!raw) {
+        if (importParseStatus) {
+          importParseStatus.textContent = 'Please choose a file or paste CSV/JSON content first.';
+          importParseStatus.classList.remove('hidden');
+        }
+        return;
+      }
+
+      let extractedCompany = null;
+
+      // 1. Attempt JSON parsing
+      if (raw.startsWith('{') || raw.startsWith('[')) {
+        try {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) {
+            extractedCompany = parsed[0];
+          } else if (parsed.companies && Array.isArray(parsed.companies)) {
+            extractedCompany = parsed.companies[0];
+          } else if (parsed.company && typeof parsed.company === 'object') {
+            extractedCompany = parsed.company;
+          } else {
+            extractedCompany = parsed;
+          }
+        } catch (e) {
+          // Fall through to CSV
+        }
+      }
+
+      // 2. If not JSON, attempt CSV parsing
+      if (!extractedCompany) {
+        const rows = parseCSVText(raw);
+        if (rows && rows.length > 0) {
+          const r = rows[0];
+          const name = r.name || r.company || r.companyname || r.title || '';
+          if (name) {
+            const slug = r.slug || name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+            const pay = r.pay || r.ctc || r.package || r.compensation || '';
+            const payKind = (r.paykind || (pay.toLowerCase().includes('/mo') || pay.toLowerCase().includes('stipend') ? 'Stipend' : 'CTC'));
+            const offers = (r.offers || r.offertypes || '').split(/[;,|]/).map(s => s.trim().toLowerCase()).filter(Boolean);
+            if (offers.length === 0) {
+              if (payKind === 'Stipend') offers.push('internship');
+              else offers.push('fulltime');
+            }
+
+            // Extract roles
+            let parsedRoles = [];
+            if (r.roles) {
+              const roleEntries = r.roles.split(/[;|]/).map(s => s.trim()).filter(Boolean);
+              parsedRoles = roleEntries.map(entry => {
+                const parts = entry.split(':').map(p => p.trim());
+                return {
+                  title: parts[0] || 'Software Engineer',
+                  type: parts[1] || 'fulltime',
+                  count: parseInt(parts[2], 10) || 1,
+                  ctc: parts[3] || pay || '',
+                  stipend: null,
+                  rawCompensation: '',
+                  visitDate: r.visittimeline || '',
+                  notes: ''
+                };
+              });
+            } else if (r.students || r.role) {
+              parsedRoles = [{
+                title: r.role || 'Software Engineer',
+                type: 'fulltime',
+                count: parseInt(r.students || 1, 10) || 1,
+                ctc: pay || '',
+                stipend: null,
+                rawCompensation: '',
+                visitDate: r.visittimeline || '',
+                notes: ''
+              }];
+            }
+
+            extractedCompany = {
+              name,
+              slug,
+              pay,
+              payKind,
+              payRank: parseInt(r.payrank || r.rank, 10) || null,
+              offers,
+              dream: r.dream === 'true' || r.dream === '1',
+              branches: r.branches || r.eligiblebranches || 'All branches open',
+              cgpaCriteria: r.cgpacriteria || r.cgpa || '',
+              boardsCriteria: r.boardscriteria || r.boards || '',
+              visitTimeline: r.visittimeline || r.timeline || '',
+              notes: r.notes || r.remarks || '',
+              status: r.status || '',
+              funnelRaw: r.funnelraw || r.funnel || '',
+              roles: parsedRoles
+            };
+          }
+        }
+      }
+
+      if (!extractedCompany || !extractedCompany.name) {
+        if (importParseStatus) {
+          importParseStatus.textContent = 'Could not extract valid company data. Please verify the CSV headers or JSON syntax.';
+          importParseStatus.classList.remove('hidden');
+        }
+        return;
+      }
+
+      // Initialize form in create mode
+      resetForm();
+
+      // Populate Extracted Fields
+      const c = extractedCompany;
+      const compName = c.name || '';
+      const compSlug = c.slug || compName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+      document.getElementById('field-name').value = compName;
+      document.getElementById('field-slug').value = compSlug;
+      document.getElementById('field-pay').value = c.pay || '';
+      document.getElementById('field-pay-kind').value = c.payKind || (c.pay && c.pay.toLowerCase().includes('/mo') ? 'Stipend' : 'CTC');
+      if (c.payRank) document.getElementById('field-pay-rank').value = c.payRank;
+      document.getElementById('field-status').value = c.status || '';
+      document.getElementById('field-branches').value = c.branches || 'All branches open';
+      document.getElementById('field-cgpa-criteria').value = c.cgpaCriteria || c.cgpa_criteria || '';
+      document.getElementById('field-boards-criteria').value = c.boardsCriteria || c.boards_criteria || '';
+      document.getElementById('field-timeline').value = c.visitTimeline || c.visit_timeline || '';
+      document.getElementById('field-notes').value = c.notes || '';
+      document.getElementById('field-logo').value = c.logo || ('/logos/' + compSlug + '.svg');
+      updateLogoPreview(c.logo || ('/logos/' + compSlug + '.svg'));
+
+      const offers = Array.isArray(c.offers) ? c.offers : (c.offers || '').split(/[;,|]/).map(s => s.trim().toLowerCase());
+      document.getElementById('check-offer-intern').checked = offers.includes('internship');
+      document.getElementById('check-offer-fulltime').checked = offers.includes('fulltime');
+      document.getElementById('check-offer-ppo').checked = offers.includes('ppo');
+      document.getElementById('check-dream').checked = !!c.dream;
+
+      // Populate Roles
+      if (c.roles && Array.isArray(c.roles) && c.roles.length > 0) {
+        rolesData = JSON.parse(JSON.stringify(c.roles));
+      } else if (c.out && c.out.students) {
+        rolesData = [{
+          title: "Graduate Engineer",
+          type: "fulltime",
+          count: c.out.students || 1,
+          ctc: c.pay || '',
+          stipend: null,
+          rawCompensation: '',
+          visitDate: c.visitTimeline || '',
+          notes: ''
+        }];
+      }
+      renderRolesRepeater();
+
+      // Populate Funnel / Stages
+      if (c.funnelRaw || c.funnel_raw) {
+        document.getElementById('field-funnel-raw').value = c.funnelRaw || c.funnel_raw;
+        parsePipelineString(c.funnelRaw || c.funnel_raw);
+      } else if (c.roles && c.roles.length > 0 && c.roles[0].funnel && c.roles[0].funnel.length > 0) {
+        stagesData = JSON.parse(JSON.stringify(c.roles[0].funnel));
+        renderStagesRepeater();
+        renderFunnelPreview();
+      }
+
+      editorTitle.textContent = compName;
+      editorModeBadge.textContent = "Extracted / New";
+      editorModeBadge.className = "chip text-[11px] font-mono text-intern border-intern/30 bg-intern/10";
+
+      closeImportModal();
+      showToast(\`Extracted '\${compName}' data directly into company editor!\`);
+
+      // Switch to overview tab
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active', 'border-fg', 'text-fg');
+        b.classList.add('border-transparent', 'text-muted');
+      });
+      const firstTab = document.querySelector('.tab-btn[data-tab="tab-overview"]');
+      if (firstTab) {
+        firstTab.classList.add('active', 'border-fg', 'text-fg');
+        firstTab.classList.remove('border-transparent', 'text-muted');
+      }
+      document.querySelectorAll('.tab-content').forEach(tc => tc.classList.add('hidden'));
+      document.getElementById('tab-overview')?.classList.remove('hidden');
+
+      const editorForm = document.getElementById('company-editor-form');
+      editorForm?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    btnDoExtract?.addEventListener('click', extractAndPopulateForm);
 
     // Ctrl+S / Cmd+S Keyboard Shortcut
     window.addEventListener('keydown', (e) => {

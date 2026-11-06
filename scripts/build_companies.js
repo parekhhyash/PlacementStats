@@ -262,8 +262,9 @@ function generateCompaniesPage() {
       if (statInternshipsSub) statInternshipsSub.textContent = \`\${ppoCount || 19} with a PPO path\`;
       if (statFulltime) statFulltime.textContent = ftCount || '17';
       if (statFulltimeSub) statFulltimeSub.textContent = \`\${bothCount || 11} offered both\`;
+      const placedDrivesCount = companies.filter(c => c.out && (c.out.students > 0 || c.out.fulltimeOffers > 0 || c.out.internships > 0)).length;
       if (statAvgCtc) statAvgCtc.innerHTML = '₹14.06<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
-      if (statAvgCtcSub) statAvgCtcSub.textContent = '29 drives with selections';
+      if (statAvgCtcSub) statAvgCtcSub.textContent = \`\${placedDrivesCount} drives with selections\`;
       if (statMedCtc) statMedCtc.innerHTML = '₹13<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
       if (statMedCtcSub) statMedCtcSub.textContent = 'Range ₹8.23–33.0 LPA';
       if (statAvgFt) statAvgFt.innerHTML = '₹14.1<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';

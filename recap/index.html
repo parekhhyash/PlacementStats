@@ -226,7 +226,7 @@
       statsGrid.innerHTML = `
         <div class="flex flex-col py-5 pr-4 border-r border-line">
           <dt class="order-2 mt-1.5 text-[13px] text-muted">Visiting Companies</dt>
-          <dd class="num order-1 font-display text-[32px] text-fg">${batch.stats.totalCompanies}</dd>
+          <dd class="num order-1 font-display text-[32px] text-fg">${batch.companies ? batch.companies.length : batch.stats.totalCompanies}</dd>
         </div>
         <div class="flex flex-col py-5 px-4 sm:border-r border-line">
           <dt class="order-2 mt-1.5 text-[13px] text-muted">Confirmed Selections</dt>

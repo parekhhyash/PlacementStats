@@ -1,6 +1,8 @@
 // Configuration for the Placement Statistics Portal
 // Configured for Sardar Patel Institute of Technology (SPIT), Batch 2027
 
+import { companies } from '../data/companies.js';
+
 export const siteConfig = {
   // College Information
   collegeName: "Sardar Patel Institute of Technology",
@@ -18,7 +20,7 @@ export const siteConfig = {
 
   // Top summary headline stats from SPIT 2027 classified data
   stats: {
-    totalCompanies: 32,
+    totalCompanies: companies.length,
     studentsPlaced: 225,
     totalBatchSize: 360,
     placementPercentage: "63%",
