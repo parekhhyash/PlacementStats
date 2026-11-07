@@ -75,130 +75,54 @@ function generateBranchesPage() {
         </div>
 
         <div class="mt-8 rounded-2xl border border-line-strong bg-panel p-6 sm:p-8">
-          <!-- Graph Title & Subtitle -->
-          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 pb-6 border-b border-line">
-            <div>
-              <h3 class="font-display text-[18px] sm:text-[20px] font-semibold text-fg">Department Offer Breakdown</h3>
-              <p class="text-[13px] text-muted mt-1">Confirmed placement selections across departments from 38 recruitment drives</p>
-            </div>
-            <div class="text-[12px] text-faint font-mono">
-              236 Confirmed Offers · Class of 2027
-            </div>
+          <!-- Timeline-style Header with Legend Dots -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 border-b border-line text-[13px] text-faint gap-3">
+            <span>Branch Offer Volume (Season 2027)</span>
+            <span class="flex flex-wrap items-center gap-4">
+              <span class="flex items-center gap-1.5"><i class="dot" style="background:#10b981"></i>Computer Engg (CE)</span>
+              <span class="flex items-center gap-1.5"><i class="dot" style="background:#38bdf8"></i>Computer Science (CSE)</span>
+              <span class="flex items-center gap-1.5"><i class="dot" style="background:#f43f5e"></i>Electronics &amp; Telecom (EXTC)</span>
+              <span class="flex items-center gap-1.5"><i class="dot" style="background:#71717a"></i>Unknown</span>
+            </span>
           </div>
 
-          <!-- SVG Bar Graph Canvas (Exact match to Reference Bar Chart) -->
-          <div class="mt-8 w-full overflow-x-auto pb-4">
-            <svg viewBox="0 0 760 420" class="w-full h-auto min-w-[560px] max-w-[840px] mx-auto block font-sans select-none" style="overflow: visible;">
-              <!-- Y-Axis Vertical Title (like in Reference Image 1 "Children") -->
-              <text x="-195" y="24" transform="rotate(-90)" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="0.08em" fill="#71717a">OFFERS</text>
+          <!-- Timeline-Style Grid Bar Graph -->
+          <div class="mt-8 grid grid-cols-4 gap-4 sm:gap-8 items-end h-[220px] pt-4 max-w-xl mx-auto">
+            <!-- CE Column -->
+            <div class="timeline-branch-col flex flex-col items-center gap-2 h-full justify-end cursor-pointer group" data-branch="ce" title="Computer Engineering: 61 offers (Click to filter)">
+              <span class="num text-[14px] text-fg font-medium">61</span>
+              <div class="w-full max-w-[60px] bg-line border border-line-strong overflow-hidden flex flex-col justify-end transition-opacity group-hover:opacity-80" style="height: 55%;">
+                <div style="height: 100%; background: #10b981;"></div>
+              </div>
+              <span class="label text-[12px] text-fg font-medium">CE</span>
+            </div>
 
-              <!-- Horizontal Grid Lines & Y-Axis Labels -->
-              <!-- 120 -->
-              <g class="grid-line">
-                <text x="62" y="54" text-anchor="end" font-size="11" font-family="monospace" fill="#71717a">120</text>
-                <line x1="68" y1="50" x2="74" y2="50" stroke="#444" stroke-width="1.2" />
-                <line x1="74" y1="50" x2="720" y2="50" stroke="#222" stroke-width="1" stroke-dasharray="3 3" />
-              </g>
+            <!-- CSE Column -->
+            <div class="timeline-branch-col flex flex-col items-center gap-2 h-full justify-end cursor-pointer group" data-branch="cse" title="Computer Science Engineering: 44 offers (Click to filter)">
+              <span class="num text-[14px] text-fg font-medium">44</span>
+              <div class="w-full max-w-[60px] bg-line border border-line-strong overflow-hidden flex flex-col justify-end transition-opacity group-hover:opacity-80" style="height: 40%;">
+                <div style="height: 100%; background: #38bdf8;"></div>
+              </div>
+              <span class="label text-[12px] text-fg font-medium">CSE</span>
+            </div>
 
-              <!-- 90 -->
-              <g class="grid-line">
-                <text x="62" y="126" text-anchor="end" font-size="11" font-family="monospace" fill="#71717a">90</text>
-                <line x1="68" y1="122.5" x2="74" y2="122.5" stroke="#444" stroke-width="1.2" />
-                <line x1="74" y1="122.5" x2="720" y2="122.5" stroke="#222" stroke-width="1" stroke-dasharray="3 3" />
-              </g>
+            <!-- EXTC Column -->
+            <div class="timeline-branch-col flex flex-col items-center gap-2 h-full justify-end cursor-pointer group" data-branch="extc" title="Electronics & Telecommunications: 20 offers (Click to filter)">
+              <span class="num text-[14px] text-fg font-medium">20</span>
+              <div class="w-full max-w-[60px] bg-line border border-line-strong overflow-hidden flex flex-col justify-end transition-opacity group-hover:opacity-80" style="height: 18%;">
+                <div style="height: 100%; background: #f43f5e;"></div>
+              </div>
+              <span class="label text-[12px] text-fg font-medium">EXTC</span>
+            </div>
 
-              <!-- 60 -->
-              <g class="grid-line">
-                <text x="62" y="199" text-anchor="end" font-size="11" font-family="monospace" fill="#71717a">60</text>
-                <line x1="68" y1="195" x2="74" y2="195" stroke="#444" stroke-width="1.2" />
-                <line x1="74" y1="195" x2="720" y2="195" stroke="#222" stroke-width="1" stroke-dasharray="3 3" />
-              </g>
-
-              <!-- 30 -->
-              <g class="grid-line">
-                <text x="62" y="271" text-anchor="end" font-size="11" font-family="monospace" fill="#71717a">30</text>
-                <line x1="68" y1="267.5" x2="74" y2="267.5" stroke="#444" stroke-width="1.2" />
-                <line x1="74" y1="267.5" x2="720" y2="267.5" stroke="#222" stroke-width="1" stroke-dasharray="3 3" />
-              </g>
-
-              <!-- 0 (Baseline tick) -->
-              <g class="grid-line">
-                <text x="62" y="344" text-anchor="end" font-size="11" font-family="monospace" fill="#71717a">0</text>
-                <line x1="68" y1="340" x2="74" y2="340" stroke="#444" stroke-width="1.2" />
-              </g>
-
-              <!-- Y-Axis Vertical Line -->
-              <line x1="74" y1="40" x2="74" y2="340" stroke="#333333" stroke-width="1.5" />
-
-              <!-- X-Axis Baseline -->
-              <line x1="74" y1="340" x2="730" y2="340" stroke="#333333" stroke-width="1.5" />
-
-              <!-- BARS (Plain solid colors with sharp corners and distinct borders) -->
-
-              <!-- 1. CE Bar (61 offers) -->
-              <g class="svg-bar-col cursor-pointer group transition-opacity" data-branch="ce">
-                <!-- Bar Rect: Sharp corners, solid emerald, crisp border -->
-                <rect x="106" y="193" width="90" height="147" fill="#10b981" stroke="rgba(255,255,255,0.3)" stroke-width="1.2" class="transition-opacity hover:opacity-85">
-                  <title>Computer Engineering (CE): 61 offers (25.8% of total, 48.8% of known) — Click to filter</title>
-                </rect>
-                <!-- Number on top of bar -->
-                <text x="151" y="178" text-anchor="middle" font-size="20" font-weight="700" fill="#ededed" font-family="'Funnel Display', sans-serif">61</text>
-                <text x="151" y="161" text-anchor="middle" font-size="11" font-weight="600" fill="#10b981" font-family="monospace">25.8%</text>
-
-                <!-- X-Axis Category Label (centered under bar) -->
-                <text x="151" y="365" text-anchor="middle" font-size="15" font-weight="700" fill="#ededed">CE</text>
-                <text x="151" y="382" text-anchor="middle" font-size="12" fill="#a1a1aa">Computer Engg</text>
-                <text x="151" y="399" text-anchor="middle" font-size="10" font-family="monospace" fill="#71717a">28 Recruiters</text>
-              </g>
-
-              <!-- 2. CSE Bar (44 offers) -->
-              <g class="svg-bar-col cursor-pointer group transition-opacity" data-branch="cse">
-                <!-- Bar Rect: Sharp corners, solid sky blue, crisp border -->
-                <rect x="269" y="234" width="90" height="106" fill="#38bdf8" stroke="rgba(255,255,255,0.3)" stroke-width="1.2" class="transition-opacity hover:opacity-85">
-                  <title>Computer Science Engineering (CSE): 44 offers (18.6% of total, 35.2% of known) — Click to filter</title>
-                </rect>
-                <!-- Number on top of bar -->
-                <text x="314" y="219" text-anchor="middle" font-size="20" font-weight="700" fill="#ededed" font-family="'Funnel Display', sans-serif">44</text>
-                <text x="314" y="202" text-anchor="middle" font-size="11" font-weight="600" fill="#38bdf8" font-family="monospace">18.6%</text>
-
-                <!-- X-Axis Category Label (centered under bar) -->
-                <text x="314" y="365" text-anchor="middle" font-size="15" font-weight="700" fill="#ededed">CSE</text>
-                <text x="314" y="382" text-anchor="middle" font-size="12" fill="#a1a1aa">Computer Science</text>
-                <text x="314" y="399" text-anchor="middle" font-size="10" font-family="monospace" fill="#71717a">22 Recruiters</text>
-              </g>
-
-              <!-- 3. EXTC Bar (20 offers) -->
-              <g class="svg-bar-col cursor-pointer group transition-opacity" data-branch="extc">
-                <!-- Bar Rect: Sharp corners, solid rose red, crisp border -->
-                <rect x="431" y="292" width="90" height="48" fill="#f43f5e" stroke="rgba(255,255,255,0.3)" stroke-width="1.2" class="transition-opacity hover:opacity-85">
-                  <title>Electronics &amp; Telecommunications (EXTC): 20 offers (8.5% of total, 16.0% of known) — Click to filter</title>
-                </rect>
-                <!-- Number on top of bar -->
-                <text x="476" y="277" text-anchor="middle" font-size="20" font-weight="700" fill="#ededed" font-family="'Funnel Display', sans-serif">20</text>
-                <text x="476" y="260" text-anchor="middle" font-size="11" font-weight="600" fill="#f43f5e" font-family="monospace">8.5%</text>
-
-                <!-- X-Axis Category Label (centered under bar) -->
-                <text x="476" y="365" text-anchor="middle" font-size="15" font-weight="700" fill="#ededed">EXTC</text>
-                <text x="476" y="382" text-anchor="middle" font-size="12" fill="#a1a1aa">Electronics &amp; Telecom</text>
-                <text x="476" y="399" text-anchor="middle" font-size="10" font-family="monospace" fill="#71717a">12 Recruiters</text>
-              </g>
-
-              <!-- 4. Unknown Bar (111 offers) -->
-              <g class="svg-bar-col cursor-pointer group transition-opacity" data-branch="unknown">
-                <!-- Bar Rect: Sharp corners, solid slate, crisp border -->
-                <rect x="594" y="72" width="90" height="268" fill="#64748b" stroke="rgba(255,255,255,0.3)" stroke-width="1.2" class="transition-opacity hover:opacity-85">
-                  <title>Unknown / Awaiting Division: 111 offers (47.0% of total) — Click to filter</title>
-                </rect>
-                <!-- Number on top of bar -->
-                <text x="639" y="57" text-anchor="middle" font-size="20" font-weight="700" fill="#ededed" font-family="'Funnel Display', sans-serif">111</text>
-                <text x="639" y="40" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" font-family="monospace">47.0%</text>
-
-                <!-- X-Axis Category Label (centered under bar) -->
-                <text x="639" y="365" text-anchor="middle" font-size="15" font-weight="700" fill="#ededed">Unknown</text>
-                <text x="639" y="382" text-anchor="middle" font-size="12" fill="#a1a1aa">Awaiting Division</text>
-                <text x="639" y="399" text-anchor="middle" font-size="10" font-family="monospace" fill="#71717a">30 Recruiters</text>
-              </g>
-            </svg>
+            <!-- Unknown Column -->
+            <div class="timeline-branch-col flex flex-col items-center gap-2 h-full justify-end cursor-pointer group" data-branch="unknown" title="Unknown / Awaiting Division: 111 offers (Click to filter)">
+              <span class="num text-[14px] text-fg font-medium">111</span>
+              <div class="w-full max-w-[60px] bg-line border border-line-strong overflow-hidden flex flex-col justify-end transition-opacity group-hover:opacity-80" style="height: 100%;">
+                <div style="height: 100%; background: #71717a;"></div>
+              </div>
+              <span class="label text-[12px] text-fg font-medium">Unknown</span>
+            </div>
           </div>
 
           <!-- Branch Detail Cards Grid -->
@@ -465,27 +389,27 @@ function generateBranchesPage() {
         }
       });
 
-      // Update SVG Bar Columns
-      document.querySelectorAll('.svg-bar-col').forEach(col => {
+      // Update Timeline-style Bar Columns
+      document.querySelectorAll('.timeline-branch-col').forEach(col => {
         const b = col.getAttribute('data-branch');
-        const rect = col.querySelector('rect');
+        const barBox = col.querySelector('.border-line-strong, .border-fg');
         if (branchKey === 'all') {
           col.style.opacity = '1';
-          if (rect) {
-            rect.setAttribute('stroke', 'rgba(255, 255, 255, 0.3)');
-            rect.setAttribute('stroke-width', '1.2');
+          if (barBox) {
+            barBox.classList.remove('border-fg', 'ring-1', 'ring-fg');
+            barBox.classList.add('border-line-strong');
           }
         } else if (b === branchKey) {
           col.style.opacity = '1';
-          if (rect) {
-            rect.setAttribute('stroke', '#ffffff');
-            rect.setAttribute('stroke-width', '2.5');
+          if (barBox) {
+            barBox.classList.add('border-fg', 'ring-1', 'ring-fg');
+            barBox.classList.remove('border-line-strong');
           }
         } else {
-          col.style.opacity = '0.3';
-          if (rect) {
-            rect.setAttribute('stroke', 'rgba(255, 255, 255, 0.2)');
-            rect.setAttribute('stroke-width', '1.2');
+          col.style.opacity = '0.35';
+          if (barBox) {
+            barBox.classList.remove('border-fg', 'ring-1', 'ring-fg');
+            barBox.classList.add('border-line-strong');
           }
         }
       });
@@ -607,16 +531,14 @@ function generateBranchesPage() {
       });
     });
 
-    // Event listeners for SVG bar columns
-    document.querySelectorAll('.svg-bar-col').forEach(el => {
+    // Event listeners for Timeline-style bar columns
+    document.querySelectorAll('.timeline-branch-col').forEach(el => {
       el.addEventListener('click', () => {
         const b = el.getAttribute('data-branch');
         if (!b) return;
         const target = (selectedBranchFilter === b) ? 'all' : b;
         syncBranchSelection(target);
         document.getElementById('company-branch-tbody')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
       });
     });
 
