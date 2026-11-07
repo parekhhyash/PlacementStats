@@ -119,11 +119,11 @@ function generateHomePage() {
     <section class="wrap mt-[clamp(56px,6.5vw,96px)]">
       <div class="grid gap-6 border-t border-line pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
         <div>
-          <p class="label text-faint">03 — Pay</p>
+          <p class="label text-faint">03 — Offers</p>
           <h2 class="display-m mt-3 max-w-[18ch]">What the offers advertised</h2>
         </div>
         <div class="flex flex-col justify-end gap-4 lg:items-start">
-          <a class="label link-underline text-fg" href="/pay/">All pay figures →</a>
+          <a class="label link-underline text-fg" href="/offers/">All offers &amp; packages →</a>
         </div>
       </div>
       <div class="mt-10">

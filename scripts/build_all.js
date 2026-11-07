@@ -43,7 +43,10 @@ try {
   console.log('4. Building Highlights Page...');
   require('./build_highlights.js');
 
-  console.log('5. Building Pay Page...');
+  console.log('5. Building Offers Page...');
+  require('./build_offers.js');
+
+  console.log('6. Building Pay Redirect Stub...');
   require('./build_pay.js');
 
   // Maintain redirect stubs for old selections & recap URLs

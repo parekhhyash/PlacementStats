@@ -3,6 +3,10 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": true,
+  "redirects": [
+    { "source": "/pay", "destination": "/offers/", "permanent": true },
+    { "source": "/pay/(.*)", "destination": "/offers/", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/fonts/(.*)",

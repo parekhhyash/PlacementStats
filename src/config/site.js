@@ -41,7 +41,7 @@ export const siteConfig = {
   navLinks: [
     { label: "Highlights", href: "/highlights/", glow: true },
     { label: "Companies", href: "/companies/" },
-    { label: "Pay", href: "/pay/" },
+    { label: "Offers", href: "/offers/" },
     { label: "Branches", href: "/branches/" },
     { label: "Timeline", href: "/timeline/" },
     { label: "Submit Data", href: "/corrections/" }
