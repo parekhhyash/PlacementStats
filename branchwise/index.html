@@ -230,26 +230,6 @@
           <!-- SVG Bar Graph Canvas (Exact match to Reference Bar Chart) -->
           <div class="mt-8 w-full overflow-x-auto pb-4">
             <svg viewBox="0 0 760 420" class="w-full h-auto min-w-[560px] max-w-[840px] mx-auto block font-sans select-none" style="overflow: visible;">
-              <defs>
-                <!-- Subtle Top Glow Gradients for Bars -->
-                <linearGradient id="bar-grad-ce" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#10b981" />
-                  <stop offset="100%" stop-color="#059669" />
-                </linearGradient>
-                <linearGradient id="bar-grad-cse" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#38bdf8" />
-                  <stop offset="100%" stop-color="#0284c7" />
-                </linearGradient>
-                <linearGradient id="bar-grad-extc" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#f43f5e" />
-                  <stop offset="100%" stop-color="#e11d48" />
-                </linearGradient>
-                <linearGradient id="bar-grad-unk" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#64748b" />
-                  <stop offset="100%" stop-color="#475569" />
-                </linearGradient>
-              </defs>
-
               <!-- Y-Axis Vertical Title (like in Reference Image 1 "Children") -->
               <text x="-195" y="24" transform="rotate(-90)" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="0.08em" fill="#71717a">OFFERS</text>
 
@@ -294,12 +274,12 @@
               <!-- X-Axis Baseline -->
               <line x1="74" y1="340" x2="730" y2="340" stroke="#333333" stroke-width="1.5" />
 
-              <!-- BARS (Colored bars with height directly proportional to offers) -->
+              <!-- BARS (Plain solid colors with sharp corners and distinct borders) -->
 
               <!-- 1. CE Bar (61 offers) -->
-              <g class="svg-bar-col cursor-pointer group transition-all duration-300" data-branch="ce">
-                <!-- Bar Rect -->
-                <rect x="106" y="193" width="90" height="147" rx="5" ry="5" fill="url(#bar-grad-ce)" class="transition-all duration-300 group-hover:brightness-125" filter="drop-shadow(0 2px 8px rgba(16,185,129,0.35))">
+              <g class="svg-bar-col cursor-pointer group transition-opacity" data-branch="ce">
+                <!-- Bar Rect: Sharp corners, solid emerald, crisp border -->
+                <rect x="106" y="193" width="90" height="147" fill="#10b981" stroke="rgba(255,255,255,0.3)" stroke-width="1.2" class="transition-opacity hover:opacity-85">
                   <title>Computer Engineering (CE): 61 offers (25.8% of total, 48.8% of known) — Click to filter</title>
                 </rect>
                 <!-- Number on top of bar -->
@@ -313,9 +293,9 @@
               </g>
 
               <!-- 2. CSE Bar (44 offers) -->
-              <g class="svg-bar-col cursor-pointer group transition-all duration-300" data-branch="cse">
-                <!-- Bar Rect -->
-                <rect x="269" y="234" width="90" height="106" rx="5" ry="5" fill="url(#bar-grad-cse)" class="transition-all duration-300 group-hover:brightness-125" filter="drop-shadow(0 2px 8px rgba(56,189,248,0.35))">
+              <g class="svg-bar-col cursor-pointer group transition-opacity" data-branch="cse">
+                <!-- Bar Rect: Sharp corners, solid sky blue, crisp border -->
+                <rect x="269" y="234" width="90" height="106" fill="#38bdf8" stroke="rgba(255,255,255,0.3)" stroke-width="1.2" class="transition-opacity hover:opacity-85">
                   <title>Computer Science Engineering (CSE): 44 offers (18.6% of total, 35.2% of known) — Click to filter</title>
                 </rect>
                 <!-- Number on top of bar -->
@@ -329,9 +309,9 @@
               </g>
 
               <!-- 3. EXTC Bar (20 offers) -->
-              <g class="svg-bar-col cursor-pointer group transition-all duration-300" data-branch="extc">
-                <!-- Bar Rect -->
-                <rect x="431" y="292" width="90" height="48" rx="5" ry="5" fill="url(#bar-grad-extc)" class="transition-all duration-300 group-hover:brightness-125" filter="drop-shadow(0 2px 8px rgba(244,63,94,0.35))">
+              <g class="svg-bar-col cursor-pointer group transition-opacity" data-branch="extc">
+                <!-- Bar Rect: Sharp corners, solid rose red, crisp border -->
+                <rect x="431" y="292" width="90" height="48" fill="#f43f5e" stroke="rgba(255,255,255,0.3)" stroke-width="1.2" class="transition-opacity hover:opacity-85">
                   <title>Electronics &amp; Telecommunications (EXTC): 20 offers (8.5% of total, 16.0% of known) — Click to filter</title>
                 </rect>
                 <!-- Number on top of bar -->
@@ -345,9 +325,9 @@
               </g>
 
               <!-- 4. Unknown Bar (111 offers) -->
-              <g class="svg-bar-col cursor-pointer group transition-all duration-300" data-branch="unknown">
-                <!-- Bar Rect -->
-                <rect x="594" y="72" width="90" height="268" rx="5" ry="5" fill="url(#bar-grad-unk)" class="transition-all duration-300 group-hover:brightness-125" filter="drop-shadow(0 2px 8px rgba(100,116,139,0.35))">
+              <g class="svg-bar-col cursor-pointer group transition-opacity" data-branch="unknown">
+                <!-- Bar Rect: Sharp corners, solid slate, crisp border -->
+                <rect x="594" y="72" width="90" height="268" fill="#64748b" stroke="rgba(255,255,255,0.3)" stroke-width="1.2" class="transition-opacity hover:opacity-85">
                   <title>Unknown / Awaiting Division: 111 offers (47.0% of total) — Click to filter</title>
                 </rect>
                 <!-- Number on top of bar -->
@@ -739,7 +719,10 @@
         const rect = col.querySelector('rect');
         if (branchKey === 'all') {
           col.style.opacity = '1';
-          if (rect) rect.setAttribute('stroke', 'none');
+          if (rect) {
+            rect.setAttribute('stroke', 'rgba(255, 255, 255, 0.3)');
+            rect.setAttribute('stroke-width', '1.2');
+          }
         } else if (b === branchKey) {
           col.style.opacity = '1';
           if (rect) {
@@ -748,7 +731,10 @@
           }
         } else {
           col.style.opacity = '0.3';
-          if (rect) rect.setAttribute('stroke', 'none');
+          if (rect) {
+            rect.setAttribute('stroke', 'rgba(255, 255, 255, 0.2)');
+            rect.setAttribute('stroke-width', '1.2');
+          }
         }
       });
 
