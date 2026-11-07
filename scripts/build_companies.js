@@ -36,7 +36,7 @@ function generateCompaniesPage() {
       </section>
 
       <div class="wrap">
-        <dl class="grid grid-cols-2 border-t border-line" style="--cols:6">
+        <dl class="grid grid-cols-2 border-t border-line" style="--cols:5">
           <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
             <dt class="order-2 mt-2 text-muted">Total offers</dt>
             <dd id="stat-total-offers" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">${stats.totalOffers}</dd>
@@ -61,11 +61,6 @@ function generateCompaniesPage() {
             <dt class="order-2 mt-2 text-muted">Median CTC</dt>
             <dd id="stat-med-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">₹13<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
             <dd id="stat-med-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">Range ₹8.23–33.0 LPA</dd>
-          </div>
-          <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
-            <dt class="order-2 mt-2 text-muted">Average, full-time only</dt>
-            <dd id="stat-avg-ft" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">₹14.1<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
-            <dd id="stat-avg-ft-sub" class="label order-3 mt-1 text-[11px] text-faint">Median ₹13.5 LPA · ${stats.totalOffers} offers in all</dd>
           </div>
           <style>@media (min-width:1024px){dl[style*="--cols"]{grid-template-columns:repeat(var(--cols),minmax(0,1fr))}}</style>
         </dl>
@@ -285,8 +280,6 @@ function generateCompaniesPage() {
     const statAvgCtcSub = document.getElementById('stat-avg-ctc-sub');
     const statMedCtc = document.getElementById('stat-med-ctc');
     const statMedCtcSub = document.getElementById('stat-med-ctc-sub');
-    const statAvgFt = document.getElementById('stat-avg-ft');
-    const statAvgFtSub = document.getElementById('stat-avg-ft-sub');
 
     function updateStatStrip() {
       const totalOffers = calculateOffers(companies);
@@ -302,8 +295,6 @@ function generateCompaniesPage() {
         if (statAvgCtcSub) statAvgCtcSub.textContent = 'Average monthly stipend';
         if (statMedCtc) statMedCtc.innerHTML = '₹50k<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">/mo</span>';
         if (statMedCtcSub) statMedCtcSub.textContent = 'Median monthly stipend';
-        if (statAvgFt) statAvgFt.innerHTML = '50<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">offers</span>';
-        if (statAvgFtSub) statAvgFtSub.textContent = \`100% summer internships · \${totalOffers || 50} offers in all\`;
       } else {
         const internCount = companies.filter(c => c.offers && c.offers.includes('internship')).length;
         const ppoCount = companies.filter(c => c.offers && c.offers.includes('ppo')).length;
@@ -321,8 +312,6 @@ function generateCompaniesPage() {
         if (statAvgCtcSub) statAvgCtcSub.textContent = \`\${placedDrivesCount} drives with selections\`;
         if (statMedCtc) statMedCtc.innerHTML = '₹13<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
         if (statMedCtcSub) statMedCtcSub.textContent = 'Range ₹8.23–33.0 LPA';
-        if (statAvgFt) statAvgFt.innerHTML = '₹14.1<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
-        if (statAvgFtSub) statAvgFtSub.textContent = \`Median ₹13.5 LPA · \${totalOffers} offers in all\`;
       }
     }
 
