@@ -23,7 +23,7 @@ export const companies2028 = [
       "newHires": 0,
       "students": 25
     },
-    "open": "CSE, IT, EXTC, AI & DS",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 7,
     "first": "2026-10-15",
@@ -80,7 +80,7 @@ export const companies2028 = [
       "newHires": 0,
       "students": 9
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "Circuital branches",
     "cgpa": 7,
     "first": "2026-10-22",
@@ -137,7 +137,7 @@ export const companies2028 = [
       "newHires": 0,
       "students": 6
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 6.5,
     "first": "2026-10-26",
@@ -194,7 +194,7 @@ export const companies2028 = [
       "newHires": 0,
       "students": 5
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 7,
     "first": "2026-10-29",
@@ -251,8 +251,8 @@ export const companies2028 = [
       "newHires": 0,
       "students": 5
     },
-    "open": "CSE, IT, AI & DS",
-    "branches": "CSE, IT, AI & DS",
+    "open": "CE, CSE",
+    "branches": "CE, CSE",
     "cgpa": 7,
     "first": "2026-11-02",
     "last": "2026-11-04",

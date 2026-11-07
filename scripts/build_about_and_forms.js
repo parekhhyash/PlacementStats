@@ -98,10 +98,9 @@ function generateFeedbackPage() {
             <label class="label text-faint block mb-2 uppercase tracking-wider text-[11px]">Your Branch (optional)</label>
             <select id="feedback-branch" class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors" style="color-scheme: dark; background-color: #121316; color: #ededed;">
               <option value="" class="bg-[#121316] text-[#ededed]">Select Branch</option>
-              <option value="CSE" class="bg-[#121316] text-[#ededed]">Computer Engineering (CSE)</option>
-              <option value="IT" class="bg-[#121316] text-[#ededed]">Information Technology (IT)</option>
-              <option value="EXTC" class="bg-[#121316] text-[#ededed]">Electronics & Telecom (EXTC)</option>
-              <option value="AIDS" class="bg-[#121316] text-[#ededed]">AI & Data Science (AI & DS)</option>
+              <option value="CE" class="bg-[#121316] text-[#ededed]">Computer Engineering (CE)</option>
+              <option value="CSE" class="bg-[#121316] text-[#ededed]">Computer Science Engineering (CSE)</option>
+              <option value="EXTC" class="bg-[#121316] text-[#ededed]">Electronics and Telecommunications Engineering (EXTC)</option>
               <option value="Other" class="bg-[#121316] text-[#ededed]">Other / Recruiter / Faculty</option>
             </select>
           </div>
@@ -326,7 +325,7 @@ function generateCorrectionsPage() {
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="label text-faint block mb-2">Branch Eligibility</label>
-            <input id="sub-branches" type="text" placeholder="e.g. All branches, or CSE, IT" class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors placeholder:text-faint" />
+            <input id="sub-branches" type="text" placeholder="e.g. All branches, or CE, CSE, EXTC" class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors placeholder:text-faint" />
           </div>
           <div>
             <label class="label text-faint block mb-2">CGPA Cutoff</label>

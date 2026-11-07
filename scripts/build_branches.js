@@ -143,10 +143,9 @@ function generateBranchesPage() {
               <label class="label block text-[11px] text-faint mb-1.5 uppercase tracking-wider">Branch *</label>
               <select id="modal-branch" required class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg transition-colors" style="color-scheme: dark; background-color: #121316; color: #ededed;">
                 <option value="" class="bg-[#121316] text-[#ededed]">Select branch</option>
-                <option value="CSE" class="bg-[#121316] text-[#ededed]">Computer Engineering (CSE)</option>
-                <option value="IT" class="bg-[#121316] text-[#ededed]">Information Technology (IT)</option>
-                <option value="EXTC" class="bg-[#121316] text-[#ededed]">Electronics & Telecom (EXTC)</option>
-                <option value="AIDS" class="bg-[#121316] text-[#ededed]">AI & Data Science (AI & DS)</option>
+                <option value="CE" class="bg-[#121316] text-[#ededed]">Computer Engineering (CE)</option>
+                <option value="CSE" class="bg-[#121316] text-[#ededed]">Computer Science Engineering (CSE)</option>
+                <option value="EXTC" class="bg-[#121316] text-[#ededed]">Electronics and Telecommunications Engineering (EXTC)</option>
               </select>
             </div>
           </div>

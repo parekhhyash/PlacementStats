@@ -34,11 +34,11 @@ export const eligibilityData = {
 
   // Highest CGPA cut-off recruiters
   highestCutoffs: [
-    { company: "Arista Networks", cgpa: "8.50", branches: "CE, IT", offers: "Full-time" },
+    { company: "Arista Networks", cgpa: "8.50", branches: "CE, CSE", offers: "Full-time" },
     { company: "Bloomberg", cgpa: "8.00", branches: "All branches", offers: "Full-time / Intern" },
-    { company: "Cohesity", cgpa: "8.00", branches: "CE, IT, AIDS", offers: "Full-time" },
-    { company: "Cadence Design", cgpa: "7.75", branches: "CE, ENTC, ECE", offers: "Full-time" },
-    { company: "Amazon", cgpa: "7.50", branches: "CE, IT, ENTC, AIDS", offers: "Full-time / Intern" }
+    { company: "Cohesity", cgpa: "8.00", branches: "CE, CSE", offers: "Full-time" },
+    { company: "Cadence Design", cgpa: "7.75", branches: "CE, CSE, EXTC", offers: "Full-time" },
+    { company: "Amazon", cgpa: "7.50", branches: "CE, CSE, EXTC", offers: "Full-time / Intern" }
   ],
 
   // Backlog criteria policies

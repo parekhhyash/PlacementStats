@@ -169,9 +169,9 @@ for (const [name, rows] of companyGroups.entries()) {
   ];
 
   // Branch openness
-  let branchText = "CSE, IT, EXTC, AI & DS";
+  let branchText = "CE, CSE, EXTC";
   if (slug === 'aspect-ratio' || slug === 'futures-first') branchText = "All branches open";
-  if (slug === 'nomura' || slug === 'jpmc') branchText = "CSE, IT, AI & DS, EXTC";
+  if (slug === 'nomura' || slug === 'jpmc') branchText = "CE, CSE, EXTC";
 
   companies.push({
     slug,

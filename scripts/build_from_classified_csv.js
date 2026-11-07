@@ -338,7 +338,7 @@ groups.forEach((rows, cName) => {
       newHires: fulltimeCount,
       students: totalOffers
     },
-    open: "CSE, IT, AI & DS, EXTC",
+    open: "CE, CSE, EXTC",
     branches: "All branches open",
     cgpa: numCGPA,
     cgpaCriteria: fullCgpaText,

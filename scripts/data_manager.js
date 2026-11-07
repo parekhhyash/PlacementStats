@@ -92,7 +92,7 @@ function normalizeCompany(c) {
       newHires: fulltimeCount,
       students: totalOffers
     },
-    open: c.open || "CSE, IT, AI & DS, EXTC",
+    open: c.open || "CE, CSE, EXTC",
     branches: c.branches || "All branches open",
     cgpa: parseFloat(c.cgpa) || 7.0,
     cgpaCriteria: c.cgpaCriteria || "Standard eligibility",

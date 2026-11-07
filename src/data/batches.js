@@ -14,82 +14,63 @@ export { companies2028 };
 
 export const branches2028 = [
   {
-    id: "cse",
+    id: "ce",
     name: "Computer Engineering",
-    shortName: "CSE",
-    color: "var(--color-br-ce)",
+    shortName: "CE",
+    color: "var(--color-br-ce, #10b981)",
     placedPercentage: 18,
-    totalStudents: 110,
-    placedStudents: 20,
+    totalStudents: 120,
+    placedStudents: 22,
     medianCTC: "—",
     averageCTC: "—",
     highestCTC: "—",
     ppoCount: 0,
     topRecruiters: [
       { name: "Barclays", offers: 11, logo: "/logos/barclays.png" },
-      { name: "Mastercard", offers: 4, logo: "/logos/mastercard.svg" },
+      { name: "Mastercard", offers: 5, logo: "/logos/mastercard.svg" },
       { name: "IBM", offers: 3, logo: "/logos/ibm.svg" },
-      { name: "General Mills", offers: 2, logo: "/logos/general-mills.png" }
+      { name: "General Mills", offers: 3, logo: "/logos/general-mills.png" }
     ],
-    summary: "Early recruitment with 20 summer internship selections across global financial and enterprise tech firms."
+    summary: "Early recruitment with 22 summer internship selections across global financial and enterprise tech firms."
   },
   {
-    id: "it",
-    name: "Information Technology",
-    shortName: "IT",
-    color: "var(--color-br-it)",
-    placedPercentage: 16,
-    totalStudents: 90,
-    placedStudents: 14,
+    id: "cse",
+    name: "Computer Science Engineering",
+    shortName: "CSE",
+    color: "var(--color-br-cse, #38bdf8)",
+    placedPercentage: 17,
+    totalStudents: 120,
+    placedStudents: 20,
     medianCTC: "—",
     averageCTC: "—",
     highestCTC: "—",
     ppoCount: 0,
     topRecruiters: [
-      { name: "Barclays", offers: 7, logo: "/logos/barclays.png" },
-      { name: "Mastercard", offers: 3, logo: "/logos/mastercard.svg" },
-      { name: "General Mills", offers: 2, logo: "/logos/general-mills.png" },
-      { name: "Russell Investments", offers: 2, logo: "/logos/russell-investments.svg" }
+      { name: "Barclays", offers: 10, logo: "/logos/barclays.png" },
+      { name: "Mastercard", offers: 4, logo: "/logos/mastercard.svg" },
+      { name: "General Mills", offers: 3, logo: "/logos/general-mills.png" },
+      { name: "Russell Investments", offers: 3, logo: "/logos/russell-investments.svg" }
     ],
     summary: "Strong summer internship outcomes across investment tech, enterprise cloud, and payments."
   },
   {
     id: "extc",
-    name: "Electronics & Telecommunication",
+    name: "Electronics and Telecommunications Engineering",
     shortName: "EXTC",
-    color: "var(--color-br-entc)",
-    placedPercentage: 8,
-    totalStudents: 90,
-    placedStudents: 7,
-    medianCTC: "—",
-    averageCTC: "—",
-    highestCTC: "—",
-    ppoCount: 0,
-    topRecruiters: [
-      { name: "Barclays", offers: 3, logo: "/logos/barclays.png" },
-      { name: "IBM", offers: 2, logo: "/logos/ibm.svg" },
-      { name: "Mastercard", offers: 2, logo: "/logos/mastercard.svg" }
-    ],
-    summary: "Selections in core software, global sales, and tech internship tracks."
-  },
-  {
-    id: "aids",
-    name: "AI & Data Science",
-    shortName: "AI & DS",
-    color: "var(--color-br-aids)",
-    placedPercentage: 13,
-    totalStudents: 70,
-    placedStudents: 9,
+    color: "var(--color-br-entc, #c2185b)",
+    placedPercentage: 7,
+    totalStudents: 120,
+    placedStudents: 8,
     medianCTC: "—",
     averageCTC: "—",
     highestCTC: "—",
     ppoCount: 0,
     topRecruiters: [
       { name: "Barclays", offers: 4, logo: "/logos/barclays.png" },
-      { name: "Russell Investments", offers: 3, logo: "/logos/russell-investments.svg" },
-      { name: "General Mills", offers: 2, logo: "/logos/general-mills.png" }
+      { name: "IBM", offers: 2, logo: "/logos/ibm.svg" },
+      { name: "Mastercard", offers: 2, logo: "/logos/mastercard.svg" }
     ],
-    summary: "High interest in quantitative analytics, machine learning pipelines, and investment research."
+    summary: "Selections in core software, global sales, and tech internship tracks."
   },
   {
     id: "all",
@@ -110,7 +91,7 @@ export const branches2028 = [
       { name: "IBM", offers: 5, logo: "/logos/ibm.svg" },
       { name: "Russell Investments", offers: 5, logo: "/logos/russell-investments.svg" }
     ],
-    summary: "Overall early summer internship hiring snapshot for SPIT Class of 2028 across initial 5 recruiting companies."
+    summary: "Comprehensive batch-wide analytics for SPIT Class of 2028 across all 3 engineering branches."
   }
 ];
 

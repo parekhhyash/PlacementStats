@@ -90,10 +90,9 @@ function generateCompaniesPage() {
                   </button>
                   <select id="branch-filter" class="absolute inset-0 cursor-pointer opacity-0 w-full h-full" style="color-scheme: dark; background-color: #121316; color: #ededed;">
                     <option value="all" class="bg-[#121316] text-[#ededed]">Any</option>
+                    <option value="ce" class="bg-[#121316] text-[#ededed]">CE</option>
                     <option value="cse" class="bg-[#121316] text-[#ededed]">CSE</option>
-                    <option value="it" class="bg-[#121316] text-[#ededed]">IT</option>
                     <option value="extc" class="bg-[#121316] text-[#ededed]">EXTC</option>
-                    <option value="aids" class="bg-[#121316] text-[#ededed]">AI &amp; DS</option>
                   </select>
                 </div>
 
@@ -166,10 +165,9 @@ function generateCompaniesPage() {
                     <label class="label block text-[11px] text-faint mb-1.5">Branch</label>
                     <select id="quick-comp-branch" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" style="color-scheme: dark; background-color: #121316; color: #ededed;">
                       <option value="All branches" class="bg-[#121316] text-[#ededed]">All Branches Open</option>
-                      <option value="CSE" class="bg-[#121316] text-[#ededed]">CSE</option>
-                      <option value="IT" class="bg-[#121316] text-[#ededed]">IT</option>
-                      <option value="AI & DS" class="bg-[#121316] text-[#ededed]">AI &amp; DS</option>
-                      <option value="EXTC" class="bg-[#121316] text-[#ededed]">EXTC</option>
+                      <option value="CE" class="bg-[#121316] text-[#ededed]">Computer Engineering (CE)</option>
+                      <option value="CSE" class="bg-[#121316] text-[#ededed]">Computer Science Engineering (CSE)</option>
+                      <option value="EXTC" class="bg-[#121316] text-[#ededed]">Electronics and Telecommunications Engineering (EXTC)</option>
                     </select>
                   </div>
                 </div>
@@ -333,15 +331,15 @@ function generateCompaniesPage() {
         // Branch filter
         if (branch !== 'all') {
           const bText = (c.branches || '').toLowerCase();
-          if (bText.includes('all branches') || bText.includes('all')) {
+          const openText = (c.open || '').toLowerCase();
+          const combined = bText + ' ' + openText;
+          if (combined.includes('all branches') || combined.includes('all for') || combined.includes('all')) {
             // matches
-          } else if (branch === 'cse' && !bText.includes('cse') && !bText.includes('computer') && !bText.includes('ce')) {
+          } else if (branch === 'ce' && !combined.includes('ce') && !combined.includes('computer engineering')) {
             return false;
-          } else if (branch === 'it' && !bText.includes('it') && !bText.includes('information')) {
+          } else if (branch === 'cse' && !combined.includes('cse') && !combined.includes('computer science')) {
             return false;
-          } else if (branch === 'extc' && !bText.includes('extc') && !bText.includes('electronics')) {
-            return false;
-          } else if (branch === 'aids' && !bText.includes('ai') && !bText.includes('data')) {
+          } else if (branch === 'extc' && !combined.includes('extc') && !combined.includes('electronics') && !combined.includes('telecommunication')) {
             return false;
           }
         }
@@ -996,10 +994,9 @@ function generateCompanyDetailPage() {
                   <label class="label block text-[11px] text-faint mb-1.5">Branch</label>
                   <select id="modal-comp-branch" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" style="color-scheme: dark; background-color: #121316; color: #ededed;">
                     <option value="All branches" class="bg-[#121316] text-[#ededed]">All Branches Open</option>
-                    <option value="CSE" class="bg-[#121316] text-[#ededed]">CSE</option>
-                    <option value="IT" class="bg-[#121316] text-[#ededed]">IT</option>
-                    <option value="AI & DS" class="bg-[#121316] text-[#ededed]">AI &amp; DS</option>
-                    <option value="EXTC" class="bg-[#121316] text-[#ededed]">EXTC</option>
+                    <option value="CE" class="bg-[#121316] text-[#ededed]">Computer Engineering (CE)</option>
+                    <option value="CSE" class="bg-[#121316] text-[#ededed]">Computer Science Engineering (CSE)</option>
+                    <option value="EXTC" class="bg-[#121316] text-[#ededed]">Electronics and Telecommunications Engineering (EXTC)</option>
                   </select>
                 </div>
               </div>

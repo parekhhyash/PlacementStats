@@ -274,7 +274,7 @@ export const companies = [
       "newHires": 12,
       "students": 28
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 8,
     "cgpaCriteria": "None stated (advice: 8+ CGPA, no backlogs)",
@@ -388,7 +388,7 @@ export const companies = [
       "newHires": 15,
       "students": 15
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 8,
     "cgpaCriteria": "8.0 (one PDF mentions 8.5 cutoff)",
@@ -737,7 +737,7 @@ export const companies = [
       "newHires": 9,
       "students": 9
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 8,
     "cgpaCriteria": "None stated (most cos. 8+ this year)",
@@ -838,7 +838,7 @@ export const companies = [
       "newHires": 9,
       "students": 9
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 7,
     "cgpaCriteria": "None stated (open for all branches)",
@@ -906,7 +906,7 @@ export const companies = [
       "newHires": 9,
       "students": 9
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 7.5,
     "cgpaCriteria": "None stated (advice 7.5+); None stated",
@@ -1073,7 +1073,7 @@ export const companies = [
       "newHires": 9,
       "students": 9
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 7,
     "cgpaCriteria": "None stated",
@@ -1156,7 +1156,7 @@ export const companies = [
       "newHires": 0,
       "students": 8
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 6,
     "cgpaCriteria": "6.0 CGPA (Superset)",
@@ -1501,7 +1501,7 @@ export const companies = [
       "newHires": 6,
       "students": 7
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 8,
     "cgpaCriteria": "Not stated (roughly 8+ cleared); Not stated",
@@ -1620,7 +1620,7 @@ export const companies = [
       "newHires": 0,
       "students": 7
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 8,
     "cgpaCriteria": "8.0 (to sit the OA); 8.0",
@@ -1717,7 +1717,7 @@ export const companies = [
       "newHires": 6,
       "students": 6
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 8,
     "cgpaCriteria": "Not stated (8+ guessed)",
@@ -1810,7 +1810,7 @@ export const companies = [
       "newHires": 6,
       "students": 6
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 6.5,
     "cgpaCriteria": "Everyone with >6.5 got OA link",
@@ -1903,7 +1903,7 @@ export const companies = [
       "newHires": 5,
       "students": 5
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 8.5,
     "cgpaCriteria": "None specified (advice 8.5+)",
@@ -2012,7 +2012,7 @@ export const companies = [
       "newHires": 5,
       "students": 5
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 7,
     "cgpaCriteria": "None stated",
@@ -2305,7 +2305,7 @@ export const companies = [
       "newHires": 4,
       "students": 4
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 7.5,
     "cgpaCriteria": "7.5 (EXTC branch also excluded for many roles)",
@@ -2396,7 +2396,7 @@ export const companies = [
       "newHires": 3,
       "students": 3
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 8,
     "cgpaCriteria": "None specified (advice: >8 CGPA)",
@@ -2479,7 +2479,7 @@ export const companies = [
       "newHires": 0,
       "students": 3
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 7,
     "cgpaCriteria": "None stated",
@@ -2647,7 +2647,7 @@ export const companies = [
       "newHires": 0,
       "students": 3
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 7,
     "cgpaCriteria": "None stated",
@@ -2732,7 +2732,7 @@ export const companies = [
       "newHires": 2,
       "students": 2
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 7,
     "cgpaCriteria": "None stated",
@@ -2807,7 +2807,7 @@ export const companies = [
       "newHires": 0,
       "students": 2
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 7,
     "cgpaCriteria": "None stated",
@@ -2890,7 +2890,7 @@ export const companies = [
       "newHires": 1,
       "students": 1
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 7,
     "cgpaCriteria": "None stated; B.Tech with no active backlogs eligible",
@@ -2958,7 +2958,7 @@ export const companies = [
       "newHires": 1,
       "students": 1
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 8.5,
     "cgpaCriteria": "8.5+",
@@ -3051,7 +3051,7 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
     "cgpaCriteria": "No details available",
@@ -3125,7 +3125,7 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
     "cgpaCriteria": "No details available",
@@ -3162,7 +3162,7 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
     "cgpaCriteria": "No details available",
@@ -3236,7 +3236,7 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
     "cgpaCriteria": "No details available",
@@ -3273,7 +3273,7 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
     "cgpaCriteria": "No details available",
@@ -3310,7 +3310,7 @@ export const companies = [
       "newHires": 8,
       "students": 8
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": 7.5,
     "cgpaCriteria": "7.5+ CGPA",
@@ -3477,7 +3477,7 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
     "cgpaCriteria": "No details available",
@@ -3514,7 +3514,7 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
     "cgpaCriteria": "No details available",
@@ -3551,7 +3551,7 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
     "cgpaCriteria": "No details available",
@@ -3588,7 +3588,7 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
     "cgpaCriteria": "No details available",
@@ -3625,7 +3625,7 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
     "cgpaCriteria": "No details available",
@@ -3662,7 +3662,7 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
     "cgpaCriteria": "No details available",
@@ -3698,7 +3698,7 @@ export const companies = [
       "newHires": 25,
       "students": 25
     },
-    "open": "CSE, IT, AI & DS, EXTC",
+    "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
     "cgpaCriteria": "Various criteria",

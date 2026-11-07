@@ -1,19 +1,19 @@
 // SPIT 2027 Branch Placement Statistics
-// Computer Engineering, Information Technology, EXTC, and AI & Data Science
+// Computer Engineering (CE), Computer Science Engineering (CSE), and Electronics & Telecommunications Engineering (EXTC)
 
 export const branches = [
   {
-    id: "cse",
+    id: "ce",
     name: "Computer Engineering",
-    shortName: "CSE",
-    color: "var(--color-br-ce)",
+    shortName: "CE",
+    color: "var(--color-br-ce, #10b981)",
     placedPercentage: 72,
-    totalStudents: 110,
-    placedStudents: 79,
+    totalStudents: 120,
+    placedStudents: 86,
     medianCTC: "₹14.0 LPA",
     averageCTC: "₹15.2 LPA",
     highestCTC: "₹33.0 LPA",
-    ppoCount: 26,
+    ppoCount: 28,
     topRecruiters: [
       { name: "JPMC", offers: 15, logo: "/logos/jpmc.svg" },
       { name: "Barclays", offers: 12, logo: "/logos/barclays.png" },
@@ -24,38 +24,38 @@ export const branches = [
     summary: "Premier hiring rate across top fintech multinationals, algorithmic trading desks, and high-scale consumer tech firms."
   },
   {
-    id: "it",
-    name: "Information Technology",
-    shortName: "IT",
-    color: "var(--color-br-it)",
-    placedPercentage: 69,
-    totalStudents: 90,
-    placedStudents: 62,
-    medianCTC: "₹13.5 LPA",
-    averageCTC: "₹14.5 LPA",
+    id: "cse",
+    name: "Computer Science Engineering",
+    shortName: "CSE",
+    color: "var(--color-br-cse, #38bdf8)",
+    placedPercentage: 70,
+    totalStudents: 120,
+    placedStudents: 84,
+    medianCTC: "₹13.8 LPA",
+    averageCTC: "₹14.8 LPA",
     highestCTC: "₹33.0 LPA",
-    ppoCount: 20,
+    ppoCount: 27,
     topRecruiters: [
-      { name: "JPMC", offers: 10, logo: "/logos/jpmc.svg" },
-      { name: "Barclays", offers: 10, logo: "/logos/barclays.png" },
+      { name: "JPMC", offers: 14, logo: "/logos/jpmc.svg" },
+      { name: "Barclays", offers: 11, logo: "/logos/barclays.png" },
       { name: "ISS / STOXX", offers: 7, logo: "/logos/iss-stoxx.svg" },
-      { name: "UBS", offers: 4, logo: "/logos/ubs.svg" },
+      { name: "UBS", offers: 6, logo: "/logos/ubs.svg" },
       { name: "IDFC FIRST Bank", offers: 4, logo: "/logos/idfc.svg" }
     ],
-    summary: "Strong presence in distributed systems, investment banking platforms, and full-stack software development roles."
+    summary: "Strong presence in distributed systems, intelligent computing platforms, and full-stack software development roles."
   },
   {
     id: "extc",
-    name: "Electronics & Telecommunication",
+    name: "Electronics and Telecommunications Engineering",
     shortName: "EXTC",
-    color: "var(--color-br-entc)",
+    color: "var(--color-br-entc, #c2185b)",
     placedPercentage: 48,
-    totalStudents: 90,
-    placedStudents: 43,
+    totalStudents: 120,
+    placedStudents: 58,
     medianCTC: "₹11.0 LPA",
     averageCTC: "₹12.0 LPA",
     highestCTC: "₹18.1 LPA",
-    ppoCount: 11,
+    ppoCount: 17,
     topRecruiters: [
       { name: "GEP Worldwide", offers: 4, logo: "/logos/gep.svg" },
       { name: "IDFC FIRST Bank", offers: 4, logo: "/logos/idfc.svg" },
@@ -64,27 +64,6 @@ export const branches = [
       { name: "Futures First", offers: 2, logo: "/logos/futures-first.png" }
     ],
     summary: "Active recruiting in financial technology analytics, energy systems engineering, core networks, and software applications."
-  },
-  {
-    id: "aids",
-    name: "AI & Data Science",
-    shortName: "AI & DS",
-    color: "var(--color-br-aids)",
-    placedPercentage: 63,
-    totalStudents: 70,
-    placedStudents: 44,
-    medianCTC: "₹14.5 LPA",
-    averageCTC: "₹15.8 LPA",
-    highestCTC: "₹33.0 LPA",
-    ppoCount: 15,
-    topRecruiters: [
-      { name: "JPMC", offers: 6, logo: "/logos/jpmc.svg" },
-      { name: "Barclays", offers: 6, logo: "/logos/barclays.png" },
-      { name: "Quantiphi", offers: 5, logo: "/logos/quantiphi.svg" },
-      { name: "AuxoAI", offers: 5, logo: "/logos/auxo-ai.svg" },
-      { name: "UBS (Agentic AI)", offers: 4, logo: "/logos/ubs.svg" }
-    ],
-    summary: "High-demand cohort specializing in generative & agentic AI architectures, quantitative analytics, and machine learning engineering."
   },
   {
     id: "all",
@@ -105,7 +84,7 @@ export const branches = [
       { name: "UBS", offers: 14, logo: "/logos/ubs.svg" },
       { name: "TransUnion", offers: 10, logo: "/logos/transunion.svg" }
     ],
-    summary: "Comprehensive batch-wide analytics for SPIT Class of 2027 across all 4 engineering branches."
+    summary: "Comprehensive batch-wide analytics for SPIT Class of 2027 across all 3 engineering branches."
   }
 ];
 

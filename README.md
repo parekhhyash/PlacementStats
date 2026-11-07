@@ -7,7 +7,7 @@ A pixel-perfect, high-fidelity clone of [placed-27.pages.dev](https://placed-27.
 ## 📊 SPIT 2027 Placement Highlights
 
 - **31 Recruiting Companies** across Fintech, Investment Banking, AI, and Software Engineering.
-- **235 Confirmed Selections / Offers** across Computer Engineering, IT, EXTC, and AI & DS.
+- **264 Verified Offers** across Computer Engineering (CE), Computer Science Engineering (CSE), and Electronics & Telecommunications (EXTC).
 - **₹33.5 LPA Highest CTC** (PhonePe SDE).
 - **₹1,60,000 / month Top Internship Stipend** (JPMorgan Chase & Co. - CTC Risk).
 - **₹13.0 LPA Median CTC** | **₹13.86 LPA Average CTC**.
@@ -37,7 +37,7 @@ A pixel-perfect, high-fidelity clone of [placed-27.pages.dev](https://placed-27.
      - 🟢 **Internship**: Mint / Teal (`#3fa88f`)
      - 🔵 **Full-Time**: Electric Blue (`#3f7be6`)
      - 🟠 **PPO**: Amber / Orange (`#d9732e`)
-     - 🟣 **Branch Highlights**: CE, IT, ENTC, ECE, AIDS custom colors.
+     - 🟣 **Branch Highlights**: CE, CSE, EXTC custom colors.
 
 2. **Every Section & Page Matching the Original**
    - **Home (`/`)**:
@@ -70,7 +70,7 @@ A pixel-perfect, high-fidelity clone of [placed-27.pages.dev](https://placed-27.
      - Branch distribution progress bars
      - Company offer rankings with PPO vs New hire breakdown
    - **Branches (`/branches/`)**:
-     - Interactive branch tabs (CE, IT, ENTC, ECE, AIDS, All)
+     - Interactive branch tabs (CE, CSE, EXTC, All)
      - Selected branch performance card (Placement %, CTC stats, top recruiters)
      - Side-by-side comparison matrix across all branches
    - **Timeline (`/timeline/`)**:
@@ -151,3 +151,4 @@ This project compiles to pure, static HTML/CSS/JS with zero runtime lock-in. You
 - **Vercel / Netlify**: Connect repository and set publish directory to `.`.
 - **GitHub Pages**: Deploy repository root as GitHub Pages.
 - **Docker / Nginx**: Copy repository root to `/usr/share/nginx/html`.
+
