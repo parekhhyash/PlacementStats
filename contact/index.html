@@ -224,14 +224,12 @@
   </main>
 
   <div id="site-footer-root"></div>
-  <div id="story-modal-root"></div>
 
   <!-- Shared Application Scripts -->
   <script type="module">
     import { siteConfig } from '/src/config/site.js';
     import { renderHeader, initHeader } from '/src/components/header.js';
     import { renderFooter, initFooter } from '/src/components/footer.js';
-    import { renderStoryModal, initStoryModal } from '/src/components/story-modal.js';
 
     if (!document.getElementById('site-header-root').firstElementChild) {
       document.getElementById('site-header-root').innerHTML = renderHeader('/contact/');
@@ -239,11 +237,9 @@
     if (!document.getElementById('site-footer-root').firstElementChild) {
       document.getElementById('site-footer-root').innerHTML = renderFooter();
     }
-    document.getElementById('story-modal-root').innerHTML = renderStoryModal();
 
     initHeader();
     initFooter();
-    initStoryModal();
   </script>
 
   

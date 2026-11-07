@@ -19,23 +19,11 @@ function generateHighlightsPage() {
       <!-- Glow Ring Story Reel Hero Card -->
       <section class="glow-ring rounded-[28px] p-px mb-14">
         <div class="relative overflow-hidden rounded-[27px] bg-bg p-6 sm:p-10">
-          <div class="grid lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end gap-8">
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4">
             <div>
               <p id="highlights-hero-season" class="label text-muted">Highlights · Flagship Recruiters · Season 2027</p>
-              <h2 class="display-l mt-4 max-w-[14ch]">Key season milestones</h2>
+              <h2 class="display-l mt-4 max-w-[18ch]">Key season milestones</h2>
             </div>
-            <button type="button" class="play-recap-trigger group/play relative inline-flex h-14 items-center gap-4 rounded-full bg-fg pl-2 pr-6 text-bg transition-transform duration-500 ease-[var(--ease)] hover:scale-[1.03] cursor-pointer">
-              <span class="relative grid size-10 place-items-center rounded-full bg-bg text-fg">
-                <span aria-hidden="true" class="share-ripple absolute inset-0 rounded-full border border-fg/60"></span>
-                <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" class="translate-x-px">
-                  <path d="M3 1.5v11l9-5.5-9-5.5Z" fill="currentColor"></path>
-                </svg>
-              </span>
-              <span class="text-left">
-                <span class="block font-display text-[17px] leading-tight tracking-[-0.01em]">Play the season recap</span>
-                <span class="label block text-[10px] text-bg/60">5 slides · 25 sec</span>
-              </span>
-            </button>
           </div>
 
           <!-- Featured Marquee Highlights Teasers -->
