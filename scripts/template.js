@@ -170,6 +170,12 @@ function pageTemplate({ title, activePath = '/', content, extraHead = '', extraS
   <link rel="icon" href="/icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   ${extraHead}
+
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body class="min-h-full bg-bg font-sans text-fg antialiased flex flex-col justify-between selection:bg-fg selection:text-bg">
   <div id="site-header-root">${preRenderedHeader}</div>
