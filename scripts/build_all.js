@@ -37,7 +37,7 @@ try {
   console.log('2. Building Companies Directory & Detail pages...');
   require('./build_companies.js');
 
-  console.log('3. Building Branches Page...');
+  console.log('3. Building Branchwise Page...');
   require('./build_branches.js');
 
   console.log('4. Building Highlights Page...');

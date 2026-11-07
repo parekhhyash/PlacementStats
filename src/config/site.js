@@ -42,7 +42,7 @@ export const siteConfig = {
     { label: "Highlights", href: "/highlights/", glow: true },
     { label: "Companies", href: "/companies/" },
     { label: "Offers", href: "/offers/" },
-    { label: "Branches", href: "/branches/" },
+    { label: "Branchwise", href: "/branchwise/" },
     { label: "Timeline", href: "/timeline/" },
     { label: "Submit Data", href: "/corrections/" }
   ],

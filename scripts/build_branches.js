@@ -10,7 +10,7 @@ function generateBranchesPage() {
     <section class="wrap pb-12 pt-[clamp(48px,8vw,112px)]">
       <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4">
         <div>
-          <p id="branches-page-badge" class="label text-muted">Branches · Verified Department Breakdown · ${siteConfig.collegeShort} ${siteConfig.batchYear}</p>
+          <p id="branches-page-badge" class="label text-muted">Branchwise · Verified Department Breakdown · ${siteConfig.collegeShort} ${siteConfig.batchYear}</p>
           <h1 class="display-l mt-6 max-w-[18ch]">Branch-wise placement distribution.</h1>
           <p id="branches-page-desc" class="mt-8 max-w-[66ch] text-[17px] leading-relaxed text-muted">
             Confirmed departmental placement distributions across Computer Engineering, Computer Science Engineering, and EXTC compiled from 38 recruitment drives.
@@ -594,16 +594,39 @@ function generateBranchesPage() {
   `;
 
   const html = pageTemplate({
-    title: `Branches · Placed · ${siteConfig.collegeShort}`,
-    activePath: '/branches/',
+    title: `Branchwise · Placed · ${siteConfig.collegeShort}`,
+    activePath: '/branchwise/',
     content,
     extraScript
   });
 
+  const branchwiseDir = path.join(__dirname, '..', 'branchwise');
+  if (!fs.existsSync(branchwiseDir)) fs.mkdirSync(branchwiseDir, { recursive: true });
+  fs.writeFileSync(path.join(branchwiseDir, 'index.html'), html);
+
+  // Backwards compatibility redirect stub for /branches/
   const branchesDir = path.join(__dirname, '..', 'branches');
   if (!fs.existsSync(branchesDir)) fs.mkdirSync(branchesDir, { recursive: true });
-  fs.writeFileSync(path.join(branchesDir, 'index.html'), html);
-  console.log('branches/index.html created successfully with branch-wise distribution data!');
+  const redirectHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting to Branchwise...</title>
+  <meta http-equiv="refresh" content="0; url=/branchwise/">
+  <link rel="canonical" href="/branchwise/">
+  <script>
+    const search = window.location.search || '';
+    const hash = window.location.hash || '';
+    window.location.replace('/branchwise/' + search + hash);
+  </script>
+</head>
+<body style="background:#000;color:#888;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;">
+  <p>Redirecting to <a href="/branchwise/" style="color:#ededed;">Branchwise Placement Distribution</a>...</p>
+</body>
+</html>
+`;
+  fs.writeFileSync(path.join(branchesDir, 'index.html'), redirectHtml);
+  console.log('branchwise/index.html created and branches/index.html redirect stub generated successfully!');
 }
 
 generateBranchesPage();

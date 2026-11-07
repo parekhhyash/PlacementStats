@@ -69,7 +69,7 @@ A pixel-perfect, high-fidelity clone of [placed-27.pages.dev](https://placed-27.
      - Batch-wide placement ratios and unique placement meters
      - Branch distribution progress bars
      - Company offer rankings with PPO vs New hire breakdown
-   - **Branches (`/branches/`)**:
+   - **Branchwise (`/branchwise/`)**:
      - Interactive branch tabs (CE, CSE, EXTC, All)
      - Selected branch performance card (Placement %, CTC stats, top recruiters)
      - Side-by-side comparison matrix across all branches

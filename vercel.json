@@ -5,7 +5,9 @@
   "trailingSlash": true,
   "redirects": [
     { "source": "/pay", "destination": "/offers/", "permanent": true },
-    { "source": "/pay/(.*)", "destination": "/offers/", "permanent": true }
+    { "source": "/pay/(.*)", "destination": "/offers/", "permanent": true },
+    { "source": "/branches", "destination": "/branchwise/", "permanent": true },
+    { "source": "/branches/(.*)", "destination": "/branchwise/", "permanent": true }
   ],
   "headers": [
     {
