@@ -54,7 +54,7 @@ function getHeaderHtml(activePath = '/') {
     </script>
     <header class="wrap sticky top-0 z-30 border-b border-line bg-bg/85 backdrop-blur-md [view-transition-name:site-header]">
       <div class="flex h-16 items-center justify-between gap-4">
-        <a aria-label="Placed ’27 · SPIT, home" class="group -my-2 py-2 shrink-0" href="/">
+        <a id="header-logo-link" aria-label="Placed ’27 · SPIT, home" class="group -my-2 py-2 shrink-0" href="/">
           <span class="flex items-center gap-3">
             <span aria-hidden="true" class="p27-mark size-8 shrink-0">
               <span class="p27-float">
@@ -78,7 +78,7 @@ function getHeaderHtml(activePath = '/') {
             </span>
             <span class="font-display text-[18px] font-medium tracking-tight text-fg flex items-center gap-1.5">
               <span>Placed</span>
-              <span id="header-batch-mark" class="text-fg font-bold" style="cursor:pointer;" title="Click to switch batch">’27</span>
+              <span id="header-batch-mark" class="text-fg font-bold">’27</span>
               <span class="text-faint text-[13px] font-mono">· SPIT</span>
             </span>
           </span>

@@ -37,7 +37,7 @@ export function renderHeader(activePath = '/') {
     </div>
     <header class="wrap sticky top-0 z-30 border-b border-line bg-bg/85 backdrop-blur-md [view-transition-name:site-header]">
       <div class="flex h-16 items-center justify-between gap-4">
-        <a aria-label="${siteConfig.siteTitle}, home" class="group -my-2 py-2 shrink-0" href="/">
+        <a id="header-logo-link" aria-label="${siteConfig.siteTitle}, home" class="group -my-2 py-2 shrink-0" href="/">
           <span class="flex items-center gap-3">
             <span aria-hidden="true" class="p27-mark size-8 shrink-0">
               <span class="p27-float">
@@ -127,17 +127,31 @@ export function renderHeader(activePath = '/') {
 
 export function initHeader() {
   const currentBatch = getBatchKey();
+  const is2028 = currentBatch === '2028';
   
-  // Update header mark with click-to-toggle
+  // Update logo home destination: preserve ?batch=2028 only if currently viewing 2028, else default strictly to /
+  const logoLink = document.getElementById('header-logo-link') || document.querySelector('a:has(.p27-mark)');
+  if (logoLink) {
+    logoLink.href = is2028 ? '/?batch=2028' : '/';
+    logoLink.setAttribute('aria-label', is2028 ? "Placed ’28 · SPIT, home" : "Placed ’27 · SPIT, home");
+  }
+
+  // Update header mark without intercepting logo clicks
   const headerMark = document.getElementById('header-batch-mark');
   if (headerMark) {
-    headerMark.textContent = currentBatch === '2028' ? "’28" : "’27";
-    headerMark.setAttribute('title', `Active: Batch ${currentBatch}. Click to toggle batch.`);
-    headerMark.style.cursor = 'pointer';
-    headerMark.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setBatch(currentBatch === '2028' ? '2027' : '2028');
+    headerMark.textContent = is2028 ? "’28" : "’27";
+    headerMark.removeAttribute('title');
+    headerMark.style.cursor = 'inherit';
+  }
+
+  // If viewing 2028, preserve batch=2028 on all navigation items
+  if (is2028) {
+    const navAnchors = document.querySelectorAll('header nav a, #mobile-drawer a');
+    navAnchors.forEach(a => {
+      const href = a.getAttribute('href');
+      if (href && href.startsWith('/') && !href.includes('batch=') && !href.startsWith('/admin/')) {
+        a.href = href + (href.includes('?') ? '&' : '?') + 'batch=2028';
+      }
     });
   }
 
