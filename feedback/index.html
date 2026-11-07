@@ -141,66 +141,130 @@
 
   <main class="flex-1">
     
-    <section class="wrap pb-16 pt-[clamp(48px,8vw,112px)] max-w-[680px]">
-      <p class="label text-muted">Community Feedback</p>
-      <h1 class="display-l mt-4">Give feedback.</h1>
-      <p class="mt-4 text-[16px] text-muted">Rate the site, tell us what metrics you want to see, or suggest new features for SPIT placement portal. Submissions are sent to the admin dashboard.</p>
+    <section class="wrap pb-16 pt-[clamp(48px,8vw,112px)] max-w-[700px]">
+      <div class="flex items-center gap-2">
+        <a href="/" class="label text-muted hover:text-fg transition-colors">Home</a>
+        <span class="text-faint">/</span>
+        <span class="label text-fg">Feedback</span>
+      </div>
+      <p class="label text-intern mt-3 uppercase tracking-wider font-mono text-[11px]">Community Voice</p>
+      <h1 class="display-l mt-3">Give feedback.</h1>
+      <p class="mt-4 text-[16px] text-muted leading-relaxed">
+        Help us make the SPIT placement dashboard better. Rate your experience, suggest new analytics or recruiter metrics, or share your thoughts. Every feedback is sent directly to the placement admin dashboard.
+      </p>
 
+      <!-- Feedback Submission Form -->
       <form id="feedback-form" class="mt-10 grid gap-6">
+        <!-- 1. Star Rating Selector -->
         <div>
-          <label class="label text-faint block mb-2">How helpful do you find this dashboard?</label>
-          <div class="flex gap-3">
-            
-              <label class="flex-1 text-center py-3 rounded-xl border border-line-strong bg-panel cursor-pointer hover:border-fg transition-colors">
-                <input type="radio" name="rating" value="1" class="sr-only rating-input" />
-                <span class="font-display text-[18px] text-fg font-medium">1</span>
-              </label>
-            
-              <label class="flex-1 text-center py-3 rounded-xl border border-line-strong bg-panel cursor-pointer hover:border-fg transition-colors">
-                <input type="radio" name="rating" value="2" class="sr-only rating-input" />
-                <span class="font-display text-[18px] text-fg font-medium">2</span>
-              </label>
-            
-              <label class="flex-1 text-center py-3 rounded-xl border border-line-strong bg-panel cursor-pointer hover:border-fg transition-colors">
-                <input type="radio" name="rating" value="3" class="sr-only rating-input" />
-                <span class="font-display text-[18px] text-fg font-medium">3</span>
-              </label>
-            
-              <label class="flex-1 text-center py-3 rounded-xl border border-line-strong bg-panel cursor-pointer hover:border-fg transition-colors">
-                <input type="radio" name="rating" value="4" class="sr-only rating-input" />
-                <span class="font-display text-[18px] text-fg font-medium">4</span>
-              </label>
-            
-              <label class="flex-1 text-center py-3 rounded-xl border border-line-strong bg-panel cursor-pointer hover:border-fg transition-colors">
-                <input type="radio" name="rating" value="5" class="sr-only rating-input" />
-                <span class="font-display text-[18px] text-fg font-medium">5</span>
-              </label>
-            
+          <label class="label text-faint block mb-2 uppercase tracking-wider text-[11px]">How would you rate your experience? *</label>
+          <div class="grid grid-cols-5 gap-2 sm:gap-3" id="rating-buttons-group">
+            <label class="rating-card flex flex-col items-center justify-center p-3 sm:py-3.5 rounded-2xl border border-line-strong bg-panel cursor-pointer hover:border-amber-400/60 transition-all text-center" data-rating="1">
+              <input type="radio" name="rating" value="1" class="sr-only rating-input" />
+              <span class="text-[18px] sm:text-[22px] leading-none mb-1 text-amber-400">★</span>
+              <span class="font-display text-[15px] sm:text-[16px] font-medium text-fg">1</span>
+              <span class="text-[10px] text-muted hidden sm:block mt-0.5">Poor</span>
+            </label>
+            <label class="rating-card flex flex-col items-center justify-center p-3 sm:py-3.5 rounded-2xl border border-line-strong bg-panel cursor-pointer hover:border-amber-400/60 transition-all text-center" data-rating="2">
+              <input type="radio" name="rating" value="2" class="sr-only rating-input" />
+              <span class="text-[18px] sm:text-[22px] leading-none mb-1 text-amber-400">★</span>
+              <span class="font-display text-[15px] sm:text-[16px] font-medium text-fg">2</span>
+              <span class="text-[10px] text-muted hidden sm:block mt-0.5">Fair</span>
+            </label>
+            <label class="rating-card flex flex-col items-center justify-center p-3 sm:py-3.5 rounded-2xl border border-line-strong bg-panel cursor-pointer hover:border-amber-400/60 transition-all text-center" data-rating="3">
+              <input type="radio" name="rating" value="3" class="sr-only rating-input" />
+              <span class="text-[18px] sm:text-[22px] leading-none mb-1 text-amber-400">★</span>
+              <span class="font-display text-[15px] sm:text-[16px] font-medium text-fg">3</span>
+              <span class="text-[10px] text-muted hidden sm:block mt-0.5">Good</span>
+            </label>
+            <label class="rating-card flex flex-col items-center justify-center p-3 sm:py-3.5 rounded-2xl border border-line-strong bg-panel cursor-pointer hover:border-amber-400/60 transition-all text-center" data-rating="4">
+              <input type="radio" name="rating" value="4" class="sr-only rating-input" />
+              <span class="text-[18px] sm:text-[22px] leading-none mb-1 text-amber-400">★</span>
+              <span class="font-display text-[15px] sm:text-[16px] font-medium text-fg">4</span>
+              <span class="text-[10px] text-muted hidden sm:block mt-0.5">Very Good</span>
+            </label>
+            <label class="rating-card selected flex flex-col items-center justify-center p-3 sm:py-3.5 rounded-2xl border border-amber-400 bg-amber-400/10 text-amber-300 ring-1 ring-amber-400/30 cursor-pointer transition-all text-center" data-rating="5">
+              <input type="radio" name="rating" value="5" checked class="sr-only rating-input" />
+              <span class="text-[18px] sm:text-[22px] leading-none mb-1 text-amber-400">★</span>
+              <span class="font-display text-[15px] sm:text-[16px] font-medium text-amber-300">5</span>
+              <span class="text-[10px] text-amber-300/80 hidden sm:block mt-0.5">Excellent</span>
+            </label>
           </div>
+          <p id="rating-label" class="label text-[12px] text-amber-400 mt-2">Selected: 5 - Excellent ★★★★★</p>
         </div>
 
+        <!-- 2. Category Selector -->
         <div>
-          <label class="label text-faint block mb-2">What could be improved or added?</label>
-          <textarea id="feedback-comment" rows="4" required placeholder="Tell us your suggestions or requested features..." class="w-full rounded-2xl border border-line-strong bg-panel p-4 text-[14px] text-fg outline-none focus:border-fg transition-colors placeholder:text-faint"></textarea>
-        </div>
-
-        <div>
-          <label class="label text-faint block mb-2">Your branch (optional)</label>
-          <select id="feedback-branch" class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors">
-            <option value="">Select branch</option>
-            <option value="CSE">Computer Engineering (CSE)</option>
-            <option value="IT">Information Technology (IT)</option>
-            <option value="EXTC">Electronics & Telecom (EXTC)</option>
-            <option value="AIDS">AI & Data Science (AI & DS)</option>
+          <label class="label text-faint block mb-2 uppercase tracking-wider text-[11px]">Topic / Feedback Category *</label>
+          <select id="feedback-category" required class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+            <option value="Feature Suggestion" class="bg-[#121316] text-[#ededed]">Feature Suggestion / New Analytics</option>
+            <option value="Placement Data & Recruiters" class="bg-[#121316] text-[#ededed]">Placement Data & Recruiter Info</option>
+            <option value="UI & User Experience" class="bg-[#121316] text-[#ededed]">UI, Design & Usability</option>
+            <option value="Bug Report" class="bg-[#121316] text-[#ededed]">Bug Report / Something is Broken</option>
+            <option value="Appreciation & General" class="bg-[#121316] text-[#ededed]">General Feedback & Appreciation</option>
           </select>
         </div>
 
-        <button type="submit" id="btn-submit-feedback" class="flex items-center justify-center gap-2 label rounded-full bg-fg py-3.5 text-bg font-medium transition-opacity hover:opacity-90 cursor-pointer">
-          <span id="feedback-btn-text">Submit Feedback</span>
+        <!-- 3. Feedback Details Textarea -->
+        <div>
+          <label class="label text-faint block mb-2 uppercase tracking-wider text-[11px]">Your Feedback or Suggestions *</label>
+          <textarea id="feedback-comment" rows="5" required placeholder="What do you think of the portal? What metrics, graphs, or company details would help you most? Feel free to be as detailed as you like..." class="w-full rounded-2xl border border-line-strong bg-panel p-4 text-[14px] text-fg outline-none focus:border-fg transition-colors placeholder:text-faint leading-relaxed"></textarea>
+        </div>
+
+        <!-- 4. Submitter Info (Optional) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="label text-faint block mb-2 uppercase tracking-wider text-[11px]">Your Name (optional)</label>
+            <input id="feedback-name" type="text" placeholder="e.g. Yash Parekh or leave blank" class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors placeholder:text-faint" />
+          </div>
+          <div>
+            <label class="label text-faint block mb-2 uppercase tracking-wider text-[11px]">Email or Contact (optional)</label>
+            <input id="feedback-email" type="text" placeholder="e.g. name@spit.ac.in (for follow-up)" class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors placeholder:text-faint" />
+          </div>
+        </div>
+
+        <!-- 5. Academic Details (Optional) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="label text-faint block mb-2 uppercase tracking-wider text-[11px]">Your Branch (optional)</label>
+            <select id="feedback-branch" class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+              <option value="" class="bg-[#121316] text-[#ededed]">Select Branch</option>
+              <option value="CSE" class="bg-[#121316] text-[#ededed]">Computer Engineering (CSE)</option>
+              <option value="IT" class="bg-[#121316] text-[#ededed]">Information Technology (IT)</option>
+              <option value="EXTC" class="bg-[#121316] text-[#ededed]">Electronics & Telecom (EXTC)</option>
+              <option value="AIDS" class="bg-[#121316] text-[#ededed]">AI & Data Science (AI & DS)</option>
+              <option value="Other" class="bg-[#121316] text-[#ededed]">Other / Recruiter / Faculty</option>
+            </select>
+          </div>
+          <div>
+            <label class="label text-faint block mb-2 uppercase tracking-wider text-[11px]">Your Batch (optional)</label>
+            <select id="feedback-batch" class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+              <option value="2027" class="bg-[#121316] text-[#ededed]">Class of 2027</option>
+              <option value="2028" class="bg-[#121316] text-[#ededed]">Class of 2028</option>
+              <option value="Junior" class="bg-[#121316] text-[#ededed]">Junior (Class of 2029+)</option>
+              <option value="Alumni" class="bg-[#121316] text-[#ededed]">Alumni</option>
+              <option value="Visitor" class="bg-[#121316] text-[#ededed]">Recruiter / Visitor</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-submit-feedback" class="mt-2 flex items-center justify-center gap-2 label rounded-full bg-fg py-4 text-bg font-medium transition-opacity hover:opacity-90 cursor-pointer shadow-lg">
+          <span id="feedback-btn-text">Submit Feedback →</span>
           <span id="feedback-spinner" class="hidden size-4 animate-spin rounded-full border-2 border-bg border-t-transparent"></span>
         </button>
-        <p id="feedback-success" class="hidden text-center text-intern text-[14px]">Thank you! Your feedback has been sent to the admin dashboard.</p>
-        <p id="feedback-error" class="hidden text-center text-red-400 text-[14px]"></p>
+
+        <div id="feedback-success" class="hidden rounded-2xl border border-intern/40 bg-intern/10 p-6 text-center">
+          <span class="text-[28px] block mb-2">🎉</span>
+          <h3 class="font-display text-[18px] font-semibold text-fg">Thank You for Your Feedback!</h3>
+          <p class="text-[14px] text-muted max-w-[45ch] mx-auto mt-2 leading-relaxed">
+            Your feedback and suggestions have been delivered directly to the placement administrator dashboard.
+          </p>
+          <button type="button" id="btn-feedback-again" class="mt-4 label text-[12px] text-intern hover:underline cursor-pointer">
+            Submit another feedback
+          </button>
+        </div>
+
+        <p id="feedback-error" class="hidden text-center text-red-400 text-[14px] p-3 rounded-xl border border-red-500/30 bg-red-500/10"></p>
       </form>
     </section>
   
@@ -242,19 +306,46 @@
     const btn = document.getElementById('btn-submit-feedback');
     const spinner = document.getElementById('feedback-spinner');
     const btnText = document.getElementById('feedback-btn-text');
+    const ratingLabel = document.getElementById('rating-label');
+    const btnAgain = document.getElementById('btn-feedback-again');
+
+    const ratingDescriptions = {
+      '1': 'Selected: 1 - Poor ★☆☆☆☆',
+      '2': 'Selected: 2 - Fair ★★☆☆☆',
+      '3': 'Selected: 3 - Good ★★★☆☆',
+      '4': 'Selected: 4 - Very Good ★★★★☆',
+      '5': 'Selected: 5 - Excellent ★★★★★'
+    };
 
     // Visual selection for rating buttons
     document.querySelectorAll('.rating-input').forEach(radio => {
       radio.addEventListener('change', () => {
-        document.querySelectorAll('.rating-input').forEach(r => {
-          const parent = r.closest('label');
-          if (r.checked) {
-            parent?.classList.add('border-fg', 'bg-fg/10');
+        document.querySelectorAll('.rating-card').forEach(card => {
+          const r = card.querySelector('.rating-input');
+          if (r && r.checked) {
+            card.classList.add('selected', 'border-amber-400', 'bg-amber-400/10', 'text-amber-300', 'ring-1', 'ring-amber-400/30');
+            card.classList.remove('border-line-strong', 'bg-panel', 'text-fg');
+            const numSpan = card.querySelector('span.font-display');
+            if (numSpan) numSpan.classList.add('text-amber-300');
+            if (ratingLabel) ratingLabel.textContent = ratingDescriptions[r.value] || ('Selected: ' + r.value + ' Stars');
           } else {
-            parent?.classList.remove('border-fg', 'bg-fg/10');
+            card.classList.remove('selected', 'border-amber-400', 'bg-amber-400/10', 'text-amber-300', 'ring-1', 'ring-amber-400/30');
+            card.classList.add('border-line-strong', 'bg-panel', 'text-fg');
+            const numSpan = card.querySelector('span.font-display');
+            if (numSpan) numSpan.classList.remove('text-amber-300');
           }
         });
       });
+    });
+
+    btnAgain?.addEventListener('click', () => {
+      success?.classList.add('hidden');
+      form.reset();
+      const fiveStarRadio = document.querySelector('input[name="rating"][value="5"]');
+      if (fiveStarRadio) {
+        fiveStarRadio.checked = true;
+        fiveStarRadio.dispatchEvent(new Event('change'));
+      }
     });
 
     form?.addEventListener('submit', async (e) => {
@@ -266,17 +357,26 @@
       success?.classList.add('hidden');
       errorEl?.classList.add('hidden');
 
-      const checkedRating = document.querySelector('input[name="rating"]:checked')?.value || 'Not rated';
-      const comment = document.getElementById('feedback-comment')?.value || '';
+      const checkedRating = document.querySelector('input[name="rating"]:checked')?.value || '5';
+      const ratingNum = parseInt(checkedRating, 10) || 5;
+      const ratingStars = '★'.repeat(ratingNum) + '☆'.repeat(5 - ratingNum);
+      const category = document.getElementById('feedback-category')?.value || 'General Feedback';
+      const comment = document.getElementById('feedback-comment')?.value.trim() || '';
+      const name = document.getElementById('feedback-name')?.value.trim() || 'Anonymous';
+      const contact = document.getElementById('feedback-email')?.value.trim() || '';
       const branch = document.getElementById('feedback-branch')?.value || '';
+      const batch = document.getElementById('feedback-batch')?.value || '2027';
 
       const payload = {
         type: 'feedback',
-        batch_year: '2027',
+        batch_year: batch,
         branch: branch,
-        role_title: 'Rating: ' + checkedRating + ' / 5',
+        company_name: category,
+        role_title: ratingNum + ' / 5 Stars (' + ratingStars + ')',
+        offers_count: ratingNum,
         details: comment,
-        submitter_name: 'Community Visitor',
+        submitter_name: name,
+        submitter_contact: contact,
         status: 'pending'
       };
 
@@ -296,7 +396,6 @@
 
         success?.classList.remove('hidden');
         form.reset();
-        document.querySelectorAll('.rating-input').forEach(r => r.closest('label')?.classList.remove('border-fg', 'bg-fg/10'));
       } catch (err) {
         if (errorEl) {
           errorEl.textContent = 'Error: ' + err.message;
@@ -305,7 +404,7 @@
       } finally {
         btn.disabled = false;
         spinner?.classList.add('hidden');
-        if (btnText) btnText.textContent = 'Submit Feedback';
+        if (btnText) btnText.textContent = 'Submit Feedback →';
       }
     });
   

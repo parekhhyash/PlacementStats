@@ -118,7 +118,7 @@ function generateAdminPage() {
 
         <button id="nav-btn-reports" type="button" class="admin-main-nav-btn flex items-center gap-2 border-b-2 border-transparent px-4 py-3 text-[14px] font-medium text-muted hover:text-fg transition-colors cursor-pointer" data-view="view-reports">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
-          <span>Reports & Feedback</span>
+          <span>Data Corrections</span>
           <span id="badge-reports" class="rounded-full bg-ppo/20 text-ppo font-bold px-2 py-0.5 text-[11px] font-mono">0</span>
         </button>
 
@@ -126,6 +126,12 @@ function generateAdminPage() {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           <span>Contact Queries</span>
           <span id="badge-queries" class="rounded-full bg-blue-500/20 text-blue-300 font-bold px-2 py-0.5 text-[11px] font-mono">0</span>
+        </button>
+
+        <button id="nav-btn-feedback" type="button" class="admin-main-nav-btn flex items-center gap-2 border-b-2 border-transparent px-4 py-3 text-[14px] font-medium text-muted hover:text-fg transition-colors cursor-pointer" data-view="view-feedback">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Feedback</span>
+          <span id="badge-feedback" class="rounded-full bg-amber-500/20 text-amber-300 font-bold px-2 py-0.5 text-[11px] font-mono">0</span>
         </button>
       </div>
 
@@ -497,6 +503,47 @@ function generateAdminPage() {
 
       <!-- Queries List Container -->
       <div id="queries-container" class="mt-8 grid gap-4">
+        <div class="p-12 text-center text-[14px] text-muted">Connecting to Supabase...</div>
+      </div>
+    </div>
+
+    <!-- VIEW 5: Community Feedback & Ratings -->
+    <div id="view-feedback" class="admin-view-tab hidden mt-8">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-line pb-6">
+        <div>
+          <div class="flex items-center gap-2.5">
+            <span class="chip font-mono text-[11px] text-amber-400 border-amber-500/40 bg-amber-500/10">User Ratings & Suggestions</span>
+            <span id="badge-feedback-total" class="label text-faint">0 reviews</span>
+          </div>
+          <h2 class="display-m mt-2 text-[24px] sm:text-[28px]">Community Feedback</h2>
+          <p class="text-[14px] text-muted mt-1 max-w-[68ch]">
+            Site ratings, student impressions, and feature requests submitted from the public Give Feedback page.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <!-- Live Average Rating Card -->
+          <div id="feedback-rating-summary" class="flex items-center gap-2 rounded-2xl border border-line bg-panel px-4 py-2 text-[13px]">
+            <span class="text-amber-400 font-display font-medium text-[16px]">★ <span id="feedback-avg-score">--</span></span>
+            <span class="text-muted text-[12px]">(<span id="feedback-count-score">0</span> ratings)</span>
+          </div>
+          <button id="btn-refresh-feedback" type="button" class="cursor-pointer inline-flex items-center gap-2 rounded-full border border-line-strong px-4 py-2 text-[13px] text-muted hover:border-fg hover:text-fg transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+            <span>Refresh Feedback</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Feedback Filter Bar -->
+      <div class="mt-6 flex flex-wrap items-center gap-2" id="feedback-filter-group">
+        <button type="button" class="feedback-filter-btn active cursor-pointer rounded-full border border-fg bg-fg px-3.5 py-1 text-[12px] font-medium text-bg transition-colors" data-filter="all">All Feedback</button>
+        <button type="button" class="feedback-filter-btn cursor-pointer rounded-full border border-line-strong px-3.5 py-1 text-[12px] text-muted hover:text-fg transition-colors" data-filter="pending">Pending Only</button>
+        <button type="button" class="feedback-filter-btn cursor-pointer rounded-full border border-line-strong px-3.5 py-1 text-[12px] text-muted hover:text-fg transition-colors" data-filter="5star">★ 5 Stars</button>
+        <button type="button" class="feedback-filter-btn cursor-pointer rounded-full border border-line-strong px-3.5 py-1 text-[12px] text-muted hover:text-fg transition-colors" data-filter="feature">Feature Requests</button>
+        <button type="button" class="feedback-filter-btn cursor-pointer rounded-full border border-line-strong px-3.5 py-1 text-[12px] text-muted hover:text-fg transition-colors" data-filter="resolved">Reviewed</button>
+      </div>
+
+      <!-- Feedback List Container -->
+      <div id="feedback-container" class="mt-6 grid gap-4">
         <div class="p-12 text-center text-[14px] text-muted">Connecting to Supabase...</div>
       </div>
     </div>
@@ -1494,14 +1541,16 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
     const navBtnBranchSubmissions = document.getElementById('nav-btn-branch-submissions');
     const navBtnReports = document.getElementById('nav-btn-reports');
     const navBtnQueries = document.getElementById('nav-btn-queries');
+    const navBtnFeedback = document.getElementById('nav-btn-feedback');
 
     const viewCompanies = document.getElementById('view-companies');
     const viewBranchSubmissions = document.getElementById('view-branch-submissions');
     const viewReports = document.getElementById('view-reports');
     const viewQueries = document.getElementById('view-queries');
+    const viewFeedback = document.getElementById('view-feedback');
 
-    const allNavBtns = [navBtnCompanies, navBtnBranchSubmissions, navBtnReports, navBtnQueries];
-    const allViews = [viewCompanies, viewBranchSubmissions, viewReports, viewQueries];
+    const allNavBtns = [navBtnCompanies, navBtnBranchSubmissions, navBtnReports, navBtnQueries, navBtnFeedback];
+    const allViews = [viewCompanies, viewBranchSubmissions, viewReports, viewQueries, viewFeedback];
 
     function switchAdminView(targetViewId) {
       allNavBtns.forEach(btn => {
@@ -1538,6 +1587,7 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
     document.getElementById('btn-refresh-branch-submissions')?.addEventListener('click', fetchSubmissionsAndReports);
     document.getElementById('btn-refresh-reports')?.addEventListener('click', fetchSubmissionsAndReports);
     document.getElementById('btn-refresh-queries')?.addEventListener('click', fetchSubmissionsAndReports);
+    document.getElementById('btn-refresh-feedback')?.addEventListener('click', fetchSubmissionsAndReports);
 
     // -------------------------------------------------------------
     // Branch Submissions & Reports Feed
@@ -1554,6 +1604,9 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
       const badgeReportsTotal = document.getElementById('badge-reports-total');
       const badgeQueries = document.getElementById('badge-queries');
       const badgeQueriesTotal = document.getElementById('badge-queries-total');
+      const feedbackContainer = document.getElementById('feedback-container');
+      const badgeFeedback = document.getElementById('badge-feedback');
+      const badgeFeedbackTotal = document.getElementById('badge-feedback-total');
       const badgeCompCount = document.getElementById('badge-companies-count');
 
       if (badgeCompCount) badgeCompCount.textContent = allCompanies.length;
@@ -1583,12 +1636,34 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
         if (badgeQueriesTotal) badgeQueriesTotal.textContent = \`\${contactQueries.length} total (\${pendingQueries.length} pending)\`;
         renderQueries(contactQueries);
 
-        // 3. Reports & Feedback
-        const reports = allSubmissions.filter(s => s.type !== 'branch_data' && s.type !== 'contact_query' && s.type !== 'contact' && s.type !== 'query');
-        const pendingReports = reports.filter(s => s.status === 'pending');
-        if (badgeReports) badgeReports.textContent = pendingReports.length;
-        if (badgeReportsTotal) badgeReportsTotal.textContent = \`\${reports.length} total (\${pendingReports.length} pending)\`;
-        renderReports(reports);
+        // 3. Placement Data Corrections
+        const corrections = allSubmissions.filter(s => s.type === 'correction' || s.type === 'report');
+        const pendingCorrections = corrections.filter(s => s.status === 'pending');
+        if (badgeReports) badgeReports.textContent = pendingCorrections.length;
+        if (badgeReportsTotal) badgeReportsTotal.textContent = \`\${corrections.length} total (\${pendingCorrections.length} pending)\`;
+        renderReports(corrections);
+
+        // 4. Community Feedback
+        const feedbackList = allSubmissions.filter(s => s.type === 'feedback');
+        const pendingFeedback = feedbackList.filter(s => s.status === 'pending');
+        if (badgeFeedback) badgeFeedback.textContent = pendingFeedback.length;
+        if (badgeFeedbackTotal) badgeFeedbackTotal.textContent = \`\${feedbackList.length} reviews (\${pendingFeedback.length} pending)\`;
+
+        // Calculate Average Rating
+        const ratings = feedbackList.map(f => {
+          if (typeof f.offers_count === 'number' && f.offers_count > 0) return f.offers_count;
+          const match = (f.role_title || '').match(/([1-5])\\s*\\/\\s*5/);
+          return match ? parseInt(match[1], 10) : null;
+        }).filter(n => n !== null);
+
+        const avgRating = ratings.length ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1) : '--';
+        const avgScoreEl = document.getElementById('feedback-avg-score');
+        const countScoreEl = document.getElementById('feedback-count-score');
+        if (avgScoreEl) avgScoreEl.textContent = avgRating;
+        if (countScoreEl) countScoreEl.textContent = feedbackList.length;
+
+        currentFeedbackList = feedbackList;
+        renderFeedback(feedbackList);
 
       } catch (err) {
         console.warn('Failed to load submissions:', err);
@@ -1854,6 +1929,129 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
         btn.addEventListener('click', () => deleteSubmissionItem(btn.getAttribute('data-id')));
       });
     }
+
+    let currentFeedbackList = [];
+    let currentFeedbackFilter = 'all';
+
+    function renderFeedback(list) {
+      const container = document.getElementById('feedback-container');
+      if (!container) return;
+
+      currentFeedbackList = list;
+
+      let filtered = list;
+      if (currentFeedbackFilter === 'pending') {
+        filtered = list.filter(f => f.status === 'pending');
+      } else if (currentFeedbackFilter === '5star') {
+        filtered = list.filter(f => f.offers_count === 5 || (f.role_title && f.role_title.includes('5')));
+      } else if (currentFeedbackFilter === 'feature') {
+        filtered = list.filter(f => (f.company_name || '').toLowerCase().includes('feature'));
+      } else if (currentFeedbackFilter === 'resolved') {
+        filtered = list.filter(f => f.status === 'resolved');
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = \`
+          <div class="rounded-3xl border border-line bg-panel p-12 text-center">
+            <span class="text-[32px] block mb-3">⭐</span>
+            <h3 class="font-display text-[18px] font-semibold text-fg">No Feedback Found</h3>
+            <p class="text-[14px] text-muted max-w-[45ch] mx-auto mt-2">
+              \${list.length === 0 ? 'When students or visitors submit feedback from /feedback/, it will appear here live.' : 'No feedback matches the selected filter.'}
+            </p>
+          </div>
+        \`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(f => {
+        const isResolved = f.status === 'resolved';
+        const dateStr = f.created_at ? new Date(f.created_at).toLocaleString() : 'Recent';
+        const isEmail = f.submitter_contact && f.submitter_contact.includes('@');
+
+        let starScore = f.offers_count;
+        if (!starScore || typeof starScore !== 'number') {
+          const match = (f.role_title || '').match(/([1-5])\\s*\\/\\s*5/);
+          starScore = match ? parseInt(match[1], 10) : 5;
+        }
+        const starsVisual = '★'.repeat(starScore) + '☆'.repeat(5 - starScore);
+
+        return \`
+          <div class="rounded-2xl border border-line-strong bg-panel p-6 shadow-sm flex flex-col gap-4">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-3">
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="rounded-full border px-3 py-1 font-mono text-[11px] font-bold bg-amber-500/10 text-amber-300 border-amber-500/30 flex items-center gap-1.5">
+                  <span class="text-amber-400">\${starsVisual}</span>
+                  <span>\${starScore}/5</span>
+                </span>
+                \${f.company_name ? \`<span class="chip text-[12px] bg-bg/80 text-fg border-line">\${f.company_name}</span>\` : ''}
+                <span class="label text-[12px] \${isResolved ? 'text-intern' : 'text-amber-400'} font-medium">
+                  \${isResolved ? '✔ Reviewed' : '⏳ Pending'}
+                </span>
+              </div>
+              <span class="text-[12px] text-faint font-mono">\${dateStr}</span>
+            </div>
+
+            <div class="rounded-xl border border-line bg-bg/60 p-4 text-[14px] text-fg leading-relaxed">
+              \${f.details || 'No message provided.'}
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-3 text-[12px]">
+              <span class="text-faint">
+                From: <strong class="text-fg">\${f.submitter_name || 'Anonymous'}</strong>
+                \${f.submitter_contact ? '<span class="text-muted"> (' + f.submitter_contact + ')</span>' : ''}
+                \${f.batch_year ? '<span class="text-muted"> · Class of ' + f.batch_year + '</span>' : ''}
+                \${f.branch ? '<span class="text-muted"> · ' + f.branch + '</span>' : ''}
+              </span>
+
+              <div class="flex flex-wrap items-center gap-2">
+                \${isEmail ? \`
+                  <a href="mailto:\${f.submitter_contact}?subject=Regarding your Placed '27 feedback" class="cursor-pointer inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1.5 text-[12px] font-medium text-blue-300 hover:bg-blue-500/20 transition-colors">
+                    <span>Reply</span>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                  </a>
+                \` : ''}
+                \${!isResolved ? \`
+                  <button type="button" data-action="resolve-feedback" data-id="\${f.id}" class="cursor-pointer rounded-full bg-fg px-4 py-1.5 text-[12px] font-medium text-bg hover:opacity-90 transition-opacity">
+                    Mark Reviewed
+                  </button>
+                \` : \`
+                  <button type="button" data-action="reopen-feedback" data-id="\${f.id}" class="cursor-pointer rounded-full border border-line-strong px-3 py-1.5 text-[12px] text-muted hover:text-fg transition-colors">
+                    Reopen
+                  </button>
+                \`}
+                <button type="button" data-action="delete-feedback" data-id="\${f.id}" class="cursor-pointer rounded-full border border-red-500/30 px-3 py-1.5 text-[12px] text-red-400 hover:bg-red-500/10 transition-colors">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        \`;
+      }).join('');
+
+      container.querySelectorAll('[data-action="resolve-feedback"]').forEach(btn => {
+        btn.addEventListener('click', () => updateSubmissionStatus(btn.getAttribute('data-id'), 'resolved'));
+      });
+      container.querySelectorAll('[data-action="reopen-feedback"]').forEach(btn => {
+        btn.addEventListener('click', () => updateSubmissionStatus(btn.getAttribute('data-id'), 'pending'));
+      });
+      container.querySelectorAll('[data-action="delete-feedback"]').forEach(btn => {
+        btn.addEventListener('click', () => deleteSubmissionItem(btn.getAttribute('data-id')));
+      });
+    }
+
+    // Feedback filter buttons
+    document.querySelectorAll('.feedback-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.feedback-filter-btn').forEach(b => {
+          b.classList.remove('active', 'border-fg', 'bg-fg', 'text-bg');
+          b.classList.add('border-line-strong', 'text-muted');
+        });
+        btn.classList.add('active', 'border-fg', 'bg-fg', 'text-bg');
+        btn.classList.remove('border-line-strong', 'text-muted');
+        currentFeedbackFilter = btn.getAttribute('data-filter') || 'all';
+        renderFeedback(currentFeedbackList);
+      });
+    });
 
     async function updateSubmissionStatus(id, newStatus) {
       try {
