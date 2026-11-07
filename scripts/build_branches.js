@@ -75,169 +75,150 @@ function generateBranchesPage() {
         </div>
 
         <div class="mt-8 rounded-2xl border border-line-strong bg-panel p-6 sm:p-8">
-          <!-- Bar Graph Header & View Mode Switcher -->
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-line">
+          <!-- Graph Title & Subtitle -->
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 pb-6 border-b border-line">
             <div>
-              <p class="text-[14px] text-muted max-w-[65ch]">
-                Comparative offer distribution across engineering branches and unclassified drives. Click any bar column to filter companies below.
-              </p>
+              <h3 class="font-display text-[18px] sm:text-[20px] font-semibold text-fg">Department Offer Breakdown</h3>
+              <p class="text-[13px] text-muted mt-1">Confirmed placement selections across departments from 38 recruitment drives</p>
             </div>
-            <!-- View Mode Switcher -->
-            <div class="inline-flex items-center rounded-full border border-line-strong bg-bg p-1 text-[12px] shrink-0" role="tablist">
-              <button type="button" id="btn-chart-all" class="chart-mode-btn cursor-pointer rounded-full px-3.5 py-1 font-medium transition-all bg-panel text-fg shadow-sm border border-line-strong" data-mode="all">
-                All 4 Groups (236 Offers)
-              </button>
-              <button type="button" id="btn-chart-known" class="chart-mode-btn cursor-pointer rounded-full px-3.5 py-1 font-medium transition-all text-muted hover:text-fg" data-mode="known">
-                Known Branches Only (125 Offers)
-              </button>
+            <div class="text-[12px] text-faint font-mono">
+              236 Confirmed Offers · Class of 2027
             </div>
           </div>
 
-          <!-- Vertical Bar Graph Canvas -->
-          <div class="relative mt-8 pt-4 overflow-x-auto">
-            <div class="min-w-[500px] relative">
-              <!-- Y-Axis Gridlines & Ticks -->
-              <div id="chart-y-axis" class="absolute inset-0 flex flex-col justify-between pointer-events-none pb-[85px] pr-2">
-                <div class="flex items-center w-full border-b border-line/40 border-dashed pb-1">
-                  <span class="y-axis-label font-mono text-[11px] text-faint w-10 text-right pr-3 shrink-0">120</span>
-                  <div class="w-full"></div>
-                </div>
-                <div class="flex items-center w-full border-b border-line/40 border-dashed pb-1">
-                  <span class="y-axis-label font-mono text-[11px] text-faint w-10 text-right pr-3 shrink-0">90</span>
-                  <div class="w-full"></div>
-                </div>
-                <div class="flex items-center w-full border-b border-line/40 border-dashed pb-1">
-                  <span class="y-axis-label font-mono text-[11px] text-faint w-10 text-right pr-3 shrink-0">60</span>
-                  <div class="w-full"></div>
-                </div>
-                <div class="flex items-center w-full border-b border-line/40 border-dashed pb-1">
-                  <span class="y-axis-label font-mono text-[11px] text-faint w-10 text-right pr-3 shrink-0">30</span>
-                  <div class="w-full"></div>
-                </div>
-                <div class="flex items-center w-full border-b border-line pb-1">
-                  <span class="y-axis-label font-mono text-[11px] text-faint w-10 text-right pr-3 shrink-0">0</span>
-                  <div class="w-full"></div>
-                </div>
-              </div>
+          <!-- SVG Bar Graph Canvas (Exact match to Reference Bar Chart) -->
+          <div class="mt-8 w-full overflow-x-auto pb-4">
+            <svg viewBox="0 0 760 420" class="w-full h-auto min-w-[560px] max-w-[840px] mx-auto block font-sans select-none" style="overflow: visible;">
+              <defs>
+                <!-- Subtle Top Glow Gradients for Bars -->
+                <linearGradient id="bar-grad-ce" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#10b981" />
+                  <stop offset="100%" stop-color="#059669" />
+                </linearGradient>
+                <linearGradient id="bar-grad-cse" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#38bdf8" />
+                  <stop offset="100%" stop-color="#0284c7" />
+                </linearGradient>
+                <linearGradient id="bar-grad-extc" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f43f5e" />
+                  <stop offset="100%" stop-color="#e11d48" />
+                </linearGradient>
+                <linearGradient id="bar-grad-unk" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#64748b" />
+                  <stop offset="100%" stop-color="#475569" />
+                </linearGradient>
+              </defs>
 
-              <!-- Vertical Bar Columns Container -->
-              <div class="relative z-10 pl-14 pr-4 h-[320px] sm:h-[360px] flex items-end justify-around gap-4 sm:gap-8 pb-[85px]">
-                <!-- CE Bar -->
-                <div class="branch-bar-col group flex-1 max-w-[130px] flex flex-col items-center justify-end h-full cursor-pointer transition-all duration-300" data-branch="ce">
-                  <!-- Top Floating Value Badge -->
-                  <div class="mb-2 flex flex-col items-center text-center transition-transform group-hover:-translate-y-1">
-                    <div class="flex items-baseline gap-1">
-                      <span class="font-display text-[22px] sm:text-[26px] font-bold text-fg leading-none">61</span>
-                      <span class="text-[11px] text-muted">offers</span>
-                    </div>
-                    <span class="ce-pct-badge mt-1 rounded bg-[#10b981]/15 border border-[#10b981]/30 px-1.5 py-0.5 font-mono text-[11px] font-semibold text-[#10b981]">25.8%</span>
-                  </div>
-                  <!-- The Bar Element -->
-                  <div class="bar-fill w-full rounded-t-xl transition-all duration-500 ease-out border-t-2 border-x border-[#10b981] group-hover:brightness-125 group-hover:shadow-[0_0_25px_rgba(16,185,129,0.35)] relative overflow-hidden"
-                       style="height: 50.8%; background: linear-gradient(180deg, #10b981 0%, rgba(16, 185, 129, 0.25) 100%);"
-                       data-height-all="50.8%" data-height-known="87.1%">
-                    <div class="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  </div>
-                </div>
+              <!-- Y-Axis Vertical Title (like in Reference Image 1 "Children") -->
+              <text x="-195" y="24" transform="rotate(-90)" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="0.08em" fill="#71717a">OFFERS</text>
 
-                <!-- CSE Bar -->
-                <div class="branch-bar-col group flex-1 max-w-[130px] flex flex-col items-center justify-end h-full cursor-pointer transition-all duration-300" data-branch="cse">
-                  <!-- Top Floating Value Badge -->
-                  <div class="mb-2 flex flex-col items-center text-center transition-transform group-hover:-translate-y-1">
-                    <div class="flex items-baseline gap-1">
-                      <span class="font-display text-[22px] sm:text-[26px] font-bold text-fg leading-none">44</span>
-                      <span class="text-[11px] text-muted">offers</span>
-                    </div>
-                    <span class="cse-pct-badge mt-1 rounded bg-[#38bdf8]/15 border border-[#38bdf8]/30 px-1.5 py-0.5 font-mono text-[11px] font-semibold text-[#38bdf8]">18.6%</span>
-                  </div>
-                  <!-- The Bar Element -->
-                  <div class="bar-fill w-full rounded-t-xl transition-all duration-500 ease-out border-t-2 border-x border-[#38bdf8] group-hover:brightness-125 group-hover:shadow-[0_0_25px_rgba(56,189,248,0.35)] relative overflow-hidden"
-                       style="height: 36.7%; background: linear-gradient(180deg, #38bdf8 0%, rgba(56, 189, 248, 0.25) 100%);"
-                       data-height-all="36.7%" data-height-known="62.9%">
-                    <div class="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  </div>
-                </div>
+              <!-- Horizontal Grid Lines & Y-Axis Labels -->
+              <!-- 120 -->
+              <g class="grid-line">
+                <text x="62" y="54" text-anchor="end" font-size="11" font-family="monospace" fill="#71717a">120</text>
+                <line x1="68" y1="50" x2="74" y2="50" stroke="#444" stroke-width="1.2" />
+                <line x1="74" y1="50" x2="720" y2="50" stroke="#222" stroke-width="1" stroke-dasharray="3 3" />
+              </g>
 
-                <!-- EXTC Bar -->
-                <div class="branch-bar-col group flex-1 max-w-[130px] flex flex-col items-center justify-end h-full cursor-pointer transition-all duration-300" data-branch="extc">
-                  <!-- Top Floating Value Badge -->
-                  <div class="mb-2 flex flex-col items-center text-center transition-transform group-hover:-translate-y-1">
-                    <div class="flex items-baseline gap-1">
-                      <span class="font-display text-[22px] sm:text-[26px] font-bold text-fg leading-none">20</span>
-                      <span class="text-[11px] text-muted">offers</span>
-                    </div>
-                    <span class="extc-pct-badge mt-1 rounded bg-[#f43f5e]/15 border border-[#f43f5e]/30 px-1.5 py-0.5 font-mono text-[11px] font-semibold text-[#f43f5e]">8.5%</span>
-                  </div>
-                  <!-- The Bar Element -->
-                  <div class="bar-fill w-full rounded-t-xl transition-all duration-500 ease-out border-t-2 border-x border-[#f43f5e] group-hover:brightness-125 group-hover:shadow-[0_0_25px_rgba(244,63,94,0.35)] relative overflow-hidden"
-                       style="height: 16.7%; background: linear-gradient(180deg, #f43f5e 0%, rgba(244, 63, 94, 0.25) 100%);"
-                       data-height-all="16.7%" data-height-known="28.6%">
-                    <div class="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  </div>
-                </div>
+              <!-- 90 -->
+              <g class="grid-line">
+                <text x="62" y="126" text-anchor="end" font-size="11" font-family="monospace" fill="#71717a">90</text>
+                <line x1="68" y1="122.5" x2="74" y2="122.5" stroke="#444" stroke-width="1.2" />
+                <line x1="74" y1="122.5" x2="720" y2="122.5" stroke="#222" stroke-width="1" stroke-dasharray="3 3" />
+              </g>
 
-                <!-- Unknown Bar -->
-                <div id="bar-col-unknown" class="branch-bar-col group flex-1 max-w-[130px] flex flex-col items-center justify-end h-full cursor-pointer transition-all duration-300" data-branch="unknown">
-                  <!-- Top Floating Value Badge -->
-                  <div class="mb-2 flex flex-col items-center text-center transition-transform group-hover:-translate-y-1">
-                    <div class="flex items-baseline gap-1">
-                      <span class="font-display text-[22px] sm:text-[26px] font-bold text-fg leading-none">111</span>
-                      <span class="text-[11px] text-muted">offers</span>
-                    </div>
-                    <span class="unknown-pct-badge mt-1 rounded bg-zinc-500/15 border border-zinc-500/30 px-1.5 py-0.5 font-mono text-[11px] font-semibold text-zinc-400">47.0%</span>
-                  </div>
-                  <!-- The Bar Element -->
-                  <div class="bar-fill w-full rounded-t-xl transition-all duration-500 ease-out border-t-2 border-x border-zinc-500 group-hover:brightness-125 group-hover:shadow-[0_0_25px_rgba(113,113,122,0.35)] relative overflow-hidden"
-                       style="height: 92.5%; background: linear-gradient(180deg, #71717a 0%, rgba(113, 113, 122, 0.25) 100%);"
-                       data-height-all="92.5%" data-height-known="0%">
-                    <div class="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  </div>
-                </div>
-              </div>
+              <!-- 60 -->
+              <g class="grid-line">
+                <text x="62" y="199" text-anchor="end" font-size="11" font-family="monospace" fill="#71717a">60</text>
+                <line x1="68" y1="195" x2="74" y2="195" stroke="#444" stroke-width="1.2" />
+                <line x1="74" y1="195" x2="720" y2="195" stroke="#222" stroke-width="1" stroke-dasharray="3 3" />
+              </g>
 
-              <!-- X-Axis Labels Below Baseline -->
-              <div class="relative border-t border-line-strong pl-14 pr-4 flex justify-around gap-4 sm:gap-8 pt-3 text-center">
-                <!-- CE Label -->
-                <div class="branch-x-label flex-1 max-w-[130px] cursor-pointer group" data-branch="ce">
-                  <div class="flex items-center justify-center gap-1.5">
-                    <span class="size-2 rounded-full" style="background:#10b981"></span>
-                    <span class="font-display font-bold text-[14px] sm:text-[16px] text-fg group-hover:text-[#10b981] transition-colors">CE</span>
-                  </div>
-                  <div class="mt-0.5 text-[11px] sm:text-[12px] text-muted truncate">Computer Engg</div>
-                  <div class="mt-1 font-mono text-[10px] text-faint">28 Recruiters</div>
-                </div>
+              <!-- 30 -->
+              <g class="grid-line">
+                <text x="62" y="271" text-anchor="end" font-size="11" font-family="monospace" fill="#71717a">30</text>
+                <line x1="68" y1="267.5" x2="74" y2="267.5" stroke="#444" stroke-width="1.2" />
+                <line x1="74" y1="267.5" x2="720" y2="267.5" stroke="#222" stroke-width="1" stroke-dasharray="3 3" />
+              </g>
 
-                <!-- CSE Label -->
-                <div class="branch-x-label flex-1 max-w-[130px] cursor-pointer group" data-branch="cse">
-                  <div class="flex items-center justify-center gap-1.5">
-                    <span class="size-2 rounded-full" style="background:#38bdf8"></span>
-                    <span class="font-display font-bold text-[14px] sm:text-[16px] text-fg group-hover:text-[#38bdf8] transition-colors">CSE</span>
-                  </div>
-                  <div class="mt-0.5 text-[11px] sm:text-[12px] text-muted truncate">Computer Science</div>
-                  <div class="mt-1 font-mono text-[10px] text-faint">22 Recruiters</div>
-                </div>
+              <!-- 0 (Baseline tick) -->
+              <g class="grid-line">
+                <text x="62" y="344" text-anchor="end" font-size="11" font-family="monospace" fill="#71717a">0</text>
+                <line x1="68" y1="340" x2="74" y2="340" stroke="#444" stroke-width="1.2" />
+              </g>
 
-                <!-- EXTC Label -->
-                <div class="branch-x-label flex-1 max-w-[130px] cursor-pointer group" data-branch="extc">
-                  <div class="flex items-center justify-center gap-1.5">
-                    <span class="size-2 rounded-full" style="background:#f43f5e"></span>
-                    <span class="font-display font-bold text-[14px] sm:text-[16px] text-fg group-hover:text-[#f43f5e] transition-colors">EXTC</span>
-                  </div>
-                  <div class="mt-0.5 text-[11px] sm:text-[12px] text-muted truncate">Electronics &amp; Telecom</div>
-                  <div class="mt-1 font-mono text-[10px] text-faint">12 Recruiters</div>
-                </div>
+              <!-- Y-Axis Vertical Line -->
+              <line x1="74" y1="40" x2="74" y2="340" stroke="#333333" stroke-width="1.5" />
 
-                <!-- Unknown Label -->
-                <div id="label-col-unknown" class="branch-x-label flex-1 max-w-[130px] cursor-pointer group transition-all duration-300" data-branch="unknown">
-                  <div class="flex items-center justify-center gap-1.5">
-                    <span class="size-2 rounded-full" style="background:#71717a"></span>
-                    <span class="font-display font-bold text-[14px] sm:text-[16px] text-fg group-hover:text-zinc-400 transition-colors">Unknown</span>
-                  </div>
-                  <div class="mt-0.5 text-[11px] sm:text-[12px] text-muted truncate">Awaiting Division</div>
-                  <div class="mt-1 font-mono text-[10px] text-faint">30 Recruiters</div>
-                </div>
-              </div>
-            </div>
+              <!-- X-Axis Baseline -->
+              <line x1="74" y1="340" x2="730" y2="340" stroke="#333333" stroke-width="1.5" />
+
+              <!-- BARS (Colored bars with height directly proportional to offers) -->
+
+              <!-- 1. CE Bar (61 offers) -->
+              <g class="svg-bar-col cursor-pointer group transition-all duration-300" data-branch="ce">
+                <!-- Bar Rect -->
+                <rect x="106" y="193" width="90" height="147" rx="5" ry="5" fill="url(#bar-grad-ce)" class="transition-all duration-300 group-hover:brightness-125" filter="drop-shadow(0 2px 8px rgba(16,185,129,0.35))">
+                  <title>Computer Engineering (CE): 61 offers (25.8% of total, 48.8% of known) — Click to filter</title>
+                </rect>
+                <!-- Number on top of bar -->
+                <text x="151" y="178" text-anchor="middle" font-size="20" font-weight="700" fill="#ededed" font-family="'Funnel Display', sans-serif">61</text>
+                <text x="151" y="161" text-anchor="middle" font-size="11" font-weight="600" fill="#10b981" font-family="monospace">25.8%</text>
+
+                <!-- X-Axis Category Label (centered under bar) -->
+                <text x="151" y="365" text-anchor="middle" font-size="15" font-weight="700" fill="#ededed">CE</text>
+                <text x="151" y="382" text-anchor="middle" font-size="12" fill="#a1a1aa">Computer Engg</text>
+                <text x="151" y="399" text-anchor="middle" font-size="10" font-family="monospace" fill="#71717a">28 Recruiters</text>
+              </g>
+
+              <!-- 2. CSE Bar (44 offers) -->
+              <g class="svg-bar-col cursor-pointer group transition-all duration-300" data-branch="cse">
+                <!-- Bar Rect -->
+                <rect x="269" y="234" width="90" height="106" rx="5" ry="5" fill="url(#bar-grad-cse)" class="transition-all duration-300 group-hover:brightness-125" filter="drop-shadow(0 2px 8px rgba(56,189,248,0.35))">
+                  <title>Computer Science Engineering (CSE): 44 offers (18.6% of total, 35.2% of known) — Click to filter</title>
+                </rect>
+                <!-- Number on top of bar -->
+                <text x="314" y="219" text-anchor="middle" font-size="20" font-weight="700" fill="#ededed" font-family="'Funnel Display', sans-serif">44</text>
+                <text x="314" y="202" text-anchor="middle" font-size="11" font-weight="600" fill="#38bdf8" font-family="monospace">18.6%</text>
+
+                <!-- X-Axis Category Label (centered under bar) -->
+                <text x="314" y="365" text-anchor="middle" font-size="15" font-weight="700" fill="#ededed">CSE</text>
+                <text x="314" y="382" text-anchor="middle" font-size="12" fill="#a1a1aa">Computer Science</text>
+                <text x="314" y="399" text-anchor="middle" font-size="10" font-family="monospace" fill="#71717a">22 Recruiters</text>
+              </g>
+
+              <!-- 3. EXTC Bar (20 offers) -->
+              <g class="svg-bar-col cursor-pointer group transition-all duration-300" data-branch="extc">
+                <!-- Bar Rect -->
+                <rect x="431" y="292" width="90" height="48" rx="5" ry="5" fill="url(#bar-grad-extc)" class="transition-all duration-300 group-hover:brightness-125" filter="drop-shadow(0 2px 8px rgba(244,63,94,0.35))">
+                  <title>Electronics &amp; Telecommunications (EXTC): 20 offers (8.5% of total, 16.0% of known) — Click to filter</title>
+                </rect>
+                <!-- Number on top of bar -->
+                <text x="476" y="277" text-anchor="middle" font-size="20" font-weight="700" fill="#ededed" font-family="'Funnel Display', sans-serif">20</text>
+                <text x="476" y="260" text-anchor="middle" font-size="11" font-weight="600" fill="#f43f5e" font-family="monospace">8.5%</text>
+
+                <!-- X-Axis Category Label (centered under bar) -->
+                <text x="476" y="365" text-anchor="middle" font-size="15" font-weight="700" fill="#ededed">EXTC</text>
+                <text x="476" y="382" text-anchor="middle" font-size="12" fill="#a1a1aa">Electronics &amp; Telecom</text>
+                <text x="476" y="399" text-anchor="middle" font-size="10" font-family="monospace" fill="#71717a">12 Recruiters</text>
+              </g>
+
+              <!-- 4. Unknown Bar (111 offers) -->
+              <g class="svg-bar-col cursor-pointer group transition-all duration-300" data-branch="unknown">
+                <!-- Bar Rect -->
+                <rect x="594" y="72" width="90" height="268" rx="5" ry="5" fill="url(#bar-grad-unk)" class="transition-all duration-300 group-hover:brightness-125" filter="drop-shadow(0 2px 8px rgba(100,116,139,0.35))">
+                  <title>Unknown / Awaiting Division: 111 offers (47.0% of total) — Click to filter</title>
+                </rect>
+                <!-- Number on top of bar -->
+                <text x="639" y="57" text-anchor="middle" font-size="20" font-weight="700" fill="#ededed" font-family="'Funnel Display', sans-serif">111</text>
+                <text x="639" y="40" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" font-family="monospace">47.0%</text>
+
+                <!-- X-Axis Category Label (centered under bar) -->
+                <text x="639" y="365" text-anchor="middle" font-size="15" font-weight="700" fill="#ededed">Unknown</text>
+                <text x="639" y="382" text-anchor="middle" font-size="12" fill="#a1a1aa">Awaiting Division</text>
+                <text x="639" y="399" text-anchor="middle" font-size="10" font-family="monospace" fill="#71717a">30 Recruiters</text>
+              </g>
+            </svg>
           </div>
 
           <!-- Branch Detail Cards Grid -->
@@ -504,29 +485,22 @@ function generateBranchesPage() {
         }
       });
 
-      // Update Bar Graph Columns
-      document.querySelectorAll('.branch-bar-col').forEach(col => {
+      // Update SVG Bar Columns
+      document.querySelectorAll('.svg-bar-col').forEach(col => {
         const b = col.getAttribute('data-branch');
-        const fill = col.querySelector('.bar-fill');
+        const rect = col.querySelector('rect');
         if (branchKey === 'all') {
           col.style.opacity = '1';
-          if (fill) fill.classList.remove('ring-2', 'ring-fg', 'brightness-125');
+          if (rect) rect.setAttribute('stroke', 'none');
         } else if (b === branchKey) {
           col.style.opacity = '1';
-          if (fill) fill.classList.add('ring-2', 'ring-fg', 'brightness-125');
+          if (rect) {
+            rect.setAttribute('stroke', '#ffffff');
+            rect.setAttribute('stroke-width', '2.5');
+          }
         } else {
-          col.style.opacity = '0.35';
-          if (fill) fill.classList.remove('ring-2', 'ring-fg', 'brightness-125');
-        }
-      });
-
-      // Update X-Axis Labels
-      document.querySelectorAll('.branch-x-label').forEach(lbl => {
-        const b = lbl.getAttribute('data-branch');
-        if (branchKey === 'all' || b === branchKey) {
-          lbl.style.opacity = '1';
-        } else {
-          lbl.style.opacity = '0.35';
+          col.style.opacity = '0.3';
+          if (rect) rect.setAttribute('stroke', 'none');
         }
       });
 
@@ -647,83 +621,16 @@ function generateBranchesPage() {
       });
     });
 
-    // Chart mode toggle
-    const btnChartAll = document.getElementById('btn-chart-all');
-    const btnChartKnown = document.getElementById('btn-chart-known');
-    const barColUnknown = document.getElementById('bar-col-unknown');
-    const labelColUnknown = document.getElementById('label-col-unknown');
-
-    function setChartMode(mode) {
-      const isKnown = mode === 'known';
-      if (btnChartAll && btnChartKnown) {
-        if (isKnown) {
-          btnChartKnown.className = 'chart-mode-btn cursor-pointer rounded-full px-3.5 py-1 font-medium transition-all bg-panel text-fg shadow-sm border border-line-strong';
-          btnChartAll.className = 'chart-mode-btn cursor-pointer rounded-full px-3.5 py-1 font-medium transition-all text-muted hover:text-fg';
-        } else {
-          btnChartAll.className = 'chart-mode-btn cursor-pointer rounded-full px-3.5 py-1 font-medium transition-all bg-panel text-fg shadow-sm border border-line-strong';
-          btnChartKnown.className = 'chart-mode-btn cursor-pointer rounded-full px-3.5 py-1 font-medium transition-all text-muted hover:text-fg';
-        }
-      }
-
-      // Update Y-Axis labels
-      const yLabels = document.querySelectorAll('.y-axis-label');
-      if (yLabels.length === 5) {
-        if (isKnown) {
-          yLabels[0].textContent = '70';
-          yLabels[1].textContent = '50';
-          yLabels[2].textContent = '35';
-          yLabels[3].textContent = '15';
-          yLabels[4].textContent = '0';
-        } else {
-          yLabels[0].textContent = '120';
-          yLabels[1].textContent = '90';
-          yLabels[2].textContent = '60';
-          yLabels[3].textContent = '30';
-          yLabels[4].textContent = '0';
-        }
-      }
-
-      // Update percentage badges
-      const ceBadge = document.querySelector('.ce-pct-badge');
-      const cseBadge = document.querySelector('.cse-pct-badge');
-      const extcBadge = document.querySelector('.extc-pct-badge');
-      if (ceBadge) ceBadge.textContent = isKnown ? '48.8% of known' : '25.8%';
-      if (cseBadge) cseBadge.textContent = isKnown ? '35.2% of known' : '18.6%';
-      if (extcBadge) extcBadge.textContent = isKnown ? '16.0% of known' : '8.5%';
-
-      // Update bar heights
-      document.querySelectorAll('.bar-fill').forEach(bar => {
-        const targetHeight = isKnown ? bar.getAttribute('data-height-known') : bar.getAttribute('data-height-all');
-        bar.style.height = targetHeight;
-      });
-
-      // Toggle unknown column visibility
-      if (barColUnknown && labelColUnknown) {
-        if (isKnown) {
-          barColUnknown.style.opacity = '0';
-          barColUnknown.style.pointerEvents = 'none';
-          labelColUnknown.style.opacity = '0';
-          labelColUnknown.style.pointerEvents = 'none';
-        } else {
-          barColUnknown.style.opacity = '1';
-          barColUnknown.style.pointerEvents = 'auto';
-          labelColUnknown.style.opacity = '1';
-          labelColUnknown.style.pointerEvents = 'auto';
-        }
-      }
-    }
-
-    btnChartAll?.addEventListener('click', () => setChartMode('all'));
-    btnChartKnown?.addEventListener('click', () => setChartMode('known'));
-
-    // Event listeners for bar graph columns & x-axis labels
-    document.querySelectorAll('.branch-bar-col, .branch-x-label').forEach(el => {
+    // Event listeners for SVG bar columns
+    document.querySelectorAll('.svg-bar-col').forEach(el => {
       el.addEventListener('click', () => {
         const b = el.getAttribute('data-branch');
         if (!b) return;
         const target = (selectedBranchFilter === b) ? 'all' : b;
         syncBranchSelection(target);
         document.getElementById('company-branch-tbody')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
       });
     });
 
