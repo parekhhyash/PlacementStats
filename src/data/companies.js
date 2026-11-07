@@ -3399,6 +3399,43 @@ export const companies = [
     "status": "No details available",
     "roles": [],
     "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "bootlabs",
+    "name": "Bootlabs",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/bootlabs.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
   }
 ];
 
