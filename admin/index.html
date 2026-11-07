@@ -257,6 +257,12 @@
           <span>Reports & Feedback</span>
           <span id="badge-reports" class="rounded-full bg-ppo/20 text-ppo font-bold px-2 py-0.5 text-[11px] font-mono">0</span>
         </button>
+
+        <button id="nav-btn-queries" type="button" class="admin-main-nav-btn flex items-center gap-2 border-b-2 border-transparent px-4 py-3 text-[14px] font-medium text-muted hover:text-fg transition-colors cursor-pointer" data-view="view-queries">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span>Contact Queries</span>
+          <span id="badge-queries" class="rounded-full bg-blue-500/20 text-blue-300 font-bold px-2 py-0.5 text-[11px] font-mono">0</span>
+        </button>
       </div>
 
       <!-- VIEW 1: Companies & Drives Manager -->
@@ -600,6 +606,33 @@
 
       <!-- Reports List Container -->
       <div id="reports-container" class="mt-8 grid gap-4">
+        <div class="p-12 text-center text-[14px] text-muted">Connecting to Supabase...</div>
+      </div>
+    </div>
+
+    <!-- VIEW 4: User Contact Queries -->
+    <div id="view-queries" class="admin-view-tab hidden mt-8">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-line pb-6">
+        <div>
+          <div class="flex items-center gap-2.5">
+            <span class="chip font-mono text-[11px] text-blue-400 border-blue-500/40 bg-blue-500/10">Inquiries & Messages</span>
+            <span id="badge-queries-total" class="label text-faint">0 queries</span>
+          </div>
+          <h2 class="display-m mt-2 text-[24px] sm:text-[28px]">User Contact Queries</h2>
+          <p class="text-[14px] text-muted mt-1 max-w-[68ch]">
+            Direct inquiries, messages, and partnership questions sent by students, recruiters, and visitors from the public Contact page.
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="btn-refresh-queries" type="button" class="cursor-pointer inline-flex items-center gap-2 rounded-full border border-line-strong px-4 py-2 text-[13px] text-muted hover:border-fg hover:text-fg transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+            <span>Refresh Queries</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Queries List Container -->
+      <div id="queries-container" class="mt-8 grid gap-4">
         <div class="p-12 text-center text-[14px] text-muted">Connecting to Supabase...</div>
       </div>
     </div>
@@ -1623,13 +1656,15 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
     const navBtnCompanies = document.getElementById('nav-btn-companies');
     const navBtnBranchSubmissions = document.getElementById('nav-btn-branch-submissions');
     const navBtnReports = document.getElementById('nav-btn-reports');
+    const navBtnQueries = document.getElementById('nav-btn-queries');
 
     const viewCompanies = document.getElementById('view-companies');
     const viewBranchSubmissions = document.getElementById('view-branch-submissions');
     const viewReports = document.getElementById('view-reports');
+    const viewQueries = document.getElementById('view-queries');
 
-    const allNavBtns = [navBtnCompanies, navBtnBranchSubmissions, navBtnReports];
-    const allViews = [viewCompanies, viewBranchSubmissions, viewReports];
+    const allNavBtns = [navBtnCompanies, navBtnBranchSubmissions, navBtnReports, navBtnQueries];
+    const allViews = [viewCompanies, viewBranchSubmissions, viewReports, viewQueries];
 
     function switchAdminView(targetViewId) {
       allNavBtns.forEach(btn => {
@@ -1665,6 +1700,7 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
 
     document.getElementById('btn-refresh-branch-submissions')?.addEventListener('click', fetchSubmissionsAndReports);
     document.getElementById('btn-refresh-reports')?.addEventListener('click', fetchSubmissionsAndReports);
+    document.getElementById('btn-refresh-queries')?.addEventListener('click', fetchSubmissionsAndReports);
 
     // -------------------------------------------------------------
     // Branch Submissions & Reports Feed
@@ -1674,10 +1710,13 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
     async function fetchSubmissionsAndReports() {
       const branchContainer = document.getElementById('branch-submissions-container');
       const reportsContainer = document.getElementById('reports-container');
+      const queriesContainer = document.getElementById('queries-container');
       const badgeBranch = document.getElementById('badge-branch-submissions');
       const badgeBranchTotal = document.getElementById('badge-branch-sub-total');
       const badgeReports = document.getElementById('badge-reports');
       const badgeReportsTotal = document.getElementById('badge-reports-total');
+      const badgeQueries = document.getElementById('badge-queries');
+      const badgeQueriesTotal = document.getElementById('badge-queries-total');
       const badgeCompCount = document.getElementById('badge-companies-count');
 
       if (badgeCompCount) badgeCompCount.textContent = allCompanies.length;
@@ -1700,8 +1739,15 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
         if (badgeBranchTotal) badgeBranchTotal.textContent = `${branchSubs.length} total (${pendingBranchSubs.length} pending)`;
         renderBranchSubmissions(branchSubs);
 
-        // 2. Reports & Feedback
-        const reports = allSubmissions.filter(s => s.type !== 'branch_data');
+        // 2. User Contact Queries
+        const contactQueries = allSubmissions.filter(s => s.type === 'contact_query' || s.type === 'contact' || s.type === 'query');
+        const pendingQueries = contactQueries.filter(s => s.status === 'pending');
+        if (badgeQueries) badgeQueries.textContent = pendingQueries.length;
+        if (badgeQueriesTotal) badgeQueriesTotal.textContent = `${contactQueries.length} total (${pendingQueries.length} pending)`;
+        renderQueries(contactQueries);
+
+        // 3. Reports & Feedback
+        const reports = allSubmissions.filter(s => s.type !== 'branch_data' && s.type !== 'contact_query' && s.type !== 'contact' && s.type !== 'query');
         const pendingReports = reports.filter(s => s.status === 'pending');
         if (badgeReports) badgeReports.textContent = pendingReports.length;
         if (badgeReportsTotal) badgeReportsTotal.textContent = `${reports.length} total (${pendingReports.length} pending)`;
@@ -1711,6 +1757,7 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
         console.warn('Failed to load submissions:', err);
         if (branchContainer) branchContainer.innerHTML = `<div class="p-8 text-center text-red-400">Failed to load branch submissions: ${err.message}</div>`;
         if (reportsContainer) reportsContainer.innerHTML = `<div class="p-8 text-center text-red-400">Failed to load reports: ${err.message}</div>`;
+        if (queriesContainer) queriesContainer.innerHTML = `<div class="p-8 text-center text-red-400">Failed to load queries: ${err.message}</div>`;
       }
     }
 
@@ -1884,6 +1931,89 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
         btn.addEventListener('click', () => updateSubmissionStatus(btn.getAttribute('data-id'), 'resolved'));
       });
       container.querySelectorAll('[data-action="delete-report"]').forEach(btn => {
+        btn.addEventListener('click', () => deleteSubmissionItem(btn.getAttribute('data-id')));
+      });
+    }
+
+    function renderQueries(list) {
+      const container = document.getElementById('queries-container');
+      if (!container) return;
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div class="rounded-3xl border border-line bg-panel p-12 text-center">
+            <span class="text-[32px] block mb-3">💬</span>
+            <h3 class="font-display text-[18px] font-semibold text-fg">No Contact Queries Yet</h3>
+            <p class="text-[14px] text-muted max-w-[45ch] mx-auto mt-2">
+              Messages and inquiries submitted by visitors from the public Contact page will appear here live.
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(q => {
+        const isResolved = q.status === 'resolved';
+        const dateStr = q.created_at ? new Date(q.created_at).toLocaleString() : 'Recent';
+        const isEmail = q.submitter_contact && q.submitter_contact.includes('@');
+
+        return `
+          <div class="rounded-2xl border border-line-strong bg-panel p-6 shadow-sm flex flex-col gap-4">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-3">
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="rounded-full border px-3 py-1 font-mono text-[11px] font-bold bg-blue-500/20 text-blue-300 border-blue-500/30">
+                  Contact Query
+                </span>
+                ${q.company_name ? `<span class="label text-[13px] font-semibold text-fg">${q.company_name}</span>` : ''}
+                ${q.branch ? `<span class="chip font-mono text-[11px] text-muted">${q.branch}</span>` : ''}
+                <span class="label text-[12px] ${isResolved ? 'text-intern' : 'text-amber-400'} font-medium">
+                  ${isResolved ? '✔ Resolved' : '⏳ Pending'}
+                </span>
+              </div>
+              <span class="text-[12px] text-faint font-mono">${dateStr}</span>
+            </div>
+
+            <div class="rounded-xl border border-line bg-bg/60 p-4 text-[14px] text-fg leading-relaxed whitespace-pre-wrap">
+              ${q.details || 'No message content provided.'}
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-3 text-[12px]">
+              <span class="text-faint">
+                From: <strong class="text-muted">${q.submitter_name || 'Visitor'}</strong>
+                ${q.submitter_contact ? (isEmail ? `<a href="mailto:${q.submitter_contact}?subject=Re: ${encodeURIComponent(q.company_name || 'SPIT Placement Portal Query')}" class="text-blue-400 hover:underline ml-1">(${q.submitter_contact})</a>` : `<span class="text-faint ml-1">(${q.submitter_contact})</span>`) : ''}
+              </span>
+
+              <div class="flex items-center gap-2">
+                ${isEmail ? `
+                  <a href="mailto:${q.submitter_contact}?subject=Re: ${encodeURIComponent(q.company_name || 'SPIT Placement Portal Query')}" class="cursor-pointer rounded-full border border-line-strong px-4 py-1.5 text-[12px] text-muted hover:border-fg hover:text-fg transition-colors">
+                    Reply Email ↗
+                  </a>
+                ` : ''}
+                ${!isResolved ? `
+                  <button type="button" data-action="resolve-query" data-id="${q.id}" class="cursor-pointer rounded-full bg-intern px-4 py-1.5 text-[12px] font-semibold text-bg hover:opacity-90 transition-opacity">
+                    Mark Resolved
+                  </button>
+                ` : `
+                  <button type="button" data-action="reopen-query" data-id="${q.id}" class="cursor-pointer rounded-full border border-line px-3 py-1.5 text-[12px] text-muted hover:text-fg transition-colors">
+                    Reopen
+                  </button>
+                `}
+                <button type="button" data-action="delete-query" data-id="${q.id}" class="cursor-pointer rounded-full border border-red-500/30 px-3 py-1.5 text-[12px] text-red-400 hover:bg-red-500/10 transition-colors">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      container.querySelectorAll('[data-action="resolve-query"]').forEach(btn => {
+        btn.addEventListener('click', () => updateSubmissionStatus(btn.getAttribute('data-id'), 'resolved'));
+      });
+      container.querySelectorAll('[data-action="reopen-query"]').forEach(btn => {
+        btn.addEventListener('click', () => updateSubmissionStatus(btn.getAttribute('data-id'), 'pending'));
+      });
+      container.querySelectorAll('[data-action="delete-query"]').forEach(btn => {
         btn.addEventListener('click', () => deleteSubmissionItem(btn.getAttribute('data-id')));
       });
     }

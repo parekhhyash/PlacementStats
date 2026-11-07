@@ -534,29 +534,154 @@ function generateContactPage() {
     <section class="wrap pb-16 pt-[clamp(48px,8vw,112px)] max-w-[680px]">
       <p class="label text-muted">Get In Touch</p>
       <h1 class="display-l mt-4">Contact us.</h1>
-      <p class="mt-4 text-[16px] text-muted">For recruitment cell inquiries, recruiter partnerships, or data verification regarding SPIT 2027 placements:</p>
+      <p class="mt-4 text-[16px] text-muted">Have a query, recruitment cell inquiry, data clarification, or partnership proposal? Send your message directly to the portal administrators below.</p>
 
-      <div class="mt-10 grid gap-6 rounded-3xl border border-line-strong bg-panel p-6 sm:p-8">
+      <form id="contact-form" class="mt-10 grid gap-6">
         <div>
-          <span class="label text-faint">Training & Placement Cell</span>
-          <p class="font-display text-[20px] font-semibold text-fg mt-1">placements@spit.ac.in</p>
+          <label class="label text-faint block mb-2">Your Name *</label>
+          <input id="contact-name" type="text" required placeholder="e.g. Heet Shah or Recruiter Name" class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors placeholder:text-faint" />
         </div>
-        <div class="border-t border-line pt-6">
-          <span class="label text-faint">Portal Tech & Analytics Team</span>
-          <p class="font-display text-[20px] font-semibold text-fg mt-1">contact@spit-placed.in</p>
+
+        <div>
+          <label class="label text-faint block mb-2">Email Address / Contact Phone *</label>
+          <input id="contact-email" type="text" required placeholder="e.g. name@spit.ac.in or +91 98765 43210" class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors placeholder:text-faint" />
         </div>
-        <div class="border-t border-line pt-6">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="label text-faint block mb-2">Subject / Category *</label>
+            <select id="contact-subject" required class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+              <option value="Placement Data Inquiry" class="bg-[#121316] text-[#ededed]">Placement Data Inquiry</option>
+              <option value="Recruitment Cell / Drive Info" class="bg-[#121316] text-[#ededed]">Recruitment Cell / Drive Info</option>
+              <option value="Recruiter Outreach / Partnership" class="bg-[#121316] text-[#ededed]">Recruiter Outreach / Partnership</option>
+              <option value="Data Correction / Addition" class="bg-[#121316] text-[#ededed]">Data Correction / Addition</option>
+              <option value="Website Suggestion / Issue" class="bg-[#121316] text-[#ededed]">Website Suggestion / Issue</option>
+              <option value="General Query" class="bg-[#121316] text-[#ededed]">General Query</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="label text-faint block mb-2">Your Affiliation (optional)</label>
+            <select id="contact-affiliation" class="w-full rounded-2xl border border-line-strong bg-panel p-3.5 text-[14px] text-fg outline-none focus:border-fg transition-colors" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+              <option value="SPIT Student (2027 Batch)" class="bg-[#121316] text-[#ededed]">SPIT Student (2027 Batch)</option>
+              <option value="SPIT Student (2028 Batch)" class="bg-[#121316] text-[#ededed]">SPIT Student (2028 Batch)</option>
+              <option value="SPIT Student (Other Year)" class="bg-[#121316] text-[#ededed]">SPIT Student (Other Year)</option>
+              <option value="Recruiter / Company Representative" class="bg-[#121316] text-[#ededed]">Recruiter / Company Rep</option>
+              <option value="SPIT Faculty / Staff" class="bg-[#121316] text-[#ededed]">SPIT Faculty / Staff</option>
+              <option value="Alumni / Visitor" class="bg-[#121316] text-[#ededed]">Alumni / Visitor</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="label text-faint block mb-2">Your Query / Message *</label>
+          <textarea id="contact-message" rows="5" required placeholder="Describe your question, query, or proposal in detail..." class="w-full rounded-2xl border border-line-strong bg-panel p-4 text-[14px] text-fg outline-none focus:border-fg transition-colors placeholder:text-faint"></textarea>
+        </div>
+
+        <button type="submit" id="btn-submit-contact" class="flex items-center justify-center gap-2 label rounded-full bg-fg py-3.5 text-bg font-medium transition-opacity hover:opacity-90 cursor-pointer">
+          <span id="contact-btn-text">Send Query to Admin</span>
+          <span id="contact-spinner" class="hidden size-4 animate-spin rounded-full border-2 border-bg border-t-transparent"></span>
+        </button>
+        <p id="contact-success" class="hidden text-center text-intern text-[14px] font-medium py-3 rounded-2xl bg-intern/10 border border-intern/20">
+          ✔ Thank you! Your query has been sent to the admin dashboard. We will review it shortly.
+        </p>
+        <p id="contact-error" class="hidden text-center text-red-400 text-[14px] py-3 rounded-2xl bg-red-500/10 border border-red-500/20"></p>
+      </form>
+
+      <div class="mt-14 grid gap-6 rounded-3xl border border-line bg-panel/50 p-6 sm:p-8">
+        <h3 class="font-display text-[18px] font-semibold text-fg">Direct Campus References</h3>
+        <div class="grid sm:grid-cols-2 gap-6 pt-2">
+          <div>
+            <span class="label text-faint">Training & Placement Cell</span>
+            <p class="font-display text-[17px] font-medium text-fg mt-1">placements@spit.ac.in</p>
+          </div>
+          <div>
+            <span class="label text-faint">Portal Tech & Analytics</span>
+            <p class="font-display text-[17px] font-medium text-fg mt-1">contact@spit-placed.in</p>
+          </div>
+        </div>
+        <div class="border-t border-line pt-4">
           <span class="label text-faint">Campus Address</span>
-          <p class="text-[15px] text-muted mt-1">Sardar Patel Institute of Technology, Bhavan's Campus, Munshi Nagar, Andheri (West), Mumbai 400058</p>
+          <p class="text-[14px] text-muted mt-1 leading-relaxed">
+            Sardar Patel Institute of Technology, Bhavan's Campus, Munshi Nagar, Andheri (West), Mumbai 400058
+          </p>
         </div>
       </div>
     </section>
   `;
 
+  const extraScript = `
+    const SUPABASE_URL = 'https://ntdmjyexirakcaovjeia.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZG1qeWV4aXJha2Nhb3ZqZWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2NTUzNTUsImV4cCI6MjA4NjIzMTM1NX0.LFbBXU-ANjoUUi_HfMIWYAjKidRgEct_VO-588T-Y7M';
+
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('contact-success');
+    const errorEl = document.getElementById('contact-error');
+    const btn = document.getElementById('btn-submit-contact');
+    const spinner = document.getElementById('contact-spinner');
+    const btnText = document.getElementById('contact-btn-text');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!btn) return;
+      btn.disabled = true;
+      spinner?.classList.remove('hidden');
+      if (btnText) btnText.textContent = 'Sending query...';
+      success?.classList.add('hidden');
+      errorEl?.classList.add('hidden');
+
+      const name = document.getElementById('contact-name')?.value.trim() || 'Visitor';
+      const email = document.getElementById('contact-email')?.value.trim() || '';
+      const subject = document.getElementById('contact-subject')?.value || 'General Query';
+      const affiliation = document.getElementById('contact-affiliation')?.value || '';
+      const message = document.getElementById('contact-message')?.value.trim() || '';
+
+      const payload = {
+        type: 'contact_query',
+        batch_year: '2027',
+        branch: affiliation,
+        company_name: subject,
+        role_title: 'Query: ' + subject,
+        details: message,
+        submitter_name: name,
+        submitter_contact: email,
+        status: 'pending'
+      };
+
+      try {
+        const res = await fetch(\`\${SUPABASE_URL}/rest/v1/submissions\`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': \`Bearer \${SUPABASE_KEY}\`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify([payload])
+        });
+
+        if (!res.ok) throw new Error(await res.text() || 'Failed to submit query');
+
+        success?.classList.remove('hidden');
+        form.reset();
+      } catch (err) {
+        if (errorEl) {
+          errorEl.textContent = 'Submission error: ' + (err.message || 'Please try again later.');
+          errorEl.classList.remove('hidden');
+        }
+      } finally {
+        btn.disabled = false;
+        spinner?.classList.add('hidden');
+        if (btnText) btnText.textContent = 'Send Query to Admin';
+      }
+    });
+  `;
+
   const html = pageTemplate({
-    title: `Contact · Placed ’27 · ${siteConfig.collegeShort}`,
+    title: `Contact · Placed · ${siteConfig.collegeShort}`,
     activePath: '/contact/',
-    content
+    content,
+    extraScript
   });
 
   fs.writeFileSync('contact/index.html', html);
