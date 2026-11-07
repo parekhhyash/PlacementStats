@@ -278,7 +278,7 @@ function generateHomePage() {
       const latestList = document.getElementById('home-latest-companies');
       if (!latestList) return;
 
-      const sortedByVisit = [...batch.companies].sort((a, b) => {
+      const sortedByVisit = [...batch.companies].filter(c => !c.isAmbiguous).sort((a, b) => {
         const diff = parseCompanyVisitTimestamp(b) - parseCompanyVisitTimestamp(a);
         if (diff !== 0) return diff;
         return (b.out?.students || 0) - (a.out?.students || 0);

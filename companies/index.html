@@ -151,7 +151,7 @@
         <dl class="grid grid-cols-2 border-t border-line" style="--cols:6">
           <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
             <dt class="order-2 mt-2 text-muted">Total offers</dt>
-            <dd id="stat-total-offers" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">239</dd>
+            <dd id="stat-total-offers" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">259</dd>
             <dd id="stat-total-offers-sub" class="label order-3 mt-1 text-[11px] text-faint">Across all selections</dd>
           </div>
           <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
@@ -177,7 +177,7 @@
           <div class="flex flex-col border-b border-line py-5 pr-4 max-lg:[&:nth-child(odd)]:border-r max-lg:[&:nth-child(even)]:pl-4 lg:border-b-0 lg:px-5 lg:first:pl-0 lg:[&:not(:last-child)]:border-r">
             <dt class="order-2 mt-2 text-muted">Average, full-time only</dt>
             <dd id="stat-avg-ft" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">₹14.1<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
-            <dd id="stat-avg-ft-sub" class="label order-3 mt-1 text-[11px] text-faint">Median ₹13.5 LPA · 239 offers in all</dd>
+            <dd id="stat-avg-ft-sub" class="label order-3 mt-1 text-[11px] text-faint">Median ₹13.5 LPA · 259 offers in all</dd>
           </div>
           <style>@media (min-width:1024px){dl[style*="--cols"]{grid-template-columns:repeat(var(--cols),minmax(0,1fr))}}</style>
         </dl>
@@ -493,12 +493,13 @@
         // Query match
         if (q) {
           const matchName = c.name && c.name.toLowerCase().includes(q);
+          const matchSubtext = c.subtext && c.subtext.toLowerCase().includes(q);
           const matchRoles = c.roles && c.roles.some(r => (r.title && r.title.toLowerCase().includes(q)) || (r.notes && r.notes.toLowerCase().includes(q)));
           const matchPay = c.pay && c.pay.toLowerCase().includes(q);
           const matchBranch = c.branches && c.branches.toLowerCase().includes(q);
           const matchCgpa = c.cgpaCriteria && c.cgpaCriteria.toLowerCase().includes(q);
           const matchBoards = c.boardsCriteria && c.boardsCriteria.toLowerCase().includes(q);
-          if (!matchName && !matchRoles && !matchPay && !matchBranch && !matchCgpa && !matchBoards) return false;
+          if (!matchName && !matchSubtext && !matchRoles && !matchPay && !matchBranch && !matchCgpa && !matchBoards) return false;
         }
 
         // Role filter
@@ -651,6 +652,9 @@
         if (isNoDetails) {
           payMain = '<span class="text-amber-400 font-medium">No details available</span>';
           paySubtitle = 'Submit data if you have →';
+        } else if (c.isAmbiguous) {
+          payMain = 'Unspecified';
+          paySubtitle = '15 unclassified recruiters';
         } else if (c.pay && c.pay !== 'Not disclosed') {
           if (c.payKind === 'Stipend') {
             paySubtitle = 'Stipend';
@@ -670,6 +674,9 @@
         if (isNoDetails) {
           offersMain = '—';
           offersSub = 'Awaiting data';
+        } else if (c.isAmbiguous) {
+          offersMain = String(c.out?.students || 20);
+          offersSub = 'Across 15 unclassified drives';
         } else {
           const ftOffers = c.out?.fulltimeOffers || 0;
           const internOffers = c.out?.internships || 0;
@@ -746,7 +753,10 @@
               <span class="label num text-faint group-hover:text-bg max-lg:hidden">${num}</span>
               <span class="flex min-w-0 items-center gap-3 lg:gap-4 transition-transform duration-[350ms] ease-[var(--ease)] group-hover:translate-x-3">
                 ${logoHtml}
-                <span class="truncate pb-[0.06em] font-display leading-[1.08] tracking-[-0.035em] group-hover:text-bg text-[clamp(26px,3.6vw,54px)]">${c.name}</span>
+                <div class="flex flex-col min-w-0 justify-center">
+                  <span class="truncate pb-[0.06em] font-display leading-[1.08] tracking-[-0.035em] group-hover:text-bg text-[clamp(26px,3.6vw,54px)]">${c.name}</span>
+                  ${c.subtext ? `<span class="text-[12px] text-muted group-hover:text-bg/80 leading-snug mt-1 font-sans font-normal line-clamp-2 max-w-2xl">${c.subtext}</span>` : ''}
+                </div>
               </span>
               <span class="flex flex-wrap gap-x-3 gap-y-1 group-hover:text-bg max-lg:col-span-2 max-lg:row-start-2">
                 ${chips}
@@ -919,6 +929,8 @@
               const mapped = {
                 name: d.name,
                 slug: d.slug,
+                subtext: d.subtext,
+                isAmbiguous: d.slug === 'ambiguous',
                 offers: d.offers || [],
                 seasons: d.seasons || [],
                 pay: d.pay,

@@ -16,11 +16,11 @@ function getBuildTimeStats(compList) {
     }
   });
 
-  const internCount = compList.filter(c => c.offers && c.offers.includes('internship')).length;
-  const ppoCount = compList.filter(c => c.offers && c.offers.includes('ppo')).length;
-  const ftCount = compList.filter(c => c.offers && c.offers.includes('fulltime')).length;
-  const bothCount = compList.filter(c => c.offers && c.offers.includes('internship') && c.offers.includes('fulltime')).length;
-  const placedDrivesCount = compList.filter(c => c.out && (c.out.students > 0 || c.out.fulltimeOffers > 0 || c.out.internships > 0)).length;
+  const internCount = compList.filter(c => !c.isAmbiguous && c.offers && c.offers.includes('internship')).length;
+  const ppoCount = compList.filter(c => !c.isAmbiguous && c.offers && c.offers.includes('ppo')).length;
+  const ftCount = compList.filter(c => !c.isAmbiguous && c.offers && c.offers.includes('fulltime')).length;
+  const bothCount = compList.filter(c => !c.isAmbiguous && c.offers && c.offers.includes('internship') && c.offers.includes('fulltime')).length;
+  const placedDrivesCount = compList.filter(c => !c.isAmbiguous && c.out && (c.out.students > 0 || c.out.fulltimeOffers > 0 || c.out.internships > 0)).length;
 
   return { totalOffers, internCount, ppoCount, ftCount, bothCount, placedDrivesCount };
 }
@@ -354,12 +354,13 @@ function generateCompaniesPage() {
         // Query match
         if (q) {
           const matchName = c.name && c.name.toLowerCase().includes(q);
+          const matchSubtext = c.subtext && c.subtext.toLowerCase().includes(q);
           const matchRoles = c.roles && c.roles.some(r => (r.title && r.title.toLowerCase().includes(q)) || (r.notes && r.notes.toLowerCase().includes(q)));
           const matchPay = c.pay && c.pay.toLowerCase().includes(q);
           const matchBranch = c.branches && c.branches.toLowerCase().includes(q);
           const matchCgpa = c.cgpaCriteria && c.cgpaCriteria.toLowerCase().includes(q);
           const matchBoards = c.boardsCriteria && c.boardsCriteria.toLowerCase().includes(q);
-          if (!matchName && !matchRoles && !matchPay && !matchBranch && !matchCgpa && !matchBoards) return false;
+          if (!matchName && !matchSubtext && !matchRoles && !matchPay && !matchBranch && !matchCgpa && !matchBoards) return false;
         }
 
         // Role filter
@@ -512,6 +513,9 @@ function generateCompaniesPage() {
         if (isNoDetails) {
           payMain = '<span class="text-amber-400 font-medium">No details available</span>';
           paySubtitle = 'Submit data if you have →';
+        } else if (c.isAmbiguous) {
+          payMain = 'Unspecified';
+          paySubtitle = '15 unclassified recruiters';
         } else if (c.pay && c.pay !== 'Not disclosed') {
           if (c.payKind === 'Stipend') {
             paySubtitle = 'Stipend';
@@ -531,6 +535,9 @@ function generateCompaniesPage() {
         if (isNoDetails) {
           offersMain = '—';
           offersSub = 'Awaiting data';
+        } else if (c.isAmbiguous) {
+          offersMain = String(c.out?.students || 20);
+          offersSub = 'Across 15 unclassified drives';
         } else {
           const ftOffers = c.out?.fulltimeOffers || 0;
           const internOffers = c.out?.internships || 0;
@@ -607,7 +614,10 @@ function generateCompaniesPage() {
               <span class="label num text-faint group-hover:text-bg max-lg:hidden">\${num}</span>
               <span class="flex min-w-0 items-center gap-3 lg:gap-4 transition-transform duration-[350ms] ease-[var(--ease)] group-hover:translate-x-3">
                 \${logoHtml}
-                <span class="truncate pb-[0.06em] font-display leading-[1.08] tracking-[-0.035em] group-hover:text-bg text-[clamp(26px,3.6vw,54px)]">\${c.name}</span>
+                <div class="flex flex-col min-w-0 justify-center">
+                  <span class="truncate pb-[0.06em] font-display leading-[1.08] tracking-[-0.035em] group-hover:text-bg text-[clamp(26px,3.6vw,54px)]">\${c.name}</span>
+                  \${c.subtext ? \`<span class="text-[12px] text-muted group-hover:text-bg/80 leading-snug mt-1 font-sans font-normal line-clamp-2 max-w-2xl">\${c.subtext}</span>\` : ''}
+                </div>
               </span>
               <span class="flex flex-wrap gap-x-3 gap-y-1 group-hover:text-bg max-lg:col-span-2 max-lg:row-start-2">
                 \${chips}
@@ -780,6 +790,8 @@ function generateCompaniesPage() {
               const mapped = {
                 name: d.name,
                 slug: d.slug,
+                subtext: d.subtext,
+                isAmbiguous: d.slug === 'ambiguous',
                 offers: d.offers || [],
                 seasons: d.seasons || [],
                 pay: d.pay,

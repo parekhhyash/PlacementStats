@@ -9,6 +9,7 @@ function mapCompany(c, year) {
     slug: c.slug,
     batch_year: String(year),
     name: c.name,
+    subtext: c.subtext || null,
     offers: c.offers || [],
     seasons: c.seasons || [],
     pay: c.pay || '',

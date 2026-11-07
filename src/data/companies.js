@@ -3650,6 +3650,53 @@ export const companies = [
     "status": "No details available",
     "roles": [],
     "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "ambiguous",
+    "name": "Ambiguous",
+    "subtext": "BNP Paribas, Dolat Capital, Versor, Kelp Global, LogiNext, Nxpec Technologies, KPMG, IDfy, HSBC, Bootlabs, Zycus, Mastercard, CarWale, Fractal, Trilogy",
+    "offers": [
+      "fulltime"
+    ],
+    "seasons": [
+      "BE"
+    ],
+    "pay": "Unspecified",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/ambiguous.svg",
+    "isAmbiguous": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 20,
+      "ppo": 0,
+      "newHires": 20,
+      "students": 20
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "Various criteria",
+    "boardsCriteria": "Various criteria",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "Recruitment drives across unclassified companies",
+    "funnelRaw": "Estimated ~20 total offers across unclassified recruiters",
+    "status": "20 estimated offers",
+    "roles": [
+      {
+        "title": "Unclassified Selections",
+        "type": "fulltime",
+        "count": 20,
+        "ctc": "Unspecified",
+        "stipend": null,
+        "rawCompensation": "Across unclassified recruiters",
+        "visitDate": "Oct 2026",
+        "notes": "Estimated 20 total hires across BNP Paribas, Dolat Capital, Versor, Kelp Global, LogiNext, Nxpec Technologies, KPMG, IDfy, HSBC, Bootlabs, Zycus, Mastercard, CarWale, Fractal, Trilogy."
+      }
+    ],
+    "notes": "Companies included: BNP Paribas, Dolat Capital, Versor, Kelp Global, LogiNext, Nxpec Technologies, KPMG, IDfy, HSBC, Bootlabs, Zycus, Mastercard, CarWale, Fractal, Trilogy."
   }
 ];
 
@@ -3662,10 +3709,11 @@ export function searchCompanies(query, role = 'all', branch = 'all', sort = 'pla
   let filtered = companies.filter(c => {
     if (q) {
       const matchName = c.name.toLowerCase().includes(q);
+      const matchSubtext = c.subtext && c.subtext.toLowerCase().includes(q);
       const matchRoles = c.roles.some(r => r.title.toLowerCase().includes(q) || (r.notes && r.notes.toLowerCase().includes(q)));
       const matchPay = c.pay.toLowerCase().includes(q);
       const matchCriteria = (c.cgpaCriteria && c.cgpaCriteria.toLowerCase().includes(q)) || (c.boardsCriteria && c.boardsCriteria.toLowerCase().includes(q));
-      if (!matchName && !matchRoles && !matchPay && !matchCriteria) return false;
+      if (!matchName && !matchSubtext && !matchRoles && !matchPay && !matchCriteria) return false;
     }
     if (role !== 'all' && (!c.offers || !c.offers.includes(role))) return false;
     return true;
