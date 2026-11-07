@@ -570,7 +570,7 @@
         
         document.getElementById('stat-total').textContent = company.out?.students || 0;
         const cohortLabel = document.getElementById('stat-cohort-label');
-        if (cohortLabel) cohortLabel.textContent = "Batch '" + matchedBatchYear.slice(2) + " offers";
+        if (cohortLabel) cohortLabel.textContent = company.isAmbiguous ? "Estimated offers" : "Batch '" + matchedBatchYear.slice(2) + " offers";
 
         document.getElementById('stat-fulltime').textContent = company.out?.fulltimeOffers || 0;
         document.getElementById('stat-ppo').textContent = (company.out?.ppo || 0) + ' PPO conversions';

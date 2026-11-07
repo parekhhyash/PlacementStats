@@ -537,7 +537,7 @@ function generateCompaniesPage() {
           offersSub = 'Awaiting data';
         } else if (c.isAmbiguous) {
           offersMain = String(c.out?.students || 20);
-          offersSub = 'Across 15 unclassified drives';
+          offersSub = 'Estimated';
         } else {
           const ftOffers = c.out?.fulltimeOffers || 0;
           const internOffers = c.out?.internships || 0;
@@ -1250,7 +1250,7 @@ function generateCompanyDetailPage() {
         
         document.getElementById('stat-total').textContent = company.out?.students || 0;
         const cohortLabel = document.getElementById('stat-cohort-label');
-        if (cohortLabel) cohortLabel.textContent = "Batch '" + matchedBatchYear.slice(2) + " offers";
+        if (cohortLabel) cohortLabel.textContent = company.isAmbiguous ? "Estimated offers" : "Batch '" + matchedBatchYear.slice(2) + " offers";
 
         document.getElementById('stat-fulltime').textContent = company.out?.fulltimeOffers || 0;
         document.getElementById('stat-ppo').textContent = (company.out?.ppo || 0) + ' PPO conversions';
