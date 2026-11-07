@@ -373,7 +373,7 @@ function generateCompaniesPage() {
           const bText = (c.branches || '').toLowerCase();
           if (bText.includes('all branches') || bText.includes('all')) {
             // matches
-          } else if (branch === 'cse' && !bText.includes('cse') && !bText.includes('computer')) {
+          } else if (branch === 'cse' && !bText.includes('cse') && !bText.includes('computer') && !bText.includes('ce')) {
             return false;
           } else if (branch === 'it' && !bText.includes('it') && !bText.includes('information')) {
             return false;

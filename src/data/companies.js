@@ -26,8 +26,8 @@ export const companies = [
       "newHires": 31,
       "students": 31
     },
-    "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE (Fintech); All for other tracks",
+    "branches": "CE and CSE (Fintech)",
     "cgpa": 7,
     "cgpaCriteria": "7.0; No formal cutoff (good CGPA beneficial); Not disclosed; Not stated (8+ reported by candidates)",
     "boardsCriteria": "None specified (~80% in Class XII reported); 80% in Class XII (before resume review)",
@@ -105,7 +105,7 @@ export const companies = [
           }
         ],
         "funnelRaw": "OA 34 -> Tech R1 9 -> Tech R2 3 -> HR 2 -> 2 offers",
-        "notes": "2 PDFs"
+        "notes": "2 PDFs; Eligible branches: CE and CSE (EXTC not eligible)"
       },
       {
         "title": "Corporate Risk (Global Risk & Compliance Program)",
@@ -481,8 +481,8 @@ export const companies = [
       "newHires": 14,
       "students": 17
     },
-    "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": 7,
     "cgpaCriteria": "Minimum CGPA 7.0+ (GOTO Intern); None stated (GET / Agentic AI)",
     "boardsCriteria": "A Class XII % cutoff existed (value not given)",
@@ -644,8 +644,8 @@ export const companies = [
       "newHires": 10,
       "students": 10
     },
-    "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": 8,
     "cgpaCriteria": "Undisclosed (appears 8.0+)",
     "boardsCriteria": "Standard SPIT eligibility",
@@ -1249,8 +1249,8 @@ export const companies = [
       "newHires": 11,
       "students": 11
     },
-    "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "All branches open (APM selected from Computer Engineering)",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": 6.75,
     "cgpaCriteria": "6.75+ CGPA; CE/CSE only, no standing backlogs",
     "boardsCriteria": "60% in Class 10 and 60% in Class 12",
@@ -1375,8 +1375,8 @@ export const companies = [
       "newHires": 8,
       "students": 8
     },
-    "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE (Global Markets); All for ITD",
+    "branches": "CE and CSE (Global Markets)",
     "cgpa": 9,
     "cgpaCriteria": "None stated (all shortlisted had CGPA >9); None stated (advice 8+)",
     "boardsCriteria": "Standard SPIT eligibility",
@@ -1421,7 +1421,7 @@ export const companies = [
           }
         ],
         "funnelRaw": "Superset shortlist 27 -> GD 27 -> Tech R1 7 -> Tech R2 3 -> HR 3 -> 1 offer",
-        "notes": "Single PDF; CGPA-based shortlist"
+        "notes": "Single PDF; CGPA-based shortlist; Eligible branches: CE and CSE (EXTC not eligible)"
       },
       {
         "title": "ITD (Information Technology Division) Intern",
@@ -2105,8 +2105,8 @@ export const companies = [
       "newHires": 5,
       "students": 5
     },
-    "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": 8,
     "cgpaCriteria": "None specified (8-8.5 advised)",
     "boardsCriteria": "Standard SPIT eligibility",
@@ -2212,8 +2212,8 @@ export const companies = [
       "newHires": 4,
       "students": 4
     },
-    "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": 7,
     "cgpaCriteria": "None stated",
     "boardsCriteria": "Standard SPIT eligibility",
@@ -2564,8 +2564,8 @@ export const companies = [
       "newHires": 3,
       "students": 3
     },
-    "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": 8,
     "cgpaCriteria": "None stated (some cos. require 8)",
     "boardsCriteria": "Standard SPIT eligibility",
@@ -3088,8 +3088,8 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": null,
     "cgpaCriteria": "No details available",
     "boardsCriteria": "No details available",
@@ -3199,8 +3199,8 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": null,
     "cgpaCriteria": "No details available",
     "boardsCriteria": "No details available",
@@ -3331,10 +3331,22 @@ export const companies = [
         "visitDate": "PPT 6 Aug 2026; OA 12 Aug; interviews 19 Aug; results 20 Aug",
         "notes": "Locations: Mumbai / Gurgaon / Bangalore. Interview shortlist: 28 shortlisted + 10 waitlisted.",
         "funnel": [
-          { "name": "Online Assessment (OA)", "count": 285 },
-          { "name": "Technical Round 1", "count": 38 },
-          { "name": "Technical Round 2 / HR", "count": 19 },
-          { "name": "Offers Extended", "count": 7 }
+          {
+            "name": "Online Assessment (OA)",
+            "count": 285
+          },
+          {
+            "name": "Technical Round 1",
+            "count": 38
+          },
+          {
+            "name": "Technical Round 2 / HR",
+            "count": 19
+          },
+          {
+            "name": "Offers Extended",
+            "count": 7
+          }
         ]
       },
       {
@@ -3347,10 +3359,22 @@ export const companies = [
         "visitDate": "PPT 6 Aug 2026; OA 12 Aug; interviews 19 Aug; results 20 Aug",
         "notes": "Interview shortlist: 8 shortlisted + 6 waitlisted.",
         "funnel": [
-          { "name": "Online Assessment (OA)", "count": 285 },
-          { "name": "Technical Round 1", "count": 38 },
-          { "name": "Technical Round 2 / HR", "count": 19 },
-          { "name": "Offers Extended", "count": 1 }
+          {
+            "name": "Online Assessment (OA)",
+            "count": 285
+          },
+          {
+            "name": "Technical Round 1",
+            "count": 38
+          },
+          {
+            "name": "Technical Round 2 / HR",
+            "count": 19
+          },
+          {
+            "name": "Offers Extended",
+            "count": 1
+          }
         ]
       }
     ]
@@ -3379,8 +3403,8 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": null,
     "cgpaCriteria": "No details available",
     "boardsCriteria": "No details available",
@@ -3416,8 +3440,8 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CSE, IT, AI & DS, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": null,
     "cgpaCriteria": "No details available",
     "boardsCriteria": "No details available",
@@ -3713,7 +3737,8 @@ export function searchCompanies(query, role = 'all', branch = 'all', sort = 'pla
       const matchRoles = c.roles.some(r => r.title.toLowerCase().includes(q) || (r.notes && r.notes.toLowerCase().includes(q)));
       const matchPay = c.pay.toLowerCase().includes(q);
       const matchCriteria = (c.cgpaCriteria && c.cgpaCriteria.toLowerCase().includes(q)) || (c.boardsCriteria && c.boardsCriteria.toLowerCase().includes(q));
-      if (!matchName && !matchSubtext && !matchRoles && !matchPay && !matchCriteria) return false;
+      const matchBranch = (c.branches && c.branches.toLowerCase().includes(q)) || (c.open && c.open.toLowerCase().includes(q));
+      if (!matchName && !matchSubtext && !matchRoles && !matchPay && !matchCriteria && !matchBranch) return false;
     }
     if (role !== 'all' && (!c.offers || !c.offers.includes(role))) return false;
     return true;
