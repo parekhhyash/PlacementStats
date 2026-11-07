@@ -127,7 +127,7 @@ function generateSelectionsPage() {
           </div>
 
           <div class="flex items-center gap-6 text-[13px]">
-            <span class="num text-fg font-semibold min-w-[80px]">\${c.isAmbiguous ? '20 estimated' : out.students + ' placed'}</span>
+            <span class="num text-fg font-semibold min-w-[80px]">\${c.isAmbiguous ? '25 estimated' : out.students + ' placed'}</span>
             <div class="flex items-center gap-2">
               \${out.fulltimeOffers > 0 ? \`<span class="chip"><i class="dot" style="background:var(--color-fulltime)"></i>\${out.fulltimeOffers} FT</span>\` : ''}
               \${out.internships > 0 ? \`<span class="chip"><i class="dot" style="background:var(--color-intern)"></i>\${out.internships} Intern</span>\` : ''}

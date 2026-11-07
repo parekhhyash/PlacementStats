@@ -536,7 +536,7 @@ function generateCompaniesPage() {
           offersMain = '—';
           offersSub = 'Awaiting data';
         } else if (c.isAmbiguous) {
-          offersMain = String(c.out?.students || 20);
+          offersMain = String(c.out?.students || 25);
           offersSub = 'Estimated';
         } else {
           const ftOffers = c.out?.fulltimeOffers || 0;

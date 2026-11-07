@@ -3669,10 +3669,10 @@ export const companies = [
     "isAmbiguous": true,
     "out": {
       "internships": 0,
-      "fulltimeOffers": 20,
+      "fulltimeOffers": 25,
       "ppo": 0,
-      "newHires": 20,
-      "students": 20
+      "newHires": 25,
+      "students": 25
     },
     "open": "CSE, IT, AI & DS, EXTC",
     "branches": "All branches open",
@@ -3682,18 +3682,18 @@ export const companies = [
     "first": "Oct 2026",
     "last": "Oct 2026",
     "visitTimeline": "Recruitment drives across unclassified companies",
-    "funnelRaw": "Estimated ~20 total offers across unclassified recruiters",
-    "status": "20 estimated offers",
+    "funnelRaw": "Estimated ~25 total offers across unclassified recruiters",
+    "status": "25 estimated offers",
     "roles": [
       {
         "title": "Unclassified Selections",
         "type": "fulltime",
-        "count": 20,
+        "count": 25,
         "ctc": "Unspecified",
         "stipend": null,
         "rawCompensation": "Across unclassified recruiters",
         "visitDate": "Oct 2026",
-        "notes": "Estimated 20 total hires across BNP Paribas, Dolat Capital, Versor, Kelp Global, LogiNext, Nxpec Technologies, KPMG, IDfy, HSBC, Bootlabs, Zycus, Mastercard, CarWale, Fractal, Trilogy."
+        "notes": "Estimated 25 total hires across BNP Paribas, Dolat Capital, Versor, Kelp Global, LogiNext, Nxpec Technologies, KPMG, IDfy, HSBC, Bootlabs, Zycus, Mastercard, CarWale, Fractal, Trilogy."
       }
     ],
     "notes": "Companies included: BNP Paribas, Dolat Capital, Versor, Kelp Global, LogiNext, Nxpec Technologies, KPMG, IDfy, HSBC, Bootlabs, Zycus, Mastercard, CarWale, Fractal, Trilogy."
