@@ -147,124 +147,345 @@
 
   <main class="flex-1">
     
-    <!-- Dedicated Styles for Guaranteed Cross-Browser Blur and Overlay -->
-    <style>
-      .branches-blur-underlay {
-        filter: blur(16px) !important;
-        -webkit-filter: blur(16px) !important;
-        opacity: 0.12 !important;
-        pointer-events: none !important;
-        user-select: none !important;
-        -webkit-user-select: none !important;
-        touch-action: none !important;
-        overflow: hidden !important;
-        max-height: calc(100vh - 65px) !important;
-      }
-      .branches-lock-overlay {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        z-index: 25 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        padding: 1rem !important;
-        background: rgba(0, 0, 0, 0.72) !important;
-        backdrop-filter: blur(14px) !important;
-        -webkit-backdrop-filter: blur(14px) !important;
-      }
-      body {
-        overflow: hidden !important;
-      }
-    </style>
-
-    <!-- Full-page Container with Complete Blur and Centered Data Not Available Overlay -->
-    <div class="relative min-h-[calc(100vh-65px)] w-full overflow-hidden">
-      <!-- 1. The whole branches page content underneath - deeply blurred, low opacity, unclickable, unselectable -->
-      <div id="branches-blurred-content" class="branches-blur-underlay" style="filter: blur(16px) !important; -webkit-filter: blur(16px) !important; opacity: 0.12 !important; pointer-events: none !important; user-select: none !important; -webkit-user-select: none !important; touch-action: none !important; overflow: hidden !important; max-height: calc(100vh - 65px) !important;" aria-hidden="true" tabindex="-1">
-        <section class="wrap pb-12 pt-[clamp(48px,8vw,112px)]">
-          <p id="branches-page-badge" class="label text-muted">Branches · Pay and placement</p>
-          <h1 class="display-l mt-6 max-w-[16ch]">Every branch, by the numbers.</h1>
-          <p id="branches-page-desc" class="mt-8 max-w-[62ch] text-[17px] leading-relaxed text-muted">
-            Pick a branch to see what its students were offered: the typical package, the spread from lowest to highest, how many are placed and who hired them.
+    <!-- Top Hero Section -->
+    <section class="wrap pb-12 pt-[clamp(48px,8vw,112px)]">
+      <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4">
+        <div>
+          <p id="branches-page-badge" class="label text-muted">Branches · Verified Department Breakdown · SPIT 2027</p>
+          <h1 class="display-l mt-6 max-w-[18ch]">Branch-wise placement distribution.</h1>
+          <p id="branches-page-desc" class="mt-8 max-w-[66ch] text-[17px] leading-relaxed text-muted">
+            Confirmed departmental placement distributions across Computer Engineering, Computer Science Engineering, and EXTC compiled from 38 recruitment drives.
           </p>
-        </section>
-
-        <div class="wrap">
-          <!-- Branch Tab Buttons -->
-          <div id="branch-tabs" role="tablist" class="-mx-1 flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none]">
-            <!-- Dynamic tabs rendered by script -->
-          </div>
-
-          <!-- Active Branch Card -->
-          <div id="branch-active-card" class="relative mt-8 overflow-hidden rounded-3xl border border-line-strong bg-panel p-6 sm:p-10">
-            <!-- Rendered dynamically -->
-          </div>
-
-          <!-- Side by Side Comparison Section -->
-          <section class="mt-20 pb-16">
-            <div class="border-t border-line pt-6">
-              <p class="label text-faint">Comparison</p>
-              <h2 class="display-m mt-3">Side by side</h2>
-              <p class="mt-2 text-[15px] text-muted">Branch-wise comparative breakdown across key recruitment metrics.</p>
-            </div>
-
-            <div class="mt-8 overflow-x-auto">
-              <table class="w-full text-left text-[14px]">
-                <thead>
-                  <tr class="border-b border-line text-faint label">
-                    <th class="py-3 pr-4">Branch</th>
-                    <th class="py-3 px-4">Batch size</th>
-                    <th class="py-3 px-4">Placed students</th>
-                    <th class="py-3 px-4">Placement rate</th>
-                    <th class="py-3 px-4">Median CTC</th>
-                    <th class="py-3 px-4">Average CTC</th>
-                    <th class="py-3 px-4">Highest CTC</th>
-                    <th class="py-3 pl-4">PPOs</th>
-                  </tr>
-                </thead>
-                <tbody id="branch-table-body" class="divide-y divide-line">
-                  <!-- Rendered dynamically -->
-                </tbody>
-              </table>
-            </div>
-          </section>
+        </div>
+        <div class="shrink-0">
+          <button type="button" id="btn-open-branch-submit" class="inline-flex items-center gap-2 rounded-full border border-line-strong bg-panel px-5 py-2.5 text-[13px] font-medium text-fg hover:border-fg hover:bg-bg transition-colors cursor-pointer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Submit branch data</span>
+          </button>
         </div>
       </div>
+    </section>
 
-      <!-- 2. Full-page overlay: ONLY this card is sharp, visible and accessible -->
-      <div class="branches-lock-overlay" style="position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 25 !important; display: flex !important; align-items: center !important; justify-content: center !important; padding: 1rem !important; background: rgba(0, 0, 0, 0.72) !important; backdrop-filter: blur(14px) !important; -webkit-backdrop-filter: blur(14px) !important;">
-        <div class="w-full max-w-[540px] rounded-3xl border border-line-strong bg-[#0e0f12]/95 p-8 sm:p-12 shadow-[0_24px_80px_rgba(0,0,0,0.9)] backdrop-blur-2xl text-center">
-          <div class="inline-flex size-14 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-400 mb-5 border border-amber-500/20">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg>
+    <div class="wrap">
+      <!-- 4-Column Headline Metrics -->
+      <dl id="branches-headline-metrics" class="grid grid-cols-2 border-t border-line sm:grid-cols-4">
+        <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5 sm:first:pl-0">
+          <dt class="order-2 mt-2 text-muted text-[13px] flex items-center gap-2">
+            <span class="size-2 rounded-full" style="background:#10b981"></span>
+            Computer Engineering
+          </dt>
+          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">61</dd>
+          <dd class="label order-3 mt-1 text-[11px] text-faint">25.8% of total · 48.8% of known</dd>
+        </div>
+        <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
+          <dt class="order-2 mt-2 text-muted text-[13px] flex items-center gap-2">
+            <span class="size-2 rounded-full" style="background:#38bdf8"></span>
+            Computer Science Engg
+          </dt>
+          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">44</dd>
+          <dd class="label order-3 mt-1 text-[11px] text-faint">18.6% of total · 35.2% of known</dd>
+        </div>
+        <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
+          <dt class="order-2 mt-2 text-muted text-[13px] flex items-center gap-2">
+            <span class="size-2 rounded-full" style="background:#f43f5e"></span>
+            Electronics &amp; Telecom
+          </dt>
+          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">20</dd>
+          <dd class="label order-3 mt-1 text-[11px] text-faint">8.5% of total · 16.0% of known</dd>
+        </div>
+        <div class="flex flex-col py-5 pr-4 sm:px-5">
+          <dt class="order-2 mt-2 text-muted text-[13px] flex items-center gap-2">
+            <span class="size-2 rounded-full" style="background:#71717a"></span>
+            Unknown / Awaiting Division
+          </dt>
+          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">111</dd>
+          <dd class="label order-3 mt-1 text-[11px] text-faint">47.0% pending author division</dd>
+        </div>
+      </dl>
+
+      <!-- Section 01: Branch-Wise Total Distribution Bar Graph & Cards -->
+      <section class="mt-20">
+        <div class="border-t border-line pt-6 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
+          <div>
+            <p class="label text-faint">01 — Total Branch-Wise Distribution</p>
+            <h2 class="display-m mt-2">Aggregate Department Breakdown</h2>
           </div>
-          <p class="label font-mono text-[11px] text-faint tracking-wider uppercase">Department Records</p>
-          <h2 class="display-m mt-2 text-[28px] sm:text-[32px] text-fg">Data not available</h2>
-          <p class="mt-3 text-[14px] leading-relaxed text-muted max-w-[44ch] mx-auto">
-            Department-wise placement and salary breakdown reports have not yet been released or compiled for this batch.
-          </p>
-          <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <button type="button" id="btn-open-branch-submit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-fg px-7 py-3.5 text-[13px] font-medium text-bg shadow-md transition-opacity hover:opacity-90 cursor-pointer">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-              <span>Submit data here if you have it</span>
-            </button>
+          <div id="branch-total-badge" class="label text-[12px] text-faint">
+            Class of 2027 · 236 confirmed offers across 38 recruiters
           </div>
         </div>
-      </div>
+
+        <div class="mt-8 rounded-2xl border border-line-strong bg-panel p-6 sm:p-8">
+          <!-- Stacked Spectrum Bar Intro -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-3">
+            <p class="text-[14px] text-muted max-w-[70ch]">
+              Total offers categorized across Computer Engineering (CE), Computer Science Engineering (CSE), EXTC, and unclassified entries.
+            </p>
+            <span class="label text-[11px] text-faint whitespace-nowrap">Proportional Distribution (100%)</span>
+          </div>
+
+          <!-- 100% Proportional Stacked Spectrum Bar Graph -->
+          <div id="branch-spectrum-bar" class="w-full h-5 rounded-full overflow-hidden flex bg-line border border-line-strong/40 p-0.5 gap-0.5 shadow-inner">
+            
+              <div class="branch-spectrum-seg h-full cursor-pointer transition-all duration-300 hover:brightness-125" style="width: 25.8%; background-color: #10b981;" data-branch="ce" title="Computer Engineering: 61 offers (25.8%)"></div>
+            
+              <div class="branch-spectrum-seg h-full cursor-pointer transition-all duration-300 hover:brightness-125" style="width: 18.6%; background-color: #38bdf8;" data-branch="cse" title="Computer Science Engineering: 44 offers (18.6%)"></div>
+            
+              <div class="branch-spectrum-seg h-full cursor-pointer transition-all duration-300 hover:brightness-125" style="width: 8.5%; background-color: #f43f5e;" data-branch="extc" title="Electronics & Telecommunications: 20 offers (8.5%)"></div>
+            
+              <div class="branch-spectrum-seg h-full cursor-pointer transition-all duration-300 hover:brightness-125" style="width: 47.0%; background-color: #71717a;" data-branch="unknown" title="Unknown / Awaiting Division: 111 offers (47.0%)"></div>
+            
+          </div>
+
+          <!-- Spectrum Sub-Legend -->
+          <div id="branch-spectrum-legend" class="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 border-t border-line/60">
+            
+              <button type="button" class="branch-legend-item group flex items-center gap-2 text-[12px] text-muted hover:text-fg transition-colors cursor-pointer" data-branch="ce">
+                <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background-color: #10b981;"></span>
+                <span class="font-medium text-fg">CE</span>
+                <span class="font-mono text-[11px] text-muted">61 (25.8%)</span>
+              </button>
+            
+              <button type="button" class="branch-legend-item group flex items-center gap-2 text-[12px] text-muted hover:text-fg transition-colors cursor-pointer" data-branch="cse">
+                <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background-color: #38bdf8;"></span>
+                <span class="font-medium text-fg">CSE</span>
+                <span class="font-mono text-[11px] text-muted">44 (18.6%)</span>
+              </button>
+            
+              <button type="button" class="branch-legend-item group flex items-center gap-2 text-[12px] text-muted hover:text-fg transition-colors cursor-pointer" data-branch="extc">
+                <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background-color: #f43f5e;"></span>
+                <span class="font-medium text-fg">EXTC</span>
+                <span class="font-mono text-[11px] text-muted">20 (8.5%)</span>
+              </button>
+            
+              <button type="button" class="branch-legend-item group flex items-center gap-2 text-[12px] text-muted hover:text-fg transition-colors cursor-pointer" data-branch="unknown">
+                <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background-color: #71717a;"></span>
+                <span class="font-medium text-fg">Unknown</span>
+                <span class="font-mono text-[11px] text-muted">111 (47.0%)</span>
+              </button>
+            
+          </div>
+
+          <!-- Branch Comparison Bar Graph Cards Grid -->
+          <div id="branch-cards-grid" class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+              <div class="card-branch group cursor-pointer rounded-xl border border-line-strong bg-bg p-5 transition-all hover:border-fg/40 hover:bg-panel flex flex-col justify-between" data-branch="ce">
+                <div>
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="flex items-center gap-2">
+                      <span class="w-3 h-3 rounded-full shrink-0" style="background-color: #10b981;"></span>
+                      <h3 class="font-display font-semibold text-[15px] text-fg leading-tight">CE</h3>
+                    </div>
+                    <div class="text-right shrink-0">
+                      <span class="font-display text-[18px] font-bold text-fg">61</span>
+                      <span class="text-[11px] text-muted ml-0.5">offers</span>
+                      <span class="ml-1.5 font-mono text-[11px] font-semibold text-fg bg-line-strong/60 px-1.5 py-0.5 rounded">25.8%</span>
+                    </div>
+                  </div>
+                  <p class="mt-2 text-[12px] text-muted leading-relaxed">Computer Engineering</p>
+                </div>
+                <div class="mt-4">
+                  <!-- Meter Bar -->
+                  <div class="h-2 w-full rounded-full bg-line overflow-hidden">
+                    <div class="h-full rounded-full transition-all duration-500" style="width: 25.8%; background-color: #10b981;"></div>
+                  </div>
+                  <!-- Top Recruiters Chips -->
+                  <div class="mt-3 flex flex-wrap items-center gap-1 text-[11px] text-faint">
+                    <span class="font-medium text-muted">28 recruiters:</span>
+                    <span class="bg-panel border border-line px-1.5 py-0.5 rounded text-muted text-[10px]">Barclays (7)</span><span class="bg-panel border border-line px-1.5 py-0.5 rounded text-muted text-[10px]">Russell Investments (6)</span><span class="bg-panel border border-line px-1.5 py-0.5 rounded text-muted text-[10px]">ISS-STOXX (6)</span>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="card-branch group cursor-pointer rounded-xl border border-line-strong bg-bg p-5 transition-all hover:border-fg/40 hover:bg-panel flex flex-col justify-between" data-branch="cse">
+                <div>
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="flex items-center gap-2">
+                      <span class="w-3 h-3 rounded-full shrink-0" style="background-color: #38bdf8;"></span>
+                      <h3 class="font-display font-semibold text-[15px] text-fg leading-tight">CSE</h3>
+                    </div>
+                    <div class="text-right shrink-0">
+                      <span class="font-display text-[18px] font-bold text-fg">44</span>
+                      <span class="text-[11px] text-muted ml-0.5">offers</span>
+                      <span class="ml-1.5 font-mono text-[11px] font-semibold text-fg bg-line-strong/60 px-1.5 py-0.5 rounded">18.6%</span>
+                    </div>
+                  </div>
+                  <p class="mt-2 text-[12px] text-muted leading-relaxed">Computer Science Engineering</p>
+                </div>
+                <div class="mt-4">
+                  <!-- Meter Bar -->
+                  <div class="h-2 w-full rounded-full bg-line overflow-hidden">
+                    <div class="h-full rounded-full transition-all duration-500" style="width: 18.6%; background-color: #38bdf8;"></div>
+                  </div>
+                  <!-- Top Recruiters Chips -->
+                  <div class="mt-3 flex flex-wrap items-center gap-1 text-[11px] text-faint">
+                    <span class="font-medium text-muted">22 recruiters:</span>
+                    <span class="bg-panel border border-line px-1.5 py-0.5 rounded text-muted text-[10px]">JPMC (7)</span><span class="bg-panel border border-line px-1.5 py-0.5 rounded text-muted text-[10px]">Barclays (5)</span><span class="bg-panel border border-line px-1.5 py-0.5 rounded text-muted text-[10px]">AuxoAI (3)</span>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="card-branch group cursor-pointer rounded-xl border border-line-strong bg-bg p-5 transition-all hover:border-fg/40 hover:bg-panel flex flex-col justify-between" data-branch="extc">
+                <div>
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="flex items-center gap-2">
+                      <span class="w-3 h-3 rounded-full shrink-0" style="background-color: #f43f5e;"></span>
+                      <h3 class="font-display font-semibold text-[15px] text-fg leading-tight">EXTC</h3>
+                    </div>
+                    <div class="text-right shrink-0">
+                      <span class="font-display text-[18px] font-bold text-fg">20</span>
+                      <span class="text-[11px] text-muted ml-0.5">offers</span>
+                      <span class="ml-1.5 font-mono text-[11px] font-semibold text-fg bg-line-strong/60 px-1.5 py-0.5 rounded">8.5%</span>
+                    </div>
+                  </div>
+                  <p class="mt-2 text-[12px] text-muted leading-relaxed">Electronics & Telecommunications</p>
+                </div>
+                <div class="mt-4">
+                  <!-- Meter Bar -->
+                  <div class="h-2 w-full rounded-full bg-line overflow-hidden">
+                    <div class="h-full rounded-full transition-all duration-500" style="width: 8.5%; background-color: #f43f5e;"></div>
+                  </div>
+                  <!-- Top Recruiters Chips -->
+                  <div class="mt-3 flex flex-wrap items-center gap-1 text-[11px] text-faint">
+                    <span class="font-medium text-muted">12 recruiters:</span>
+                    <span class="bg-panel border border-line px-1.5 py-0.5 rounded text-muted text-[10px]">JPMC (8)</span><span class="bg-panel border border-line px-1.5 py-0.5 rounded text-muted text-[10px]">BlackRock (2)</span><span class="bg-panel border border-line px-1.5 py-0.5 rounded text-muted text-[10px]">Colgate-Palmolive (2)</span>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="card-branch group cursor-pointer rounded-xl border border-line-strong bg-bg p-5 transition-all hover:border-fg/40 hover:bg-panel flex flex-col justify-between" data-branch="unknown">
+                <div>
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="flex items-center gap-2">
+                      <span class="w-3 h-3 rounded-full shrink-0" style="background-color: #71717a;"></span>
+                      <h3 class="font-display font-semibold text-[15px] text-fg leading-tight">Unknown</h3>
+                    </div>
+                    <div class="text-right shrink-0">
+                      <span class="font-display text-[18px] font-bold text-fg">111</span>
+                      <span class="text-[11px] text-muted ml-0.5">offers</span>
+                      <span class="ml-1.5 font-mono text-[11px] font-semibold text-fg bg-line-strong/60 px-1.5 py-0.5 rounded">47.0%</span>
+                    </div>
+                  </div>
+                  <p class="mt-2 text-[12px] text-muted leading-relaxed">Unknown / Awaiting Division</p>
+                </div>
+                <div class="mt-4">
+                  <!-- Meter Bar -->
+                  <div class="h-2 w-full rounded-full bg-line overflow-hidden">
+                    <div class="h-full rounded-full transition-all duration-500" style="width: 47.0%; background-color: #71717a;"></div>
+                  </div>
+                  <!-- Top Recruiters Chips -->
+                  <div class="mt-3 flex flex-wrap items-center gap-1 text-[11px] text-faint">
+                    <span class="font-medium text-muted">30 recruiters:</span>
+                    <span class="bg-panel border border-line px-1.5 py-0.5 rounded text-muted text-[10px]">Barclays (16)</span><span class="bg-panel border border-line px-1.5 py-0.5 rounded text-muted text-[10px]">Mahindra Finance (8)</span><span class="bg-panel border border-line px-1.5 py-0.5 rounded text-muted text-[10px]">GEP (7)</span>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+          <p class="text-[11px] text-faint mt-4 text-center sm:text-left">Click any branch card or spectrum segment to filter the company distribution below</p>
+        </div>
+      </section>
+
+      <!-- Section 02: Company-Wise Per Company Distribution Table -->
+      <section class="mt-20 pb-20">
+        <div class="border-t border-line pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <p class="label text-faint">02 — Company-Wise Breakdown</p>
+            <h2 class="display-m mt-2">Per-Company Branch Distribution</h2>
+          </div>
+          <!-- Filter Search & Indicator -->
+          <div class="flex items-center gap-3 w-full sm:w-auto">
+            <div id="branch-filter-indicator" class="hidden items-center gap-2 rounded-full border border-line-strong bg-panel px-3 py-1 text-[12px] text-muted">
+              <span>Filter: <strong id="branch-filter-text" class="text-fg"></strong></span>
+              <button id="branch-filter-clear" type="button" class="text-faint hover:text-fg font-bold ml-1 cursor-pointer" title="Clear filter">✕</button>
+            </div>
+            <div class="relative flex-1 sm:min-w-[280px]">
+              <input id="branch-company-search" type="search" placeholder="Search company, role or notes..." class="w-full rounded-full border border-line-strong bg-panel px-4 py-2 text-[14px] text-fg outline-none focus:border-fg transition-colors" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Branch Quick Filter Pills -->
+        <div id="branch-filter-pills" class="mt-6 flex flex-wrap items-center gap-2">
+          <button type="button" class="branch-pill cursor-pointer rounded-full border border-fg bg-fg text-bg px-3.5 py-1 text-[12px] font-medium transition-all" data-branch="all">All (38 Drives)</button>
+          <button type="button" class="branch-pill cursor-pointer rounded-full border border-line-strong bg-panel px-3.5 py-1 text-[12px] text-muted hover:text-fg hover:border-fg transition-all" data-branch="ce">
+            <span class="inline-block size-2 rounded-full mr-1.5" style="background:#10b981"></span>Computer Engg (28)
+          </button>
+          <button type="button" class="branch-pill cursor-pointer rounded-full border border-line-strong bg-panel px-3.5 py-1 text-[12px] text-muted hover:text-fg hover:border-fg transition-all" data-branch="cse">
+            <span class="inline-block size-2 rounded-full mr-1.5" style="background:#38bdf8"></span>Computer Science Engg (22)
+          </button>
+          <button type="button" class="branch-pill cursor-pointer rounded-full border border-line-strong bg-panel px-3.5 py-1 text-[12px] text-muted hover:text-fg hover:border-fg transition-all" data-branch="extc">
+            <span class="inline-block size-2 rounded-full mr-1.5" style="background:#f43f5e"></span>EXTC (12)
+          </button>
+          <button type="button" class="branch-pill cursor-pointer rounded-full border border-line-strong bg-panel px-3.5 py-1 text-[12px] text-muted hover:text-fg hover:border-fg transition-all" data-branch="unknown">
+            <span class="inline-block size-2 rounded-full mr-1.5" style="background:#71717a"></span>Unknown / Awaiting (30)
+          </button>
+        </div>
+
+        <!-- Table Container -->
+        <div class="mt-6 overflow-x-auto rounded-2xl border border-line-strong bg-panel">
+          <table class="w-full text-left text-[14px]">
+            <thead>
+              <tr class="border-b border-line text-faint label bg-bg/40">
+                <th class="py-3.5 pl-6 pr-4">Company &amp; Role</th>
+                <th class="py-3.5 px-3 text-center" title="Computer Engineering">
+                  <span class="inline-flex items-center gap-1.5 text-[#10b981]">
+                    <span class="size-2 rounded-full bg-[#10b981]"></span>CE
+                  </span>
+                </th>
+                <th class="py-3.5 px-3 text-center" title="Computer Science Engineering">
+                  <span class="inline-flex items-center gap-1.5 text-[#38bdf8]">
+                    <span class="size-2 rounded-full bg-[#38bdf8]"></span>CSE
+                  </span>
+                </th>
+                <th class="py-3.5 px-3 text-center" title="Electronics & Telecommunications">
+                  <span class="inline-flex items-center gap-1.5 text-[#f43f5e]">
+                    <span class="size-2 rounded-full bg-[#f43f5e]"></span>EXTC
+                  </span>
+                </th>
+                <th class="py-3.5 px-3 text-center text-muted" title="Awaiting / Unclassified">Unknown</th>
+                <th class="py-3.5 px-3 text-center text-fg font-semibold">Total</th>
+                <th class="py-3.5 px-4 min-w-[140px]">Branch Proportion</th>
+                <th class="py-3.5 pl-4 pr-6">Notes / Verification</th>
+              </tr>
+            </thead>
+            <tbody id="company-branch-tbody" class="divide-y divide-line">
+              <!-- Rendered by client script or static hydration -->
+            </tbody>
+            <tfoot>
+              <tr class="border-t-2 border-line-strong bg-bg/80 font-semibold text-fg">
+                <td class="py-4 pl-6 pr-4">
+                  <span class="font-display text-[15px]">ALL 38 COMPANIES</span>
+                  <p class="text-[11px] text-faint font-normal">Verified drives across SPIT Class of 2027</p>
+                </td>
+                <td class="py-4 px-3 text-center num font-bold text-[#10b981]">61</td>
+                <td class="py-4 px-3 text-center num font-bold text-[#38bdf8]">44</td>
+                <td class="py-4 px-3 text-center num font-bold text-[#f43f5e]">20</td>
+                <td class="py-4 px-3 text-center num text-muted">111</td>
+                <td class="py-4 px-3 text-center num font-display text-[16px] font-bold text-fg">236</td>
+                <td class="py-4 px-4">
+                  <div class="h-2 w-full rounded-full overflow-hidden flex bg-line">
+                    <div style="width:25.8%; background-color:#10b981;" title="CE: 25.8%"></div>
+                    <div style="width:18.6%; background-color:#38bdf8;" title="CSE: 18.6%"></div>
+                    <div style="width:8.5%; background-color:#f43f5e;" title="EXTC: 8.5%"></div>
+                    <div style="width:47.0%; background-color:#71717a;" title="Unknown: 47.0%"></div>
+                  </div>
+                </td>
+                <td class="py-4 pl-4 pr-6 text-[12px] text-faint font-normal">125 known branch selections</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
     </div>
 
     <!-- Branch Data Submission Modal Dialog -->
-    <div id="branch-submit-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+    <div id="branch-submit-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/70 p-4 backdrop-blur-md">
       <div class="relative w-full max-w-[560px] rounded-3xl border border-line-strong bg-panel p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
         <div class="flex items-center justify-between border-b border-line pb-4">
           <div>
             <h3 class="font-display text-[20px] font-bold text-fg">Submit Branch Placement Data</h3>
-            <p class="text-[13px] text-muted mt-1">Help complete branch statistics. Submissions are reviewed on the admin dashboard.</p>
+            <p class="text-[13px] text-muted mt-1">Help resolve the remaining unknown records. Submissions are reviewed on the admin dashboard.</p>
           </div>
           <button type="button" id="btn-close-branch-submit" class="rounded-full p-2 text-muted hover:bg-bg hover:text-fg transition-colors cursor-pointer">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -299,7 +520,7 @@
               <input id="modal-company-name" type="text" required placeholder="e.g. Barclays, JPMC, PhonePe..." class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg transition-colors placeholder:text-faint" />
             </div>
             <div>
-              <label class="label block text-[11px] text-faint mb-1.5 uppercase tracking-wider">Role Title & Type</label>
+              <label class="label block text-[11px] text-faint mb-1.5 uppercase tracking-wider">Role Title &amp; Type</label>
               <input id="modal-role-title" type="text" placeholder="e.g. SDE (Full-time) or Intern" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg transition-colors placeholder:text-faint" />
             </div>
           </div>
@@ -374,170 +595,217 @@
   <script type="module">
 
     import { getActiveBatchData } from '/src/data/batches.js';
+    import { companyBranchDistribution, branchSummary } from '/src/data/branch_distribution.js';
 
     const batch = getActiveBatchData();
     const is2028 = batch.year === '2028';
-    const branches = batch.branches || [];
 
     const badgeEl = document.getElementById('branches-page-badge');
     if (badgeEl) {
-      badgeEl.textContent = `Branches · SPIT Class of ${batch.year}`;
-    }
-    const descEl = document.getElementById('branches-page-desc');
-    if (descEl) {
-      descEl.textContent = `Recruitment analytics for ${branches.length} departments across the ${batch.year} cohort: package distribution, selection volumes, and top recruiting firms.`;
+      badgeEl.textContent = `Branches · Verified Department Breakdown · SPIT Class of ${batch.year}`;
     }
 
-    let selectedBranchId = branches[0]?.id || 'ce';
+    let selectedBranchFilter = 'all'; // 'all' | 'ce' | 'cse' | 'extc' | 'unknown'
+    const searchInput = document.getElementById('branch-company-search');
+    const tbody = document.getElementById('company-branch-tbody');
+    const indicator = document.getElementById('branch-filter-indicator');
+    const indicatorText = document.getElementById('branch-filter-text');
 
-    const tabsContainer = document.getElementById('branch-tabs');
-    const cardContainer = document.getElementById('branch-active-card');
-    const tableBody = document.getElementById('branch-table-body');
+    function syncBranchSelection(branchKey) {
+      selectedBranchFilter = branchKey;
 
-    function renderTabs() {
-      tabsContainer.innerHTML = branches.map(b => {
-        const isSelected = b.id === selectedBranchId;
-        const baseClass = "group relative flex shrink-0 items-center gap-2.5 rounded-full border px-4 py-2.5 transition-all duration-300 cursor-pointer ";
-        const activeClass = isSelected 
-          ? "border-fg bg-fg text-bg" 
-          : "border-line-strong text-muted hover:border-fg hover:text-fg";
+      // Update pills
+      document.querySelectorAll('.branch-pill').forEach(pill => {
+        const b = pill.getAttribute('data-branch');
+        if (b === branchKey) {
+          pill.classList.add('border-fg', 'bg-fg', 'text-bg');
+          pill.classList.remove('bg-panel', 'text-muted');
+        } else {
+          pill.classList.remove('border-fg', 'bg-fg', 'text-bg');
+          pill.classList.add('bg-panel', 'text-muted');
+        }
+      });
+
+      // Update Cards
+      document.querySelectorAll('.card-branch').forEach(card => {
+        const b = card.getAttribute('data-branch');
+        if (branchKey === 'all') {
+          card.classList.remove('border-fg', 'bg-line/20', 'ring-1', 'ring-fg', 'opacity-40');
+          card.classList.add('border-line-strong');
+        } else if (b === branchKey) {
+          card.classList.add('border-fg', 'bg-line/20', 'ring-1', 'ring-fg');
+          card.classList.remove('border-line-strong', 'opacity-40');
+        } else {
+          card.classList.remove('border-fg', 'bg-line/20', 'ring-1', 'ring-fg');
+          card.classList.add('border-line-strong', 'opacity-40');
+        }
+      });
+
+      // Update Spectrum Bar
+      document.querySelectorAll('.branch-spectrum-seg').forEach(seg => {
+        const b = seg.getAttribute('data-branch');
+        if (branchKey === 'all') {
+          seg.style.opacity = '1';
+        } else if (b === branchKey) {
+          seg.style.opacity = '1';
+        } else {
+          seg.style.opacity = '0.25';
+        }
+      });
+
+      // Indicator
+      if (indicator && indicatorText) {
+        if (branchKey === 'all') {
+          indicator.classList.add('hidden');
+          indicator.classList.remove('flex');
+        } else {
+          indicator.classList.remove('hidden');
+          indicator.classList.add('flex');
+          const map = {
+            ce: 'Computer Engineering (CE)',
+            cse: 'Computer Science Engineering (CSE)',
+            extc: 'Electronics & Telecom (EXTC)',
+            unknown: 'Unknown / Awaiting Division'
+          };
+          indicatorText.textContent = map[branchKey] || branchKey;
+        }
+      }
+
+      renderTable(searchInput?.value || '');
+    }
+
+    function renderTable(query = '') {
+      const q = query.toLowerCase().trim();
+      const filtered = companyBranchDistribution.filter(row => {
+        // Branch filter
+        if (selectedBranchFilter === 'ce' && row.ce <= 0) return false;
+        if (selectedBranchFilter === 'cse' && row.cse <= 0) return false;
+        if (selectedBranchFilter === 'extc' && row.extc <= 0) return false;
+        if (selectedBranchFilter === 'unknown' && row.unknown <= 0) return false;
+
+        // Query filter
+        if (q) {
+          const matchCompany = row.company.toLowerCase().includes(q);
+          const matchRole = row.role.toLowerCase().includes(q);
+          const matchRaw = row.rawName.toLowerCase().includes(q);
+          const matchNotes = (row.notes || '').toLowerCase().includes(q);
+          if (!matchCompany && !matchRole && !matchRaw && !matchNotes) return false;
+        }
+
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" class="py-12 text-center text-muted">No matching company distribution found for this filter.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(row => {
+        const cePct = ((row.ce / row.total) * 100).toFixed(1);
+        const csePct = ((row.cse / row.total) * 100).toFixed(1);
+        const extcPct = ((row.extc / row.total) * 100).toFixed(1);
+        const unkPct = ((row.unknown / row.total) * 100).toFixed(1);
+
+        const companyHref = row.slug ? `/companies/company.html?slug=${row.slug}${is2028 ? '&batch=2028' : ''}` : '#';
 
         return `
-          <button role="tab" type="button" data-id="${b.id}" aria-selected="${isSelected}" class="${baseClass} ${activeClass}">
-            <i class="dot" style="background:${b.color}"></i>
-            <span class="label">${b.shortName}</span>
-            <span class="num text-[12px] ${isSelected ? 'text-bg/70' : 'text-faint'}">${b.placedPercentage}%</span>
-          </button>
+          <tr class="hover:bg-panel/70 transition-colors">
+            <td class="py-4 pl-6 pr-4">
+              <a href="${companyHref}" class="flex items-center gap-3 font-medium text-fg hover:underline">
+                ${row.logo ? `<img src="${row.logo}" class="size-6 object-contain rounded" alt="" />` : ''}
+                <div>
+                  <div class="font-medium text-fg text-[14px]">${row.company}</div>
+                  <div class="text-[11px] text-muted truncate max-w-[260px]">${row.role}</div>
+                </div>
+              </a>
+            </td>
+            <td class="py-4 px-3 text-center num font-semibold ${row.ce > 0 ? 'text-[#10b981]' : 'text-faint'}">
+              ${row.ce > 0 ? row.ce : '—'}
+            </td>
+            <td class="py-4 px-3 text-center num font-semibold ${row.cse > 0 ? 'text-[#38bdf8]' : 'text-faint'}">
+              ${row.cse > 0 ? row.cse : '—'}
+            </td>
+            <td class="py-4 px-3 text-center num font-semibold ${row.extc > 0 ? 'text-[#f43f5e]' : 'text-faint'}">
+              ${row.extc > 0 ? row.extc : '—'}
+            </td>
+            <td class="py-4 px-3 text-center num text-muted">
+              ${row.unknown > 0 ? row.unknown : '—'}
+            </td>
+            <td class="py-4 px-3 text-center num font-display text-[15px] font-bold text-fg">
+              ${row.total}
+            </td>
+            <td class="py-4 px-4">
+              <div class="h-2 w-full rounded-full overflow-hidden flex bg-line shadow-inner">
+                ${row.ce > 0 ? `<div style="width:${cePct}%; background-color:#10b981;" title="CE: ${row.ce} (${cePct}%)"></div>` : ''}
+                ${row.cse > 0 ? `<div style="width:${csePct}%; background-color:#38bdf8;" title="CSE: ${row.cse} (${csePct}%)"></div>` : ''}
+                ${row.extc > 0 ? `<div style="width:${extcPct}%; background-color:#f43f5e;" title="EXTC: ${row.extc} (${extcPct}%)"></div>` : ''}
+                ${row.unknown > 0 ? `<div style="width:${unkPct}%; background-color:#71717a;" title="Unknown: ${row.unknown} (${unkPct}%)"></div>` : ''}
+              </div>
+            </td>
+            <td class="py-4 pl-4 pr-6 text-[12px] text-muted leading-snug">
+              ${row.notes ? `<span class="bg-panel border border-line px-2 py-0.5 rounded text-faint">${row.notes}</span>` : '<span class="text-faint">—</span>'}
+            </td>
+          </tr>
         `;
       }).join('');
-
-      // Add click events
-      tabsContainer.querySelectorAll('button').forEach(btn => {
-        btn.addEventListener('click', () => {
-          selectedBranchId = btn.getAttribute('data-id');
-          renderTabs();
-          renderCard();
-        });
-      });
     }
 
-    function renderCard() {
-      const b = branches.find(item => item.id === selectedBranchId) || branches[0];
-      if (!b) return;
-
-      cardContainer.innerHTML = `
-        <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-          <div>
-            <div class="flex items-center gap-3">
-              <i class="dot size-3" style="background:${b.color}"></i>
-              <h3 class="font-display text-[clamp(28px,4vw,44px)] font-bold text-fg leading-none">${b.name}</h3>
-            </div>
-            <p class="mt-3 text-[16px] text-muted max-w-[50ch]">${b.summary || 'Department placement report'}</p>
-          </div>
-
-          <div class="flex items-baseline gap-2 shrink-0">
-            <span class="num font-display text-[clamp(48px,6vw,72px)] font-bold text-fg leading-none">${b.placedPercentage}%</span>
-            <span class="label text-muted">placed</span>
-          </div>
-        </div>
-
-        <!-- 4-Column Branch Highlights -->
-        <dl class="mt-10 grid grid-cols-2 border-t border-line sm:grid-cols-4 pt-6 gap-6">
-          <div>
-            <dt class="label text-faint text-[12px]">Placed Students</dt>
-            <dd class="num font-display text-[28px] text-fg mt-1">${b.placedStudents} <span class="text-[14px] text-muted font-sans font-normal">/ ${b.totalStudents}</span></dd>
-          </div>
-          <div>
-            <dt class="label text-faint text-[12px]">Median CTC</dt>
-            <dd class="num font-display text-[28px] text-fg mt-1">${b.medianCTC}</dd>
-          </div>
-          <div>
-            <dt class="label text-faint text-[12px]">Average CTC</dt>
-            <dd class="num font-display text-[28px] text-fg mt-1">${b.averageCTC}</dd>
-          </div>
-          <div>
-            <dt class="label text-faint text-[12px]">Highest CTC</dt>
-            <dd class="num font-display text-[28px] text-fg mt-1">${b.highestCTC}</dd>
-          </div>
-        </dl>
-
-        <!-- Top Recruiters in this Branch -->
-        <div class="mt-10 border-t border-line pt-6">
-          <p class="label text-faint text-[12px] mb-4">Top Recruiters for ${b.shortName}</p>
-          <div class="flex flex-wrap gap-2.5">
-            ${b.topRecruiters ? b.topRecruiters.map(r => `
-              <span class="chip text-fg font-medium bg-line/60">
-                <i class="dot" style="background:${b.color}"></i>
-                ${r}
-              </span>
-            `).join('') : '<span class="text-muted">Recruiters active</span>'}
-          </div>
-        </div>
-      `;
-    }
-
-    function renderTable() {
-      tableBody.innerHTML = branches.map(b => `
-        <tr class="hover:bg-panel transition-colors cursor-pointer" data-row-id="${b.id}">
-          <td class="py-4 pr-4">
-            <div class="flex items-center gap-2.5 font-medium text-fg">
-              <i class="dot" style="background:${b.color}"></i>
-              ${b.name}
-            </div>
-          </td>
-          <td class="py-4 px-4 num text-muted">${b.totalStudents}</td>
-          <td class="py-4 px-4 num text-fg font-semibold">${b.placedStudents}</td>
-          <td class="py-4 px-4 num text-fg font-bold">${b.placedPercentage}%</td>
-          <td class="py-4 px-4 num text-muted">${b.medianCTC}</td>
-          <td class="py-4 px-4 num text-muted">${b.averageCTC}</td>
-          <td class="py-4 px-4 num text-fg font-semibold">${b.highestCTC}</td>
-          <td class="py-4 pl-4 num text-muted">${b.ppoCount || 0}</td>
-        </tr>
-      `).join('');
-
-      tableBody.querySelectorAll('tr').forEach(row => {
-        row.addEventListener('click', () => {
-          selectedBranchId = row.getAttribute('data-row-id');
-          renderTabs();
-          renderCard();
-          window.scrollTo({ top: 120, behavior: 'smooth' });
-        });
-      });
-    }
-
-    renderTabs();
-    renderCard();
     renderTable();
 
-    // Supabase Submission Handler for Branch Data
-    const SUPABASE_URL = 'https://ntdmjyexirakcaovjeia.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZG1qeWV4aXJha2Nhb3ZqZWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2NTUzNTUsImV4cCI6MjA4NjIzMTM1NX0.LFbBXU-ANjoUUi_HfMIWYAjKidRgEct_VO-588T-Y7M';
-
-    const modal = document.getElementById('branch-submit-modal');
-    const btnOpen = document.getElementById('btn-open-branch-submit');
-    const btnClose = document.getElementById('btn-close-branch-submit');
-    const btnCancel = document.getElementById('btn-cancel-branch-submit');
-    const form = document.getElementById('branch-submit-form');
-    const statusEl = document.getElementById('branch-submit-status');
-    const spinner = document.getElementById('spinner-branch-submit');
-    const submitBtn = document.getElementById('btn-submit-branch-data');
-    const submitBtnText = document.getElementById('btn-submit-text');
-
-    btnOpen?.addEventListener('click', () => {
-      modal?.classList.remove('hidden');
-      const modalBatch = document.getElementById('modal-batch-year');
-      if (modalBatch && batch?.year) modalBatch.value = batch.year;
+    // Event listeners for pills
+    document.querySelectorAll('.branch-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const b = pill.getAttribute('data-branch');
+        syncBranchSelection(b);
+      });
     });
 
-    const closeModal = () => {
-      modal?.classList.add('hidden');
-      statusEl?.classList.add('hidden');
-    };
+    // Event listeners for cards
+    document.querySelectorAll('.card-branch').forEach(card => {
+      card.addEventListener('click', () => {
+        const b = card.getAttribute('data-branch');
+        const target = (selectedBranchFilter === b) ? 'all' : b;
+        syncBranchSelection(target);
+        document.getElementById('company-branch-tbody')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
 
-    btnClose?.addEventListener('click', closeModal);
-    btnCancel?.addEventListener('click', closeModal);
+    // Event listeners for spectrum bar
+    document.querySelectorAll('.branch-spectrum-seg, .branch-legend-item').forEach(el => {
+      el.addEventListener('click', () => {
+        const b = el.getAttribute('data-branch');
+        const target = (selectedBranchFilter === b) ? 'all' : b;
+        syncBranchSelection(target);
+        document.getElementById('company-branch-tbody')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Clear indicator
+    document.getElementById('branch-filter-clear')?.addEventListener('click', () => {
+      syncBranchSelection('all');
+    });
+
+    // Search input
+    searchInput?.addEventListener('input', (e) => {
+      renderTable(e.target.value);
+    });
+
+    // Modal logic
+    const modal = document.getElementById('branch-submit-modal');
+    const openBtn = document.getElementById('btn-open-branch-submit');
+    const closeBtn = document.getElementById('btn-close-branch-submit');
+    const cancelBtn = document.getElementById('btn-cancel-branch-submit');
+    const form = document.getElementById('branch-submit-form');
+    const statusEl = document.getElementById('branch-submit-status');
+    const submitBtn = document.getElementById('btn-submit-branch-data');
+    const spinner = document.getElementById('spinner-branch-submit');
+    const btnText = document.getElementById('btn-submit-text');
+
+    openBtn?.addEventListener('click', () => modal?.classList.remove('hidden'));
+    [closeBtn, cancelBtn].forEach(b => b?.addEventListener('click', () => modal?.classList.add('hidden')));
+
     modal?.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
+      if (e.target === modal) modal.classList.add('hidden');
     });
 
     form?.addEventListener('submit', async (e) => {
@@ -545,8 +813,8 @@
       if (!submitBtn) return;
       submitBtn.disabled = true;
       spinner?.classList.remove('hidden');
-      if (submitBtnText) submitBtnText.textContent = 'Submitting...';
-      statusEl?.classList.add('hidden');
+      if (btnText) btnText.textContent = 'Submitting...';
+      if (statusEl) statusEl.className = 'hidden';
 
       const payload = {
         type: 'branch_data',
@@ -563,6 +831,9 @@
       };
 
       try {
+        const SUPABASE_URL = 'https://ntdmjyexirakcaovjeia.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZG1qeWV4aXJha2Nhb3ZqZWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2NTUzNTUsImV4cCI6MjA4NjIzMTM1NX0.LFbBXU-ANjoUUi_HfMIWYAjKidRgEct_VO-588T-Y7M';
+
         const res = await fetch(`${SUPABASE_URL}/rest/v1/submissions`, {
           method: 'POST',
           headers: {
@@ -574,26 +845,26 @@
           body: JSON.stringify([payload])
         });
 
-        if (!res.ok) {
-          const errText = await res.text();
-          throw new Error(errText || 'Failed to submit data');
-        }
+        if (!res.ok) throw new Error(await res.text() || 'Failed to submit branch data');
 
-        statusEl.className = 'rounded-xl p-3 text-[13px] bg-intern/10 border border-intern/30 text-intern';
-        statusEl.textContent = '✔ Thank you! Your branch data has been submitted and sent to the admin dashboard for verification.';
-        statusEl.classList.remove('hidden');
+        if (statusEl) {
+          statusEl.textContent = '✓ Thank you! Your branch placement data has been sent to the admin dashboard for verification.';
+          statusEl.className = 'rounded-xl p-3 text-[13px] bg-intern/20 text-intern border border-intern/40 block';
+        }
         form.reset();
         setTimeout(() => {
-          closeModal();
-        }, 2500);
+          modal?.classList.add('hidden');
+          if (statusEl) statusEl.className = 'hidden';
+        }, 2200);
       } catch (err) {
-        statusEl.className = 'rounded-xl p-3 text-[13px] bg-red-500/10 border border-red-500/30 text-red-300';
-        statusEl.textContent = 'Submission error: ' + (err.message || 'Please try again.');
-        statusEl.classList.remove('hidden');
+        if (statusEl) {
+          statusEl.textContent = 'Error: ' + err.message;
+          statusEl.className = 'rounded-xl p-3 text-[13px] bg-red-500/20 text-red-400 border border-red-500/40 block';
+        }
       } finally {
         submitBtn.disabled = false;
         spinner?.classList.add('hidden');
-        if (submitBtnText) submitBtnText.textContent = 'Submit Data';
+        if (btnText) btnText.textContent = 'Submit Data';
       }
     });
   
