@@ -771,11 +771,11 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
         console.warn('Supabase auth network check skipped:', err);
       }
 
-      // 2. Direct SHA-256 fallback (yash@spit2027 or spit2027)
+      // 2. Direct SHA-256 fallback (admin authentication)
       const computedLocal = await hashPassword('spit_salt_2027', password);
       if (
-        computedLocal === '443b91a662495949cd66c2ec0fa119ba3785b1f586d9c3c196fb6efc8dd36f09' || // yash@spit2027
-        computedLocal === '3440d464349a27f212ae4e92761c0b2e98d086e6c5652fb5d52626d4e46aee58'    // spit2027
+        computedLocal === '443b91a662495949cd66c2ec0fa119ba3785b1f586d9c3c196fb6efc8dd36f09' ||
+        computedLocal === '3440d464349a27f212ae4e92761c0b2e98d086e6c5652fb5d52626d4e46aee58'
       ) {
         return { success: true, user: cleanUser || 'Admin' };
       }
