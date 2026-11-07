@@ -88,7 +88,6 @@ export function renderFooter() {
       <div class="flex min-h-12 flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-line py-4">
         <div class="flex items-center gap-6">
           <a class="label text-[12px] text-faint transition-colors hover:text-fg" href="${siteConfig.footer.contactLink}">Contact</a>
-          <a class="label text-[12px] text-faint transition-colors hover:text-fg" href="/about/">About & Methodology</a>
           <a class="label text-[12px] text-faint transition-colors hover:text-intern font-mono" href="/admin/">Admin</a>
           <span class="label text-[12px] text-faint">${siteConfig.collegeName} · ${siteConfig.batchLabel}</span>
         </div>

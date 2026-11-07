@@ -14,7 +14,6 @@ function generateHomePage() {
       </p>
       <div class="mt-8 flex flex-wrap items-center gap-3">
         <a id="hero-browse-btn" class="label rounded-full bg-fg px-5 py-3 text-bg transition-opacity hover:opacity-85" href="/companies/">Browse all ${siteConfig.stats.totalCompanies} companies</a>
-        <a class="label rounded-full border border-line-strong px-5 py-3 transition-colors hover:border-fg" href="/about/">How this is made</a>
         <span class="label flex items-center gap-2.5 px-2 text-muted">
           <span class="relative flex size-2" aria-hidden="true">
             <span class="absolute inline-flex size-full animate-ping rounded-full bg-intern opacity-60"></span>

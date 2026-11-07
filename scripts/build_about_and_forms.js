@@ -3,65 +3,9 @@ const { pageTemplate } = require('./template');
 const { siteConfig } = require('../src/config/site');
 
 function generateAboutPage() {
-  const content = `
-    <section class="wrap pb-12 pt-[clamp(48px,8vw,112px)]">
-      <p class="label text-muted">About · Method & analytics · ${siteConfig.collegeShort} ${siteConfig.batchYear}</p>
-      <h1 class="display-l mt-6 max-w-[16ch]">How this is made.</h1>
-    </section>
-
-    <div class="wrap grid gap-16">
-      <section class="grid gap-6 border-t border-line pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16">
-        <h2 class="display-m"><span class="label mr-4 align-middle text-faint">01</span>Why this exists</h2>
-        <div class="grid max-w-[64ch] content-start gap-4 text-[16px] leading-relaxed text-muted">
-          <p>We built this portal to make placement statistics transparent, structured and accessible for students of ${siteConfig.collegeName} (SPIT).</p>
-          <p>Placement notices are often scattered across circulars and groups. This dashboard brings all ${siteConfig.stats.totalCompanies} recruiting companies together into a single, cohesive interface: roles offered, compensation figures, stipends, and confirmed selections across our branches.</p>
-          <p>It is made for everyone in SPIT's Class of 2027 and juniors preparing for upcoming campus placement seasons.</p>
-        </div>
-      </section>
-
-      <section class="grid gap-6 border-t border-line pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16">
-        <h2 class="display-m"><span class="label mr-4 align-middle text-faint">02</span>What this is</h2>
-        <div class="grid max-w-[64ch] content-start gap-4 text-[16px] leading-relaxed text-muted">
-          <p>A comprehensive, verified record of campus recruitment for ${siteConfig.collegeName} (SPIT) Mumbai, covering Computer Engineering (CSE), Information Technology (IT), Electronics & Telecommunication (EXTC), and Artificial Intelligence & Data Science (AI & DS).</p>
-          <p>All data has been compiled directly from placement cell reports, company offer letters, and student selection records.</p>
-        </div>
-      </section>
-
-      <section class="grid gap-6 border-t border-line pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16">
-        <h2 class="display-m"><span class="label mr-4 align-middle text-faint">03</span>Where the numbers come from</h2>
-        <div class="grid max-w-[64ch] content-start gap-4 text-[16px] leading-relaxed text-muted">
-          <p>Every statistic, package, and shortlist is drawn directly from campus recruitment drives, company offer letters, and student-reported placement reports.</p>
-          <p>Waitlisted candidates and non-employment competitions (such as hackathon finalists) are explicitly noted and categorized to ensure statistical integrity.</p>
-        </div>
-      </section>
-
-      <section class="grid gap-6 border-t border-line pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16">
-        <h2 class="display-m"><span class="label mr-4 align-middle text-faint">04</span>What the numbers mean</h2>
-        <div class="grid max-w-[64ch] content-start gap-4 text-[16px] leading-relaxed text-muted">
-          <p><strong>CTC (Cost to Company):</strong> Reflects total annualized advertised compensation, including fixed base pay, performance bonuses, joining incentives, and retention bonuses where reported.</p>
-          <p><strong>Stipend:</strong> Monthly compensation during internship period (ranging up to ₹1,60,000/month at JPMC).</p>
-          <p><strong>Median vs Average:</strong> Median CTC (₹13.0 LPA) reflects the middle benchmark for placed students, while the average CTC (₹13.86 LPA) reflects total batch compensation scale.</p>
-        </div>
-      </section>
-
-      <section class="grid gap-6 border-t border-line pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16">
-        <h2 class="display-m"><span class="label mr-4 align-middle text-faint">05</span>Privacy & Policy</h2>
-        <div class="grid max-w-[64ch] content-start gap-4 text-[16px] leading-relaxed text-muted">
-          <p>We respect individual privacy. No personal contact details, roll numbers, or sensitive student records are published on this dashboard. All aggregated figures serve informational and community analytics purposes.</p>
-          <p>If you identify any discrepancy or have an updated figure, please use the <a class="link-underline text-fg" href="/corrections/">correction report form</a>.</p>
-        </div>
-      </section>
-    </div>
-  `;
-
-  const html = pageTemplate({
-    title: `About · Placed ’27 · ${siteConfig.collegeShort}`,
-    activePath: '/about/',
-    content
-  });
-
-  fs.writeFileSync('about/index.html', html);
-  console.log('about/index.html created successfully!');
+  const redirectHtml = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Redirecting...</title><meta http-equiv="refresh" content="0; url=/"><script>window.location.replace('/');</script></head><body></body></html>`;
+  fs.writeFileSync('about/index.html', redirectHtml);
+  console.log('about/index.html replaced with redirect to /');
 }
 
 function generateFeedbackPage() {
@@ -709,14 +653,10 @@ function generateContactPage() {
 
       <div class="mt-14 grid gap-6 rounded-3xl border border-line bg-panel/50 p-6 sm:p-8">
         <h3 class="font-display text-[18px] font-semibold text-fg">Direct Campus References</h3>
-        <div class="grid sm:grid-cols-2 gap-6 pt-2">
+        <div class="pt-2">
           <div>
             <span class="label text-faint">Training & Placement Cell</span>
             <p class="font-display text-[17px] font-medium text-fg mt-1">placements@spit.ac.in</p>
-          </div>
-          <div>
-            <span class="label text-faint">Portal Tech & Analytics</span>
-            <p class="font-display text-[17px] font-medium text-fg mt-1">contact@spit-placed.in</p>
           </div>
         </div>
         <div class="border-t border-line pt-4">

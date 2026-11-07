@@ -79,8 +79,6 @@ A pixel-perfect, high-fidelity clone of [placed-27.pages.dev](https://placed-27.
    - **Updates (`/updates/`)**:
      - Live chronological announcements with category pills (Results, Shortlists, Drives, Interviews)
      - "Tell me when results are up" browser notification toggle
-   - **About (`/about/`)**:
-     - Complete documentation of methodology, calculations, and student privacy
    - **Interactive Footer**:
      - 01 Feedback, 02 Correction Report, 03 Spread the word card with live marquee, animated ripple, and expandable "Copy link" drawer
 
