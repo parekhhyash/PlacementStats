@@ -175,7 +175,7 @@
           </div>
 
           <!-- Featured Marquee Highlights Teasers -->
-          <div id="highlights-featured-cards" class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 border-t border-line pt-8">
+          <div id="highlights-featured-cards" class="mt-8 grid gap-4 sm:grid-cols-3 border-t border-line pt-8">
             <!-- Rendered dynamically -->
           </div>
         </div>
@@ -404,6 +404,7 @@
     const featuredEl = document.getElementById('highlights-featured-cards');
     if (featuredEl) {
       if (is2028) {
+        featuredEl.className = 'mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 border-t border-line pt-8';
         featuredEl.innerHTML = `
           <div class="rounded-2xl border border-line bg-bg/50 p-4">
             <span class="label text-[11px] text-faint">Drive Format</span>
@@ -427,6 +428,7 @@
           </div>
         `;
       } else {
+        featuredEl.className = 'mt-8 grid gap-4 sm:grid-cols-3 border-t border-line pt-8';
         featuredEl.innerHTML = `
           <div class="rounded-2xl border border-line bg-bg/50 p-4">
             <span class="label text-[11px] text-faint">Highest Package</span>
@@ -437,11 +439,6 @@
             <span class="label text-[11px] text-faint">Largest Cohort</span>
             <p class="font-display text-[18px] text-fg mt-1">31 Selections</p>
             <p class="text-[12px] text-muted mt-1">JPMC (CIB, Risk, CADP)</p>
-          </div>
-          <div class="rounded-2xl border border-line bg-bg/50 p-4">
-            <span class="label text-[11px] text-faint">Dual Track Drive</span>
-            <p class="font-display text-[18px] text-fg mt-1">28 Offers</p>
-            <p class="text-[12px] text-muted mt-1">Barclays (FT + Intern)</p>
           </div>
           <div class="rounded-2xl border border-line bg-bg/50 p-4">
             <span class="label text-[11px] text-faint">Top Stipend</span>
