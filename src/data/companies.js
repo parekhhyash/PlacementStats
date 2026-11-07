@@ -475,22 +475,22 @@ export const companies = [
     "dream": true,
     "logo": "/logos/ubs.svg",
     "out": {
-      "internships": 4,
+      "internships": 7,
       "fulltimeOffers": 14,
       "ppo": 4,
       "newHires": 14,
-      "students": 14
+      "students": 17
     },
     "open": "CSE, IT, AI & DS, EXTC",
     "branches": "All branches open",
     "cgpa": 7,
-    "cgpaCriteria": "None stated",
+    "cgpaCriteria": "Minimum CGPA 7.0+ (GOTO Intern); None stated (GET / Agentic AI)",
     "boardsCriteria": "A Class XII % cutoff existed (value not given)",
     "first": "PPT 6 Sep; interviews 11 Sep 2026",
-    "last": "13 Jul 2026",
-    "visitTimeline": "PPT 6 Sep; interviews 11 Sep 2026 · 13 Jul 2026",
-    "funnelRaw": "~200 -> 2 assessments -> Technical 10 -> HR 5 -> 4 offers | Applied 153 -> Resume 51 -> MCQ ~47 -> Group coding ~20 -> Technical 20 -> HR 10 -> 10 offers (9 initially, 10th added later)",
-    "status": "14 confirmed offers",
+    "last": "14 Jul 2025 (OA 11 Jul)",
+    "visitTimeline": "PPT 6 Sep; interviews 11 Sep 2026 · 13 Jul 2026 · 14 Jul 2025 (OA 11 Jul)",
+    "funnelRaw": "~200 -> 2 assessments -> Technical 10 -> HR 5 -> 4 offers | Applied 153 -> Resume 51 -> MCQ ~47 -> Group coding ~20 -> Technical 20 -> HR 10 -> 10 offers | OA 197 -> Technical 16 -> HR 9 -> 3 offers",
+    "status": "17 confirmed offers",
     "roles": [
       {
         "title": "Agentic AI Specialist",
@@ -565,9 +565,38 @@ export const companies = [
         ],
         "funnelRaw": "Applied 153 -> Resume 51 -> MCQ ~47 -> Group coding ~20 -> Technical 20 -> HR 10 -> 10 offers (9 initially, 10th added later)",
         "notes": "3 PDFs"
+      },
+      {
+        "title": "GOTO Intern",
+        "type": "internship",
+        "count": 3,
+        "ctc": "Summer Internship",
+        "stipend": "₹60k / mo",
+        "rawCompensation": "Stipend 60k/month; Location: Pune",
+        "visitDate": "14-07-2025 (OA 11-07-2025)",
+        "funnel": [
+          {
+            "name": "Online Assessment (OA)",
+            "count": 197
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 16
+          },
+          {
+            "name": "HR Interview Round",
+            "count": 9
+          },
+          {
+            "name": "Offers Extended",
+            "count": 3
+          }
+        ],
+        "funnelRaw": "OA 197 (CGPA 7.0+) -> Tech 16 (15 OA + 1 Hackathon) -> HR 9 -> 3 offers",
+        "notes": "Pune location. Process: 11-14 Jul 2025. Contributed by Heet Shah (https://www.linkedin.com/in/heet-p-shah)."
       }
     ],
-    "notes": "3 PDFs · 3 PDFs",
+    "notes": "3 PDFs · 3 PDFs · Heet Shah contribution (GOTO Summer Intern 60k/mo)",
     "stages": [
       {
         "name": "Technical Interview Round",
@@ -3416,6 +3445,191 @@ export const companies = [
     "payRank": 0,
     "dream": false,
     "logo": "/logos/bootlabs.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "zycus",
+    "name": "Zycus",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/zycus.png",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "mastercard",
+    "name": "Mastercard",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": true,
+    "logo": "/logos/mastercard.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "carwale",
+    "name": "CarWale",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/carwale.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "fractal",
+    "name": "Fractal",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/fractal.png",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CSE, IT, AI & DS, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "trilogy",
+    "name": "Trilogy",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": true,
+    "logo": "/logos/trilogy.svg",
     "noDetailsAvailable": true,
     "out": {
       "internships": 0,
