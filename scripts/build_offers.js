@@ -4,6 +4,16 @@ const { pageTemplate } = require('./template');
 const { siteConfig } = require('../src/config/site');
 const { companies: companies2027 } = require('../src/data/companies');
 
+function categorizeRole(r, companyName) {
+  const t = (r && r.title ? r.title : '').toLowerCase();
+  const c = (companyName || '').toLowerCase();
+  if (c.includes('ambiguous') || t.includes('unclassified')) return 'unclassified';
+  if (/\b(ai|ml|mle|data)\b/i.test(t) || t.includes('machine learning') || (t.includes('analytics') && (t.includes('data') || c.includes('mahindra')))) return 'ai_data';
+  if (t.includes('risk') || t.includes('banking') || t.includes('trading') || t.includes('investment') || t.includes('market trainee') || (c.includes('jpmc') && (t.includes('cib') || t.includes('treasury')))) return 'quant_finance';
+  if (t.includes('product') || t.includes('consulting') || t.includes('business analyst') || t.includes('cadp') || t.includes('functional') || t.includes('ecommerce') || t.includes('sales') || (t.includes('analyst') && !t.includes('software engineer'))) return 'product_consulting';
+  return 'sde_tech';
+}
+
 function getOfferClassificationStats(compList) {
   let fte = 0, intern = 0, ppo = 0;
   const compFte = new Set(), compIntern = new Set(), compPpo = new Set();
@@ -54,8 +64,97 @@ function getOfferClassificationStats(compList) {
   };
 }
 
+function getRoleDomainStats(compList) {
+  const domains = {
+    sde_tech: {
+      key: 'sde_tech',
+      label: 'Software Engineering & Core Tech',
+      short: 'Software & SDE',
+      color: '#3f7be6',
+      desc: 'SDE, Systems Dev, Application Engineer, Quality & Web Developer',
+      count: 0,
+      companies: new Map()
+    },
+    product_consulting: {
+      key: 'product_consulting',
+      label: 'Product, Analytics & Consulting',
+      short: 'Product & Consulting',
+      color: '#8b5cf6',
+      desc: 'Business Analyst, APM, Consulting Trainee, Functional & Operations Analyst',
+      count: 0,
+      companies: new Map()
+    },
+    quant_finance: {
+      key: 'quant_finance',
+      label: 'Quant Finance, FinTech & Risk',
+      short: 'Quant & Risk',
+      color: '#f59e0b',
+      desc: 'CIB Banking Analyst, Corporate Risk, Market Trainee, Quant Research & Trading',
+      count: 0,
+      companies: new Map()
+    },
+    ai_data: {
+      key: 'ai_data',
+      label: 'Data Science, AI & Machine Learning',
+      short: 'AI & Data Science',
+      color: '#10b981',
+      desc: 'Agentic AI Specialist, AI/ML Engineer, Data Analytics Intern, Data Engineer',
+      count: 0,
+      companies: new Map()
+    },
+    unclassified: {
+      key: 'unclassified',
+      label: 'General / Unclassified Tech',
+      short: 'Unclassified Tech',
+      color: '#767676',
+      desc: 'Verified placement selections awaiting specific division breakdown',
+      count: 0,
+      companies: new Map()
+    }
+  };
+
+  compList.forEach(c => {
+    if (c.noDetailsAvailable) return;
+    if (c.roles && c.roles.length > 0) {
+      c.roles.forEach(r => {
+        const cat = categorizeRole(r, c.name);
+        const cnt = r.count || 0;
+        if (domains[cat]) {
+          domains[cat].count += cnt;
+          const curr = domains[cat].companies.get(c.name) || 0;
+          domains[cat].companies.set(c.name, curr + cnt);
+        }
+      });
+    } else if (c.out && (c.out.students || 0) > 0) {
+      const cat = c.name.toLowerCase().includes('ambiguous') ? 'unclassified' : 'sde_tech';
+      const cnt = c.out.students || 0;
+      domains[cat].count += cnt;
+      const curr = domains[cat].companies.get(c.name) || 0;
+      domains[cat].companies.set(c.name, curr + cnt);
+    }
+  });
+
+  const total = Object.values(domains).reduce((sum, d) => sum + d.count, 0) || 1;
+
+  return Object.values(domains).map(d => {
+    const sortedComps = Array.from(d.companies.entries()).sort((a, b) => b[1] - a[1]);
+    return {
+      key: d.key,
+      label: d.label,
+      short: d.short,
+      color: d.color,
+      desc: d.desc,
+      count: d.count,
+      pct: ((d.count / total) * 100).toFixed(1),
+      compCount: d.companies.size,
+      topRecruiters: sortedComps.slice(0, 5).map(([name, cnt]) => `${name} (${cnt})`)
+    };
+  });
+}
+
 function generateOffersPage() {
   const offerStats = getOfferClassificationStats(companies2027);
+  const roleDomainStats = getRoleDomainStats(companies2027);
 
   const content = `
     <section class="wrap pb-12 pt-[clamp(48px,8vw,112px)]">
@@ -72,7 +171,7 @@ function generateOffersPage() {
         <!-- Rendered dynamically -->
       </dl>
 
-      <!-- Section 01: Offer Classification Circular Chart & Breakdown -->
+      <!-- Section 01: Offer Track Classification Circular Donut Chart & Breakdown -->
       <section class="mt-20">
         <div class="border-t border-line pt-6 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
           <div>
@@ -179,10 +278,86 @@ function generateOffersPage() {
         </div>
       </section>
 
-      <!-- Section 02: Full-time and PPO Packages -->
+      <!-- Section 02: Role Domain Classification (Spectrum Bar & Domain Cards) -->
+      <section class="mt-20">
+        <div class="border-t border-line pt-6 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
+          <div>
+            <p class="label text-faint">02 — Role Domain Classification</p>
+            <h2 class="display-m mt-2">Functional Tracks &amp; Specializations</h2>
+          </div>
+          <div id="role-domain-badge" class="label text-[12px] text-faint">
+            Class of 2027 · 5 Functional Domains · 264 verified offers
+          </div>
+        </div>
+
+        <div class="mt-8 rounded-2xl border border-line-strong bg-panel p-6 sm:p-8">
+          <!-- Intro description -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-4">
+            <p id="role-domain-desc" class="text-[14px] text-muted max-w-[70ch]">
+              Every verified recruitment offer categorized across engineering, data science, quantitative finance, and consulting disciplines.
+            </p>
+            <span class="label text-[11px] text-faint whitespace-nowrap">Proportional Distribution</span>
+          </div>
+
+          <!-- 100% Proportional Stacked Spectrum Bar -->
+          <div id="role-spectrum-bar" class="w-full h-4 rounded-full overflow-hidden flex bg-line border border-line-strong/40 p-0.5 gap-0.5 shadow-inner">
+            ${roleDomainStats.filter(d => d.count > 0).map(d => `
+              <div class="role-spectrum-seg h-full cursor-pointer transition-all duration-300 hover:brightness-125" style="width: ${d.pct}%; background-color: ${d.color};" data-domain="${d.key}" title="${d.label}: ${d.count} offers (${d.pct}%)"></div>
+            `).join('')}
+          </div>
+
+          <!-- Spectrum Sub-Legend -->
+          <div id="role-spectrum-legend" class="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 border-t border-line/60">
+            ${roleDomainStats.filter(d => d.count > 0).map(d => `
+              <button type="button" class="role-legend-item group flex items-center gap-2 text-[12px] text-muted hover:text-fg transition-colors" data-domain="${d.key}">
+                <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background-color: ${d.color};"></span>
+                <span class="font-medium text-fg">${d.short}</span>
+                <span class="font-mono text-[11px] text-muted">${d.count} (${d.pct}%)</span>
+              </button>
+            `).join('')}
+          </div>
+
+          <!-- Domain Cards Grid -->
+          <div id="role-domain-cards" class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            ${roleDomainStats.filter(d => d.count > 0).map(d => `
+              <div class="card-role-domain group cursor-pointer rounded-xl border border-line-strong bg-bg p-5 transition-all hover:border-fg/40 hover:bg-panel flex flex-col justify-between" data-domain="${d.key}">
+                <div>
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="flex items-center gap-2.5">
+                      <span class="w-3 h-3 rounded-full shrink-0" style="background-color: ${d.color};"></span>
+                      <h3 class="font-display font-semibold text-[15px] sm:text-[16px] text-fg leading-tight">${d.label}</h3>
+                    </div>
+                    <div class="text-right shrink-0">
+                      <span class="font-display text-[18px] sm:text-[20px] font-bold text-fg">${d.count}</span>
+                      <span class="text-[11px] text-muted ml-0.5">offers</span>
+                      <span class="ml-1.5 font-mono text-[11px] font-semibold text-fg bg-line-strong/60 px-1.5 py-0.5 rounded">${d.pct}%</span>
+                    </div>
+                  </div>
+                  <p class="mt-2 text-[12px] text-muted leading-relaxed">${d.desc}</p>
+                </div>
+                <div class="mt-4">
+                  <!-- Meter Bar -->
+                  <div class="h-2 w-full rounded-full bg-line overflow-hidden">
+                    <div class="h-full rounded-full transition-all duration-500" style="width: ${d.pct}%; background-color: ${d.color};"></div>
+                  </div>
+                  <!-- Top Recruiters Chips -->
+                  <div class="mt-3 flex flex-wrap items-center gap-1.5 text-[11px] text-faint">
+                    <span class="font-medium text-muted">${d.compCount} recruiters:</span>
+                    ${d.topRecruiters.slice(0, 4).map(r => `<span class="bg-panel border border-line px-1.5 py-0.5 rounded text-muted">${r}</span>`).join('')}
+                    ${d.topRecruiters.length > 4 ? `<span class="text-[10px] text-faint">+${d.topRecruiters.length - 4} more</span>` : ''}
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          <p class="text-[11px] text-faint mt-4 text-center sm:text-left">Click any spectrum segment, legend label, or domain card to filter the directory below</p>
+        </div>
+      </section>
+
+      <!-- Section 03: Full-time and PPO Packages -->
       <section class="mt-20">
         <div class="border-t border-line pt-6">
-          <p class="label text-faint">02 — Packages</p>
+          <p class="label text-faint">03 — Packages</p>
           <h2 class="display-m mt-2">Full-time and PPO packages</h2>
         </div>
 
@@ -198,18 +373,18 @@ function generateOffersPage() {
         </div>
       </section>
 
-      <!-- Section 03: Full Compensation & Offers Directory -->
+      <!-- Section 04: Full Compensation & Offers Directory -->
       <section class="mt-20">
         <div class="border-t border-line pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <p class="label text-faint">03 — Directory</p>
+            <p class="label text-faint">04 — Directory</p>
             <h2 class="display-m mt-2">All packages &amp; offers by company</h2>
           </div>
-          <!-- Filter Search & Track Filter Status -->
+          <!-- Filter Search & Filter Status -->
           <div class="flex items-center gap-3 w-full sm:w-auto">
             <div id="filter-indicator" class="hidden items-center gap-2 rounded-full border border-line-strong bg-panel px-3 py-1 text-[12px] text-muted">
               <span>Filter: <strong id="filter-indicator-text" class="text-fg"></strong></span>
-              <button id="filter-indicator-clear" type="button" class="text-faint hover:text-fg font-bold ml-1">✕</button>
+              <button id="filter-indicator-clear" type="button" class="text-faint hover:text-fg font-bold ml-1" title="Clear all filters">✕</button>
             </div>
             <div class="relative flex-1 sm:min-w-[280px]">
               <input id="offers-search" type="search" placeholder="Search company, stipend or role..." class="w-full rounded-full border border-line-strong bg-panel px-4 py-2 text-[14px] text-fg outline-none focus:border-fg transition-colors" />
@@ -306,7 +481,18 @@ function generateOffersPage() {
       }
     }
 
-    // Offer Classification Logic
+    // Role Categorization Logic
+    function categorizeRole(r, companyName) {
+      const t = (r && r.title ? r.title : '').toLowerCase();
+      const c = (companyName || '').toLowerCase();
+      if (c.includes('ambiguous') || t.includes('unclassified')) return 'unclassified';
+      if (/\\b(ai|ml|mle|data)\\b/i.test(t) || t.includes('machine learning') || (t.includes('analytics') && (t.includes('data') || c.includes('mahindra')))) return 'ai_data';
+      if (t.includes('risk') || t.includes('banking') || t.includes('trading') || t.includes('investment') || t.includes('market trainee') || (c.includes('jpmc') && (t.includes('cib') || t.includes('treasury')))) return 'quant_finance';
+      if (t.includes('product') || t.includes('consulting') || t.includes('business analyst') || t.includes('cadp') || t.includes('functional') || t.includes('ecommerce') || t.includes('sales') || (t.includes('analyst') && !t.includes('software engineer'))) return 'product_consulting';
+      return 'sde_tech';
+    }
+
+    // Track Classification Logic
     function getClassificationData(compList) {
       let fte = 0, intern = 0, ppo = 0;
       const compFte = new Set(), compIntern = new Set(), compPpo = new Set();
@@ -357,9 +543,133 @@ function generateOffersPage() {
       };
     }
 
-    let activeClassificationStats = null;
-    let selectedRoleFilter = 'all';
+    // Role Domain Stats Logic
+    function getRoleDomainData(compList) {
+      const domains = {
+        sde_tech: {
+          key: 'sde_tech',
+          label: 'Software Engineering & Core Tech',
+          short: 'Software & SDE',
+          color: '#3f7be6',
+          desc: 'SDE, Systems Dev, Application Engineer, Quality & Web Developer',
+          count: 0,
+          companies: new Map()
+        },
+        product_consulting: {
+          key: 'product_consulting',
+          label: 'Product, Analytics & Consulting',
+          short: 'Product & Consulting',
+          color: '#8b5cf6',
+          desc: 'Business Analyst, APM, Consulting Trainee, Functional & Operations Analyst',
+          count: 0,
+          companies: new Map()
+        },
+        quant_finance: {
+          key: 'quant_finance',
+          label: 'Quant Finance, FinTech & Risk',
+          short: 'Quant & Risk',
+          color: '#f59e0b',
+          desc: 'CIB Banking Analyst, Corporate Risk, Market Trainee, Quant Research & Trading',
+          count: 0,
+          companies: new Map()
+        },
+        ai_data: {
+          key: 'ai_data',
+          label: 'Data Science, AI & Machine Learning',
+          short: 'AI & Data Science',
+          color: '#10b981',
+          desc: 'Agentic AI Specialist, AI/ML Engineer, Data Analytics Intern, Data Engineer',
+          count: 0,
+          companies: new Map()
+        },
+        unclassified: {
+          key: 'unclassified',
+          label: 'General / Unclassified Tech',
+          short: 'Unclassified Tech',
+          color: '#767676',
+          desc: 'Verified placement selections awaiting specific division breakdown',
+          count: 0,
+          companies: new Map()
+        }
+      };
 
+      compList.forEach(c => {
+        if (c.noDetailsAvailable) return;
+        if (c.roles && c.roles.length > 0) {
+          c.roles.forEach(r => {
+            const cat = categorizeRole(r, c.name);
+            const cnt = r.count || 0;
+            if (domains[cat]) {
+              domains[cat].count += cnt;
+              const curr = domains[cat].companies.get(c.name) || 0;
+              domains[cat].companies.set(c.name, curr + cnt);
+            }
+          });
+        } else if (c.out && (c.out.students || 0) > 0) {
+          const cat = c.name.toLowerCase().includes('ambiguous') ? 'unclassified' : 'sde_tech';
+          const cnt = c.out.students || 0;
+          domains[cat].count += cnt;
+          const curr = domains[cat].companies.get(c.name) || 0;
+          domains[cat].companies.set(c.name, curr + cnt);
+        }
+      });
+
+      const total = Object.values(domains).reduce((sum, d) => sum + d.count, 0) || 1;
+
+      return Object.values(domains).map(d => {
+        const sortedComps = Array.from(d.companies.entries()).sort((a, b) => b[1] - a[1]);
+        return {
+          key: d.key,
+          label: d.label,
+          short: d.short,
+          color: d.color,
+          desc: d.desc,
+          count: d.count,
+          pct: ((d.count / total) * 100).toFixed(1),
+          compCount: d.companies.size,
+          topRecruiters: sortedComps.slice(0, 5).map(([name, cnt]) => \`\${name} (\${cnt})\`)
+        };
+      });
+    }
+
+    let activeClassificationStats = null;
+    let activeRoleDomainStats = null;
+    let selectedRoleFilter = 'all';    // 'all' | 'ppo' | 'fulltime' | 'internship'
+    let selectedDomainFilter = 'all';  // 'all' | 'sde_tech' | 'product_consulting' | 'quant_finance' | 'ai_data' | 'unclassified'
+
+    // Update Filter Indicator
+    function updateFilterIndicator() {
+      const indicator = document.getElementById('filter-indicator');
+      const indicatorText = document.getElementById('filter-indicator-text');
+      if (!indicator || !indicatorText) return;
+
+      const parts = [];
+      if (selectedRoleFilter !== 'all') {
+        const roleMap = { ppo: 'Intern + PPO', fulltime: 'FTE Offers', internship: 'Intern Only' };
+        parts.push(\`Track: \${roleMap[selectedRoleFilter] || selectedRoleFilter}\`);
+      }
+      if (selectedDomainFilter !== 'all') {
+        const domMap = {
+          sde_tech: 'Software & SDE',
+          product_consulting: 'Product & Consulting',
+          quant_finance: 'Quant Finance & Risk',
+          ai_data: 'AI & Data Science',
+          unclassified: 'Unclassified Tech'
+        };
+        parts.push(\`Domain: \${domMap[selectedDomainFilter] || selectedDomainFilter}\`);
+      }
+
+      if (parts.length === 0) {
+        indicator.classList.add('hidden');
+        indicator.classList.remove('flex');
+      } else {
+        indicator.classList.remove('hidden');
+        indicator.classList.add('flex');
+        indicatorText.textContent = parts.join(' · ');
+      }
+    }
+
+    // Section 01: Donut Center Reset & Highlight
     function resetDonutCenter() {
       const centerVal = document.getElementById('donut-center-val');
       const centerLbl = document.getElementById('donut-center-lbl');
@@ -440,20 +750,7 @@ function generateOffersPage() {
         }
       });
 
-      const indicator = document.getElementById('filter-indicator');
-      const indicatorText = document.getElementById('filter-indicator-text');
-      if (indicator && indicatorText) {
-        if (activeRole === 'all') {
-          indicator.classList.add('hidden');
-          indicator.classList.remove('flex');
-        } else {
-          indicator.classList.remove('hidden');
-          indicator.classList.add('flex');
-          const labelMap = { ppo: 'Intern + PPO', fulltime: 'FTE Offers', internship: 'Intern Only' };
-          indicatorText.textContent = labelMap[activeRole] || activeRole;
-        }
-      }
-
+      updateFilterIndicator();
       renderOffersTable(document.getElementById('offers-search')?.value || '');
     }
 
@@ -545,7 +842,163 @@ function generateOffersPage() {
 
     updateClassificationChart();
 
-    // Wire hover & click on cards
+    // Section 02: Role Domain Section Updating & Interactivity
+    function syncDomainSelection(activeDomain) {
+      selectedDomainFilter = activeDomain;
+
+      // Update Card Visuals
+      document.querySelectorAll('.card-role-domain').forEach(card => {
+        const d = card.getAttribute('data-domain');
+        if (activeDomain === 'all') {
+          card.classList.remove('border-fg', 'bg-line/20', 'ring-1', 'ring-fg', 'opacity-40');
+          card.classList.add('border-line-strong');
+        } else if (d === activeDomain) {
+          card.classList.add('border-fg', 'bg-line/20', 'ring-1', 'ring-fg');
+          card.classList.remove('border-line-strong', 'opacity-40');
+        } else {
+          card.classList.remove('border-fg', 'bg-line/20', 'ring-1', 'ring-fg');
+          card.classList.add('border-line-strong', 'opacity-40');
+        }
+      });
+
+      // Update Spectrum Bar Visuals
+      document.querySelectorAll('.role-spectrum-seg').forEach(seg => {
+        const d = seg.getAttribute('data-domain');
+        if (activeDomain === 'all') {
+          seg.style.opacity = '1';
+        } else if (d === activeDomain) {
+          seg.style.opacity = '1';
+        } else {
+          seg.style.opacity = '0.25';
+        }
+      });
+
+      updateFilterIndicator();
+      renderOffersTable(document.getElementById('offers-search')?.value || '');
+    }
+
+    function highlightDomain(domainKey) {
+      if (selectedDomainFilter !== 'all') return;
+      document.querySelectorAll('.role-spectrum-seg').forEach(seg => {
+        const d = seg.getAttribute('data-domain');
+        seg.style.opacity = (d === domainKey) ? '1' : '0.3';
+      });
+      document.querySelectorAll('.card-role-domain').forEach(card => {
+        const d = card.getAttribute('data-domain');
+        if (d === domainKey) {
+          card.classList.add('border-fg/60');
+        } else {
+          card.style.opacity = '0.5';
+        }
+      });
+    }
+
+    function resetDomainHighlight() {
+      if (selectedDomainFilter !== 'all') {
+        syncDomainSelection(selectedDomainFilter);
+        return;
+      }
+      document.querySelectorAll('.role-spectrum-seg').forEach(seg => {
+        seg.style.opacity = '1';
+      });
+      document.querySelectorAll('.card-role-domain').forEach(card => {
+        card.classList.remove('border-fg/60');
+        card.style.opacity = '1';
+      });
+    }
+
+    function updateRoleDomainSection() {
+      const stats = getRoleDomainData(companies);
+      activeRoleDomainStats = stats;
+
+      const badge = document.getElementById('role-domain-badge');
+      if (badge) {
+        const total = stats.reduce((sum, d) => sum + d.count, 0);
+        const activeDomCount = stats.filter(d => d.count > 0).length;
+        badge.textContent = is2028
+          ? \`Class of 2028 · \${activeDomCount} Functional Domains · \${total} verified offers\`
+          : \`Class of 2027 · \${activeDomCount} Functional Domains · \${total} verified offers\`;
+      }
+
+      const activeStats = stats.filter(d => d.count > 0);
+
+      // Render Spectrum Bar
+      const spectrumBar = document.getElementById('role-spectrum-bar');
+      if (spectrumBar) {
+        spectrumBar.innerHTML = activeStats.map(d => \`
+          <div class="role-spectrum-seg h-full cursor-pointer transition-all duration-300 hover:brightness-125" style="width: \${d.pct}%; background-color: \${d.color};" data-domain="\${d.key}" title="\${d.label}: \${d.count} offers (\${d.pct}%)"></div>
+        \`).join('');
+      }
+
+      // Render Spectrum Legend
+      const spectrumLegend = document.getElementById('role-spectrum-legend');
+      if (spectrumLegend) {
+        spectrumLegend.innerHTML = activeStats.map(d => \`
+          <button type="button" class="role-legend-item group flex items-center gap-2 text-[12px] text-muted hover:text-fg transition-colors" data-domain="\${d.key}">
+            <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background-color: \${d.color};"></span>
+            <span class="font-medium text-fg">\${d.short}</span>
+            <span class="font-mono text-[11px] text-muted">\${d.count} (\${d.pct}%)</span>
+          </button>
+        \`).join('');
+      }
+
+      // Render Domain Cards
+      const domainCards = document.getElementById('role-domain-cards');
+      if (domainCards) {
+        domainCards.innerHTML = activeStats.map(d => \`
+          <div class="card-role-domain group cursor-pointer rounded-xl border border-line-strong bg-bg p-5 transition-all hover:border-fg/40 hover:bg-panel flex flex-col justify-between" data-domain="\${d.key}">
+            <div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-3 h-3 rounded-full shrink-0" style="background-color: \${d.color};"></span>
+                  <h3 class="font-display font-semibold text-[15px] sm:text-[16px] text-fg leading-tight">\${d.label}</h3>
+                </div>
+                <div class="text-right shrink-0">
+                  <span class="font-display text-[18px] sm:text-[20px] font-bold text-fg">\${d.count}</span>
+                  <span class="text-[11px] text-muted ml-0.5">offers</span>
+                  <span class="ml-1.5 font-mono text-[11px] font-semibold text-fg bg-line-strong/60 px-1.5 py-0.5 rounded">\${d.pct}%</span>
+                </div>
+              </div>
+              <p class="mt-2 text-[12px] text-muted leading-relaxed">\${d.desc}</p>
+            </div>
+            <div class="mt-4">
+              <!-- Meter Bar -->
+              <div class="h-2 w-full rounded-full bg-line overflow-hidden">
+                <div class="h-full rounded-full transition-all duration-500" style="width: \${d.pct}%; background-color: \${d.color};"></div>
+              </div>
+              <!-- Top Recruiters Chips -->
+              <div class="mt-3 flex flex-wrap items-center gap-1.5 text-[11px] text-faint">
+                <span class="font-medium text-muted">\${d.compCount} recruiters:</span>
+                \${d.topRecruiters.slice(0, 4).map(r => \`<span class="bg-panel border border-line px-1.5 py-0.5 rounded text-muted">\${r}</span>\`).join('')}
+                \${d.topRecruiters.length > 4 ? \`<span class="text-[10px] text-faint">+\${d.topRecruiters.length - 4} more</span>\` : ''}
+              </div>
+            </div>
+          </div>
+        \`).join('');
+      }
+
+      // Attach Domain Event Listeners
+      const attachDomainEvents = (selector) => {
+        document.querySelectorAll(selector).forEach(el => {
+          const dom = el.getAttribute('data-domain');
+          el.addEventListener('mouseenter', () => highlightDomain(dom));
+          el.addEventListener('mouseleave', resetDomainHighlight);
+          el.addEventListener('click', () => {
+            const target = (selectedDomainFilter === dom) ? 'all' : dom;
+            syncDomainSelection(target);
+            document.getElementById('offers-table-body')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        });
+      };
+
+      attachDomainEvents('.role-spectrum-seg');
+      attachDomainEvents('.role-legend-item');
+      attachDomainEvents('.card-role-domain');
+    }
+
+    updateRoleDomainSection();
+
+    // Wire hover & click on Track Cards
     document.querySelectorAll('.card-offer-type').forEach(card => {
       const role = card.getAttribute('data-role');
       card.addEventListener('mouseenter', () => highlightOfferType(role));
@@ -557,7 +1010,7 @@ function generateOffersPage() {
       });
     });
 
-    // Wire hover & click on SVG donut segments
+    // Wire hover & click on SVG Donut Segments
     [
       { id: 'donut-seg-ppo', role: 'ppo' },
       { id: 'donut-seg-fte', role: 'fulltime' },
@@ -574,8 +1027,10 @@ function generateOffersPage() {
       });
     });
 
+    // Filter Clear Button
     document.getElementById('filter-indicator-clear')?.addEventListener('click', () => {
       syncCardSelection('all');
+      syncDomainSelection('all');
     });
 
     // Chips
@@ -710,6 +1165,18 @@ function generateOffersPage() {
           if (!c.offers || !c.offers.includes(selectedRoleFilter)) return false;
         }
 
+        // Domain filter
+        if (selectedDomainFilter !== 'all') {
+          if (selectedDomainFilter === 'unclassified') {
+            const isAmb = (c.name && c.name.toLowerCase().includes('ambiguous')) ||
+              (c.roles && c.roles.some(r => (r.title && r.title.toLowerCase().includes('unclassified'))));
+            if (!isAmb) return false;
+          } else {
+            const hasDomainRole = c.roles && c.roles.some(r => categorizeRole(r, c.name) === selectedDomainFilter);
+            if (!hasDomainRole) return false;
+          }
+        }
+
         // Query filter
         if (q) {
           const matchName = c.name && c.name.toLowerCase().includes(q);
@@ -734,13 +1201,17 @@ function generateOffersPage() {
         if (c.offers?.includes('ppo')) chips += '<span class="chip"><i class="dot" style="background:var(--color-ppo)"></i>PPO</span>';
 
         const stipendStr = c.roles?.find(r => r.stipend)?.stipend || '—';
+        const roleTitles = c.roles && c.roles.length > 0 ? c.roles.map(r => r.title).join(' · ') : '';
 
         return \`
           <tr class="hover:bg-panel transition-colors">
             <td class="py-4 pr-4">
               <a href="/companies/company.html?slug=\${c.slug}\${is2028 ? '&batch=2028' : ''}" class="flex items-center gap-3 font-medium text-fg hover:underline">
                 \${c.logo ? '<img src="' + c.logo + '" class="size-6 object-contain rounded" />' : ''}
-                \${c.name}
+                <div>
+                  <div class="font-medium text-fg">\${c.name}</div>
+                  \${roleTitles ? \`<div class="text-[11px] text-muted truncate max-w-[280px]" title="\${roleTitles}">\${roleTitles}</div>\` : ''}
+                </div>
               </a>
             </td>
             <td class="py-4 px-4"><div class="flex gap-1.5">\${chips}</div></td>
@@ -767,7 +1238,7 @@ function generateOffersPage() {
   const offersDir = path.join(__dirname, '..', 'offers');
   if (!fs.existsSync(offersDir)) fs.mkdirSync(offersDir, { recursive: true });
   fs.writeFileSync(path.join(offersDir, 'index.html'), html);
-  console.log('offers/index.html created successfully with Multi-Batch support!');
+  console.log('offers/index.html created successfully with Role Domain Classification and Multi-Batch support!');
 }
 
 generateOffersPage();
