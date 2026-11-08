@@ -287,6 +287,20 @@ html, body {
   height: 260px !important;
 }
 
+.pl-6 {
+  padding-left: 1.5rem !important;
+}
+
+.pl-8 {
+  padding-left: 2rem !important;
+}
+
+@media (min-width: 640px) {
+  .sm\:pl-8 {
+    padding-left: 2rem !important;
+  }
+}
+
 
 
 

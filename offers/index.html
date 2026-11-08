@@ -534,12 +534,12 @@
           <table class="w-full text-left text-[14px]">
             <thead>
               <tr class="border-b border-line text-faint label">
-                <th class="py-3 pr-4">Company</th>
+                <th class="py-3 pl-6 sm:pl-8 pr-4" style="padding-left: 1.75rem;">Company</th>
                 <th class="py-3 px-4">Type</th>
                 <th class="py-3 px-4">Advertised CTC</th>
                 <th class="py-3 px-4">Internship Stipend</th>
                 <th class="py-3 px-4">Selections</th>
-                <th class="py-3 pl-4">Eligible Branches</th>
+                <th class="py-3 pl-4 pr-6 sm:pr-8" style="padding-right: 1.75rem;">Eligible Branches</th>
               </tr>
             </thead>
             <tbody id="offers-table-body" class="divide-y divide-line">
@@ -1366,7 +1366,7 @@
 
         return `
           <tr class="hover:bg-panel transition-colors">
-            <td class="py-4 pr-4">
+            <td class="py-4 pl-6 sm:pl-8 pr-4" style="padding-left: 1.75rem;">
               <a href="/companies/company.html?slug=${c.slug}${is2028 ? '&batch=2028' : ''}" class="flex items-center gap-3 font-medium text-fg hover:underline">
                 ${c.logo ? '<img src="' + c.logo + '" class="size-6 object-contain rounded" />' : ''}
                 <div>
@@ -1379,7 +1379,7 @@
             <td class="py-4 px-4 num font-semibold text-fg">${c.pay || 'Competitive'}</td>
             <td class="py-4 px-4 num text-muted">${stipendStr}</td>
             <td class="py-4 px-4 num text-fg font-medium">${c.out?.students || 0} placed</td>
-            <td class="py-4 pl-4 text-muted">${c.branches || 'All branches open'}</td>
+            <td class="py-4 pl-4 pr-6 sm:pr-8 text-muted" style="padding-right: 1.75rem;">${c.branches || 'All branches open'}</td>
           </tr>
         `;
       }).join('');

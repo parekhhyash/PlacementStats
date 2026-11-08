@@ -431,7 +431,7 @@
           <table class="w-full text-left text-[14px]">
             <thead>
               <tr class="border-b border-line text-faint label bg-bg/40">
-                <th class="py-3.5 pl-6 pr-4">Company &amp; Role</th>
+                <th class="py-3.5 pl-6 sm:pl-8 pr-4" style="padding-left: 1.75rem;">Company &amp; Role</th>
                 <th class="py-3.5 px-3 text-center" title="Computer Engineering">
                   <span class="inline-flex items-center gap-1.5 text-[#10b981]">
                     <span class="size-2 rounded-full bg-[#10b981]"></span>CE
@@ -450,7 +450,7 @@
                 <th class="py-3.5 px-3 text-center text-muted" title="Awaiting / Unclassified">Unknown</th>
                 <th class="py-3.5 px-3 text-center text-fg font-semibold">Total</th>
                 <th class="py-3.5 px-4 min-w-[140px]">Branch Proportion</th>
-                <th class="py-3.5 pl-4 pr-6">Notes / Verification</th>
+                <th class="py-3.5 pl-4 pr-6 sm:pr-8" style="padding-right: 1.75rem;">Notes / Verification</th>
               </tr>
             </thead>
             <tbody id="company-branch-tbody" class="divide-y divide-line">
@@ -458,7 +458,7 @@
             </tbody>
             <tfoot>
               <tr class="border-t-2 border-line-strong bg-bg/80 font-semibold text-fg">
-                <td class="py-4 pl-6 pr-4">
+                <td class="py-4 pl-6 sm:pl-8 pr-4" style="padding-left: 1.75rem;">
                   <span class="font-display text-[15px]">ALL 38 COMPANIES</span>
                   <p class="text-[11px] text-faint font-normal">Verified drives across SPIT Class of 2027</p>
                 </td>
@@ -475,7 +475,7 @@
                     <div style="width:47.0%; background-color:#71717a;" title="Unknown: 47.0%"></div>
                   </div>
                 </td>
-                <td class="py-4 pl-4 pr-6 text-[12px] text-faint font-normal">125 known branch selections</td>
+                <td class="py-4 pl-4 pr-6 sm:pr-8 text-[12px] text-faint font-normal" style="padding-right: 1.75rem;">125 known branch selections</td>
               </tr>
             </tfoot>
           </table>
@@ -723,7 +723,7 @@
 
         return `
           <tr class="hover:bg-panel/70 transition-colors">
-            <td class="py-4 pl-6 pr-4">
+            <td class="py-4 pl-6 sm:pl-8 pr-4" style="padding-left: 1.75rem;">
               <a href="${companyHref}" class="flex items-center gap-3 font-medium text-fg hover:underline">
                 ${row.logo ? `<img src="${row.logo}" class="size-6 object-contain rounded" alt="" />` : ''}
                 <div>
@@ -755,7 +755,7 @@
                 ${row.unknown > 0 ? `<div style="width:${unkPct}%; background-color:#71717a;" title="Unknown: ${row.unknown} (${unkPct}%)"></div>` : ''}
               </div>
             </td>
-            <td class="py-4 pl-4 pr-6 text-[12px] text-muted leading-snug">
+            <td class="py-4 pl-4 pr-6 sm:pr-8 text-[12px] text-muted leading-snug" style="padding-right: 1.75rem;">
               ${row.notes ? `<span class="bg-panel border border-line px-2 py-0.5 rounded text-faint">${row.notes}</span>` : '<span class="text-faint">—</span>'}
             </td>
           </tr>
