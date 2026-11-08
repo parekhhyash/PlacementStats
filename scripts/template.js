@@ -8,7 +8,8 @@ function getHeaderHtml(activePath = '/') {
     { label: "Offers", href: "/offers/" },
     { label: "Branchwise", href: "/branchwise/" },
     { label: "Timeline", href: "/timeline/" },
-    { label: "Submit Data", href: "/corrections/" }
+    { label: "Submit Data", href: "/corrections/" },
+    { label: "Feedback", href: "/feedback/" }
   ];
 
   const normPath = activePath.endsWith('/') ? activePath : activePath + '/';

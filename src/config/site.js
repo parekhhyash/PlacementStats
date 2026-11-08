@@ -44,7 +44,8 @@ export const siteConfig = {
     { label: "Offers", href: "/offers/" },
     { label: "Branchwise", href: "/branchwise/" },
     { label: "Timeline", href: "/timeline/" },
-    { label: "Submit Data", href: "/corrections/" }
+    { label: "Submit Data", href: "/corrections/" },
+    { label: "Feedback", href: "/feedback/" }
   ],
 
   // Footer Actions
