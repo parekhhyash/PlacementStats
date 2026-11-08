@@ -301,6 +301,29 @@ html, body {
   }
 }
 
+/* Footer boxes hover rules: keep text and arrows white */
+.footer-arrow-circle {
+  border-color: var(--color-line-strong);
+  color: #ededed !important;
+}
+.group:hover .footer-arrow-circle {
+  border-color: #ededed !important;
+  color: #ededed !important;
+}
+.group:hover .footer-arrow-circle svg {
+  stroke: #ededed !important;
+  color: #ededed !important;
+}
+.group:hover .footer-arrow-circle path {
+  stroke: #ededed !important;
+}
+.footer-box-title {
+  color: #ededed !important;
+}
+.group:hover .footer-box-title {
+  color: #ededed !important;
+}
+
 
 
 
