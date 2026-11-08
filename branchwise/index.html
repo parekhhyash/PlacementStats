@@ -228,41 +228,45 @@
           </div>
 
           <!-- Timeline-Style Grid Bar Graph -->
-          <div class="mt-8 grid grid-cols-4 gap-4 sm:gap-8 items-end h-[220px] pt-4 max-w-xl mx-auto">
+          <div class="mt-8 pt-4 max-w-xl mx-auto" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; align-items: end; height: 260px;">
             <!-- CE Column -->
-            <div class="timeline-branch-col flex flex-col items-center gap-2 h-full justify-end cursor-pointer group" data-branch="ce" title="Computer Engineering: 61 offers (Click to filter)">
-              <span class="num text-[14px] text-fg font-medium">61</span>
-              <div class="w-full max-w-[60px] bg-line border border-line-strong overflow-hidden flex flex-col justify-end transition-opacity group-hover:opacity-80" style="height: 55%;">
-                <div style="height: 100%; background: #10b981;"></div>
+            <div class="timeline-branch-col flex flex-col items-center gap-2 cursor-pointer group" data-branch="ce" title="Computer Engineering: 61 offers (Click to filter)" style="height: 100%; justify-content: flex-end;">
+              <span class="num text-[14px] sm:text-[15px] text-fg font-medium font-mono">61</span>
+              <div class="w-full border border-line-strong transition-opacity group-hover:opacity-80" style="max-width: 56px; height: 88px; background-color: #10b981; border-radius: 0;"></div>
+              <div class="flex flex-col items-center text-center mt-1">
+                <span class="label text-[13px] font-semibold text-fg">CE</span>
+                <span class="label text-[11px] text-muted font-mono">25.8%</span>
               </div>
-              <span class="label text-[12px] text-fg font-medium">CE</span>
             </div>
 
             <!-- CSE Column -->
-            <div class="timeline-branch-col flex flex-col items-center gap-2 h-full justify-end cursor-pointer group" data-branch="cse" title="Computer Science Engineering: 44 offers (Click to filter)">
-              <span class="num text-[14px] text-fg font-medium">44</span>
-              <div class="w-full max-w-[60px] bg-line border border-line-strong overflow-hidden flex flex-col justify-end transition-opacity group-hover:opacity-80" style="height: 40%;">
-                <div style="height: 100%; background: #38bdf8;"></div>
+            <div class="timeline-branch-col flex flex-col items-center gap-2 cursor-pointer group" data-branch="cse" title="Computer Science Engineering: 44 offers (Click to filter)" style="height: 100%; justify-content: flex-end;">
+              <span class="num text-[14px] sm:text-[15px] text-fg font-medium font-mono">44</span>
+              <div class="w-full border border-line-strong transition-opacity group-hover:opacity-80" style="max-width: 56px; height: 63px; background-color: #38bdf8; border-radius: 0;"></div>
+              <div class="flex flex-col items-center text-center mt-1">
+                <span class="label text-[13px] font-semibold text-fg">CSE</span>
+                <span class="label text-[11px] text-muted font-mono">18.6%</span>
               </div>
-              <span class="label text-[12px] text-fg font-medium">CSE</span>
             </div>
 
             <!-- EXTC Column -->
-            <div class="timeline-branch-col flex flex-col items-center gap-2 h-full justify-end cursor-pointer group" data-branch="extc" title="Electronics & Telecommunications: 20 offers (Click to filter)">
-              <span class="num text-[14px] text-fg font-medium">20</span>
-              <div class="w-full max-w-[60px] bg-line border border-line-strong overflow-hidden flex flex-col justify-end transition-opacity group-hover:opacity-80" style="height: 18%;">
-                <div style="height: 100%; background: #f43f5e;"></div>
+            <div class="timeline-branch-col flex flex-col items-center gap-2 cursor-pointer group" data-branch="extc" title="Electronics & Telecommunications: 20 offers (Click to filter)" style="height: 100%; justify-content: flex-end;">
+              <span class="num text-[14px] sm:text-[15px] text-fg font-medium font-mono">20</span>
+              <div class="w-full border border-line-strong transition-opacity group-hover:opacity-80" style="max-width: 56px; height: 29px; background-color: #f43f5e; border-radius: 0;"></div>
+              <div class="flex flex-col items-center text-center mt-1">
+                <span class="label text-[13px] font-semibold text-fg">EXTC</span>
+                <span class="label text-[11px] text-muted font-mono">8.5%</span>
               </div>
-              <span class="label text-[12px] text-fg font-medium">EXTC</span>
             </div>
 
             <!-- Unknown Column -->
-            <div class="timeline-branch-col flex flex-col items-center gap-2 h-full justify-end cursor-pointer group" data-branch="unknown" title="Unknown / Awaiting Division: 111 offers (Click to filter)">
-              <span class="num text-[14px] text-fg font-medium">111</span>
-              <div class="w-full max-w-[60px] bg-line border border-line-strong overflow-hidden flex flex-col justify-end transition-opacity group-hover:opacity-80" style="height: 100%;">
-                <div style="height: 100%; background: #71717a;"></div>
+            <div class="timeline-branch-col flex flex-col items-center gap-2 cursor-pointer group" data-branch="unknown" title="Unknown / Awaiting Division: 111 offers (Click to filter)" style="height: 100%; justify-content: flex-end;">
+              <span class="num text-[14px] sm:text-[15px] text-fg font-medium font-mono">111</span>
+              <div class="w-full border border-line-strong transition-opacity group-hover:opacity-80" style="max-width: 56px; height: 160px; background-color: #71717a; border-radius: 0;"></div>
+              <div class="flex flex-col items-center text-center mt-1">
+                <span class="label text-[13px] font-semibold text-fg">Unknown</span>
+                <span class="label text-[11px] text-muted font-mono">47.0%</span>
               </div>
-              <span class="label text-[12px] text-fg font-medium">Unknown</span>
             </div>
           </div>
 
