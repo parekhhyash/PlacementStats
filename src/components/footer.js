@@ -5,32 +5,30 @@ export function renderFooter() {
     <footer class="wrap mt-24 border-t border-line">
       <div class="grid grid-cols-2 items-start gap-2.5 py-6 lg:grid-cols-3 lg:py-8">
         <!-- 01 Feedback -->
-        <a class="group relative isolate flex min-h-[128px] flex-col justify-between overflow-hidden rounded-2xl border border-line-strong p-4 transition-colors duration-300 hover:border-fg sm:min-h-[142px] sm:p-5" href="${siteConfig.footer.feedbackLink}">
-          <span aria-hidden="true" class="absolute inset-0 -z-10 origin-bottom scale-y-0 bg-fg transition-transform duration-500 ease-[var(--ease)] group-hover:scale-y-100 group-focus-visible:scale-y-100"></span>
+        <a class="group relative isolate flex min-h-[128px] flex-col justify-between overflow-hidden rounded-2xl border border-line-strong bg-panel p-4 transition-all duration-300 hover:border-fg sm:min-h-[142px] sm:p-5" href="${siteConfig.footer.feedbackLink}">
           <span class="flex items-start justify-between">
-            <span class="label text-faint transition-colors group-hover:text-bg/50">01</span>
-            <span class="grid size-10 place-items-center rounded-full border border-line-strong transition-all duration-300 group-hover:rotate-[-45deg] group-hover:border-bg group-hover:bg-bg group-hover:text-fg">
+            <span class="label text-faint transition-colors group-hover:text-muted">01</span>
+            <span class="grid size-10 place-items-center rounded-full border border-line-strong text-fg transition-all duration-300 group-hover:rotate-[-45deg] group-hover:border-fg group-hover:bg-line-strong">
               <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg>
             </span>
           </span>
           <span>
-            <span class="block font-display text-[clamp(19px,1.8vw,26px)] leading-[1.05] tracking-[-0.03em] transition-colors group-hover:text-bg">Give feedback</span>
-            <span class="mt-1.5 block text-[12px] leading-snug text-muted transition-colors group-hover:text-bg/70 max-sm:hidden">Rate the site and tell us what to improve. Anonymous.</span>
+            <span class="block font-display text-[clamp(19px,1.8vw,26px)] leading-[1.05] tracking-[-0.03em] text-fg transition-colors group-hover:text-fg">Give feedback</span>
+            <span class="mt-1.5 block text-[12px] leading-snug text-muted transition-colors group-hover:text-muted max-sm:hidden">Rate the site and tell us what to improve. Anonymous.</span>
           </span>
         </a>
 
         <!-- 02 Correction -->
-        <a class="group relative isolate flex min-h-[128px] flex-col justify-between overflow-hidden rounded-2xl border border-line-strong p-4 transition-colors duration-300 hover:border-fg sm:min-h-[142px] sm:p-5" href="${siteConfig.footer.correctionLink}">
-          <span aria-hidden="true" class="absolute inset-0 -z-10 origin-bottom scale-y-0 bg-fg transition-transform duration-500 ease-[var(--ease)] group-hover:scale-y-100 group-focus-visible:scale-y-100"></span>
+        <a class="group relative isolate flex min-h-[128px] flex-col justify-between overflow-hidden rounded-2xl border border-line-strong bg-panel p-4 transition-all duration-300 hover:border-fg sm:min-h-[142px] sm:p-5" href="${siteConfig.footer.correctionLink}">
           <span class="flex items-start justify-between">
-            <span class="label text-faint transition-colors group-hover:text-bg/50">02</span>
-            <span class="grid size-10 place-items-center rounded-full border border-line-strong transition-all duration-300 group-hover:rotate-[-45deg] group-hover:border-bg group-hover:bg-bg group-hover:text-fg">
+            <span class="label text-faint transition-colors group-hover:text-muted">02</span>
+            <span class="grid size-10 place-items-center rounded-full border border-line-strong text-fg transition-all duration-300 group-hover:rotate-[-45deg] group-hover:border-fg group-hover:bg-line-strong">
               <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg>
             </span>
           </span>
           <span>
-            <span class="block font-display text-[clamp(19px,1.8vw,26px)] leading-[1.05] tracking-[-0.03em] transition-colors group-hover:text-bg">Report a correction</span>
-            <span class="mt-1.5 block text-[12px] leading-snug text-muted transition-colors group-hover:text-bg/70 max-sm:hidden">A wrong figure, date or detail? Tell us and we’ll check it.</span>
+            <span class="block font-display text-[clamp(19px,1.8vw,26px)] leading-[1.05] tracking-[-0.03em] text-fg transition-colors group-hover:text-fg">Report a correction</span>
+            <span class="mt-1.5 block text-[12px] leading-snug text-muted transition-colors group-hover:text-muted max-sm:hidden">A wrong figure, date or detail? Tell us and we’ll check it.</span>
           </span>
         </a>
 
@@ -44,15 +42,15 @@ export function renderFooter() {
                   <span>Share · Spread the word · ${siteConfig.siteTitle} · Share · Spread the word · ${siteConfig.siteTitle} · </span>
                 </div>
               </div>
-              <button id="share-toggle-btn" type="button" aria-expanded="false" class="flex min-h-[126px] w-full flex-col justify-between bg-gradient-to-t from-bg via-bg/40 to-transparent p-4 text-left sm:min-h-[140px] sm:p-5">
+              <button id="share-toggle-btn" type="button" aria-expanded="false" class="flex min-h-[126px] w-full flex-col justify-between bg-gradient-to-t from-bg via-bg/40 to-transparent p-4 text-left sm:min-h-[140px] sm:p-5 cursor-pointer">
                 <span class="flex items-start justify-between gap-4">
                   <span class="label text-faint">03 · Spread the word</span>
                   <span class="relative grid size-10 shrink-0 place-items-center">
                     <span aria-hidden="true" class="share-ripple absolute inset-0 rounded-full border" style="border-color:var(--color-intern);animation-delay:0s"></span>
                     <span aria-hidden="true" class="share-ripple absolute inset-0 rounded-full border" style="border-color:var(--color-fulltime);animation-delay:0.8s"></span>
                     <span aria-hidden="true" class="share-ripple absolute inset-0 rounded-full border" style="border-color:var(--color-ppo);animation-delay:1.6s"></span>
-                    <span class="relative grid size-10 place-items-center rounded-full bg-fg text-bg transition-transform duration-500 ease-[var(--ease)] group-hover:scale-110">
-                      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                    <span class="relative grid size-10 place-items-center rounded-full border border-line-strong bg-line-strong text-fg transition-all duration-300 group-hover:scale-110 group-hover:border-fg">
+                      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true">
                         <path d="M14.5 1.5 7 9M14.5 1.5 10 14.5 7 9 1.5 6l13-4.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
                       </svg>
                     </span>
@@ -68,16 +66,19 @@ export function renderFooter() {
             <!-- Expandable Share Options Tray -->
             <div id="share-options-tray" class="hidden border-t border-line p-4 sm:px-5">
               <div class="flex flex-wrap items-center gap-2.5">
-                <button id="copy-link-btn" type="button" class="label rounded-full bg-fg px-4 py-2 text-bg transition-opacity hover:opacity-90 inline-flex items-center gap-2">
+                <button id="copy-link-btn" type="button" class="label rounded-full border border-line-strong bg-panel px-4 py-2 text-fg font-medium transition-all hover:border-fg hover:bg-line-strong inline-flex items-center gap-2 cursor-pointer">
                   <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
                     <rect x="5" y="5" width="8" height="8" rx="1.5"/>
                     <path d="M3 11V3a1.5 1.5 0 011.5-1.5H11"/>
                   </svg>
                   <span id="copy-text">Copy link</span>
                 </button>
-                <a id="share-whatsapp" target="_blank" rel="noopener noreferrer" class="label rounded-full border border-line-strong px-4 py-2 text-muted transition-colors hover:border-fg hover:text-fg" href="https://api.whatsapp.com/send?text=${encodeURIComponent(siteConfig.siteTitle + ' - ' + siteConfig.collegeName + ' Placement Stats: ' + window.location.origin)}">WhatsApp</a>
-                <a id="share-twitter" target="_blank" rel="noopener noreferrer" class="label rounded-full border border-line-strong px-4 py-2 text-muted transition-colors hover:border-fg hover:text-fg" href="https://twitter.com/intent/tweet?text=${encodeURIComponent(siteConfig.siteTitle + ' - Campus Placement Stats for ' + siteConfig.collegeName)}">Twitter / X</a>
-                <a id="share-linkedin" target="_blank" rel="noopener noreferrer" class="label rounded-full border border-line-strong px-4 py-2 text-muted transition-colors hover:border-fg hover:text-fg" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.origin)}">LinkedIn</a>
+                <a id="share-whatsapp" target="_blank" rel="noopener noreferrer" class="label rounded-full border border-line-strong bg-panel px-4 py-2 text-fg font-medium transition-all hover:border-[#25D366] hover:text-[#25D366] hover:bg-line-strong/50 inline-flex items-center gap-2 cursor-pointer" href="https://api.whatsapp.com/send?text=${encodeURIComponent(siteConfig.siteTitle + ' - ' + siteConfig.collegeName + ' Placement Stats')}">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                  </svg>
+                  <span>WhatsApp</span>
+                </a>
               </div>
             </div>
           </div>
@@ -102,6 +103,11 @@ export function initFooter() {
   const tray = document.getElementById('share-options-tray');
   const copyBtn = document.getElementById('copy-link-btn');
   const copyText = document.getElementById('copy-text');
+  const waLink = document.getElementById('share-whatsapp');
+
+  if (waLink && typeof window !== 'undefined') {
+    waLink.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(siteConfig.siteTitle + ' · ' + siteConfig.collegeShort + ' Placement Stats: ' + window.location.href)}`;
+  }
 
   if (toggleBtn && tray) {
     toggleBtn.addEventListener('click', () => {
@@ -129,3 +135,4 @@ export function initFooter() {
     });
   }
 }
+
