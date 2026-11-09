@@ -27,7 +27,7 @@ function generateBranchesPage() {
 
     <div class="wrap">
       <!-- 4-Column Headline Metrics -->
-      <dl id="branches-headline-metrics" class="grid grid-cols-2 border-t border-line sm:grid-cols-4">
+      <dl id="branches-headline-metrics" class="grid grid-cols-2 sm:grid-cols-4">
         <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5 sm:first:pl-0">
           <dd class="mb-2 flex items-center gap-2.5 text-[12px] font-mono">
             <span class="text-faint">Avg: <strong class="text-fg font-semibold">₹15.55 LPA</strong></span>
@@ -173,7 +173,7 @@ function generateBranchesPage() {
                     <div class="h-full rounded-full transition-all duration-500" style="width: ${b.percentage}%; background-color: ${b.color};"></div>
                   </div>
                   <!-- Average & Median CTC Metrics -->
-                  <div class="mt-3.5 border-t border-line pt-3 grid grid-cols-2 gap-2 text-[12px]">
+                  <div class="mt-3.5 grid grid-cols-2 gap-2 text-[12px]">
                     <div>
                       <span class="text-[10px] text-faint uppercase font-mono tracking-wider block">Average CTC</span>
                       <span class="font-display text-[15px] font-bold text-fg font-mono mt-0.5 block">${b.averageCTC}</span>
