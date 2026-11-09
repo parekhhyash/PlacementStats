@@ -408,7 +408,7 @@ function generateAdminPage() {
                       <input id="field-branch-unknown" type="number" min="0" value="0" placeholder="0" class="field-company-branch-input w-full rounded-xl border border-line-strong bg-bg px-3 py-2 text-center text-[15px] font-mono font-bold text-muted outline-none focus:border-fg" />
                     </div>
                   </div>
-                  <div class="mt-3 pt-2.5 border-t border-line/60 flex items-center justify-between text-[12px] text-faint">
+                  <div class="mt-3 pt-2.5 border-t border-line flex items-center justify-between text-[12px] text-faint">
                     <span>Sum of branches: <strong id="field-branch-total-disp" class="text-fg font-mono">0</strong></span>
                     <span>Synchronizes with the Branch Distribution view</span>
                   </div>
@@ -911,7 +911,7 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
               </div>
             </div>
 
-            <div class="mt-3.5 pt-3 border-t border-line/60 flex items-center justify-between text-[13px]">
+            <div class="mt-3.5 pt-3 border-t border-line flex items-center justify-between text-[13px]">
               <span class="text-muted">Total Selections Sum:</span>
               <span class="flex items-center gap-2">
                 <input id="branch-field-total" type="number" min="0" value="0" class="w-20 rounded-lg border border-line-strong bg-bg px-2 py-1 text-center font-mono font-bold text-fg" />

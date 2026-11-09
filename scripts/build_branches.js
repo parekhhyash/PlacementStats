@@ -29,56 +29,56 @@ function generateBranchesPage() {
       <!-- 4-Column Headline Metrics -->
       <dl id="branches-headline-metrics" class="grid grid-cols-2 border-t border-line sm:grid-cols-4">
         <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5 sm:first:pl-0">
+          <dd class="mb-2 flex items-center gap-2.5 text-[12px] font-mono">
+            <span class="text-faint">Avg: <strong class="text-fg font-semibold">₹15.55 LPA</strong></span>
+            <span class="text-line-strong">·</span>
+            <span class="text-faint">Med: <strong class="text-fg font-semibold">₹15.00 LPA</strong></span>
+          </dd>
           <dt class="order-2 mt-2 text-muted text-[13px] flex items-center gap-2">
             <span class="size-2 rounded-full" style="background:#10b981"></span>
             Computer Engineering
           </dt>
           <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">61</dd>
           <dd class="label order-3 mt-1 text-[11px] text-faint">25.8% of total · 48.8% of known</dd>
-          <dd class="order-4 mt-3 pt-2.5 border-t border-line/60 flex items-center gap-2.5 text-[12px] font-mono">
-            <span class="text-faint">Avg: <strong class="text-fg font-semibold">₹15.55 LPA</strong></span>
-            <span class="text-line-strong">·</span>
-            <span class="text-faint">Med: <strong class="text-fg font-semibold">₹15.00 LPA</strong></span>
-          </dd>
         </div>
         <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
+          <dd class="mb-2 flex items-center gap-2.5 text-[12px] font-mono">
+            <span class="text-faint">Avg: <strong class="text-fg font-semibold">₹15.75 LPA</strong></span>
+            <span class="text-line-strong">·</span>
+            <span class="text-faint">Med: <strong class="text-fg font-semibold">₹15.05 LPA</strong></span>
+          </dd>
           <dt class="order-2 mt-2 text-muted text-[13px] flex items-center gap-2">
             <span class="size-2 rounded-full" style="background:#38bdf8"></span>
             Computer Science Engg
           </dt>
           <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">44</dd>
           <dd class="label order-3 mt-1 text-[11px] text-faint">18.6% of total · 35.2% of known</dd>
-          <dd class="order-4 mt-3 pt-2.5 border-t border-line/60 flex items-center gap-2.5 text-[12px] font-mono">
-            <span class="text-faint">Avg: <strong class="text-fg font-semibold">₹15.75 LPA</strong></span>
-            <span class="text-line-strong">·</span>
-            <span class="text-faint">Med: <strong class="text-fg font-semibold">₹15.05 LPA</strong></span>
-          </dd>
         </div>
         <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
+          <dd class="mb-2 flex items-center gap-2.5 text-[12px] font-mono">
+            <span class="text-faint">Avg: <strong class="text-fg font-semibold">₹12.30 LPA</strong></span>
+            <span class="text-line-strong">·</span>
+            <span class="text-faint">Med: <strong class="text-fg font-semibold">₹12.00 LPA</strong></span>
+          </dd>
           <dt class="order-2 mt-2 text-muted text-[13px] flex items-center gap-2">
             <span class="size-2 rounded-full" style="background:#f43f5e"></span>
             Electronics &amp; Telecom
           </dt>
           <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">20</dd>
           <dd class="label order-3 mt-1 text-[11px] text-faint">8.5% of total · 16.0% of known</dd>
-          <dd class="order-4 mt-3 pt-2.5 border-t border-line/60 flex items-center gap-2.5 text-[12px] font-mono">
-            <span class="text-faint">Avg: <strong class="text-fg font-semibold">₹12.30 LPA</strong></span>
-            <span class="text-line-strong">·</span>
-            <span class="text-faint">Med: <strong class="text-fg font-semibold">₹12.00 LPA</strong></span>
-          </dd>
         </div>
         <div class="flex flex-col py-5 pr-4 sm:px-5">
+          <dd class="mb-2 flex items-center gap-2.5 text-[12px] font-mono">
+            <span class="text-faint">Avg: <strong class="text-fg font-semibold">₹13.45 LPA</strong></span>
+            <span class="text-line-strong">·</span>
+            <span class="text-faint">Med: <strong class="text-fg font-semibold">₹14.00 LPA</strong></span>
+          </dd>
           <dt class="order-2 mt-2 text-muted text-[13px] flex items-center gap-2">
             <span class="size-2 rounded-full" style="background:#71717a"></span>
             Unknown / Awaiting Division
           </dt>
           <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">111</dd>
           <dd class="label order-3 mt-1 text-[11px] text-faint">47.0% pending author division</dd>
-          <dd class="order-4 mt-3 pt-2.5 border-t border-line/60 flex items-center gap-2.5 text-[12px] font-mono">
-            <span class="text-faint">Avg: <strong class="text-fg font-semibold">₹13.45 LPA</strong></span>
-            <span class="text-line-strong">·</span>
-            <span class="text-faint">Med: <strong class="text-fg font-semibold">₹14.00 LPA</strong></span>
-          </dd>
         </div>
       </dl>
 
@@ -150,7 +150,7 @@ function generateBranchesPage() {
           </div>
 
           <!-- Branch Detail Cards Grid -->
-          <div id="branch-cards-grid" class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-6 border-t border-line/60">
+          <div id="branch-cards-grid" class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-6 border-t border-line">
             ${branchSummary.branches.map(b => `
               <div class="card-branch group cursor-pointer rounded-xl border border-line-strong bg-bg p-5 transition-all hover:border-fg/40 hover:bg-panel flex flex-col justify-between" data-branch="${b.id}">
                 <div>
@@ -173,7 +173,7 @@ function generateBranchesPage() {
                     <div class="h-full rounded-full transition-all duration-500" style="width: ${b.percentage}%; background-color: ${b.color};"></div>
                   </div>
                   <!-- Average & Median CTC Metrics -->
-                  <div class="mt-3.5 border-t border-line/50 pt-3 grid grid-cols-2 gap-2 text-[12px]">
+                  <div class="mt-3.5 border-t border-line pt-3 grid grid-cols-2 gap-2 text-[12px]">
                     <div>
                       <span class="text-[10px] text-faint uppercase font-mono tracking-wider block">Average CTC</span>
                       <span class="font-display text-[15px] font-bold text-fg font-mono mt-0.5 block">${b.averageCTC}</span>

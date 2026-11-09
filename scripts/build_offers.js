@@ -307,7 +307,7 @@ function generateOffersPage() {
           </div>
 
           <!-- Spectrum Sub-Legend -->
-          <div id="role-spectrum-legend" class="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 border-t border-line/60">
+          <div id="role-spectrum-legend" class="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 border-t border-line">
             ${roleDomainStats.filter(d => d.count > 0).map(d => `
               <button type="button" class="role-legend-item group flex items-center gap-2 text-[12px] text-muted hover:text-fg transition-colors" data-domain="${d.key}">
                 <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background-color: ${d.color};"></span>
