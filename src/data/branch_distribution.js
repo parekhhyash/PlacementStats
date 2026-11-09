@@ -4,6 +4,11 @@
 export const branchSummary = {
   total: 236,
   knownTotal: 125,
+  overallAverageCTC: "₹14.28 LPA",
+  overallMedianCTC: "₹14.70 LPA",
+  overallHighestCTC: "₹33.0 LPA",
+  knownDistributionAverageCTC: "₹15.24 LPA",
+  knownDistributionMedianCTC: "₹15.00 LPA",
   branches: [
     {
       id: "ce",
@@ -14,6 +19,11 @@ export const branchSummary = {
       knownPercentage: "48.8",
       color: "#10b981",
       recruiterCount: 28,
+      averageCTC: "₹15.55 LPA",
+      medianCTC: "₹15.00 LPA",
+      highestCTC: "₹33.0 LPA",
+      knownOffersWithCTC: 46,
+      topPayingRecruiter: "PhonePe (₹33 LPA)",
       topRecruiters: ["Barclays (7)", "Russell Investments (6)", "ISS-STOXX (6)", "JPMC (5)", "PhonePe (4)", "TransUnion (4)"]
     },
     {
@@ -25,6 +35,11 @@ export const branchSummary = {
       knownPercentage: "35.2",
       color: "#38bdf8",
       recruiterCount: 22,
+      averageCTC: "₹15.75 LPA",
+      medianCTC: "₹15.05 LPA",
+      highestCTC: "₹33.0 LPA",
+      knownOffersWithCTC: 30,
+      topPayingRecruiter: "PhonePe (₹33 LPA)",
       topRecruiters: ["JPMC (7)", "Barclays (5)", "AuxoAI (3)", "Capgemini (3)", "IDFC FIRST Bank (3)", "ISS-STOXX (3)"]
     },
     {
@@ -36,6 +51,11 @@ export const branchSummary = {
       knownPercentage: "16.0",
       color: "#f43f5e",
       recruiterCount: 12,
+      averageCTC: "₹12.30 LPA",
+      medianCTC: "₹12.00 LPA",
+      highestCTC: "₹18.0 LPA",
+      knownOffersWithCTC: 10,
+      topPayingRecruiter: "Futures First (₹18 LPA)",
       topRecruiters: ["JPMC (8)", "BlackRock (2)", "Colgate-Palmolive (2)", "Quantiphi (2)", "AspectRatio (1)", "Futures First (1)"]
     },
     {
@@ -47,6 +67,11 @@ export const branchSummary = {
       knownPercentage: "—",
       color: "#71717a",
       recruiterCount: 30,
+      averageCTC: "₹13.45 LPA",
+      medianCTC: "₹14.00 LPA",
+      highestCTC: "₹33.0 LPA",
+      knownOffersWithCTC: 99,
+      topPayingRecruiter: "Barclays (₹15.05 LPA)",
       topRecruiters: ["Barclays (16)", "Mahindra Finance (8)", "GEP (7)", "UBS (8)", "Wissen (7)", "Colgate (6)"]
     }
   ]
