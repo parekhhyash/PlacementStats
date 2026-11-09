@@ -134,6 +134,55 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 200, { success: true, message: `Company '${slug}' deleted and site rebuilt.`, count: result.count });
       }
 
+      // 4b. GET /api/branch-distribution?batch=2027
+      if (pathname === '/api/branch-distribution' && req.method === 'GET') {
+        const batch = parsedUrl.searchParams.get('batch') || '2027';
+        const items = dataManager.getBranchDistribution(batch);
+        return sendJson(res, 200, { success: true, batch, count: items.length, items });
+      }
+
+      // 4c. POST /api/branch-distribution
+      if (pathname === '/api/branch-distribution' && req.method === 'POST') {
+        const body = await parseJsonBody(req);
+        const batch = body.batch || '2027';
+        const item = body.item || body;
+
+        if (!item || !item.company) {
+          return sendJson(res, 400, { success: false, error: 'Company name is required' });
+        }
+
+        const result = dataManager.saveBranchDistributionItem(item, batch);
+        return sendJson(res, 200, {
+          success: true,
+          batch,
+          message: `Branch distribution for '${item.company}' saved and site rebuilt.`,
+          item: result.item,
+          count: result.count
+        });
+      }
+
+      // 4d. DELETE /api/branch-distribution
+      if (pathname === '/api/branch-distribution' && (req.method === 'DELETE' || req.method === 'POST')) {
+        let target = parsedUrl.searchParams.get('id') || parsedUrl.searchParams.get('rawName');
+        let batch = parsedUrl.searchParams.get('batch') || '2027';
+
+        if (!target && req.method === 'POST') {
+          const body = await parseJsonBody(req);
+          target = body.id || body.rawName || body.slug;
+          if (body.batch) batch = body.batch;
+        }
+
+        if (!target) {
+          return sendJson(res, 400, { success: false, error: 'Target identifier is required' });
+        }
+
+        const result = dataManager.deleteBranchDistributionItem(target, batch);
+        if (!result.success) {
+          return sendJson(res, 404, { success: false, error: result.message || 'Branch record not found' });
+        }
+        return sendJson(res, 200, { success: true, message: `Branch record deleted.`, count: result.count });
+      }
+
       // 5. GET /api/logos
       if (pathname === '/api/logos' && req.method === 'GET') {
         const logosDir = path.join(__dirname, 'public', 'logos');

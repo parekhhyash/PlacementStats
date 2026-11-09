@@ -110,6 +110,12 @@ function generateAdminPage() {
           <span id="badge-companies-count" class="rounded-full bg-line px-2 py-0.5 text-[11px] font-mono">--</span>
         </button>
 
+        <button id="nav-btn-branch-data" type="button" class="admin-main-nav-btn flex items-center gap-2 border-b-2 border-transparent px-4 py-3 text-[14px] font-medium text-muted hover:text-fg transition-colors cursor-pointer" data-view="view-branch-data">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+          <span>Branch Distribution</span>
+          <span id="badge-branch-data-count" class="rounded-full bg-intern/20 text-intern font-bold px-2 py-0.5 text-[11px] font-mono">38</span>
+        </button>
+
         <button id="nav-btn-branch-submissions" type="button" class="admin-main-nav-btn flex items-center gap-2 border-b-2 border-transparent px-4 py-3 text-[14px] font-medium text-muted hover:text-fg transition-colors cursor-pointer" data-view="view-branch-submissions">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
           <span>Branch Submissions</span>
@@ -366,6 +372,48 @@ function generateAdminPage() {
               <div id="roles-repeater-container" class="space-y-4">
                 <!-- Injected via JavaScript -->
               </div>
+
+              <!-- Department Selections Breakdown (CE, CSE, EXTC, Unknown) -->
+              <div class="mt-8 border-t border-line pt-6">
+                <div class="flex items-center justify-between mb-3">
+                  <div>
+                    <h4 class="font-display text-[16px] text-fg">Confirmed Department Selections</h4>
+                    <p class="text-[12px] text-muted">Branch-wise breakdown for this recruiter drive. Updates branch analytics.</p>
+                  </div>
+                </div>
+                <div class="rounded-2xl border border-line bg-bg/50 p-4">
+                  <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div>
+                      <label class="block text-[12px] font-semibold text-[#10b981] mb-1 flex items-center gap-1">
+                        <span class="size-2 rounded-full bg-[#10b981]"></span>CE Offers
+                      </label>
+                      <input id="field-branch-ce" type="number" min="0" value="0" placeholder="0" class="field-company-branch-input w-full rounded-xl border border-line-strong bg-bg px-3 py-2 text-center text-[15px] font-mono font-bold text-fg outline-none focus:border-[#10b981]" />
+                    </div>
+                    <div>
+                      <label class="block text-[12px] font-semibold text-[#38bdf8] mb-1 flex items-center gap-1">
+                        <span class="size-2 rounded-full bg-[#38bdf8]"></span>CSE Offers
+                      </label>
+                      <input id="field-branch-cse" type="number" min="0" value="0" placeholder="0" class="field-company-branch-input w-full rounded-xl border border-line-strong bg-bg px-3 py-2 text-center text-[15px] font-mono font-bold text-fg outline-none focus:border-[#38bdf8]" />
+                    </div>
+                    <div>
+                      <label class="block text-[12px] font-semibold text-[#f43f5e] mb-1 flex items-center gap-1">
+                        <span class="size-2 rounded-full bg-[#f43f5e]"></span>EXTC Offers
+                      </label>
+                      <input id="field-branch-extc" type="number" min="0" value="0" placeholder="0" class="field-company-branch-input w-full rounded-xl border border-line-strong bg-bg px-3 py-2 text-center text-[15px] font-mono font-bold text-fg outline-none focus:border-[#f43f5e]" />
+                    </div>
+                    <div>
+                      <label class="block text-[12px] font-semibold text-muted mb-1 flex items-center gap-1">
+                        <span class="size-2 rounded-full bg-[#71717a]"></span>Unknown Offers
+                      </label>
+                      <input id="field-branch-unknown" type="number" min="0" value="0" placeholder="0" class="field-company-branch-input w-full rounded-xl border border-line-strong bg-bg px-3 py-2 text-center text-[15px] font-mono font-bold text-muted outline-none focus:border-fg" />
+                    </div>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-line/60 flex items-center justify-between text-[12px] text-faint">
+                    <span>Sum of branches: <strong id="field-branch-total-disp" class="text-fg font-mono">0</strong></span>
+                    <span>Synchronizes with the Branch Distribution view</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- Tab 4: Selection Funnel -->
@@ -425,6 +473,118 @@ function generateAdminPage() {
         </div>
       </div>
     </div> <!-- End view-companies -->
+
+    <!-- VIEW: Branch Distribution Manager -->
+    <div id="view-branch-data" class="admin-view-tab hidden mt-8">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-line pb-6">
+        <div>
+          <div class="flex items-center gap-2.5">
+            <span class="chip font-mono text-[11px] text-intern border-intern/40 bg-intern/10">Department Analytics</span>
+            <span id="badge-branch-total-drives" class="label text-faint">38 drives</span>
+          </div>
+          <h2 class="display-m mt-2 text-[24px] sm:text-[28px]">Branch-Wise Distribution Manager</h2>
+          <p class="text-[14px] text-muted mt-1 max-w-[68ch]">
+            Directly view, edit, add, or delete verified departmental placement records (CE, CSE, EXTC, Unknown) across all recruiter drives. Changes sync directly to Supabase Postgres.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <button id="btn-refresh-branch-data" type="button" class="cursor-pointer inline-flex items-center gap-2 rounded-full border border-line-strong px-4 py-2 text-[13px] text-muted hover:border-fg hover:text-fg transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+            <span>Refresh</span>
+          </button>
+          <button id="btn-open-add-branch-modal" type="button" class="cursor-pointer inline-flex items-center gap-2 rounded-full bg-fg text-bg px-5 py-2 text-[13px] font-medium transition-opacity hover:opacity-90">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>+ Add Branch Record</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Metrics Strip -->
+      <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div class="rounded-2xl border border-line-strong bg-panel p-4">
+          <span class="text-[11px] text-faint font-mono uppercase tracking-wider block">Total Offers</span>
+          <span id="stat-bd-total" class="font-display text-[22px] font-bold text-fg mt-1 block font-mono">236</span>
+          <span class="text-[11px] text-muted block mt-0.5">Across all drives</span>
+        </div>
+        <div class="rounded-2xl border border-line-strong bg-panel p-4">
+          <span class="text-[11px] text-faint font-mono uppercase tracking-wider block">Known Authors</span>
+          <span id="stat-bd-known" class="font-display text-[22px] font-bold text-intern mt-1 block font-mono">125</span>
+          <span id="stat-bd-known-pct" class="text-[11px] text-muted block mt-0.5">53.0% resolved</span>
+        </div>
+        <div class="rounded-2xl border border-line-strong bg-panel p-4 border-l-2 border-l-[#10b981]">
+          <span class="text-[11px] text-[#10b981] font-mono uppercase tracking-wider block flex items-center gap-1.5">
+            <span class="size-2 rounded-full bg-[#10b981]"></span>Comp Engg (CE)
+          </span>
+          <span id="stat-bd-ce" class="font-display text-[22px] font-bold text-fg mt-1 block font-mono">61</span>
+          <span id="stat-bd-ce-pct" class="text-[11px] text-muted block mt-0.5">25.8% (28 drives)</span>
+        </div>
+        <div class="rounded-2xl border border-line-strong bg-panel p-4 border-l-2 border-l-[#38bdf8]">
+          <span class="text-[11px] text-[#38bdf8] font-mono uppercase tracking-wider block flex items-center gap-1.5">
+            <span class="size-2 rounded-full bg-[#38bdf8]"></span>Comp Sci (CSE)
+          </span>
+          <span id="stat-bd-cse" class="font-display text-[22px] font-bold text-fg mt-1 block font-mono">44</span>
+          <span id="stat-bd-cse-pct" class="text-[11px] text-muted block mt-0.5">18.6% (22 drives)</span>
+        </div>
+        <div class="rounded-2xl border border-line-strong bg-panel p-4 border-l-2 border-l-[#f43f5e]">
+          <span class="text-[11px] text-[#f43f5e] font-mono uppercase tracking-wider block flex items-center gap-1.5">
+            <span class="size-2 rounded-full bg-[#f43f5e]"></span>Telecom (EXTC)
+          </span>
+          <span id="stat-bd-extc" class="font-display text-[22px] font-bold text-fg mt-1 block font-mono">20</span>
+          <span id="stat-bd-extc-pct" class="text-[11px] text-muted block mt-0.5">8.5% (12 drives)</span>
+        </div>
+        <div class="rounded-2xl border border-line-strong bg-panel p-4 border-l-2 border-l-[#71717a]">
+          <span class="text-[11px] text-faint font-mono uppercase tracking-wider block flex items-center gap-1.5">
+            <span class="size-2 rounded-full bg-[#71717a]"></span>Unknown / Awaiting
+          </span>
+          <span id="stat-bd-unk" class="font-display text-[22px] font-bold text-muted mt-1 block font-mono">111</span>
+          <span id="stat-bd-unk-pct" class="text-[11px] text-muted block mt-0.5">47.0% pending</span>
+        </div>
+      </div>
+
+      <!-- Filter & Search Controls -->
+      <div class="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div class="flex flex-wrap items-center gap-2" id="admin-bd-filter-pills">
+          <button type="button" class="admin-bd-pill cursor-pointer rounded-full border border-fg bg-fg text-bg px-3.5 py-1 text-[12px] font-medium transition-all" data-branch="all">All Drives</button>
+          <button type="button" class="admin-bd-pill cursor-pointer rounded-full border border-line-strong bg-panel px-3.5 py-1 text-[12px] text-muted hover:text-fg hover:border-fg transition-all" data-branch="ce">
+            <span class="inline-block size-2 rounded-full mr-1.5 bg-[#10b981]"></span>CE Only
+          </button>
+          <button type="button" class="admin-bd-pill cursor-pointer rounded-full border border-line-strong bg-panel px-3.5 py-1 text-[12px] text-muted hover:text-fg hover:border-fg transition-all" data-branch="cse">
+            <span class="inline-block size-2 rounded-full mr-1.5 bg-[#38bdf8]"></span>CSE Only
+          </button>
+          <button type="button" class="admin-bd-pill cursor-pointer rounded-full border border-line-strong bg-panel px-3.5 py-1 text-[12px] text-muted hover:text-fg hover:border-fg transition-all" data-branch="extc">
+            <span class="inline-block size-2 rounded-full mr-1.5 bg-[#f43f5e]"></span>EXTC Only
+          </button>
+          <button type="button" class="admin-bd-pill cursor-pointer rounded-full border border-line-strong bg-panel px-3.5 py-1 text-[12px] text-muted hover:text-fg hover:border-fg transition-all" data-branch="unknown">
+            <span class="inline-block size-2 rounded-full mr-1.5 bg-[#71717a]"></span>Has Unknown
+          </button>
+        </div>
+        <div class="relative w-full sm:w-72">
+          <input id="admin-bd-search" type="search" placeholder="Search company, role or notes..." class="w-full rounded-full border border-line-strong bg-panel px-4 py-2 text-[13px] text-fg outline-none focus:border-fg transition-colors" />
+        </div>
+      </div>
+
+      <!-- Interactive Branch Data Table -->
+      <div class="mt-6 overflow-x-auto rounded-2xl border border-line-strong bg-panel">
+        <table class="w-full text-left text-[14px]">
+          <thead>
+            <tr class="border-b border-line text-faint label bg-bg/40">
+              <th class="py-3.5 pl-6 pr-4">Company &amp; Role</th>
+              <th class="py-3.5 px-3 text-center text-[#10b981]">CE</th>
+              <th class="py-3.5 px-3 text-center text-[#38bdf8]">CSE</th>
+              <th class="py-3.5 px-3 text-center text-[#f43f5e]">EXTC</th>
+              <th class="py-3.5 px-3 text-center text-muted">Unknown</th>
+              <th class="py-3.5 px-3 text-center text-fg font-semibold">Total</th>
+              <th class="py-3.5 px-4 min-w-[130px]">Distribution</th>
+              <th class="py-3.5 px-4">Notes / Verification</th>
+              <th class="py-3.5 pl-3 pr-6 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-branch-data-tbody" class="divide-y divide-line">
+            <!-- Rendered via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
 
     <!-- VIEW 2: Branch Data Submissions -->
     <div id="view-branch-submissions" class="admin-view-tab hidden mt-8">
@@ -677,6 +837,111 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
       </div>
     </div>
 
+    <!-- Branch Distribution Add / Edit Modal -->
+    <div id="branch-editor-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto">
+      <div class="relative w-full max-w-[580px] rounded-3xl border border-line-strong bg-panel p-6 sm:p-8 shadow-2xl my-8">
+        <div class="flex items-center justify-between border-b border-line pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="chip font-mono text-[11px] text-intern border-intern/40 bg-intern/10">Department Record</span>
+              <span id="branch-editor-mode-badge" class="label text-[12px] text-faint">Class of 2027</span>
+            </div>
+            <h3 id="branch-editor-modal-title" class="font-display text-[22px] font-bold text-fg mt-1">Add Branch Placement Record</h3>
+            <p class="text-[13px] text-muted mt-1">Configure confirmed department breakdown numbers for this recruitment drive.</p>
+          </div>
+          <button id="btn-close-branch-modal" type="button" class="size-8 rounded-full border border-line grid place-items-center text-muted hover:text-fg hover:border-fg transition-colors cursor-pointer text-[16px]">✕</button>
+        </div>
+
+        <form id="branch-editor-form" class="mt-6 flex flex-col gap-4" onsubmit="return false;">
+          <input type="hidden" id="branch-field-id" value="" />
+          <input type="hidden" id="branch-field-orig-raw" value="" />
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="sm:col-span-2">
+              <label class="label block text-[11px] text-faint mb-1.5 uppercase tracking-wider">Company Name *</label>
+              <input id="branch-field-company" type="text" required placeholder="e.g. PhonePe" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none focus:border-fg transition-colors" />
+            </div>
+            <div>
+              <label class="label block text-[11px] text-faint mb-1.5 uppercase tracking-wider">Batch Year *</label>
+              <select id="branch-field-batch" class="w-full rounded-xl border border-line-strong bg-bg px-3 py-2.5 text-[14px] text-fg outline-none focus:border-fg transition-colors" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+                <option value="2027">Class of 2027</option>
+                <option value="2028">Class of 2028</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="label block text-[11px] text-faint mb-1.5 uppercase tracking-wider">Role / Profile Title</label>
+              <input id="branch-field-role" type="text" placeholder="e.g. SDE or Analyst" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none focus:border-fg transition-colors" />
+            </div>
+            <div>
+              <label class="label block text-[11px] text-faint mb-1.5 uppercase tracking-wider">Logo URL / Path</label>
+              <input id="branch-field-logo" type="text" placeholder="/logos/company.svg" class="w-full rounded-xl border border-line-strong bg-bg px-4 py-2.5 text-[14px] text-fg outline-none focus:border-fg transition-colors font-mono text-[13px]" />
+            </div>
+          </div>
+
+          <!-- Branch Selection Counts Grid -->
+          <div class="rounded-2xl border border-line bg-bg/50 p-4">
+            <label class="label block text-[11px] text-faint mb-3 uppercase tracking-wider">Confirmed Branch Selections</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div>
+                <label class="block text-[12px] font-semibold text-[#10b981] mb-1 flex items-center gap-1">
+                  <span class="size-2 rounded-full bg-[#10b981]"></span>CE Offers
+                </label>
+                <input id="branch-field-ce" type="number" min="0" value="0" class="branch-num-input w-full rounded-xl border border-line-strong bg-bg px-3 py-2 text-center text-[15px] font-mono font-bold text-fg outline-none focus:border-[#10b981]" />
+              </div>
+              <div>
+                <label class="block text-[12px] font-semibold text-[#38bdf8] mb-1 flex items-center gap-1">
+                  <span class="size-2 rounded-full bg-[#38bdf8]"></span>CSE Offers
+                </label>
+                <input id="branch-field-cse" type="number" min="0" value="0" class="branch-num-input w-full rounded-xl border border-line-strong bg-bg px-3 py-2 text-center text-[15px] font-mono font-bold text-fg outline-none focus:border-[#38bdf8]" />
+              </div>
+              <div>
+                <label class="block text-[12px] font-semibold text-[#f43f5e] mb-1 flex items-center gap-1">
+                  <span class="size-2 rounded-full bg-[#f43f5e]"></span>EXTC Offers
+                </label>
+                <input id="branch-field-extc" type="number" min="0" value="0" class="branch-num-input w-full rounded-xl border border-line-strong bg-bg px-3 py-2 text-center text-[15px] font-mono font-bold text-fg outline-none focus:border-[#f43f5e]" />
+              </div>
+              <div>
+                <label class="block text-[12px] font-semibold text-muted mb-1 flex items-center gap-1">
+                  <span class="size-2 rounded-full bg-[#71717a]"></span>Unknown
+                </label>
+                <input id="branch-field-unknown" type="number" min="0" value="0" class="branch-num-input w-full rounded-xl border border-line-strong bg-bg px-3 py-2 text-center text-[15px] font-mono font-bold text-muted outline-none focus:border-fg" />
+              </div>
+            </div>
+
+            <div class="mt-3.5 pt-3 border-t border-line/60 flex items-center justify-between text-[13px]">
+              <span class="text-muted">Total Selections Sum:</span>
+              <span class="flex items-center gap-2">
+                <input id="branch-field-total" type="number" min="0" value="0" class="w-20 rounded-lg border border-line-strong bg-bg px-2 py-1 text-center font-mono font-bold text-fg" />
+                <span class="text-[11px] text-faint">(auto-calculated)</span>
+              </span>
+            </div>
+          </div>
+
+          <div>
+            <label class="label block text-[11px] text-faint mb-1.5 uppercase tracking-wider">Verification Notes / Reference</label>
+            <textarea id="branch-field-notes" rows="2" placeholder="e.g. Verified from TPO selection notice. 4 CE and 1 CSE." class="w-full rounded-xl border border-line-strong bg-bg p-3 text-[13px] text-fg outline-none focus:border-fg transition-colors"></textarea>
+          </div>
+
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-line pt-4">
+            <button id="btn-delete-branch-record" type="button" class="hidden cursor-pointer rounded-full border border-red-500/40 px-4 py-2 text-[12px] text-red-400 hover:bg-red-500/10">
+              Delete Record
+            </button>
+            <div class="flex items-center gap-3 ml-auto">
+              <button id="btn-cancel-branch-modal" type="button" class="cursor-pointer rounded-full border border-line-strong px-4 py-2 text-[13px] text-muted hover:text-fg hover:border-fg">
+                Cancel
+              </button>
+              <button id="btn-save-branch-record" type="button" class="cursor-pointer rounded-full bg-fg px-6 py-2 text-[13px] font-medium text-bg hover:opacity-90 transition-opacity">
+                Save Branch Record
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <!-- Notification Toast -->
     <div id="admin-toast" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-line-strong bg-panel px-5 py-3.5 shadow-2xl transition-all duration-300 translate-y-20 opacity-0 pointer-events-none">
       <span id="toast-icon" class="text-intern text-[18px]">✔</span>
@@ -686,6 +951,7 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
 
   const extraScript = `
     import { getActiveBatchData, getBatchKey, setBatch, allBatches } from '/src/data/batches.js';
+    import { companyBranchDistribution, branchSummary } from '/src/data/branch_distribution.js';
 
     // Supabase Configuration
     const SUPABASE_URL = 'https://ntdmjyexirakcaovjeia.supabase.co';
@@ -886,6 +1152,9 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
 
       sumActiveBatch.textContent = \`Class of \${batchYear}\`;
 
+      // Load branch distribution dataset for active batch
+      loadBranchData(batchYear);
+
       // 1. Immediately load local bundled data so UI renders instantly with 0ms delay
       fallbackLocalBatch(batchYear);
       updateSummaryBar();
@@ -1054,6 +1323,29 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
       renderStagesRepeater();
       renderFunnelPreview();
 
+      // Populate department selections in company editor
+      const matchingBranchRec = allBranchData.find(b => (b.slug && b.slug.toLowerCase() === company.slug.toLowerCase()) || (b.company && b.company.toLowerCase() === company.name.toLowerCase()));
+      const ceEl = document.getElementById('field-branch-ce');
+      const cseEl = document.getElementById('field-branch-cse');
+      const extcEl = document.getElementById('field-branch-extc');
+      const unkEl = document.getElementById('field-branch-unknown');
+      const dispEl = document.getElementById('field-branch-total-disp');
+      if (ceEl && cseEl && extcEl && unkEl && dispEl) {
+        if (matchingBranchRec) {
+          ceEl.value = matchingBranchRec.ce || 0;
+          cseEl.value = matchingBranchRec.cse || 0;
+          extcEl.value = matchingBranchRec.extc || 0;
+          unkEl.value = matchingBranchRec.unknown || 0;
+          dispEl.textContent = (matchingBranchRec.ce || 0) + (matchingBranchRec.cse || 0) + (matchingBranchRec.extc || 0) + (matchingBranchRec.unknown || 0);
+        } else {
+          ceEl.value = 0;
+          cseEl.value = 0;
+          extcEl.value = 0;
+          unkEl.value = 0;
+          dispEl.textContent = '0';
+        }
+      }
+
       formStatus.textContent = \`Loaded \${company.name}\`;
     }
 
@@ -1069,6 +1361,14 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
 
       document.getElementById('company-editor-form').reset();
       updateLogoPreview('');
+
+      if (document.getElementById('field-branch-ce')) {
+        document.getElementById('field-branch-ce').value = 0;
+        document.getElementById('field-branch-cse').value = 0;
+        document.getElementById('field-branch-extc').value = 0;
+        document.getElementById('field-branch-unknown').value = 0;
+        document.getElementById('field-branch-total-disp').textContent = '0';
+      }
 
       rolesData = [
         {
@@ -1481,6 +1781,27 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
         renderCompaniesList();
         selectCompany(slug);
 
+        // Save department branch breakdown if specified
+        const bCe = parseInt(document.getElementById('field-branch-ce')?.value, 10) || 0;
+        const bCse = parseInt(document.getElementById('field-branch-cse')?.value, 10) || 0;
+        const bExtc = parseInt(document.getElementById('field-branch-extc')?.value, 10) || 0;
+        const bUnk = parseInt(document.getElementById('field-branch-unknown')?.value, 10) || 0;
+        if (bCe > 0 || bCse > 0 || bExtc > 0 || bUnk > 0) {
+          saveBranchRecordDirect({
+            company: name,
+            role: rolesData[0]?.title || '',
+            batch_year: String(currentBatch),
+            ce: bCe,
+            cse: bCse,
+            extc: bExtc,
+            unknown: bUnk,
+            total: bCe + bCse + bExtc + bUnk,
+            slug: slug,
+            logo: document.getElementById('field-logo').value.trim() || ('/logos/' + slug + '.svg'),
+            notes: 'Synchronized with company editor'
+          }).catch(() => {});
+        }
+
         // Refresh list from Supabase in background
         loadBatchData(currentBatch).catch(() => {});
 
@@ -1535,22 +1856,24 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
     btnDelete.addEventListener('click', deleteCompanyHandler);
 
     // -------------------------------------------------------------
-    // Workspace Navigation (Companies vs Branch Submissions vs Reports)
+    // Workspace Navigation (Companies vs Branch Data vs Submissions vs Reports)
     // -------------------------------------------------------------
     const navBtnCompanies = document.getElementById('nav-btn-companies');
+    const navBtnBranchData = document.getElementById('nav-btn-branch-data');
     const navBtnBranchSubmissions = document.getElementById('nav-btn-branch-submissions');
     const navBtnReports = document.getElementById('nav-btn-reports');
     const navBtnQueries = document.getElementById('nav-btn-queries');
     const navBtnFeedback = document.getElementById('nav-btn-feedback');
 
     const viewCompanies = document.getElementById('view-companies');
+    const viewBranchData = document.getElementById('view-branch-data');
     const viewBranchSubmissions = document.getElementById('view-branch-submissions');
     const viewReports = document.getElementById('view-reports');
     const viewQueries = document.getElementById('view-queries');
     const viewFeedback = document.getElementById('view-feedback');
 
-    const allNavBtns = [navBtnCompanies, navBtnBranchSubmissions, navBtnReports, navBtnQueries, navBtnFeedback];
-    const allViews = [viewCompanies, viewBranchSubmissions, viewReports, viewQueries, viewFeedback];
+    const allNavBtns = [navBtnCompanies, navBtnBranchData, navBtnBranchSubmissions, navBtnReports, navBtnQueries, navBtnFeedback];
+    const allViews = [viewCompanies, viewBranchData, viewBranchSubmissions, viewReports, viewQueries, viewFeedback];
 
     function switchAdminView(targetViewId) {
       allNavBtns.forEach(btn => {
@@ -1574,6 +1897,11 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
         }
       });
 
+      if (targetViewId === 'view-branch-data') {
+        renderBranchDataTable();
+        updateBranchKPIs();
+      }
+
       fetchSubmissionsAndReports();
     }
 
@@ -1588,6 +1916,580 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
     document.getElementById('btn-refresh-reports')?.addEventListener('click', fetchSubmissionsAndReports);
     document.getElementById('btn-refresh-queries')?.addEventListener('click', fetchSubmissionsAndReports);
     document.getElementById('btn-refresh-feedback')?.addEventListener('click', fetchSubmissionsAndReports);
+
+    // -------------------------------------------------------------
+    // Branch-Wise Distribution Manager
+    // -------------------------------------------------------------
+    let allBranchData = [];
+    let selectedBranchFilterBD = 'all'; // 'all' | 'ce' | 'cse' | 'extc' | 'unknown'
+    let activeBranchModalItem = null;
+
+    const branchDataTbody = document.getElementById('admin-branch-data-tbody');
+    const branchModal = document.getElementById('branch-editor-modal');
+    const branchModalTitle = document.getElementById('branch-editor-modal-title');
+    const branchModalBadge = document.getElementById('branch-editor-mode-badge');
+    const btnCloseBranchModal = document.getElementById('btn-close-branch-modal');
+    const btnCancelBranchModal = document.getElementById('btn-cancel-branch-modal');
+    const btnSaveBranchRecord = document.getElementById('btn-save-branch-record');
+    const btnDeleteBranchRecord = document.getElementById('btn-delete-branch-record');
+    const btnOpenAddBranch = document.getElementById('btn-open-add-branch-modal');
+    const btnRefreshBranchData = document.getElementById('btn-refresh-branch-data');
+    const searchBranchInput = document.getElementById('admin-bd-search');
+
+    async function loadBranchData(batchYear) {
+      // 1. Instant fallback
+      if (batchYear === '2027') {
+        allBranchData = JSON.parse(JSON.stringify(companyBranchDistribution || []));
+      } else {
+        allBranchData = [];
+      }
+      updateBranchKPIs();
+      renderBranchDataTable();
+
+      // 2. Fetch live from Supabase
+      try {
+        const res = await fetch(\`\${SUPABASE_URL}/rest/v1/branch_distribution?batch_year=eq.\${batchYear}&order=total.desc\`, {
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': \`Bearer \${SUPABASE_KEY}\`
+          }
+        });
+        if (res.ok) {
+          const rows = await res.json();
+          if (rows && rows.length > 0) {
+            allBranchData = rows.map(r => ({
+              id: r.id,
+              company: r.company,
+              role: r.role || '',
+              rawName: r.raw_name || (r.company + (r.role ? \` (\${r.role})\` : '')),
+              slug: r.slug || r.company.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+              logo: r.logo || \`/logos/\${r.slug || 'company'}.svg\`,
+              ce: r.ce || 0,
+              cse: r.cse || 0,
+              extc: r.extc || 0,
+              unknown: r.unknown || 0,
+              total: r.total || ((r.ce || 0) + (r.cse || 0) + (r.extc || 0) + (r.unknown || 0)),
+              notes: r.notes || '',
+              batch_year: r.batch_year || batchYear
+            }));
+            updateBranchKPIs();
+            renderBranchDataTable();
+          }
+        }
+      } catch (err) {
+        console.warn('Supabase branch fetch failed, using local fallback:', err);
+      }
+    }
+
+    function updateBranchKPIs() {
+      const total = allBranchData.reduce((a, b) => a + (b.total || 0), 0);
+      const ce = allBranchData.reduce((a, b) => a + (b.ce || 0), 0);
+      const cse = allBranchData.reduce((a, b) => a + (b.cse || 0), 0);
+      const extc = allBranchData.reduce((a, b) => a + (b.extc || 0), 0);
+      const unk = allBranchData.reduce((a, b) => a + (b.unknown || 0), 0);
+      const known = ce + cse + extc;
+
+      const badgeCount = document.getElementById('badge-branch-data-count');
+      const badgeTotalDrives = document.getElementById('badge-branch-total-drives');
+      if (badgeCount) badgeCount.textContent = allBranchData.length;
+      if (badgeTotalDrives) badgeTotalDrives.textContent = \`\${allBranchData.length} drives\`;
+
+      const statTotal = document.getElementById('stat-bd-total');
+      const statKnown = document.getElementById('stat-bd-known');
+      const statKnownPct = document.getElementById('stat-bd-known-pct');
+      const statCe = document.getElementById('stat-bd-ce');
+      const statCePct = document.getElementById('stat-bd-ce-pct');
+      const statCse = document.getElementById('stat-bd-cse');
+      const statCsePct = document.getElementById('stat-bd-cse-pct');
+      const statExtc = document.getElementById('stat-bd-extc');
+      const statExtcPct = document.getElementById('stat-bd-extc-pct');
+      const statUnk = document.getElementById('stat-bd-unk');
+      const statUnkPct = document.getElementById('stat-bd-unk-pct');
+
+      if (statTotal) statTotal.textContent = total;
+      if (statKnown) statKnown.textContent = known;
+      if (statKnownPct) statKnownPct.textContent = total > 0 ? \`\${((known/total)*100).toFixed(1)}% resolved\` : '0%';
+
+      const ceRecruiters = allBranchData.filter(r => (r.ce || 0) > 0).length;
+      const cseRecruiters = allBranchData.filter(r => (r.cse || 0) > 0).length;
+      const extcRecruiters = allBranchData.filter(r => (r.extc || 0) > 0).length;
+
+      if (statCe) statCe.textContent = ce;
+      if (statCePct) statCePct.textContent = total > 0 ? \`\${((ce/total)*100).toFixed(1)}% (\${ceRecruiters} drives)\` : '0%';
+      if (statCse) statCse.textContent = cse;
+      if (statCsePct) statCsePct.textContent = total > 0 ? \`\${((cse/total)*100).toFixed(1)}% (\${cseRecruiters} drives)\` : '0%';
+      if (statExtc) statExtc.textContent = extc;
+      if (statExtcPct) statExtcPct.textContent = total > 0 ? \`\${((extc/total)*100).toFixed(1)}% (\${extcRecruiters} drives)\` : '0%';
+      if (statUnk) statUnk.textContent = unk;
+      if (statUnkPct) statUnkPct.textContent = total > 0 ? \`\${((unk/total)*100).toFixed(1)}% pending\` : '0%';
+    }
+
+    function renderBranchDataTable() {
+      if (!branchDataTbody) return;
+      const query = (searchBranchInput?.value || '').toLowerCase().trim();
+
+      const filtered = allBranchData.filter(row => {
+        if (selectedBranchFilterBD === 'ce' && (row.ce || 0) <= 0) return false;
+        if (selectedBranchFilterBD === 'cse' && (row.cse || 0) <= 0) return false;
+        if (selectedBranchFilterBD === 'extc' && (row.extc || 0) <= 0) return false;
+        if (selectedBranchFilterBD === 'unknown' && (row.unknown || 0) <= 0) return false;
+
+        if (query) {
+          const matchCompany = (row.company || '').toLowerCase().includes(query);
+          const matchRole = (row.role || '').toLowerCase().includes(query);
+          const matchNotes = (row.notes || '').toLowerCase().includes(query);
+          if (!matchCompany && !matchRole && !matchNotes) return false;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        branchDataTbody.innerHTML = '<tr><td colspan="9" class="py-12 text-center text-muted">No branch records match your filter. Click "+ Add Branch Record" above to add one.</td></tr>';
+        return;
+      }
+
+      branchDataTbody.innerHTML = filtered.map((row, idx) => {
+        const total = row.total || ((row.ce || 0) + (row.cse || 0) + (row.extc || 0) + (row.unknown || 0)) || 1;
+        const cePct = (((row.ce || 0) / total) * 100).toFixed(1);
+        const csePct = (((row.cse || 0) / total) * 100).toFixed(1);
+        const extcPct = (((row.extc || 0) / total) * 100).toFixed(1);
+        const unkPct = (((row.unknown || 0) / total) * 100).toFixed(1);
+
+        return \`
+          <tr class="hover:bg-panel/70 transition-colors">
+            <td class="py-3.5 pl-6 pr-4">
+              <div class="flex items-center gap-3">
+                \${row.logo ? \`<img src="\${row.logo}" class="size-6 object-contain rounded bg-bg/40 p-0.5 border border-line" alt="" onerror=\"this.style.display='none'\" />\` : ''}
+                <div>
+                  <div class="font-medium text-fg text-[14px]">\${row.company}</div>
+                  <div class="text-[11px] text-muted truncate max-w-[240px]">\${row.role || '—'}</div>
+                </div>
+              </div>
+            </td>
+            <td class="py-3.5 px-3 text-center num font-mono font-semibold \${row.ce > 0 ? 'text-[#10b981]' : 'text-faint'}">
+              \${row.ce > 0 ? row.ce : '—'}
+            </td>
+            <td class="py-3.5 px-3 text-center num font-mono font-semibold \${row.cse > 0 ? 'text-[#38bdf8]' : 'text-faint'}">
+              \${row.cse > 0 ? row.cse : '—'}
+            </td>
+            <td class="py-3.5 px-3 text-center num font-mono font-semibold \${row.extc > 0 ? 'text-[#f43f5e]' : 'text-faint'}">
+              \${row.extc > 0 ? row.extc : '—'}
+            </td>
+            <td class="py-3.5 px-3 text-center num font-mono text-muted">
+              \${row.unknown > 0 ? row.unknown : '—'}
+            </td>
+            <td class="py-3.5 px-3 text-center num font-mono font-display text-[15px] font-bold text-fg">
+              \${row.total}
+            </td>
+            <td class="py-3.5 px-4 min-w-[130px]">
+              <div class="h-2 w-full rounded-full overflow-hidden flex bg-line shadow-inner">
+                \${row.ce > 0 ? \`<div style=\"width:\${cePct}%; background-color:#10b981;\" title=\"CE: \${row.ce} (\${cePct}%)\"></div>\` : ''}
+                \${row.cse > 0 ? \`<div style=\"width:\${csePct}%; background-color:#38bdf8;\" title=\"CSE: \${row.cse} (\${csePct}%)\"></div>\` : ''}
+                \${row.extc > 0 ? \`<div style=\"width:\${extcPct}%; background-color:#f43f5e;\" title=\"EXTC: \${row.extc} (\${extcPct}%)\"></div>\` : ''}
+                \${row.unknown > 0 ? \`<div style=\"width:\${unkPct}%; background-color:#71717a;\" title=\"Unknown: \${row.unknown} (\${unkPct}%)\"></div>\` : ''}
+              </div>
+            </td>
+            <td class="py-3.5 px-4 text-[12px] text-muted max-w-[200px] truncate leading-tight">
+              \${row.notes ? \`<span class=\"bg-bg/60 border border-line px-2 py-0.5 rounded text-faint\">\${row.notes}</span>\` : '<span class=\"text-faint\">—</span>'}
+            </td>
+            <td class="py-3.5 pl-3 pr-6 text-right">
+              <div class="inline-flex items-center gap-1.5">
+                <button type="button" data-action="edit-bd" data-idx="\${idx}" class="p-1.5 rounded-lg border border-line hover:border-fg hover:text-fg text-muted transition-colors cursor-pointer" title="Edit branch record">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                </button>
+                <button type="button" data-action="delete-bd" data-idx="\${idx}" class="p-1.5 rounded-lg border border-red-500/30 hover:bg-red-500/10 text-red-400 transition-colors cursor-pointer" title="Delete record">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        \`;
+      }).join('');
+    }
+
+    function openBranchModal(item = null) {
+      if (!branchModal) return;
+      activeBranchModalItem = item;
+
+      if (!item) {
+        if (branchModalTitle) branchModalTitle.textContent = "Add Branch Placement Record";
+        if (branchModalBadge) branchModalBadge.textContent = \`Class of \${currentBatch}\`;
+        document.getElementById('branch-field-id').value = "";
+        document.getElementById('branch-field-orig-raw').value = "";
+        document.getElementById('branch-field-company').value = "";
+        document.getElementById('branch-field-role').value = "";
+        document.getElementById('branch-field-batch').value = currentBatch;
+        document.getElementById('branch-field-logo').value = "";
+        document.getElementById('branch-field-ce').value = "0";
+        document.getElementById('branch-field-cse').value = "0";
+        document.getElementById('branch-field-extc').value = "0";
+        document.getElementById('branch-field-unknown').value = "0";
+        document.getElementById('branch-field-total').value = "0";
+        document.getElementById('branch-field-notes').value = "";
+        btnDeleteBranchRecord?.classList.add('hidden');
+      } else {
+        if (branchModalTitle) branchModalTitle.textContent = item._fromSub ? \`Add from Submission: \${item.company}\` : \`Edit Branch Record: \${item.company}\`;
+        if (branchModalBadge) branchModalBadge.textContent = item._fromSub ? "Student Submission" : \`Class of \${item.batch_year || currentBatch}\`;
+        document.getElementById('branch-field-id').value = item.id || "";
+        document.getElementById('branch-field-orig-raw').value = item.rawName || (item.company + ' (' + item.role + ')');
+        document.getElementById('branch-field-company').value = item.company || "";
+        document.getElementById('branch-field-role').value = item.role || "";
+        document.getElementById('branch-field-batch').value = item.batch_year || currentBatch;
+        document.getElementById('branch-field-logo').value = item.logo || "";
+        document.getElementById('branch-field-ce').value = item.ce ?? 0;
+        document.getElementById('branch-field-cse').value = item.cse ?? 0;
+        document.getElementById('branch-field-extc').value = item.extc ?? 0;
+        document.getElementById('branch-field-unknown').value = item.unknown ?? 0;
+        document.getElementById('branch-field-total').value = item.total ?? ((item.ce || 0) + (item.cse || 0) + (item.extc || 0) + (item.unknown || 0));
+        document.getElementById('branch-field-notes').value = item.notes || "";
+
+        if (item._fromSub) {
+          btnDeleteBranchRecord?.classList.add('hidden');
+        } else {
+          btnDeleteBranchRecord?.classList.remove('hidden');
+        }
+      }
+
+      branchModal.classList.remove('hidden');
+      branchModal.classList.add('flex');
+    }
+
+    function closeBranchModal() {
+      if (!branchModal) return;
+      branchModal.classList.add('hidden');
+      branchModal.classList.remove('flex');
+      activeBranchModalItem = null;
+    }
+
+    // Direct helper to save a branch record from any source (company editor or modal)
+    async function saveBranchRecordDirect(payload) {
+      const slug = payload.slug || payload.company.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      const raw_name = payload.raw_name || (payload.company + (payload.role ? \` (\${payload.role})\` : ''));
+      const batch_year = payload.batch_year || String(currentBatch);
+      const ce = parseInt(payload.ce, 10) || 0;
+      const cse = parseInt(payload.cse, 10) || 0;
+      const extc = parseInt(payload.extc, 10) || 0;
+      const unknown = parseInt(payload.unknown, 10) || 0;
+      const total = parseInt(payload.total, 10) || (ce + cse + extc + unknown);
+
+      const record = {
+        batch_year,
+        company: payload.company,
+        role: payload.role || '',
+        raw_name,
+        slug,
+        logo: payload.logo || \`/logos/\${slug}.svg\`,
+        ce,
+        cse,
+        extc,
+        unknown,
+        total,
+        notes: payload.notes || '',
+        updated_at: new Date().toISOString()
+      };
+
+      // 1. Supabase
+      try {
+        const checkRes = await fetch(\`\${SUPABASE_URL}/rest/v1/branch_distribution?company=ilike.\${encodeURIComponent(payload.company)}&batch_year=eq.\${batch_year}\`, {
+          headers: { 'apikey': SUPABASE_KEY, 'Authorization': \`Bearer \${SUPABASE_KEY}\` }
+        });
+        if (checkRes.ok) {
+          const matches = await checkRes.json();
+          if (matches && matches.length > 0) {
+            await fetch(\`\${SUPABASE_URL}/rest/v1/branch_distribution?id=eq.\${matches[0].id}\`, {
+              method: 'PATCH',
+              headers: { 'apikey': SUPABASE_KEY, 'Authorization': \`Bearer \${SUPABASE_KEY}\`, 'Content-Type': 'application/json' },
+              body: JSON.stringify(record)
+            });
+            record.id = matches[0].id;
+          } else {
+            const insRes = await fetch(\`\${SUPABASE_URL}/rest/v1/branch_distribution\`, {
+              method: 'POST',
+              headers: { 'apikey': SUPABASE_KEY, 'Authorization': \`Bearer \${SUPABASE_KEY}\`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+              body: JSON.stringify([record])
+            });
+            if (insRes.ok) {
+              const insData = await insRes.json();
+              if (insData && insData[0] && insData[0].id) record.id = insData[0].id;
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Supabase direct branch save failed:', e);
+      }
+
+      // 2. Localhost server API
+      try {
+        fetch('/api/branch-distribution', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ batch: batch_year, item: { ...record, rawName: raw_name } })
+        }).catch(() => {});
+      } catch (e) {}
+
+      // 3. Update memory
+      const existingIdx = allBranchData.findIndex(r => 
+        (record.id && r.id && r.id === record.id) ||
+        (r.rawName && r.rawName.toLowerCase() === raw_name.toLowerCase()) ||
+        (r.company.toLowerCase() === payload.company.toLowerCase())
+      );
+
+      const memItem = {
+        ...record,
+        rawName: raw_name
+      };
+
+      if (existingIdx >= 0) {
+        allBranchData[existingIdx] = memItem;
+      } else {
+        allBranchData.unshift(memItem);
+      }
+
+      allBranchData.sort((a, b) => b.total - a.total);
+      updateBranchKPIs();
+      renderBranchDataTable();
+      return memItem;
+    }
+
+    async function saveBranchRecordFromModal() {
+      const company = document.getElementById('branch-field-company').value.trim();
+      if (!company) {
+        alert('Please enter a company name.');
+        return;
+      }
+
+      const id = document.getElementById('branch-field-id').value.trim();
+      const origRaw = document.getElementById('branch-field-orig-raw').value.trim();
+      const role = document.getElementById('branch-field-role').value.trim();
+      const batch_year = document.getElementById('branch-field-batch').value;
+      const ce = parseInt(document.getElementById('branch-field-ce').value, 10) || 0;
+      const cse = parseInt(document.getElementById('branch-field-cse').value, 10) || 0;
+      const extc = parseInt(document.getElementById('branch-field-extc').value, 10) || 0;
+      const unknown = parseInt(document.getElementById('branch-field-unknown').value, 10) || 0;
+      const total = parseInt(document.getElementById('branch-field-total').value, 10) || (ce + cse + extc + unknown);
+      const notes = document.getElementById('branch-field-notes').value.trim();
+      const slug = company.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      const raw_name = company + (role ? \` (\${role})\` : '');
+      const logo = document.getElementById('branch-field-logo').value.trim() || (\`/logos/\${slug}.svg\`);
+
+      const payload = {
+        batch_year,
+        company,
+        role,
+        raw_name,
+        slug,
+        logo,
+        ce,
+        cse,
+        extc,
+        unknown,
+        total,
+        notes,
+        updated_at: new Date().toISOString()
+      };
+
+      btnSaveBranchRecord.disabled = true;
+      btnSaveBranchRecord.textContent = 'Saving...';
+
+      try {
+        let assignedId = id;
+        if (id) {
+          await fetch(\`\${SUPABASE_URL}/rest/v1/branch_distribution?id=eq.\${id}\`, {
+            method: 'PATCH',
+            headers: {
+              'apikey': SUPABASE_KEY,
+              'Authorization': \`Bearer \${SUPABASE_KEY}\`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+        } else {
+          const insRes = await fetch(\`\${SUPABASE_URL}/rest/v1/branch_distribution\`, {
+            method: 'POST',
+            headers: {
+              'apikey': SUPABASE_KEY,
+              'Authorization': \`Bearer \${SUPABASE_KEY}\`,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=representation'
+            },
+            body: JSON.stringify([payload])
+          });
+          if (insRes.ok) {
+            const data = await insRes.json();
+            if (data && data[0] && data[0].id) assignedId = data[0].id;
+          }
+        }
+
+        try {
+          fetch('/api/branch-distribution', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ batch: batch_year, item: { ...payload, id: assignedId, rawName: raw_name, originalRawName: origRaw } })
+          }).catch(() => {});
+        } catch(e) {}
+
+        const existingIdx = allBranchData.findIndex(r => 
+          (assignedId && r.id && r.id === assignedId) ||
+          (origRaw && r.rawName && r.rawName.toLowerCase() === origRaw.toLowerCase()) ||
+          (r.company.toLowerCase() === company.toLowerCase() && (r.role || '').toLowerCase() === role.toLowerCase())
+        );
+
+        const memoryItem = {
+          id: assignedId,
+          company,
+          role,
+          rawName: raw_name,
+          slug,
+          logo,
+          ce,
+          cse,
+          extc,
+          unknown,
+          total,
+          notes,
+          batch_year
+        };
+
+        if (existingIdx >= 0) {
+          allBranchData[existingIdx] = memoryItem;
+        } else {
+          allBranchData.unshift(memoryItem);
+        }
+
+        allBranchData.sort((a, b) => b.total - a.total);
+
+        if (activeBranchModalItem && activeBranchModalItem._subId) {
+          updateSubmissionStatus(activeBranchModalItem._subId, 'approved').catch(() => {});
+        }
+
+        updateBranchKPIs();
+        renderBranchDataTable();
+        closeBranchModal();
+        showToast(\`Saved branch distribution for '\${company}'!\`);
+      } catch (err) {
+        showToast('Error saving branch record: ' + err.message, true);
+      } finally {
+        btnSaveBranchRecord.disabled = false;
+        btnSaveBranchRecord.textContent = 'Save Branch Record';
+      }
+    }
+
+    async function deleteBranchRecordFromModal() {
+      const id = document.getElementById('branch-field-id').value.trim();
+      const origRaw = document.getElementById('branch-field-orig-raw').value.trim();
+      const company = document.getElementById('branch-field-company').value.trim();
+
+      if (!confirm(\`Are you sure you want to permanently delete the branch distribution record for '\${company}'?\`)) return;
+
+      btnDeleteBranchRecord.disabled = true;
+
+      try {
+        if (id) {
+          await fetch(\`\${SUPABASE_URL}/rest/v1/branch_distribution?id=eq.\${id}\`, {
+            method: 'DELETE',
+            headers: {
+              'apikey': SUPABASE_KEY,
+              'Authorization': \`Bearer \${SUPABASE_KEY}\`
+            }
+          });
+        }
+
+        try {
+          fetch('/api/branch-distribution', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ batch: currentBatch, id, rawName: origRaw })
+          }).catch(() => {});
+        } catch(e) {}
+
+        allBranchData = allBranchData.filter(r => 
+          (id && r.id && r.id === id) ? false :
+          (origRaw && r.rawName && r.rawName.toLowerCase() === origRaw.toLowerCase()) ? false : true
+        );
+
+        updateBranchKPIs();
+        renderBranchDataTable();
+        closeBranchModal();
+        showToast(\`Deleted branch record for '\${company}'.\`);
+      } catch (err) {
+        showToast('Error deleting branch record: ' + err.message, true);
+      } finally {
+        btnDeleteBranchRecord.disabled = false;
+      }
+    }
+
+    // Wire branch buttons and events
+    btnOpenAddBranch?.addEventListener('click', () => openBranchModal(null));
+    btnRefreshBranchData?.addEventListener('click', () => loadBranchData(currentBatch));
+    btnCloseBranchModal?.addEventListener('click', closeBranchModal);
+    btnCancelBranchModal?.addEventListener('click', closeBranchModal);
+    btnSaveBranchRecord?.addEventListener('click', saveBranchRecordFromModal);
+    btnDeleteBranchRecord?.addEventListener('click', deleteBranchRecordFromModal);
+
+    branchModal?.addEventListener('click', (e) => {
+      if (e.target === branchModal) closeBranchModal();
+    });
+
+    // Auto-calculate sum in Add/Edit modal
+    document.querySelectorAll('.branch-num-input').forEach(inp => {
+      inp.addEventListener('input', () => {
+        const ce = parseInt(document.getElementById('branch-field-ce').value, 10) || 0;
+        const cse = parseInt(document.getElementById('branch-field-cse').value, 10) || 0;
+        const extc = parseInt(document.getElementById('branch-field-extc').value, 10) || 0;
+        const unk = parseInt(document.getElementById('branch-field-unknown').value, 10) || 0;
+        document.getElementById('branch-field-total').value = ce + cse + extc + unk;
+      });
+    });
+
+    // Auto-calculate sum in Company Editor
+    document.querySelectorAll('.field-company-branch-input').forEach(inp => {
+      inp.addEventListener('input', () => {
+        const ce = parseInt(document.getElementById('field-branch-ce').value, 10) || 0;
+        const cse = parseInt(document.getElementById('field-branch-cse').value, 10) || 0;
+        const extc = parseInt(document.getElementById('field-branch-extc').value, 10) || 0;
+        const unk = parseInt(document.getElementById('field-branch-unknown').value, 10) || 0;
+        const disp = document.getElementById('field-branch-total-disp');
+        if (disp) disp.textContent = ce + cse + extc + unk;
+      });
+    });
+
+    // Branch table action button delegation (Edit and Delete)
+    branchDataTbody?.addEventListener('click', (e) => {
+      const editBtn = e.target.closest('[data-action="edit-bd"]');
+      const deleteBtn = e.target.closest('[data-action="delete-bd"]');
+
+      if (editBtn) {
+        const idx = parseInt(editBtn.getAttribute('data-idx'), 10);
+        const item = allBranchData[idx];
+        if (item) openBranchModal(item);
+      } else if (deleteBtn) {
+        const idx = parseInt(deleteBtn.getAttribute('data-idx'), 10);
+        const item = allBranchData[idx];
+        if (item) {
+          openBranchModal(item);
+          deleteBranchRecordFromModal();
+        }
+      }
+    });
+
+    // Filter pills on Branch Data table
+    document.querySelectorAll('.admin-bd-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.admin-bd-pill').forEach(p => {
+          p.classList.remove('border-fg', 'bg-fg', 'text-bg');
+          p.classList.add('border-line-strong', 'bg-panel', 'text-muted');
+        });
+        pill.classList.remove('border-line-strong', 'bg-panel', 'text-muted');
+        pill.classList.add('border-fg', 'bg-fg', 'text-bg');
+        selectedBranchFilterBD = pill.getAttribute('data-branch') || 'all';
+        renderBranchDataTable();
+      });
+    });
+
+    // Search input on Branch Data table
+    searchBranchInput?.addEventListener('input', () => {
+      renderBranchDataTable();
+    });
 
     // -------------------------------------------------------------
     // Branch Submissions & Reports Feed
@@ -1754,6 +2656,9 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
                 <button type="button" data-action="quick-add-sub" data-id="\${s.id}" class="cursor-pointer rounded-full border border-line-strong px-4 py-1.5 text-[12px] text-muted hover:border-fg hover:text-fg transition-colors">
                   Quick Add Company
                 </button>
+                <button type="button" data-action="promote-branch-sub" data-id="\${s.id}" class="cursor-pointer rounded-full border border-intern/50 bg-intern/10 text-intern px-3.5 py-1.5 text-[12px] font-medium hover:bg-intern hover:text-bg transition-colors">
+                  Add to Branch Data ↗
+                </button>
                 <button type="button" data-action="delete-sub" data-id="\${s.id}" class="cursor-pointer rounded-full border border-red-500/30 px-3 py-1.5 text-[12px] text-red-400 hover:bg-red-500/10 transition-colors">
                   Delete
                 </button>
@@ -1769,6 +2674,9 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
       });
       container.querySelectorAll('[data-action="quick-add-sub"]').forEach(btn => {
         btn.addEventListener('click', () => quickAddFromSubmission(btn.getAttribute('data-id')));
+      });
+      container.querySelectorAll('[data-action="promote-branch-sub"]').forEach(btn => {
+        btn.addEventListener('click', () => promoteToBranchFromSubmission(btn.getAttribute('data-id')));
       });
       container.querySelectorAll('[data-action="delete-sub"]').forEach(btn => {
         btn.addEventListener('click', () => deleteSubmissionItem(btn.getAttribute('data-id')));
@@ -2118,6 +3026,31 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
 
       showToast(\`Loaded submission for '\${sub.company_name}' into form editor!\`);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function promoteToBranchFromSubmission(id) {
+      const sub = allSubmissions.find(s => s.id === id);
+      if (!sub) return;
+
+      switchAdminView('view-branch-data');
+      const branchName = (sub.branch || '').toUpperCase().trim();
+      const count = parseInt(sub.offers_count, 10) || 1;
+
+      const item = {
+        company: sub.company_name || '',
+        role: sub.role_title || '',
+        batch_year: sub.batch_year || currentBatch,
+        ce: branchName === 'CE' ? count : 0,
+        cse: branchName === 'CSE' ? count : 0,
+        extc: branchName === 'EXTC' ? count : 0,
+        unknown: (!['CE', 'CSE', 'EXTC'].includes(branchName)) ? count : 0,
+        total: count,
+        notes: sub.details ? \`From submission: \${sub.details}\` : 'Verified from student contribution.',
+        _fromSub: true,
+        _subId: id
+      };
+
+      openBranchModal(item);
     }
 
     // -------------------------------------------------------------

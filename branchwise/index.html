@@ -851,8 +851,12 @@
     import { getActiveBatchData } from '/src/data/batches.js';
     import { companyBranchDistribution, branchSummary } from '/src/data/branch_distribution.js';
 
+    const SUPABASE_URL = 'https://ntdmjyexirakcaovjeia.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZG1qeWV4aXJha2Nhb3ZqZWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2NTUzNTUsImV4cCI6MjA4NjIzMTM1NX0.LFbBXU-ANjoUUi_HfMIWYAjKidRgEct_VO-588T-Y7M';
+
     const batch = getActiveBatchData();
     const is2028 = batch.year === '2028';
+    let activeBranchDistribution = [...companyBranchDistribution];
 
     const badgeEl = document.getElementById('branches-page-badge');
     if (badgeEl) {
@@ -864,6 +868,33 @@
     const tbody = document.getElementById('company-branch-tbody');
     const indicator = document.getElementById('branch-filter-indicator');
     const indicatorText = document.getElementById('branch-filter-text');
+
+    // Live background hydration from Supabase
+    try {
+      fetch(`${SUPABASE_URL}/rest/v1/branch_distribution?batch_year=eq.${batch.year}&order=total.desc`, {
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`
+        }
+      }).then(r => r.ok ? r.json() : null).then(rows => {
+        if (rows && rows.length > 0) {
+          activeBranchDistribution = rows.map(r => ({
+            rawName: r.raw_name || (r.company + (r.role ? ` (${r.role})` : '')),
+            company: r.company,
+            role: r.role || '',
+            slug: r.slug || r.company.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+            logo: r.logo,
+            extc: r.extc || 0,
+            cse: r.cse || 0,
+            ce: r.ce || 0,
+            unknown: r.unknown || 0,
+            total: r.total || ((r.ce || 0) + (r.cse || 0) + (r.extc || 0) + (r.unknown || 0)),
+            notes: r.notes || ''
+          }));
+          renderTable(searchInput?.value || '');
+        }
+      }).catch(() => {});
+    } catch(e) {}
 
     function syncBranchSelection(branchKey) {
       selectedBranchFilter = branchKey;
@@ -943,7 +974,7 @@
 
     function renderTable(query = '') {
       const q = query.toLowerCase().trim();
-      const filtered = companyBranchDistribution.filter(row => {
+      const filtered = activeBranchDistribution.filter(row => {
         // Branch filter
         if (selectedBranchFilter === 'ce' && row.ce <= 0) return false;
         if (selectedBranchFilter === 'cse' && row.cse <= 0) return false;

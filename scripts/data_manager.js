@@ -222,11 +222,242 @@ export const companies2028 = ${JSON.stringify(list, null, 2)};
   }
 }
 
+// --- Branch Distribution Manager ---
+function getBranchDistributionJsonPath(batch = '2027') {
+  return path.join(DATA_DIR, `branch_distribution_${batch}.json`);
+}
+
+function getBranchDistribution(batch = '2027') {
+  const p = getBranchDistributionJsonPath(batch);
+  if (!fs.existsSync(p)) {
+    try {
+      const { companyBranchDistribution } = require('../src/data/branch_distribution');
+      return companyBranchDistribution || [];
+    } catch (e) {
+      return [];
+    }
+  }
+  try {
+    return JSON.parse(fs.readFileSync(p, 'utf8'));
+  } catch (err) {
+    console.error(`Error reading ${p}:`, err);
+    return [];
+  }
+}
+
+function saveBranchDistributionItem(itemData, batch = '2027') {
+  const list = getBranchDistribution(batch);
+  const ce = parseInt(itemData.ce, 10) || 0;
+  const cse = parseInt(itemData.cse, 10) || 0;
+  const extc = parseInt(itemData.extc, 10) || 0;
+  const unk = parseInt(itemData.unknown, 10) || 0;
+  const total = parseInt(itemData.total, 10) || (ce + cse + extc + unk);
+  const company = (itemData.company || '').trim();
+  const role = (itemData.role || '').trim();
+  const slug = (itemData.slug || company.toLowerCase().replace(/[^a-z0-9]+/g, '-')).replace(/(^-|-$)/g, '');
+  const rawName = itemData.rawName || (company + (role ? ` (${role})` : ''));
+  const logo = itemData.logo || `/logos/${slug}.svg`;
+  const notes = (itemData.notes || '').trim();
+
+  const normalized = {
+    rawName,
+    company,
+    role,
+    slug,
+    logo,
+    extc,
+    cse,
+    ce,
+    unknown: unk,
+    total,
+    notes
+  };
+
+  const idToMatch = itemData.id;
+  const rawToMatch = (itemData.originalRawName || rawName).toLowerCase();
+  const existingIdx = list.findIndex(r => 
+    (idToMatch && r.id && r.id === idToMatch) ||
+    (r.rawName && r.rawName.toLowerCase() === rawToMatch) ||
+    (r.company.toLowerCase() === company.toLowerCase() && (r.role || '').toLowerCase() === role.toLowerCase())
+  );
+
+  if (existingIdx >= 0) {
+    list[existingIdx] = { ...list[existingIdx], ...normalized };
+  } else {
+    list.unshift(normalized);
+  }
+
+  // Sort by total desc
+  list.sort((a, b) => b.total - a.total);
+
+  // Write JSON
+  fs.writeFileSync(getBranchDistributionJsonPath(batch), JSON.stringify(list, null, 2), 'utf8');
+
+  // Sync to JS file
+  syncBranchDistributionJs(list, batch);
+
+  // Rebuild static site
+  try {
+    console.log(`Rebuilding static site after saving branch distribution for ${company}...`);
+    execSync('node scripts/build_all.js', { cwd: ROOT_DIR, stdio: 'pipe' });
+  } catch (err) {
+    console.error('Error rebuilding site:', err.message);
+  }
+
+  return { success: true, item: normalized, count: list.length };
+}
+
+function deleteBranchDistributionItem(rawNameOrSlug, batch = '2027') {
+  const list = getBranchDistribution(batch);
+  const target = (rawNameOrSlug || '').toLowerCase().trim();
+  const filtered = list.filter(r => 
+    (r.id && r.id.toLowerCase() === target) ? false :
+    (r.rawName && r.rawName.toLowerCase() === target) ? false :
+    (r.slug && r.slug.toLowerCase() === target) ? false : true
+  );
+
+  if (filtered.length === list.length) {
+    return { success: false, message: 'Branch distribution item not found' };
+  }
+
+  fs.writeFileSync(getBranchDistributionJsonPath(batch), JSON.stringify(filtered, null, 2), 'utf8');
+  syncBranchDistributionJs(filtered, batch);
+
+  try {
+    console.log(`Rebuilding static site after deleting branch distribution item ${rawNameOrSlug}...`);
+    execSync('node scripts/build_all.js', { cwd: ROOT_DIR, stdio: 'pipe' });
+  } catch (err) {
+    console.error('Error rebuilding site:', err.message);
+  }
+
+  return { success: true, count: filtered.length };
+}
+
+function syncBranchDistributionJs(list, batch = '2027') {
+  if (batch === '2027') {
+    const total = list.reduce((acc, r) => acc + (r.total || 0), 0);
+    const ceTotal = list.reduce((acc, r) => acc + (r.ce || 0), 0);
+    const cseTotal = list.reduce((acc, r) => acc + (r.cse || 0), 0);
+    const extcTotal = list.reduce((acc, r) => acc + (r.extc || 0), 0);
+    const unkTotal = list.reduce((acc, r) => acc + (r.unknown || 0), 0);
+    const knownTotal = ceTotal + cseTotal + extcTotal;
+
+    const cePct = total > 0 ? ((ceTotal / total) * 100).toFixed(1) : "0";
+    const csePct = total > 0 ? ((cseTotal / total) * 100).toFixed(1) : "0";
+    const extcPct = total > 0 ? ((extcTotal / total) * 100).toFixed(1) : "0";
+    const unkPct = total > 0 ? ((unkTotal / total) * 100).toFixed(1) : "0";
+
+    const knownCePct = knownTotal > 0 ? ((ceTotal / knownTotal) * 100).toFixed(1) : "0";
+    const knownCsePct = knownTotal > 0 ? ((cseTotal / knownTotal) * 100).toFixed(1) : "0";
+    const knownExtcPct = knownTotal > 0 ? ((extcTotal / knownTotal) * 100).toFixed(1) : "0";
+
+    const ceRecruiters = list.filter(r => r.ce > 0).length;
+    const cseRecruiters = list.filter(r => r.cse > 0).length;
+    const extcRecruiters = list.filter(r => r.extc > 0).length;
+    const unkRecruiters = list.filter(r => r.unknown > 0).length;
+
+    const topCe = list.filter(r => r.ce > 0).sort((a,b) => b.ce - a.ce).slice(0, 6).map(r => `${r.company} (${r.ce})`);
+    const topCse = list.filter(r => r.cse > 0).sort((a,b) => b.cse - a.cse).slice(0, 6).map(r => `${r.company} (${r.cse})`);
+    const topExtc = list.filter(r => r.extc > 0).sort((a,b) => b.extc - a.extc).slice(0, 6).map(r => `${r.company} (${r.extc})`);
+    const topUnk = list.filter(r => r.unknown > 0).sort((a,b) => b.unknown - a.unknown).slice(0, 6).map(r => `${r.company} (${r.unknown})`);
+
+    const summary = {
+      total,
+      knownTotal,
+      overallAverageCTC: "₹14.28 LPA",
+      overallMedianCTC: "₹14.70 LPA",
+      overallHighestCTC: "₹33.0 LPA",
+      knownDistributionAverageCTC: "₹15.24 LPA",
+      knownDistributionMedianCTC: "₹15.00 LPA",
+      branches: [
+        {
+          id: "ce",
+          name: "Computer Engineering",
+          shortName: "CE",
+          count: ceTotal,
+          percentage: cePct,
+          knownPercentage: knownCePct,
+          color: "#10b981",
+          recruiterCount: ceRecruiters,
+          averageCTC: "₹15.55 LPA",
+          medianCTC: "₹15.00 LPA",
+          highestCTC: "₹33.0 LPA",
+          knownOffersWithCTC: 46,
+          topPayingRecruiter: "PhonePe (₹33 LPA)",
+          topRecruiters: topCe
+        },
+        {
+          id: "cse",
+          name: "Computer Science Engineering",
+          shortName: "CSE",
+          count: cseTotal,
+          percentage: csePct,
+          knownPercentage: knownCsePct,
+          color: "#38bdf8",
+          recruiterCount: cseRecruiters,
+          averageCTC: "₹15.75 LPA",
+          medianCTC: "₹15.05 LPA",
+          highestCTC: "₹33.0 LPA",
+          knownOffersWithCTC: 30,
+          topPayingRecruiter: "PhonePe (₹33 LPA)",
+          topRecruiters: topCse
+        },
+        {
+          id: "extc",
+          name: "Electronics & Telecommunications",
+          shortName: "EXTC",
+          count: extcTotal,
+          percentage: extcPct,
+          knownPercentage: knownExtcPct,
+          color: "#f43f5e",
+          recruiterCount: extcRecruiters,
+          averageCTC: "₹12.30 LPA",
+          medianCTC: "₹12.00 LPA",
+          highestCTC: "₹18.0 LPA",
+          knownOffersWithCTC: 10,
+          topPayingRecruiter: "Futures First (₹18 LPA)",
+          topRecruiters: topExtc
+        },
+        {
+          id: "unknown",
+          name: "Unknown / Awaiting Division",
+          shortName: "Unknown",
+          count: unkTotal,
+          percentage: unkPct,
+          knownPercentage: "—",
+          color: "#71717a",
+          recruiterCount: unkRecruiters,
+          averageCTC: "₹13.45 LPA",
+          medianCTC: "₹14.00 LPA",
+          highestCTC: "₹33.0 LPA",
+          knownOffersWithCTC: 99,
+          topPayingRecruiter: "Barclays (₹15.05 LPA)",
+          topRecruiters: topUnk
+        }
+      ]
+    };
+
+    const jsPath = path.join(DATA_DIR, 'branch_distribution.js');
+    const content = `// SPIT Class of 2027 Confirmed Branch Distribution Dataset
+// Compiled from recruitment drives with verified departmental selection author records
+
+export const branchSummary = ${JSON.stringify(summary, null, 2)};
+
+export const companyBranchDistribution = ${JSON.stringify(list, null, 2)};
+`;
+    fs.writeFileSync(jsPath, content, 'utf8');
+  }
+}
+
 module.exports = {
   getCompanies,
   getCompany,
   saveCompany,
   deleteCompany,
   normalizeCompany,
-  syncJsData
+  syncJsData,
+  getBranchDistribution,
+  saveBranchDistributionItem,
+  deleteBranchDistributionItem,
+  syncBranchDistributionJs
 };
