@@ -1,0 +1,9 @@
+# robots.txt for Placed ’27 · SPIT Placement Statistics
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+# Sitemap & Host
+Host: https://placement-stats.vercel.app
+Sitemap: https://placement-stats.vercel.app/sitemap.xml

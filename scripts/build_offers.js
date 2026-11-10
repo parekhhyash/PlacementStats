@@ -1229,7 +1229,9 @@ function generateOffersPage() {
   `;
 
   const html = pageTemplate({
-    title: `Offers · Placed · ${siteConfig.collegeShort}`,
+    title: `Placement Offers & CTC Salary Distribution · SPIT Class of 2027`,
+    description: `Verified breakdown of 236 placement offers across salary tiers (Super Dream, Dream, Core Tech), role domains (Software Engineering, AI/ML, Quant Finance, Consulting), and PPO conversions at SPIT Mumbai.`,
+    keywords: `SPIT placement offers, SPIT CTC salary distribution, SPIT PPO conversions, SPIT super dream packages, SPIT software engineer salary, SPIT tech placements`,
     activePath: '/offers/',
     content,
     extraScript

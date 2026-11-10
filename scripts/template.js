@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { siteConfig } = require('../src/config/site');
 
 function getHeaderHtml(activePath = '/') {
   const navLinks = [
@@ -244,19 +245,180 @@ function getFooterHtml() {
   `;
 }
 
+function getBreadcrumbName(cleanPath) {
+  const map = {
+    '/': 'Home',
+    '/highlights/': 'Season Highlights',
+    '/companies/': 'Companies Directory',
+    '/offers/': 'Placement Offers',
+    '/branchwise/': 'Branch-Wise Distribution',
+    '/timeline/': 'Recruitment Timeline',
+    '/updates/': 'Placement Updates',
+    '/corrections/': 'Submit & Verify Data',
+    '/feedback/': 'Feedback',
+    '/contact/': 'Contact',
+    '/admin/': 'Admin'
+  };
+  return map[cleanPath] || cleanPath.replace(/\//g, '');
+}
+
 // Helper to wrap pages with head, header, footer, and scripts
-function pageTemplate({ title, activePath = '/', content, extraHead = '', extraScript = '' }) {
+function pageTemplate({
+  title,
+  description,
+  keywords,
+  activePath = '/',
+  canonicalUrl,
+  ogImage = '/og.png',
+  ogType = 'website',
+  structuredData = null,
+  noIndex = false,
+  content,
+  extraHead = '',
+  extraScript = ''
+}) {
   const preRenderedHeader = getHeaderHtml(activePath);
   const preRenderedFooter = getFooterHtml();
+
+  const siteUrl = siteConfig.siteUrl || 'https://placement-stats.vercel.app';
+  const cleanPath = activePath.endsWith('/') ? activePath : activePath + '/';
+  const fullCanonical = canonicalUrl || (siteUrl + (cleanPath === '/' ? '/' : cleanPath));
+  const fullOgImage = ogImage.startsWith('http') ? ogImage : (siteUrl + (ogImage.startsWith('/') ? ogImage : '/' + ogImage));
+
+  const pageTitle = title || siteConfig.seo.defaultTitle;
+  const pageDesc = description || siteConfig.seo.defaultDescription;
+  const pageKeywords = keywords || siteConfig.seo.defaultKeywords;
+  const robotsDirective = noIndex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+
+  // Build JSON-LD structured data schemas
+  const schemas = [];
+
+  // 1. WebSite Schema (with search action)
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Placed ’27 · SPIT",
+    "alternateName": ["SPIT Placements", "Placed 27", "SPIT Mumbai Placements"],
+    "url": siteUrl + "/",
+    "inLanguage": "en-IN",
+    "description": siteConfig.seo.defaultDescription,
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${siteUrl}/companies/?q={search_term_string}`,
+      "query-input": "required name=search_term_string"
+    }
+  });
+
+  // 2. EducationalOrganization Schema
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Sardar Patel Institute of Technology",
+    "alternateName": "SPIT Mumbai",
+    "url": "https://www.spit.ac.in",
+    "logo": `${siteUrl}/og.png`,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Bhavan's Campus, Munshi Nagar, Andheri West",
+      "addressLocality": "Mumbai",
+      "addressRegion": "Maharashtra",
+      "postalCode": "400058",
+      "addressCountry": "IN"
+    }
+  });
+
+  // 3. Dataset Schema (Campus Placement Records)
+  if (cleanPath === '/' || cleanPath === '/branchwise/' || cleanPath === '/offers/' || cleanPath === '/highlights/') {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      "name": "SPIT Mumbai Campus Placement Statistics Class of 2027 & 2028",
+      "description": "Verified campus placement dataset detailing confirmed offers, recruiter CTC compensation packages, branch distributions, and hiring timelines for Sardar Patel Institute of Technology (SPIT Mumbai).",
+      "url": fullCanonical,
+      "keywords": [
+        "SPIT Placement Statistics",
+        "Engineering Placements Mumbai",
+        "Computer Engineering CTC",
+        "CSE Placements",
+        "EXTC Placements",
+        "Sardar Patel Institute of Technology"
+      ],
+      "creator": {
+        "@type": "Organization",
+        "name": "SPIT Student Community"
+      },
+      "temporalCoverage": "2026/2027",
+      "spatialCoverage": "Mumbai, India"
+    });
+  }
+
+  // 4. BreadcrumbList Schema (for sub-pages)
+  if (cleanPath !== '/') {
+    const breadcrumbName = getBreadcrumbName(cleanPath);
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": `${siteUrl}/`
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": breadcrumbName,
+          "item": fullCanonical
+        }
+      ]
+    });
+  }
+
+  // If custom structured data passed in
+  if (structuredData) {
+    if (Array.isArray(structuredData)) {
+      schemas.push(...structuredData);
+    } else {
+      schemas.push(structuredData);
+    }
+  }
+
+  const jsonLdScripts = schemas.map(s => `  <script type="application/ld+json">\n${JSON.stringify(s, null, 2)}\n  </script>`).join('\n');
 
   return `<!DOCTYPE html>
 <html lang="en" class="h-full bg-bg text-fg CWomsa_variable Z1YhAq_variable _0T2Ldq_variable">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${title}</title>
-  <meta name="description" content="Campus recruitment, roles, pay and selection analytics." />
+  
+  <!-- Standard SEO Meta Tags -->
+  <title>${pageTitle}</title>
+  <meta name="description" content="${pageDesc}" />
+  <meta name="keywords" content="${pageKeywords}" />
+  <meta name="author" content="SPIT Student Community" />
+  <meta name="robots" content="${robotsDirective}" />
+  <link rel="canonical" href="${fullCanonical}" />
   <meta name="theme-color" content="#000000" />
+
+  <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+  <meta property="og:type" content="${ogType}" />
+  <meta property="og:site_name" content="${siteConfig.seo.siteName}" />
+  <meta property="og:title" content="${pageTitle}" />
+  <meta property="og:description" content="${pageDesc}" />
+  <meta property="og:url" content="${fullCanonical}" />
+  <meta property="og:image" content="${fullOgImage}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Placed ’27 · SPIT Placement Statistics Dashboard" />
+  <meta property="og:locale" content="en_IN" />
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${pageTitle}" />
+  <meta name="twitter:description" content="${pageDesc}" />
+  <meta name="twitter:image" content="${fullOgImage}" />
+  <meta name="twitter:image:alt" content="Placed ’27 · SPIT Placement Statistics Dashboard" />
   
   <!-- Google Fonts Preconnect & Stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -268,11 +430,15 @@ function pageTemplate({ title, activePath = '/', content, extraHead = '', extraS
   <link rel="preload" href="/fonts/Geist-s.p.2xgg6xh-upisd.woff2" as="font" type="font/woff2" crossorigin="" />
   <link rel="preload" href="/fonts/GeistMono-s.p.1r21m8mjt8-gs.woff2" as="font" type="font/woff2" crossorigin="" />
   
-  <!-- Styles -->
+  <!-- Styles & Favicons -->
   <link rel="stylesheet" href="/css/styles.css?v=3" />
   <link rel="icon" href="/favicon.ico" sizes="48x48" />
   <link rel="icon" href="/icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+  <!-- Structured Data (JSON-LD) -->
+${jsonLdScripts}
   ${extraHead}
 
   <!-- Vercel Web Analytics -->
@@ -315,7 +481,5 @@ ${extraScript}
 </body>
 </html>`;
 }
-
-module.exports = { pageTemplate };
 
 module.exports = { pageTemplate };

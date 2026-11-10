@@ -3486,6 +3486,7 @@ Kelp Global,kelp-global,₹16 LPA,CTC,internship;fulltime,All branches open,8.0+
   const html = pageTemplate({
     title: `Placement Admin Portal · SPIT`,
     activePath: '/admin/',
+    noIndex: true,
     content,
     extraScript
   });

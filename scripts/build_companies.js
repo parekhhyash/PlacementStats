@@ -796,7 +796,9 @@ function generateCompaniesPage() {
   `;
 
   const html = pageTemplate({
-    title: `Companies · Placed · ${siteConfig.collegeShort}`,
+    title: `Companies & Recruiters Directory · SPIT Placements 2027 | Placed ’27`,
+    description: `Complete directory of 38+ recruitment companies visiting Sardar Patel Institute of Technology (SPIT Mumbai) with salary packages, hiring criteria, and selection funnels.`,
+    keywords: `SPIT recruiters list, companies visiting SPIT Mumbai, SPIT placement companies, Barclays SPIT package, PhonePe SPIT, UBS SPIT, SPIT selection criteria, SPIT campus recruitment`,
     activePath: '/companies/',
     content,
     extraScript
@@ -1141,7 +1143,17 @@ function generateCompanyDetailPage() {
       loadingEl?.classList.add('hidden');
       contentEl?.classList.remove('hidden');
 
-      document.title = company.name + ' · Placed ’' + matchedBatchYear.slice(2) + ' · SPIT';
+      document.title = \`\${company.name} Recruitment Process, Eligibility & CTC · SPIT Placements\`;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', \`\${company.name} campus placement records at Sardar Patel Institute of Technology (SPIT Mumbai): \${company.pay ? 'package ' + company.pay + ', ' : ''}\${company.cgpa ? 'minimum CGPA ' + company.cgpa + ', ' : ''}\${company.status || 'selection funnels, interview rounds, and offer statistics.'}\`);
+      }
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute('content', document.title);
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc && metaDesc) ogDesc.setAttribute('content', metaDesc.getAttribute('content'));
+      const canonicalTag = document.querySelector('link[rel="canonical"]');
+      if (canonicalTag) canonicalTag.setAttribute('href', \`https://placement-stats.vercel.app/companies/company.html?slug=\${company.slug}\`);
 
       // Breadcrumb & Links
       const bcLink = document.getElementById('breadcrumb-companies-link');
@@ -1452,7 +1464,9 @@ function generateCompanyDetailPage() {
   `;
 
   const html = pageTemplate({
-    title: `Company Details · Placed · ${siteConfig.collegeShort}`,
+    title: `Company Recruitment Process, Eligibility & CTC · SPIT Placements`,
+    description: `Detailed recruitment breakdown for visiting companies at Sardar Patel Institute of Technology (SPIT Mumbai): compensation packages, eligibility cutoffs, selection rounds, and offer statistics.`,
+    keywords: `SPIT company placement details, SPIT recruitment process, SPIT selection rounds, SPIT eligibility criteria, SPIT package`,
     activePath: '/companies/',
     content,
     extraScript

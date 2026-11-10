@@ -21,7 +21,7 @@ try {
     }
 
     // 2. Copy root icons and meta assets
-    const assetsToSync = ['favicon.ico', 'icon.svg', 'apple-touch-icon.png', 'og.png', 'manifest.webmanifest'];
+    const assetsToSync = ['favicon.ico', 'icon.svg', 'apple-touch-icon.png', 'og.png', 'manifest.webmanifest', 'robots.txt', 'sitemap.xml'];
     assetsToSync.forEach(file => {
       const srcFile = path.join(publicDir, file);
       const destFile = path.join(rootDir, file);
@@ -65,6 +65,10 @@ try {
 
   console.log('11. Building Admin Dashboard...');
   require('./build_admin.js');
+
+  console.log('12. Generating SEO files (sitemap.xml & robots.txt)...');
+  const { generateSeoFiles } = require('./generate_seo_files.js');
+  generateSeoFiles();
 
   console.log('✔ All pages compiled successfully!');
 } catch (err) {

@@ -4,6 +4,18 @@
 import { companies } from '../data/companies.js';
 
 export const siteConfig = {
+  // Canonical Site URL & SEO Metadata
+  siteUrl: "https://placement-stats.vercel.app",
+  seo: {
+    siteName: "Placed ’27 · SPIT Placements",
+    defaultTitle: "Placed ’27 · SPIT Placement Statistics & Campus Recruitment Analytics",
+    titleTemplate: "%s | SPIT Placements",
+    defaultDescription: "Explore verified campus placement records, recruiter salary packages, stipend distributions, branch-wise statistics, and drive timelines for Sardar Patel Institute of Technology (SPIT Mumbai).",
+    defaultKeywords: "SPIT placement statistics, SPIT placements 2027, Sardar Patel Institute of Technology placements, SPIT Mumbai average package, SPIT highest package, SPIT recruiter CTC, SPIT branchwise placement, SPIT Computer Engineering, SPIT CSE, SPIT EXTC",
+    ogImage: "/og.png",
+    twitterHandle: "@spit_mumbai"
+  },
+
   // College Information
   collegeName: "Sardar Patel Institute of Technology",
   collegeShort: "SPIT",
@@ -28,8 +40,8 @@ export const siteConfig = {
     internshipsCount: 114,
     ppoCount: 72,
     highestCTC: "₹33.0 LPA",
-    medianCTC: "₹13.0 LPA",
-    averageCTC: "₹14.06 LPA",
+    medianCTC: "₹14.70 LPA",
+    averageCTC: "₹14.28 LPA",
     highestStipend: "₹1,60,000 / mo",
     medianStipend: "₹40,000 / mo",
     averageStipend: "₹53,600 / mo",
