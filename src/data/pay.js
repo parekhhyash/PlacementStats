@@ -3,12 +3,12 @@
 
 export const payData = {
   summary: {
-    overallAverageCTC: "₹14.06 LPA",
-    overallMedianCTC: "₹13.00 LPA",
-    drivesWithSelections: 29,
-    fulltimeAverageCTC: "₹14.10 LPA",
+    overallAverageCTC: "₹14.08 LPA",
+    overallMedianCTC: "₹14.00 LPA",
+    drivesWithSelections: 30,
+    fulltimeAverageCTC: "₹14.07 LPA",
     fulltimeMedianCTC: "₹13.50 LPA",
-    fulltimeDrivesCount: 22,
+    fulltimeDrivesCount: 23,
     ppoAverageCTC: "₹14.70 LPA",
     ppoMedianCTC: "₹15.00 LPA",
     ppoDrivesCount: 16,
@@ -22,8 +22,8 @@ export const payData = {
   // CTC Package Distribution Brackets
   brackets: [
     { tier: "Super Dream (> ₹20 LPA)", count: 6, percentage: "3%", color: "var(--color-ppo)", description: "PhonePe SDE (₹33 LPA) & marquee product engineering roles" },
-    { tier: "Dream (₹14 – ₹20 LPA)", count: 67, percentage: "30%", color: "var(--color-fulltime)", description: "IDFC FIRST, Barclays, ISS/STOXX, WorkIndia, AuxoAI, UBS, Nomura, Futures First" },
-    { tier: "Core Tech (₹10 – ₹14 LPA)", count: 56, percentage: "25%", color: "var(--color-intern)", description: "Capgemini, AspectRatio, InCred, InSync, Baker Hughes, Infosys, Colgate" },
+    { tier: "Dream (₹14 – ₹20 LPA)", count: 67, percentage: "29%", color: "var(--color-fulltime)", description: "IDFC FIRST, Barclays, ISS/STOXX, WorkIndia, AuxoAI, UBS, Nomura, Futures First" },
+    { tier: "Core Tech (₹10 – ₹14 LPA)", count: 59, percentage: "26%", color: "var(--color-intern)", description: "HERE Technologies, Capgemini, AspectRatio, InCred, InSync, Baker Hughes, Infosys, Colgate" },
     { tier: "Standard (< ₹10 LPA)", count: 96, percentage: "42%", color: "var(--color-muted)", description: "GEP Worldwide, TransUnion, Quantiphi, Wissen, Revvity, Axis MF, JPMC Risk" }
   ],
 
@@ -48,6 +48,7 @@ export const payData = {
     { name: "ISS / STOXX", pay: 14.7, type: "fulltime", students: 15 },
     { name: "Mahindra Finance", pay: 14.0, type: "fulltime", students: 9 },
     { name: "Nomura", pay: 13.9, type: "fulltime", students: 1 },
+    { name: "HERE Technologies", pay: 13.5, type: "fulltime", students: 3 },
     { name: "UBS", pay: 16.0, type: "fulltime", students: 14 },
     { name: "Capgemini", pay: 13.0, type: "fulltime", students: 4 },
     { name: "Baker Hughes", pay: 13.0, type: "fulltime", students: 3 },

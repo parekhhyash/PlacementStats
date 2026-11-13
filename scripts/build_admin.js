@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { pageTemplate } = require('./template');
 const { siteConfig } = require('../src/config/site');
+const { branchSummary } = require('../src/data/branch_distribution');
 
 function generateAdminPage() {
   const content = `
@@ -503,41 +504,41 @@ function generateAdminPage() {
       <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         <div class="rounded-2xl border border-line-strong bg-panel p-4">
           <span class="text-[11px] text-faint font-mono uppercase tracking-wider block">Total Offers</span>
-          <span id="stat-bd-total" class="font-display text-[22px] font-bold text-fg mt-1 block font-mono">236</span>
+          <span id="stat-bd-total" class="font-display text-[22px] font-bold text-fg mt-1 block font-mono">${branchSummary.total}</span>
           <span class="text-[11px] text-muted block mt-0.5">Across all drives</span>
         </div>
         <div class="rounded-2xl border border-line-strong bg-panel p-4">
           <span class="text-[11px] text-faint font-mono uppercase tracking-wider block">Known Authors</span>
-          <span id="stat-bd-known" class="font-display text-[22px] font-bold text-intern mt-1 block font-mono">125</span>
-          <span id="stat-bd-known-pct" class="text-[11px] text-muted block mt-0.5">53.0% resolved</span>
+          <span id="stat-bd-known" class="font-display text-[22px] font-bold text-intern mt-1 block font-mono">${branchSummary.knownTotal}</span>
+          <span id="stat-bd-known-pct" class="text-[11px] text-muted block mt-0.5">${((branchSummary.knownTotal / branchSummary.total) * 100).toFixed(1)}% resolved</span>
         </div>
         <div class="rounded-2xl border border-line-strong bg-panel p-4 border-l-2 border-l-[#10b981]">
           <span class="text-[11px] text-[#10b981] font-mono uppercase tracking-wider block flex items-center gap-1.5">
             <span class="size-2 rounded-full bg-[#10b981]"></span>Comp Engg (CE)
           </span>
-          <span id="stat-bd-ce" class="font-display text-[22px] font-bold text-fg mt-1 block font-mono">61</span>
-          <span id="stat-bd-ce-pct" class="text-[11px] text-muted block mt-0.5">25.8% (28 drives)</span>
+          <span id="stat-bd-ce" class="font-display text-[22px] font-bold text-fg mt-1 block font-mono">${branchSummary.branches.find(b => b.id === 'ce')?.count || 61}</span>
+          <span id="stat-bd-ce-pct" class="text-[11px] text-muted block mt-0.5">${branchSummary.branches.find(b => b.id === 'ce')?.percentage}% (${branchSummary.branches.find(b => b.id === 'ce')?.recruiterCount} drives)</span>
         </div>
         <div class="rounded-2xl border border-line-strong bg-panel p-4 border-l-2 border-l-[#38bdf8]">
           <span class="text-[11px] text-[#38bdf8] font-mono uppercase tracking-wider block flex items-center gap-1.5">
             <span class="size-2 rounded-full bg-[#38bdf8]"></span>Comp Sci (CSE)
           </span>
-          <span id="stat-bd-cse" class="font-display text-[22px] font-bold text-fg mt-1 block font-mono">44</span>
-          <span id="stat-bd-cse-pct" class="text-[11px] text-muted block mt-0.5">18.6% (22 drives)</span>
+          <span id="stat-bd-cse" class="font-display text-[22px] font-bold text-fg mt-1 block font-mono">${branchSummary.branches.find(b => b.id === 'cse')?.count || 44}</span>
+          <span id="stat-bd-cse-pct" class="text-[11px] text-muted block mt-0.5">${branchSummary.branches.find(b => b.id === 'cse')?.percentage}% (${branchSummary.branches.find(b => b.id === 'cse')?.recruiterCount} drives)</span>
         </div>
         <div class="rounded-2xl border border-line-strong bg-panel p-4 border-l-2 border-l-[#f43f5e]">
           <span class="text-[11px] text-[#f43f5e] font-mono uppercase tracking-wider block flex items-center gap-1.5">
             <span class="size-2 rounded-full bg-[#f43f5e]"></span>Telecom (EXTC)
           </span>
-          <span id="stat-bd-extc" class="font-display text-[22px] font-bold text-fg mt-1 block font-mono">20</span>
-          <span id="stat-bd-extc-pct" class="text-[11px] text-muted block mt-0.5">8.5% (12 drives)</span>
+          <span id="stat-bd-extc" class="font-display text-[22px] font-bold text-fg mt-1 block font-mono">${branchSummary.branches.find(b => b.id === 'extc')?.count || 20}</span>
+          <span id="stat-bd-extc-pct" class="text-[11px] text-muted block mt-0.5">${branchSummary.branches.find(b => b.id === 'extc')?.percentage}% (${branchSummary.branches.find(b => b.id === 'extc')?.recruiterCount} drives)</span>
         </div>
         <div class="rounded-2xl border border-line-strong bg-panel p-4 border-l-2 border-l-[#71717a]">
           <span class="text-[11px] text-faint font-mono uppercase tracking-wider block flex items-center gap-1.5">
             <span class="size-2 rounded-full bg-[#71717a]"></span>Unknown / Awaiting
           </span>
-          <span id="stat-bd-unk" class="font-display text-[22px] font-bold text-muted mt-1 block font-mono">111</span>
-          <span id="stat-bd-unk-pct" class="text-[11px] text-muted block mt-0.5">47.0% pending</span>
+          <span id="stat-bd-unk" class="font-display text-[22px] font-bold text-muted mt-1 block font-mono">${branchSummary.branches.find(b => b.id === 'unknown')?.count || 114}</span>
+          <span id="stat-bd-unk-pct" class="text-[11px] text-muted block mt-0.5">${branchSummary.branches.find(b => b.id === 'unknown')?.percentage}% pending</span>
         </div>
       </div>
 

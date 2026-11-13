@@ -1003,7 +1003,7 @@ function generateHomePage() {
 
   const html = pageTemplate({
     title: "Placed ’27 · SPIT Placement Statistics & Campus Recruitment Analytics",
-    description: "Explore verified campus placement records for Sardar Patel Institute of Technology (SPIT Mumbai) Class of 2027 & 2028: 236 confirmed offers, ₹14.28 LPA average CTC, ₹33 LPA highest package, recruiter packages, and branch analytics.",
+    description: `Explore verified campus placement records for Sardar Patel Institute of Technology (SPIT Mumbai) Class of 2027 & 2028: ${siteConfig.stats.studentsPlaced} confirmed offers, ${siteConfig.stats.averageCTC} average CTC, ${siteConfig.stats.highestCTC} highest package, recruiter packages, and branch analytics.`,
     keywords: "SPIT placement statistics, SPIT placements 2027, Sardar Patel Institute of Technology placements, SPIT Mumbai average package, SPIT highest package, SPIT placement report, SPIT recruiters 2027, SPIT branchwise placement",
     activePath: '/',
     content: mainContent,

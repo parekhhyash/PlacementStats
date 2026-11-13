@@ -3,6 +3,16 @@
 
 export const updatesData = [
   {
+    id: "up-here",
+    timestamp: "06 Nov 2026, 4:00 PM",
+    company: "HERE Technologies",
+    category: "Results",
+    title: "HERE Technologies selects 3 students at ₹13.5 LPA",
+    content: "3 candidates selected for Software Engineer roles at ₹13.5 LPA CTC following campus recruitment drive.",
+    companySlug: "here-technologies",
+    logo: "/logos/here-technologies.svg"
+  },
+  {
     id: "up-1",
     timestamp: "28 Oct 2026, 6:30 PM",
     company: "PhonePe",

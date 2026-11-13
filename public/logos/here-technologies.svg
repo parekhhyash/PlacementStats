@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+  <rect width="80" height="80" rx="16" fill="#0c1d2e"/>
+  <circle cx="40" cy="40" r="26" fill="none" stroke="#48dad0" stroke-width="4.5"/>
+  <text x="40" y="47" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="900" letter-spacing="1.5" fill="#ffffff" text-anchor="middle">HERE</text>
+</svg>

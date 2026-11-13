@@ -29,7 +29,8 @@ const companyLogos = [
   { slug: 'incred', name: 'InCred', bg: '#f26522', text: 'InCred', letter: 'INC', textColor: '#ffffff' },
   { slug: 'insync-analytics', name: 'InSync', bg: '#1e3a8a', text: 'InSync', letter: 'IS', textColor: '#ffffff' },
   { slug: 'mahindra-finance', name: 'Mahindra', bg: '#e31837', text: 'MMFSL', letter: 'MF', textColor: '#ffffff' },
-  { slug: 'nouryon', name: 'Nouryon', bg: '#006699', text: 'Nouryon', letter: 'NY', textColor: '#ffffff' }
+  { slug: 'nouryon', name: 'Nouryon', bg: '#006699', text: 'Nouryon', letter: 'NY', textColor: '#ffffff' },
+  { slug: 'here-technologies', name: 'HERE Technologies', bg: '#0c1d2e', text: 'HERE', letter: 'HERE', textColor: '#48dad0' }
 ];
 
 companyLogos.forEach(item => {

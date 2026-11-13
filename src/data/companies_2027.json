@@ -589,6 +589,132 @@
     ]
   },
   {
+    "slug": "idfc-first-bank",
+    "name": "IDFC FIRST Bank",
+    "offers": [
+      "internship",
+      "fulltime",
+      "ppo"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "₹18.1 LPA",
+    "payKind": "CTC",
+    "payRank": 1810,
+    "dream": true,
+    "logo": "/logos/idfc.svg",
+    "out": {
+      "internships": 11,
+      "fulltimeOffers": 11,
+      "ppo": 11,
+      "newHires": 11,
+      "students": 11
+    },
+    "open": "CE, CSE, EXTC",
+    "branches": "All branches open (APM selected from Computer Engineering)",
+    "cgpa": 6.75,
+    "cgpaCriteria": "6.75+ CGPA; CE/CSE only, no standing backlogs",
+    "boardsCriteria": "60% in Class 10 and 60% in Class 12",
+    "first": "PPT 25 Jun, OA 4 Jul, interviews 8 Jul 2026",
+    "last": "PPT 22 Oct 2026, results 31 Oct",
+    "visitTimeline": "Jun–Oct 2026 (Application Engineer & APM drives)",
+    "funnelRaw": "App Eng (OA ~165 -> 8 offers) | APM (OA ~130 -> 3 SPIT offers)",
+    "status": "11 confirmed offers",
+    "roles": [
+      {
+        "title": "Application Engineer",
+        "type": "both",
+        "count": 8,
+        "ctc": "₹18.1 LPA",
+        "stipend": "₹40k / mo",
+        "rawCompensation": "Stipend 40k/month; CTC 18.1 LPA (14 fixed + 2 joining + 2.1 variable)",
+        "visitDate": "PPT 25 Jun, OA 4 Jul, interviews 8 Jul 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 165
+          },
+          {
+            "name": "Technical Interview Round 1",
+            "count": 50
+          },
+          {
+            "name": "Technical Interview Round 2",
+            "count": 22
+          },
+          {
+            "name": "Technical Interview Round 3",
+            "count": 10
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 10
+          },
+          {
+            "name": "Offers Extended",
+            "count": 8
+          }
+        ],
+        "funnelRaw": "OA ~165 -> L1 tech 48-50 -> L2 tech 20-22 -> L3 tech 10 -> HR 10 -> 8 offers",
+        "notes": "4 PDFs; 8 offers"
+      },
+      {
+        "title": "Associate Product Manager",
+        "type": "both",
+        "count": 3,
+        "ctc": "₹18.1 LPA",
+        "stipend": "₹40,000/month",
+        "rawCompensation": "14L base + 2L joining bonus + 15% variable",
+        "visitDate": "PPT 22 Oct 2026; OA 23 Oct; Techno-HR 29 Oct; results 31 Oct",
+        "notes": "Performance-based PPO. Pooled drive with DJ Sanghvi: 5 offers in total (3 SPIT + 2 DJ Sanghvi); Gold Loans vertical interviews postponed, so more offers may follow. Bond: Rs 1 lakh if leaving within a year.",
+        "funnelRaw": "OA ~130 SPIT -> Techno-HR 41 SPIT + 21 DJ Sanghvi -> 5 offers (3 SPIT + 2 DJ Sanghvi)",
+        "funnel": [
+          {
+            "name": "Online Assessment (OA)",
+            "count": 130
+          },
+          {
+            "name": "Techno-HR Round",
+            "count": 41
+          },
+          {
+            "name": "Offers Extended (SPIT)",
+            "count": 3
+          }
+        ]
+      }
+    ],
+    "notes": "Application Engineer (8 offers) + Associate Product Manager (3 SPIT offers from pooled DJ Sanghvi drive). Total 11 offers.",
+    "stages": [
+      {
+        "name": "Online Coding Assessment (OA)",
+        "count": 165
+      },
+      {
+        "name": "Technical Interview Round 1",
+        "count": 50
+      },
+      {
+        "name": "Technical Interview Round 2",
+        "count": 22
+      },
+      {
+        "name": "Technical Interview Round 3",
+        "count": 10
+      },
+      {
+        "name": "HR & Culture-Fit Interview",
+        "count": 10
+      },
+      {
+        "name": "Offers Extended",
+        "count": 8
+      }
+    ]
+  },
+  {
     "slug": "transunion",
     "name": "TransUnion",
     "offers": [
@@ -1194,132 +1320,6 @@
     ]
   },
   {
-    "slug": "idfc-first-bank",
-    "name": "IDFC FIRST Bank",
-    "offers": [
-      "internship",
-      "fulltime",
-      "ppo"
-    ],
-    "seasons": [
-      "TE",
-      "BE"
-    ],
-    "pay": "₹18.1 LPA",
-    "payKind": "CTC",
-    "payRank": 1810,
-    "dream": true,
-    "logo": "/logos/idfc.svg",
-    "out": {
-      "internships": 11,
-      "fulltimeOffers": 11,
-      "ppo": 11,
-      "newHires": 11,
-      "students": 11
-    },
-    "open": "CE, CSE, EXTC",
-    "branches": "All branches open (APM selected from Computer Engineering)",
-    "cgpa": 6.75,
-    "cgpaCriteria": "6.75+ CGPA; CE/CSE only, no standing backlogs",
-    "boardsCriteria": "60% in Class 10 and 60% in Class 12",
-    "first": "PPT 25 Jun, OA 4 Jul, interviews 8 Jul 2026",
-    "last": "PPT 22 Oct 2026, results 31 Oct",
-    "visitTimeline": "Jun–Oct 2026 (Application Engineer & APM drives)",
-    "funnelRaw": "App Eng (OA ~165 -> 8 offers) | APM (OA ~130 -> 3 SPIT offers)",
-    "status": "11 confirmed offers",
-    "roles": [
-      {
-        "title": "Application Engineer",
-        "type": "both",
-        "count": 8,
-        "ctc": "₹18.1 LPA",
-        "stipend": "₹40k / mo",
-        "rawCompensation": "Stipend 40k/month; CTC 18.1 LPA (14 fixed + 2 joining + 2.1 variable)",
-        "visitDate": "PPT 25 Jun, OA 4 Jul, interviews 8 Jul 2026",
-        "funnel": [
-          {
-            "name": "Online Coding Assessment (OA)",
-            "count": 165
-          },
-          {
-            "name": "Technical Interview Round 1",
-            "count": 50
-          },
-          {
-            "name": "Technical Interview Round 2",
-            "count": 22
-          },
-          {
-            "name": "Technical Interview Round 3",
-            "count": 10
-          },
-          {
-            "name": "HR & Culture-Fit Interview",
-            "count": 10
-          },
-          {
-            "name": "Offers Extended",
-            "count": 8
-          }
-        ],
-        "funnelRaw": "OA ~165 -> L1 tech 48-50 -> L2 tech 20-22 -> L3 tech 10 -> HR 10 -> 8 offers",
-        "notes": "4 PDFs; 8 offers"
-      },
-      {
-        "title": "Associate Product Manager",
-        "type": "both",
-        "count": 3,
-        "ctc": "₹18.1 LPA",
-        "stipend": "₹40,000/month",
-        "rawCompensation": "14L base + 2L joining bonus + 15% variable",
-        "visitDate": "PPT 22 Oct 2026; OA 23 Oct; Techno-HR 29 Oct; results 31 Oct",
-        "notes": "Performance-based PPO. Pooled drive with DJ Sanghvi: 5 offers in total (3 SPIT + 2 DJ Sanghvi); Gold Loans vertical interviews postponed, so more offers may follow. Bond: Rs 1 lakh if leaving within a year.",
-        "funnelRaw": "OA ~130 SPIT -> Techno-HR 41 SPIT + 21 DJ Sanghvi -> 5 offers (3 SPIT + 2 DJ Sanghvi)",
-        "funnel": [
-          {
-            "name": "Online Assessment (OA)",
-            "count": 130
-          },
-          {
-            "name": "Techno-HR Round",
-            "count": 41
-          },
-          {
-            "name": "Offers Extended (SPIT)",
-            "count": 3
-          }
-        ]
-      }
-    ],
-    "notes": "Application Engineer (8 offers) + Associate Product Manager (3 SPIT offers from pooled DJ Sanghvi drive). Total 11 offers.",
-    "stages": [
-      {
-        "name": "Online Coding Assessment (OA)",
-        "count": 165
-      },
-      {
-        "name": "Technical Interview Round 1",
-        "count": 50
-      },
-      {
-        "name": "Technical Interview Round 2",
-        "count": 22
-      },
-      {
-        "name": "Technical Interview Round 3",
-        "count": 10
-      },
-      {
-        "name": "HR & Culture-Fit Interview",
-        "count": 10
-      },
-      {
-        "name": "Offers Extended",
-        "count": 8
-      }
-    ]
-  },
-  {
     "slug": "nomura",
     "name": "Nomura",
     "offers": [
@@ -1442,6 +1442,99 @@
       {
         "name": "Offers Extended",
         "count": 1
+      }
+    ]
+  },
+  {
+    "slug": "blackrock",
+    "name": "BlackRock",
+    "offers": [
+      "internship",
+      "fulltime",
+      "ppo"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "₹15 LPA",
+    "payKind": "CTC",
+    "payRank": 1500,
+    "dream": true,
+    "logo": "/logos/blackrock.svg",
+    "out": {
+      "internships": 8,
+      "fulltimeOffers": 8,
+      "ppo": 8,
+      "newHires": 8,
+      "students": 8
+    },
+    "open": "CE, CSE, EXTC",
+    "branches": "All branches open",
+    "cgpa": 7.5,
+    "cgpaCriteria": "7.5+ CGPA",
+    "boardsCriteria": "Standard eligibility",
+    "first": "Aug 2026",
+    "last": "20 Aug 2026",
+    "visitTimeline": "Aug 2026 · PPT 6 Aug 2026, OA 12 Aug, interviews 19 Aug, results 20 Aug",
+    "funnelRaw": "OA ~285 -> Tech R1 38 (SDE: 28 shortlisted + 10 waitlisted; Aladdin: 8 + 6 waitlisted) -> Tech R2 / Techno-HR 16-19 -> 8 offers (7 SDE + 1 Aladdin Data)",
+    "status": "8 confirmed offers",
+    "roles": [
+      {
+        "title": "Software Engineer (SDE)",
+        "type": "internship+ppo",
+        "count": 7,
+        "ctc": "₹15 LPA",
+        "stipend": "₹50,000/month",
+        "rawCompensation": "50k/month stipend; 15 LPA performance-based PPO",
+        "visitDate": "PPT 6 Aug 2026; OA 12 Aug; interviews 19 Aug; results 20 Aug",
+        "notes": "Locations: Mumbai / Gurgaon / Bangalore. Interview shortlist: 28 shortlisted + 10 waitlisted.",
+        "funnel": [
+          {
+            "name": "Online Assessment (OA)",
+            "count": 285
+          },
+          {
+            "name": "Technical Round 1",
+            "count": 38
+          },
+          {
+            "name": "Technical Round 2 / HR",
+            "count": 19
+          },
+          {
+            "name": "Offers Extended",
+            "count": 7
+          }
+        ]
+      },
+      {
+        "title": "Aladdin Data Engineer",
+        "type": "internship+ppo",
+        "count": 1,
+        "ctc": "₹15 LPA",
+        "stipend": "₹50,000/month",
+        "rawCompensation": "50k/month stipend; 15 LPA performance-based PPO",
+        "visitDate": "PPT 6 Aug 2026; OA 12 Aug; interviews 19 Aug; results 20 Aug",
+        "notes": "Interview shortlist: 8 shortlisted + 6 waitlisted.",
+        "funnel": [
+          {
+            "name": "Online Assessment (OA)",
+            "count": 285
+          },
+          {
+            "name": "Technical Round 1",
+            "count": 38
+          },
+          {
+            "name": "Technical Round 2 / HR",
+            "count": 19
+          },
+          {
+            "name": "Offers Extended",
+            "count": 1
+          }
+        ]
       }
     ]
   },
@@ -2677,6 +2770,88 @@
     ]
   },
   {
+    "slug": "here-technologies",
+    "name": "HERE Technologies",
+    "offers": [
+      "fulltime"
+    ],
+    "seasons": [
+      "BE"
+    ],
+    "pay": "₹13.5 LPA",
+    "payKind": "CTC",
+    "payRank": 1350,
+    "dream": false,
+    "logo": "/logos/here-technologies.svg",
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 3,
+      "ppo": 0,
+      "newHires": 3,
+      "students": 3
+    },
+    "open": "CE, CSE, EXTC",
+    "branches": "All branches open",
+    "cgpa": 7,
+    "cgpaCriteria": "Standard eligibility (7.0+ CGPA)",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "Nov 2026",
+    "last": "Nov 2026",
+    "visitTimeline": "Nov 2026",
+    "funnelRaw": "OA -> Technical Interview -> HR -> 3 offers",
+    "status": "3 confirmed offers",
+    "roles": [
+      {
+        "title": "Software Engineer",
+        "type": "fulltime",
+        "count": 3,
+        "ctc": "₹13.5 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC ₹13.5 LPA",
+        "visitDate": "Nov 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 60
+          },
+          {
+            "name": "Technical Interview Round 1",
+            "count": 15
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 6
+          },
+          {
+            "name": "Offers Extended",
+            "count": 3
+          }
+        ],
+        "funnelRaw": "OA -> Technical Interview -> HR -> 3 offers",
+        "notes": "3 confirmed offers"
+      }
+    ],
+    "notes": "3 confirmed offers verified from SPIT placement records.",
+    "stages": [
+      {
+        "name": "Online Coding Assessment (OA)",
+        "count": 60
+      },
+      {
+        "name": "Technical Interview Round 1",
+        "count": 15
+      },
+      {
+        "name": "HR & Culture-Fit Interview",
+        "count": 6
+      },
+      {
+        "name": "Offers Extended",
+        "count": 3
+      }
+    ]
+  },
+  {
     "slug": "infosys",
     "name": "Infosys",
     "offers": [
@@ -3253,98 +3428,5 @@
     "status": "No details available",
     "roles": [],
     "notes": "No details available yet. Submit data if you have it."
-  },
-  {
-    "slug": "blackrock",
-    "name": "BlackRock",
-    "offers": [
-      "internship",
-      "fulltime",
-      "ppo"
-    ],
-    "seasons": [
-      "TE",
-      "BE"
-    ],
-    "pay": "₹15 LPA",
-    "payKind": "CTC",
-    "payRank": 1500,
-    "dream": true,
-    "logo": "/logos/blackrock.svg",
-    "out": {
-      "internships": 8,
-      "fulltimeOffers": 8,
-      "ppo": 8,
-      "newHires": 8,
-      "students": 8
-    },
-    "open": "CE, CSE, EXTC",
-    "branches": "All branches open",
-    "cgpa": 7.5,
-    "cgpaCriteria": "7.5+ CGPA",
-    "boardsCriteria": "Standard eligibility",
-    "first": "Aug 2026",
-    "last": "20 Aug 2026",
-    "visitTimeline": "Aug 2026 · PPT 6 Aug 2026, OA 12 Aug, interviews 19 Aug, results 20 Aug",
-    "funnelRaw": "OA ~285 -> Tech R1 38 (SDE: 28 shortlisted + 10 waitlisted; Aladdin: 8 + 6 waitlisted) -> Tech R2 / Techno-HR 16-19 -> 8 offers (7 SDE + 1 Aladdin Data)",
-    "status": "8 confirmed offers",
-    "roles": [
-      {
-        "title": "Software Engineer (SDE)",
-        "type": "internship+ppo",
-        "count": 7,
-        "ctc": "₹15 LPA",
-        "stipend": "₹50,000/month",
-        "rawCompensation": "50k/month stipend; 15 LPA performance-based PPO",
-        "visitDate": "PPT 6 Aug 2026; OA 12 Aug; interviews 19 Aug; results 20 Aug",
-        "notes": "Locations: Mumbai / Gurgaon / Bangalore. Interview shortlist: 28 shortlisted + 10 waitlisted.",
-        "funnel": [
-          {
-            "name": "Online Assessment (OA)",
-            "count": 285
-          },
-          {
-            "name": "Technical Round 1",
-            "count": 38
-          },
-          {
-            "name": "Technical Round 2 / HR",
-            "count": 19
-          },
-          {
-            "name": "Offers Extended",
-            "count": 7
-          }
-        ]
-      },
-      {
-        "title": "Aladdin Data Engineer",
-        "type": "internship+ppo",
-        "count": 1,
-        "ctc": "₹15 LPA",
-        "stipend": "₹50,000/month",
-        "rawCompensation": "50k/month stipend; 15 LPA performance-based PPO",
-        "visitDate": "PPT 6 Aug 2026; OA 12 Aug; interviews 19 Aug; results 20 Aug",
-        "notes": "Interview shortlist: 8 shortlisted + 6 waitlisted.",
-        "funnel": [
-          {
-            "name": "Online Assessment (OA)",
-            "count": 285
-          },
-          {
-            "name": "Technical Round 1",
-            "count": 38
-          },
-          {
-            "name": "Technical Round 2 / HR",
-            "count": 19
-          },
-          {
-            "name": "Offers Extended",
-            "count": 1
-          }
-        ]
-      }
-    ]
   }
 ]

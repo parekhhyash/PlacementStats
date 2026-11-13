@@ -364,7 +364,7 @@ function syncBranchDistributionJs(list, batch = '2027') {
     const summary = {
       total,
       knownTotal,
-      overallAverageCTC: "₹14.28 LPA",
+      overallAverageCTC: "₹14.27 LPA",
       overallMedianCTC: "₹14.70 LPA",
       overallHighestCTC: "₹33.0 LPA",
       knownDistributionAverageCTC: "₹15.24 LPA",
@@ -430,7 +430,7 @@ function syncBranchDistributionJs(list, batch = '2027') {
           averageCTC: "₹13.45 LPA",
           medianCTC: "₹14.00 LPA",
           highestCTC: "₹33.0 LPA",
-          knownOffersWithCTC: 99,
+          knownOffersWithCTC: 102,
           topPayingRecruiter: "Barclays (₹15.05 LPA)",
           topRecruiters: topUnk
         }

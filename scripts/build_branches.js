@@ -13,7 +13,7 @@ function generateBranchesPage() {
           <p id="branches-page-badge" class="label text-muted">Branchwise · Verified Department Breakdown · ${siteConfig.collegeShort} ${siteConfig.batchYear}</p>
           <h1 class="display-l mt-6 max-w-[18ch]">Branch-wise placement distribution.</h1>
           <p id="branches-page-desc" class="mt-8 max-w-[66ch] text-[17px] leading-relaxed text-muted">
-            Confirmed departmental placement distributions across Computer Engineering, Computer Science Engineering, and EXTC compiled from 38 recruitment drives.
+            Confirmed departmental placement distributions across Computer Engineering, Computer Science Engineering, and EXTC compiled from ${companyBranchDistribution.length} recruitment drives.
           </p>
         </div>
         <div class="shrink-0">
@@ -90,7 +90,7 @@ function generateBranchesPage() {
             <h2 class="display-m mt-2">Aggregate Department Breakdown</h2>
           </div>
           <div id="branch-total-badge" class="label text-[12px] text-faint">
-            Class of 2027 · 236 confirmed offers across 38 recruiters
+            Class of 2027 · ${branchSummary.total} confirmed offers across ${companyBranchDistribution.length} recruiters
           </div>
         </div>
 
@@ -236,7 +236,7 @@ function generateBranchesPage() {
                   <tr class="border-t-2 border-line-strong bg-bg/50 font-semibold text-fg">
                     <td class="py-3.5 pl-2 pr-4 font-display">Batch 2027 Overall (Known Distribution)</td>
                     <td class="py-3.5 px-3 text-center num font-mono">${branchSummary.total}</td>
-                    <td class="py-3.5 px-3 text-center num font-mono">185</td>
+                    <td class="py-3.5 px-3 text-center num font-mono">${branchSummary.branches.reduce((acc, b) => acc + (b.knownOffersWithCTC || 0), 0)}</td>
                     <td class="py-3.5 px-3 text-center num font-mono font-bold text-[#10b981]">${branchSummary.overallAverageCTC}</td>
                     <td class="py-3.5 px-3 text-center num font-mono font-bold text-fg">${branchSummary.overallMedianCTC}</td>
                     <td class="py-3.5 px-3 text-center num font-mono font-bold text-fg">${branchSummary.overallHighestCTC}</td>
@@ -270,7 +270,7 @@ function generateBranchesPage() {
 
         <!-- Branch Quick Filter Pills -->
         <div id="branch-filter-pills" class="mt-6 flex flex-wrap items-center gap-2">
-          <button type="button" class="branch-pill cursor-pointer rounded-full border border-fg bg-fg text-bg px-3.5 py-1 text-[12px] font-medium transition-all" data-branch="all">All (38 Drives)</button>
+          <button type="button" class="branch-pill cursor-pointer rounded-full border border-fg bg-fg text-bg px-3.5 py-1 text-[12px] font-medium transition-all" data-branch="all">All (${companyBranchDistribution.length} Drives)</button>
           <button type="button" class="branch-pill cursor-pointer rounded-full border border-line-strong bg-panel px-3.5 py-1 text-[12px] text-muted hover:text-fg hover:border-fg transition-all" data-branch="ce">
             <span class="inline-block size-2 rounded-full mr-1.5" style="background:#10b981"></span>Computer Engg (28)
           </button>
@@ -313,28 +313,74 @@ function generateBranchesPage() {
               </tr>
             </thead>
             <tbody id="company-branch-tbody" class="divide-y divide-line">
-              <!-- Rendered by client script or static hydration -->
+              ${companyBranchDistribution.map(row => {
+                const cePct = ((row.ce / row.total) * 100).toFixed(1);
+                const csePct = ((row.cse / row.total) * 100).toFixed(1);
+                const extcPct = ((row.extc / row.total) * 100).toFixed(1);
+                const unkPct = ((row.unknown / row.total) * 100).toFixed(1);
+                const companyHref = row.slug ? `/companies/company.html?slug=${row.slug}` : '#';
+
+                return `
+                  <tr class="hover:bg-panel/70 transition-colors">
+                    <td class="py-4 pl-6 sm:pl-8 pr-4" style="padding-left: 1.75rem;">
+                      <a href="${companyHref}" class="flex items-center gap-3 font-medium text-fg hover:underline">
+                        ${row.logo ? `<img src="${row.logo}" class="size-6 object-contain rounded" alt="${row.company}" />` : ''}
+                        <div>
+                          <div class="font-medium text-fg text-[14px]">${row.company}</div>
+                          <div class="text-[11px] text-muted truncate max-w-[260px]">${row.role}</div>
+                        </div>
+                      </a>
+                    </td>
+                    <td class="py-4 px-3 text-center num font-semibold ${row.ce > 0 ? 'text-[#10b981]' : 'text-faint'}">
+                      ${row.ce > 0 ? row.ce : '—'}
+                    </td>
+                    <td class="py-4 px-3 text-center num font-semibold ${row.cse > 0 ? 'text-[#38bdf8]' : 'text-faint'}">
+                      ${row.cse > 0 ? row.cse : '—'}
+                    </td>
+                    <td class="py-4 px-3 text-center num font-semibold ${row.extc > 0 ? 'text-[#f43f5e]' : 'text-faint'}">
+                      ${row.extc > 0 ? row.extc : '—'}
+                    </td>
+                    <td class="py-4 px-3 text-center num ${row.unknown > 0 ? 'text-muted font-medium' : 'text-faint'}">
+                      ${row.unknown > 0 ? row.unknown : '—'}
+                    </td>
+                    <td class="py-4 px-3 text-center num font-display text-[15px] font-bold text-fg">
+                      ${row.total}
+                    </td>
+                    <td class="py-4 px-4">
+                      <div class="h-2 w-full rounded-full overflow-hidden flex bg-line">
+                        ${row.ce > 0 ? `<div style="width:${cePct}%; background-color:#10b981;" title="CE: ${row.ce}"></div>` : ''}
+                        ${row.cse > 0 ? `<div style="width:${csePct}%; background-color:#38bdf8;" title="CSE: ${row.cse}"></div>` : ''}
+                        ${row.extc > 0 ? `<div style="width:${extcPct}%; background-color:#f43f5e;" title="EXTC: ${row.extc}"></div>` : ''}
+                        ${row.unknown > 0 ? `<div style="width:${unkPct}%; background-color:#71717a;" title="Unknown: ${row.unknown}"></div>` : ''}
+                      </div>
+                    </td>
+                    <td class="py-4 pl-4 pr-6 sm:pr-8 text-[12px] text-muted max-w-[220px] truncate" style="padding-right: 1.75rem;" title="${row.notes || ''}">
+                      ${row.notes || '—'}
+                    </td>
+                  </tr>
+                `;
+              }).join('')}
             </tbody>
             <tfoot>
               <tr class="border-t-2 border-line-strong bg-bg/80 font-semibold text-fg">
                 <td class="py-4 pl-6 sm:pl-8 pr-4" style="padding-left: 1.75rem;">
-                  <span class="font-display text-[15px]">ALL 38 COMPANIES</span>
+                  <span class="font-display text-[15px]">ALL ${companyBranchDistribution.length} COMPANIES</span>
                   <p class="text-[11px] text-faint font-normal">Verified drives across SPIT Class of 2027</p>
                 </td>
-                <td class="py-4 px-3 text-center num font-bold text-[#10b981]">61</td>
-                <td class="py-4 px-3 text-center num font-bold text-[#38bdf8]">44</td>
-                <td class="py-4 px-3 text-center num font-bold text-[#f43f5e]">20</td>
-                <td class="py-4 px-3 text-center num text-muted">111</td>
-                <td class="py-4 px-3 text-center num font-display text-[16px] font-bold text-fg">236</td>
+                <td class="py-4 px-3 text-center num font-bold text-[#10b981]">${branchSummary.branches.find(b => b.id === 'ce')?.count ?? 61}</td>
+                <td class="py-4 px-3 text-center num font-bold text-[#38bdf8]">${branchSummary.branches.find(b => b.id === 'cse')?.count ?? 44}</td>
+                <td class="py-4 px-3 text-center num font-bold text-[#f43f5e]">${branchSummary.branches.find(b => b.id === 'extc')?.count ?? 20}</td>
+                <td class="py-4 px-3 text-center num text-muted">${branchSummary.branches.find(b => b.id === 'unknown')?.count ?? 114}</td>
+                <td class="py-4 px-3 text-center num font-display text-[16px] font-bold text-fg">${branchSummary.total}</td>
                 <td class="py-4 px-4">
                   <div class="h-2 w-full rounded-full overflow-hidden flex bg-line">
-                    <div style="width:25.8%; background-color:#10b981;" title="CE: 25.8%"></div>
-                    <div style="width:18.6%; background-color:#38bdf8;" title="CSE: 18.6%"></div>
-                    <div style="width:8.5%; background-color:#f43f5e;" title="EXTC: 8.5%"></div>
-                    <div style="width:47.0%; background-color:#71717a;" title="Unknown: 47.0%"></div>
+                    <div style="width:${branchSummary.branches.find(b => b.id === 'ce')?.percentage ?? '25.5'}%; background-color:#10b981;" title="CE: ${branchSummary.branches.find(b => b.id === 'ce')?.percentage}%"></div>
+                    <div style="width:${branchSummary.branches.find(b => b.id === 'cse')?.percentage ?? '18.4'}%; background-color:#38bdf8;" title="CSE: ${branchSummary.branches.find(b => b.id === 'cse')?.percentage}%"></div>
+                    <div style="width:${branchSummary.branches.find(b => b.id === 'extc')?.percentage ?? '8.4'}%; background-color:#f43f5e;" title="EXTC: ${branchSummary.branches.find(b => b.id === 'extc')?.percentage}%"></div>
+                    <div style="width:${branchSummary.branches.find(b => b.id === 'unknown')?.percentage ?? '47.7'}%; background-color:#71717a;" title="Unknown: ${branchSummary.branches.find(b => b.id === 'unknown')?.percentage}%"></div>
                   </div>
                 </td>
-                <td class="py-4 pl-4 pr-6 sm:pr-8 text-[12px] text-faint font-normal" style="padding-right: 1.75rem;">125 known branch selections</td>
+                <td class="py-4 pl-4 pr-6 sm:pr-8 text-[12px] text-faint font-normal" style="padding-right: 1.75rem;">${branchSummary.knownTotal} known branch selections</td>
               </tr>
             </tfoot>
           </table>
