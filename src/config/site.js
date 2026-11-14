@@ -35,7 +35,6 @@ export const siteConfig = {
     totalCompanies: companies.length,
     studentsPlaced: companies.reduce((sum, c) => sum + (c.out?.students || 0), 0),
     totalBatchSize: 360,
-    placementPercentage: "74%",
     fulltimeOffersCount: 140,
     internshipsCount: 114,
     ppoCount: 72,
