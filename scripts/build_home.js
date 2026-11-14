@@ -182,13 +182,14 @@ function generateHomePage() {
     const batch = getActiveBatchData();
     const is2028 = batch.year === '2028';
     const totalComps = batch.companies ? batch.companies.length : (batch.stats?.totalCompanies || 33);
+    const totalPlaced = batch.companies ? batch.companies.reduce((sum, c) => sum + (c.out?.students || 0), 0) : (batch.stats?.studentsPlaced || 267);
 
     // 1. Update Hero
     const heroTitle = document.getElementById('hero-title');
     if (heroTitle) {
       heroTitle.innerHTML = \`
         \${totalComps} companies so far.<br/>
-        <span class="text-muted">\${batch.stats.studentsPlaced} students placed, and counting.</span>
+        <span class="text-muted">\${totalPlaced} students placed, and counting.</span>
       \`;
     }
     const heroDesc = document.getElementById('hero-desc');
@@ -364,6 +365,22 @@ function generateHomePage() {
               }
             });
             renderLatestList();
+
+            // Keep hero metrics synchronized with live Supabase data
+            const liveTotalComps = batch.companies.length;
+            const liveTotalPlaced = batch.companies.reduce((sum, c) => sum + (c.out?.students || 0), 0);
+            if (heroTitle) {
+              heroTitle.innerHTML = \`
+                \${liveTotalComps} companies so far.<br/>
+                <span class="text-muted">\${liveTotalPlaced} students placed, and counting.</span>
+              \`;
+            }
+            if (heroBrowseBtn) {
+              heroBrowseBtn.textContent = \`Browse all \${liveTotalComps} companies\`;
+            }
+            if (latestHeadingLink) {
+              latestHeadingLink.textContent = \`All \${liveTotalComps} companies →\`;
+            }
           }
         }
       } catch (e) {}

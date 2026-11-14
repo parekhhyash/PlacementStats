@@ -35,8 +35,8 @@ export const siteConfig = {
     totalCompanies: companies.length,
     studentsPlaced: companies.reduce((sum, c) => sum + (c.out?.students || 0), 0),
     totalBatchSize: 360,
-    placementPercentage: "64%",
-    fulltimeOffersCount: 114,
+    placementPercentage: "74%",
+    fulltimeOffersCount: 139,
     internshipsCount: 114,
     ppoCount: 72,
     highestCTC: "₹33.0 LPA",
@@ -45,7 +45,7 @@ export const siteConfig = {
     highestStipend: "₹1,60,000 / mo",
     medianStipend: "₹40,000 / mo",
     averageStipend: "₹53,600 / mo",
-    drivesCount: 36,
+    drivesCount: 47,
     busiestMonth: "Jul 2026"
   },
 

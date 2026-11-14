@@ -26,8 +26,8 @@ export const companies = [
       "newHires": 31,
       "students": 31
     },
-    "open": "CE, CSE, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE (Fintech); All for other tracks",
+    "branches": "CE and CSE (Fintech)",
     "cgpa": 7,
     "cgpaCriteria": "7.0; No formal cutoff (good CGPA beneficial); Not disclosed; Not stated (8+ reported by candidates)",
     "boardsCriteria": "None specified (~80% in Class XII reported); 80% in Class XII (before resume review)",
@@ -105,7 +105,7 @@ export const companies = [
           }
         ],
         "funnelRaw": "OA 34 -> Tech R1 9 -> Tech R2 3 -> HR 2 -> 2 offers",
-        "notes": "2 PDFs"
+        "notes": "2 PDFs; Eligible branches: CE and CSE (EXTC not eligible)"
       },
       {
         "title": "Corporate Risk (Global Risk & Compliance Program)",
@@ -365,6 +365,216 @@ export const companies = [
     ]
   },
   {
+    "slug": "ambiguous",
+    "name": "Ambiguous",
+    "subtext": "BNP Paribas, Dolat Capital, Versor, Kelp Global, LogiNext, Nxpec Technologies, KPMG, IDfy, HSBC, Bootlabs, Zycus, Mastercard, CarWale, Fractal, Trilogy",
+    "offers": [
+      "fulltime"
+    ],
+    "seasons": [
+      "BE"
+    ],
+    "pay": "Unspecified",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/ambiguous.svg",
+    "isAmbiguous": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 25,
+      "ppo": 0,
+      "newHires": 25,
+      "students": 25
+    },
+    "open": "CE, CSE, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "Various criteria",
+    "boardsCriteria": "Various criteria",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "Recruitment drives across unclassified companies",
+    "funnelRaw": "Estimated ~25 total offers across unclassified recruiters",
+    "status": "25 estimated offers",
+    "roles": [
+      {
+        "title": "Unclassified Selections",
+        "type": "fulltime",
+        "count": 25,
+        "ctc": "Unspecified",
+        "stipend": null,
+        "rawCompensation": "Across unclassified recruiters",
+        "visitDate": "Oct 2026",
+        "notes": "Estimated 25 total hires across BNP Paribas, Dolat Capital, Versor, Kelp Global, LogiNext, Nxpec Technologies, KPMG, IDfy, HSBC, Bootlabs, Zycus, Mastercard, CarWale, Fractal, Trilogy."
+      }
+    ],
+    "notes": "Companies included: BNP Paribas, Dolat Capital, Versor, Kelp Global, LogiNext, Nxpec Technologies, KPMG, IDfy, HSBC, Bootlabs, Zycus, Mastercard, CarWale, Fractal, Trilogy."
+  },
+  {
+    "slug": "ubs",
+    "name": "UBS",
+    "offers": [
+      "internship",
+      "fulltime",
+      "ppo"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "₹16 LPA",
+    "payKind": "CTC",
+    "payRank": 1600,
+    "dream": true,
+    "logo": "/logos/ubs.svg",
+    "out": {
+      "internships": 7,
+      "fulltimeOffers": 14,
+      "ppo": 4,
+      "newHires": 14,
+      "students": 17
+    },
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
+    "cgpa": 7,
+    "cgpaCriteria": "Minimum CGPA 7.0+ (GOTO Intern); None stated (GET / Agentic AI)",
+    "boardsCriteria": "A Class XII % cutoff existed (value not given)",
+    "first": "PPT 6 Sep; interviews 11 Sep 2026",
+    "last": "14 Jul 2025 (OA 11 Jul)",
+    "visitTimeline": "PPT 6 Sep; interviews 11 Sep 2026 · 13 Jul 2026 · 14 Jul 2025 (OA 11 Jul)",
+    "funnelRaw": "~200 -> 2 assessments -> Technical 10 -> HR 5 -> 4 offers | Applied 153 -> Resume 51 -> MCQ ~47 -> Group coding ~20 -> Technical 20 -> HR 10 -> 10 offers | OA 197 -> Technical 16 -> HR 9 -> 3 offers",
+    "status": "17 confirmed offers",
+    "roles": [
+      {
+        "title": "Agentic AI Specialist",
+        "type": "both",
+        "count": 4,
+        "ctc": "₹13 LPA",
+        "stipend": "₹60k / mo",
+        "rawCompensation": "Stipend 60k/month; CTC 13 LPA",
+        "visitDate": "PPT 6 Sep; interviews 11 Sep 2026",
+        "funnel": [
+          {
+            "name": "Technical Interview Round",
+            "count": 200
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 2
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 10
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 5
+          },
+          {
+            "name": "Offers Extended",
+            "count": 4
+          }
+        ],
+        "funnelRaw": "~200 -> 2 assessments -> Technical 10 -> HR 5 -> 4 offers",
+        "notes": "3 PDFs"
+      },
+      {
+        "title": "Graduate Engineering Trainee (GET) / Software Engineer",
+        "type": "fulltime",
+        "count": 10,
+        "ctc": "₹16 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC 16 LPA (13 + 3 one-time relocation)",
+        "visitDate": "13 Jul 2026",
+        "funnel": [
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 153
+          },
+          {
+            "name": "Resume & CGPA Shortlist",
+            "count": 51
+          },
+          {
+            "name": "MCQ Technical Test",
+            "count": 47
+          },
+          {
+            "name": "Group Coding Round",
+            "count": 20
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 20
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 10
+          },
+          {
+            "name": "Offers Extended",
+            "count": 10
+          }
+        ],
+        "funnelRaw": "Applied 153 -> Resume 51 -> MCQ ~47 -> Group coding ~20 -> Technical 20 -> HR 10 -> 10 offers (9 initially, 10th added later)",
+        "notes": "3 PDFs"
+      },
+      {
+        "title": "GOTO Intern",
+        "type": "internship",
+        "count": 3,
+        "ctc": "Summer Internship",
+        "stipend": "₹60k / mo",
+        "rawCompensation": "Stipend 60k/month; Location: Pune",
+        "visitDate": "14-07-2025 (OA 11-07-2025)",
+        "funnel": [
+          {
+            "name": "Online Assessment (OA)",
+            "count": 197
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 16
+          },
+          {
+            "name": "HR Interview Round",
+            "count": 9
+          },
+          {
+            "name": "Offers Extended",
+            "count": 3
+          }
+        ],
+        "funnelRaw": "OA 197 (CGPA 7.0+) -> Tech 16 (15 OA + 1 Hackathon) -> HR 9 -> 3 offers",
+        "notes": "Pune location. Process: 11-14 Jul 2025. Contributed by Heet Shah (https://www.linkedin.com/in/heet-p-shah)."
+      }
+    ],
+    "notes": "3 PDFs · 3 PDFs · Heet Shah contribution (GOTO Summer Intern 60k/mo)",
+    "stages": [
+      {
+        "name": "Technical Interview Round",
+        "count": 200
+      },
+      {
+        "name": "Technical Interview Round",
+        "count": 2
+      },
+      {
+        "name": "Technical Interview Round",
+        "count": 10
+      },
+      {
+        "name": "HR & Culture-Fit Interview",
+        "count": 5
+      },
+      {
+        "name": "Offers Extended",
+        "count": 4
+      }
+    ]
+  },
+  {
     "slug": "iss-stoxx",
     "name": "ISS-STOXX",
     "offers": [
@@ -458,140 +668,6 @@ export const companies = [
     ]
   },
   {
-    "slug": "ubs",
-    "name": "UBS",
-    "offers": [
-      "internship",
-      "fulltime",
-      "ppo"
-    ],
-    "seasons": [
-      "TE",
-      "BE"
-    ],
-    "pay": "₹16 LPA",
-    "payKind": "CTC",
-    "payRank": 1600,
-    "dream": true,
-    "logo": "/logos/ubs.svg",
-    "out": {
-      "internships": 4,
-      "fulltimeOffers": 14,
-      "ppo": 4,
-      "newHires": 14,
-      "students": 14
-    },
-    "open": "CE, CSE, EXTC",
-    "branches": "All branches open",
-    "cgpa": 7,
-    "cgpaCriteria": "None stated",
-    "boardsCriteria": "A Class XII % cutoff existed (value not given)",
-    "first": "PPT 6 Sep; interviews 11 Sep 2026",
-    "last": "13 Jul 2026",
-    "visitTimeline": "PPT 6 Sep; interviews 11 Sep 2026 · 13 Jul 2026",
-    "funnelRaw": "~200 -> 2 assessments -> Technical 10 -> HR 5 -> 4 offers | Applied 153 -> Resume 51 -> MCQ ~47 -> Group coding ~20 -> Technical 20 -> HR 10 -> 10 offers (9 initially, 10th added later)",
-    "status": "14 confirmed offers",
-    "roles": [
-      {
-        "title": "Agentic AI Specialist",
-        "type": "both",
-        "count": 4,
-        "ctc": "₹13 LPA",
-        "stipend": "₹60k / mo",
-        "rawCompensation": "Stipend 60k/month; CTC 13 LPA",
-        "visitDate": "PPT 6 Sep; interviews 11 Sep 2026",
-        "funnel": [
-          {
-            "name": "Technical Interview Round",
-            "count": 200
-          },
-          {
-            "name": "Technical Interview Round",
-            "count": 2
-          },
-          {
-            "name": "Technical Interview Round",
-            "count": 10
-          },
-          {
-            "name": "HR & Culture-Fit Interview",
-            "count": 5
-          },
-          {
-            "name": "Offers Extended",
-            "count": 4
-          }
-        ],
-        "funnelRaw": "~200 -> 2 assessments -> Technical 10 -> HR 5 -> 4 offers",
-        "notes": "3 PDFs"
-      },
-      {
-        "title": "Graduate Engineering Trainee (GET) / Software Engineer",
-        "type": "fulltime",
-        "count": 10,
-        "ctc": "₹16 LPA",
-        "stipend": null,
-        "rawCompensation": "CTC 16 LPA (13 + 3 one-time relocation)",
-        "visitDate": "13 Jul 2026",
-        "funnel": [
-          {
-            "name": "Resume & CGPA Shortlist",
-            "count": 153
-          },
-          {
-            "name": "Resume & CGPA Shortlist",
-            "count": 51
-          },
-          {
-            "name": "MCQ Technical Test",
-            "count": 47
-          },
-          {
-            "name": "Group Coding Round",
-            "count": 20
-          },
-          {
-            "name": "Technical Interview Round",
-            "count": 20
-          },
-          {
-            "name": "HR & Culture-Fit Interview",
-            "count": 10
-          },
-          {
-            "name": "Offers Extended",
-            "count": 10
-          }
-        ],
-        "funnelRaw": "Applied 153 -> Resume 51 -> MCQ ~47 -> Group coding ~20 -> Technical 20 -> HR 10 -> 10 offers (9 initially, 10th added later)",
-        "notes": "3 PDFs"
-      }
-    ],
-    "notes": "3 PDFs · 3 PDFs",
-    "stages": [
-      {
-        "name": "Technical Interview Round",
-        "count": 200
-      },
-      {
-        "name": "Technical Interview Round",
-        "count": 2
-      },
-      {
-        "name": "Technical Interview Round",
-        "count": 10
-      },
-      {
-        "name": "HR & Culture-Fit Interview",
-        "count": 5
-      },
-      {
-        "name": "Offers Extended",
-        "count": 4
-      }
-    ]
-  },
-  {
     "slug": "idfc-first-bank",
     "name": "IDFC FIRST Bank",
     "offers": [
@@ -615,8 +691,8 @@ export const companies = [
       "newHires": 11,
       "students": 11
     },
-    "open": "CE, CSE, EXTC",
-    "branches": "All branches open (APM selected from Computer Engineering)",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": 6.75,
     "cgpaCriteria": "6.75+ CGPA; CE/CSE only, no standing backlogs",
     "boardsCriteria": "60% in Class 10 and 60% in Class 12",
@@ -741,8 +817,8 @@ export const companies = [
       "newHires": 10,
       "students": 10
     },
-    "open": "CE, CSE, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": 8,
     "cgpaCriteria": "Undisclosed (appears 8.0+)",
     "boardsCriteria": "Standard SPIT eligibility",
@@ -1346,8 +1422,8 @@ export const companies = [
       "newHires": 8,
       "students": 8
     },
-    "open": "CE, CSE, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE (Global Markets); All for ITD",
+    "branches": "CE and CSE (Global Markets)",
     "cgpa": 9,
     "cgpaCriteria": "None stated (all shortlisted had CGPA >9); None stated (advice 8+)",
     "boardsCriteria": "Standard SPIT eligibility",
@@ -1392,7 +1468,7 @@ export const companies = [
           }
         ],
         "funnelRaw": "Superset shortlist 27 -> GD 27 -> Tech R1 7 -> Tech R2 3 -> HR 3 -> 1 offer",
-        "notes": "Single PDF; CGPA-based shortlist"
+        "notes": "Single PDF; CGPA-based shortlist; Eligible branches: CE and CSE (EXTC not eligible)"
       },
       {
         "title": "ITD (Information Technology Division) Intern",
@@ -2169,8 +2245,8 @@ export const companies = [
       "newHires": 5,
       "students": 5
     },
-    "open": "CE, CSE, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": 8,
     "cgpaCriteria": "None specified (8-8.5 advised)",
     "boardsCriteria": "Standard SPIT eligibility",
@@ -2276,8 +2352,8 @@ export const companies = [
       "newHires": 4,
       "students": 4
     },
-    "open": "CE, CSE, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": 7,
     "cgpaCriteria": "None stated",
     "boardsCriteria": "Standard SPIT eligibility",
@@ -2628,8 +2704,8 @@ export const companies = [
       "newHires": 3,
       "students": 3
     },
-    "open": "CE, CSE, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": 8,
     "cgpaCriteria": "None stated (some cos. require 8)",
     "boardsCriteria": "Standard SPIT eligibility",
@@ -3234,8 +3310,8 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CE, CSE, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": null,
     "cgpaCriteria": "No details available",
     "boardsCriteria": "No details available",
@@ -3345,8 +3421,8 @@ export const companies = [
       "newHires": 0,
       "students": 0
     },
-    "open": "CE, CSE, EXTC",
-    "branches": "All branches open",
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
     "cgpa": null,
     "cgpaCriteria": "No details available",
     "boardsCriteria": "No details available",
@@ -3431,6 +3507,302 @@ export const companies = [
     "status": "No details available",
     "roles": [],
     "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "idfy",
+    "name": "IDfy",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/idfy.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "hsbc",
+    "name": "HSBC",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/hsbc.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CE, CSE",
+    "branches": "CE and CSE",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "bootlabs",
+    "name": "Bootlabs",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/bootlabs.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CE, CSE, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "zycus",
+    "name": "Zycus",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/zycus.png",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CE, CSE, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "mastercard",
+    "name": "Mastercard",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": true,
+    "logo": "/logos/mastercard.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CE, CSE, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "carwale",
+    "name": "CarWale",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/carwale.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CE, CSE, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "fractal",
+    "name": "Fractal",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/fractal.png",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CE, CSE, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "trilogy",
+    "name": "Trilogy",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": true,
+    "logo": "/logos/trilogy.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CE, CSE, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Oct 2026",
+    "last": "Oct 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
   }
 ];
 
@@ -3443,10 +3815,12 @@ export function searchCompanies(query, role = 'all', branch = 'all', sort = 'pla
   let filtered = companies.filter(c => {
     if (q) {
       const matchName = c.name.toLowerCase().includes(q);
+      const matchSubtext = c.subtext && c.subtext.toLowerCase().includes(q);
       const matchRoles = c.roles.some(r => r.title.toLowerCase().includes(q) || (r.notes && r.notes.toLowerCase().includes(q)));
       const matchPay = c.pay.toLowerCase().includes(q);
       const matchCriteria = (c.cgpaCriteria && c.cgpaCriteria.toLowerCase().includes(q)) || (c.boardsCriteria && c.boardsCriteria.toLowerCase().includes(q));
-      if (!matchName && !matchRoles && !matchPay && !matchCriteria) return false;
+      const matchBranch = (c.branches && c.branches.toLowerCase().includes(q)) || (c.open && c.open.toLowerCase().includes(q));
+      if (!matchName && !matchSubtext && !matchRoles && !matchPay && !matchCriteria && !matchBranch) return false;
     }
     if (role !== 'all' && (!c.offers || !c.offers.includes(role))) return false;
     return true;
@@ -3459,7 +3833,7 @@ export function searchCompanies(query, role = 'all', branch = 'all', sort = 'pla
   } else if (sort === 'name') {
     filtered.sort((a, b) => a.name.localeCompare(b.name));
   } else if (sort === 'latest') {
-    filtered.sort((a, b) => b.last.localeCompare(a.last));
+    filtered.sort((a, b) => (b.last || '').localeCompare(a.last || ''));
   }
 
   return filtered;
