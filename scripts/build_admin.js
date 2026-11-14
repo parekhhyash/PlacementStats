@@ -537,7 +537,7 @@ function generateAdminPage() {
           <span class="text-[11px] text-faint font-mono uppercase tracking-wider block flex items-center gap-1.5">
             <span class="size-2 rounded-full bg-[#71717a]"></span>Unknown / Awaiting
           </span>
-          <span id="stat-bd-unk" class="font-display text-[22px] font-bold text-muted mt-1 block font-mono">${branchSummary.branches.find(b => b.id === 'unknown')?.count || 114}</span>
+          <span id="stat-bd-unk" class="font-display text-[22px] font-bold text-muted mt-1 block font-mono">${branchSummary.branches.find(b => b.id === 'unknown')?.count || 115}</span>
           <span id="stat-bd-unk-pct" class="text-[11px] text-muted block mt-0.5">${branchSummary.branches.find(b => b.id === 'unknown')?.percentage}% pending</span>
         </div>
       </div>

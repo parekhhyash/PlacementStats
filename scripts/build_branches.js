@@ -38,8 +38,8 @@ function generateBranchesPage() {
             <span class="size-2 rounded-full" style="background:#10b981"></span>
             Computer Engineering
           </dt>
-          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">61</dd>
-          <dd class="label order-3 mt-1 text-[11px] text-faint">25.8% of total · 48.8% of known</dd>
+          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">${branchSummary.branches.find(b => b.id === 'ce')?.count || 61}</dd>
+          <dd class="label order-3 mt-1 text-[11px] text-faint">${branchSummary.branches.find(b => b.id === 'ce')?.percentage}% of offers · 266 students</dd>
         </div>
         <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
           <dd class="mb-2 flex items-center gap-2.5 text-[12px] font-mono">
@@ -51,8 +51,8 @@ function generateBranchesPage() {
             <span class="size-2 rounded-full" style="background:#38bdf8"></span>
             Computer Science Engg
           </dt>
-          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">44</dd>
-          <dd class="label order-3 mt-1 text-[11px] text-faint">18.6% of total · 35.2% of known</dd>
+          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">${branchSummary.branches.find(b => b.id === 'cse')?.count || 44}</dd>
+          <dd class="label order-3 mt-1 text-[11px] text-faint">${branchSummary.branches.find(b => b.id === 'cse')?.percentage}% of offers · 137 students</dd>
         </div>
         <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
           <dd class="mb-2 flex items-center gap-2.5 text-[12px] font-mono">
@@ -64,8 +64,8 @@ function generateBranchesPage() {
             <span class="size-2 rounded-full" style="background:#f43f5e"></span>
             Electronics &amp; Telecom
           </dt>
-          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">20</dd>
-          <dd class="label order-3 mt-1 text-[11px] text-faint">8.5% of total · 16.0% of known</dd>
+          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">${branchSummary.branches.find(b => b.id === 'extc')?.count || 20}</dd>
+          <dd class="label order-3 mt-1 text-[11px] text-faint">${branchSummary.branches.find(b => b.id === 'extc')?.percentage}% of offers · 131 students</dd>
         </div>
         <div class="flex flex-col py-5 pr-4 sm:px-5">
           <dd class="mb-2 flex items-center gap-2.5 text-[12px] font-mono">
@@ -77,8 +77,8 @@ function generateBranchesPage() {
             <span class="size-2 rounded-full" style="background:#71717a"></span>
             Unknown / Awaiting Division
           </dt>
-          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">111</dd>
-          <dd class="label order-3 mt-1 text-[11px] text-faint">47.0% pending author division</dd>
+          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">${branchSummary.branches.find(b => b.id === 'unknown')?.count || 115}</dd>
+          <dd class="label order-3 mt-1 text-[11px] text-faint">${branchSummary.branches.find(b => b.id === 'unknown')?.percentage}% pending author division</dd>
         </div>
       </dl>
 
@@ -90,7 +90,7 @@ function generateBranchesPage() {
             <h2 class="display-m mt-2">Aggregate Department Breakdown</h2>
           </div>
           <div id="branch-total-badge" class="label text-[12px] text-faint">
-            Class of 2027 · ${branchSummary.total} confirmed offers across ${companyBranchDistribution.length} recruiters
+            Class of 2027 · ${branchSummary.total} confirmed offers across ${companyBranchDistribution.length} recruiters · 534 enrolled students
           </div>
         </div>
 
@@ -109,42 +109,42 @@ function generateBranchesPage() {
           <!-- Timeline-Style Grid Bar Graph -->
           <div class="mt-8 pt-4 max-w-xl mx-auto" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; align-items: end; height: 260px;">
             <!-- CE Column -->
-            <div class="timeline-branch-col flex flex-col items-center gap-2 cursor-pointer group" data-branch="ce" title="Computer Engineering: 61 offers (Click to filter)" style="height: 100%; justify-content: flex-end;">
-              <span class="num text-[14px] sm:text-[15px] text-fg font-medium font-mono">61</span>
+            <div class="timeline-branch-col flex flex-col items-center gap-2 cursor-pointer group" data-branch="ce" title="Computer Engineering: ${branchSummary.branches.find(b => b.id === 'ce')?.count || 61} offers (Click to filter)" style="height: 100%; justify-content: flex-end;">
+              <span class="num text-[14px] sm:text-[15px] text-fg font-medium font-mono">${branchSummary.branches.find(b => b.id === 'ce')?.count || 61}</span>
               <div class="w-full border border-line-strong transition-opacity group-hover:opacity-80" style="max-width: 56px; height: 88px; background-color: #10b981; border-radius: 0;"></div>
               <div class="flex flex-col items-center text-center mt-1">
                 <span class="label text-[13px] font-semibold text-fg">CE</span>
-                <span class="label text-[11px] text-muted font-mono">25.8%</span>
+                <span class="label text-[11px] text-muted font-mono">${branchSummary.branches.find(b => b.id === 'ce')?.percentage}%</span>
               </div>
             </div>
 
             <!-- CSE Column -->
-            <div class="timeline-branch-col flex flex-col items-center gap-2 cursor-pointer group" data-branch="cse" title="Computer Science Engineering: 44 offers (Click to filter)" style="height: 100%; justify-content: flex-end;">
-              <span class="num text-[14px] sm:text-[15px] text-fg font-medium font-mono">44</span>
+            <div class="timeline-branch-col flex flex-col items-center gap-2 cursor-pointer group" data-branch="cse" title="Computer Science Engineering: ${branchSummary.branches.find(b => b.id === 'cse')?.count || 44} offers (Click to filter)" style="height: 100%; justify-content: flex-end;">
+              <span class="num text-[14px] sm:text-[15px] text-fg font-medium font-mono">${branchSummary.branches.find(b => b.id === 'cse')?.count || 44}</span>
               <div class="w-full border border-line-strong transition-opacity group-hover:opacity-80" style="max-width: 56px; height: 63px; background-color: #38bdf8; border-radius: 0;"></div>
               <div class="flex flex-col items-center text-center mt-1">
                 <span class="label text-[13px] font-semibold text-fg">CSE</span>
-                <span class="label text-[11px] text-muted font-mono">18.6%</span>
+                <span class="label text-[11px] text-muted font-mono">${branchSummary.branches.find(b => b.id === 'cse')?.percentage}%</span>
               </div>
             </div>
 
             <!-- EXTC Column -->
-            <div class="timeline-branch-col flex flex-col items-center gap-2 cursor-pointer group" data-branch="extc" title="Electronics & Telecommunications: 20 offers (Click to filter)" style="height: 100%; justify-content: flex-end;">
-              <span class="num text-[14px] sm:text-[15px] text-fg font-medium font-mono">20</span>
+            <div class="timeline-branch-col flex flex-col items-center gap-2 cursor-pointer group" data-branch="extc" title="Electronics & Telecommunications: ${branchSummary.branches.find(b => b.id === 'extc')?.count || 20} offers (Click to filter)" style="height: 100%; justify-content: flex-end;">
+              <span class="num text-[14px] sm:text-[15px] text-fg font-medium font-mono">${branchSummary.branches.find(b => b.id === 'extc')?.count || 20}</span>
               <div class="w-full border border-line-strong transition-opacity group-hover:opacity-80" style="max-width: 56px; height: 29px; background-color: #f43f5e; border-radius: 0;"></div>
               <div class="flex flex-col items-center text-center mt-1">
                 <span class="label text-[13px] font-semibold text-fg">EXTC</span>
-                <span class="label text-[11px] text-muted font-mono">8.5%</span>
+                <span class="label text-[11px] text-muted font-mono">${branchSummary.branches.find(b => b.id === 'extc')?.percentage}%</span>
               </div>
             </div>
 
             <!-- Unknown Column -->
-            <div class="timeline-branch-col flex flex-col items-center gap-2 cursor-pointer group" data-branch="unknown" title="Unknown / Awaiting Division: 111 offers (Click to filter)" style="height: 100%; justify-content: flex-end;">
-              <span class="num text-[14px] sm:text-[15px] text-fg font-medium font-mono">111</span>
+            <div class="timeline-branch-col flex flex-col items-center gap-2 cursor-pointer group" data-branch="unknown" title="Unknown / Awaiting Division: ${branchSummary.branches.find(b => b.id === 'unknown')?.count || 115} offers (Click to filter)" style="height: 100%; justify-content: flex-end;">
+              <span class="num text-[14px] sm:text-[15px] text-fg font-medium font-mono">${branchSummary.branches.find(b => b.id === 'unknown')?.count || 115}</span>
               <div class="w-full border border-line-strong transition-opacity group-hover:opacity-80" style="max-width: 56px; height: 160px; background-color: #71717a; border-radius: 0;"></div>
               <div class="flex flex-col items-center text-center mt-1">
                 <span class="label text-[13px] font-semibold text-fg">Unknown</span>
-                <span class="label text-[11px] text-muted font-mono">47.0%</span>
+                <span class="label text-[11px] text-muted font-mono">${branchSummary.branches.find(b => b.id === 'unknown')?.percentage}%</span>
               </div>
             </div>
           </div>
@@ -157,7 +157,10 @@ function generateBranchesPage() {
                   <div class="flex items-start justify-between gap-2">
                     <div class="flex items-center gap-2">
                       <span class="w-3 h-3 rounded-full shrink-0" style="background-color: ${b.color};"></span>
-                      <h3 class="font-display font-semibold text-[15px] text-fg leading-tight">${b.shortName}</h3>
+                      <div>
+                        <h3 class="font-display font-semibold text-[15px] text-fg leading-tight">${b.shortName}</h3>
+                        ${b.totalStudents ? `<span class="text-[11px] text-faint font-mono">${b.totalStudents} enrolled</span>` : ''}
+                      </div>
                     </div>
                     <div class="text-right shrink-0">
                       <span class="font-display text-[18px] font-bold text-fg">${b.count}</span>
@@ -208,6 +211,7 @@ function generateBranchesPage() {
                 <thead>
                   <tr class="text-faint font-mono text-[11px] uppercase border-b border-line">
                     <th class="py-2.5 pl-2 pr-4">Branch</th>
+                    <th class="py-2.5 px-3 text-center">Batch Size</th>
                     <th class="py-2.5 px-3 text-center">Total Offers</th>
                     <th class="py-2.5 px-3 text-center">Known CTC Offers</th>
                     <th class="py-2.5 px-3 text-center">Average CTC</th>
@@ -223,6 +227,7 @@ function generateBranchesPage() {
                         <span class="size-2.5 rounded-full shrink-0" style="background-color: ${b.color};"></span>
                         <span class="font-display font-medium text-[14px]">${b.name} (${b.shortName})</span>
                       </td>
+                      <td class="py-3.5 px-3 text-center num font-mono text-fg font-medium">${b.totalStudents ? b.totalStudents : '—'}</td>
                       <td class="py-3.5 px-3 text-center num font-mono text-muted">${b.count}</td>
                       <td class="py-3.5 px-3 text-center num font-mono text-muted">${b.knownOffersWithCTC}</td>
                       <td class="py-3.5 px-3 text-center num font-mono font-semibold text-[#10b981]">${b.averageCTC}</td>
@@ -235,6 +240,7 @@ function generateBranchesPage() {
                 <tfoot>
                   <tr class="border-t-2 border-line-strong bg-bg/50 font-semibold text-fg">
                     <td class="py-3.5 pl-2 pr-4 font-display">Batch 2027 Overall (Known Distribution)</td>
+                    <td class="py-3.5 px-3 text-center num font-mono text-fg font-bold">${branchSummary.totalBatchSize || 534}</td>
                     <td class="py-3.5 px-3 text-center num font-mono">${branchSummary.total}</td>
                     <td class="py-3.5 px-3 text-center num font-mono">${branchSummary.branches.reduce((acc, b) => acc + (b.knownOffersWithCTC || 0), 0)}</td>
                     <td class="py-3.5 px-3 text-center num font-mono font-bold text-[#10b981]">${branchSummary.overallAverageCTC}</td>

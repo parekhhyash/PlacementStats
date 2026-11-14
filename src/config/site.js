@@ -34,7 +34,7 @@ export const siteConfig = {
   stats: {
     totalCompanies: companies.length,
     studentsPlaced: companies.reduce((sum, c) => sum + (c.out?.students || 0), 0),
-    totalBatchSize: 360,
+    totalBatchSize: 534, // 2023-24 admission batch: CE (266) + CSE (137) + EXTC (131) = 534 students
     fulltimeOffersCount: 140,
     internshipsCount: 114,
     ppoCount: 72,
