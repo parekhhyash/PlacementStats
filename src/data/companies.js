@@ -2852,9 +2852,12 @@ export const companies = [
     "slug": "here-technologies",
     "name": "HERE Technologies",
     "offers": [
-      "fulltime"
+      "internship",
+      "fulltime",
+      "ppo"
     ],
     "seasons": [
+      "TE",
       "BE"
     ],
     "pay": "₹13.5 LPA",
@@ -2863,9 +2866,9 @@ export const companies = [
     "dream": false,
     "logo": "/logos/here-technologies.svg",
     "out": {
-      "internships": 0,
+      "internships": 3,
       "fulltimeOffers": 3,
-      "ppo": 0,
+      "ppo": 3,
       "newHires": 3,
       "students": 3
     },
@@ -2878,11 +2881,11 @@ export const companies = [
     "last": "Nov 2026",
     "visitTimeline": "Nov 2026",
     "funnelRaw": "OA -> Technical Interview -> HR -> 3 offers",
-    "status": "3 confirmed offers",
+    "status": "3 confirmed offers (Intern + PPO)",
     "roles": [
       {
-        "title": "Software Engineer",
-        "type": "fulltime",
+        "title": "Software Engineer (Intern + PPO)",
+        "type": "both",
         "count": 3,
         "ctc": "₹13.5 LPA",
         "stipend": null,
@@ -2907,10 +2910,10 @@ export const companies = [
           }
         ],
         "funnelRaw": "OA -> Technical Interview -> HR -> 3 offers",
-        "notes": "3 confirmed offers"
+        "notes": "3 confirmed selections (Internship + PPO pathway)"
       }
     ],
-    "notes": "3 confirmed offers verified from SPIT placement records.",
+    "notes": "3 confirmed offers (Internship + PPO pathway) verified from SPIT placement records.",
     "stages": [
       {
         "name": "Online Coding Assessment (OA)",
@@ -3242,6 +3245,88 @@ export const companies = [
       {
         "name": "Executive Director Round",
         "count": 4
+      },
+      {
+        "name": "Offers Extended",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "slug": "fractal",
+    "name": "Fractal",
+    "offers": [
+      "fulltime"
+    ],
+    "seasons": [
+      "BE"
+    ],
+    "pay": "₹7.5 LPA",
+    "payKind": "CTC",
+    "payRank": 750,
+    "dream": false,
+    "logo": "/logos/fractal.png",
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 1,
+      "ppo": 0,
+      "newHires": 1,
+      "students": 1
+    },
+    "open": "CE, CSE, EXTC",
+    "branches": "All branches open",
+    "cgpa": 7,
+    "cgpaCriteria": "Standard eligibility",
+    "boardsCriteria": "Standard SPIT eligibility",
+    "first": "Nov 2026",
+    "last": "Nov 2026",
+    "visitTimeline": "Nov 2026",
+    "funnelRaw": "OA -> Technical Interview -> HR -> 1+ offers",
+    "status": "1+ confirmed offers",
+    "roles": [
+      {
+        "title": "Software Engineer / Analyst",
+        "type": "fulltime",
+        "count": 1,
+        "ctc": "₹7.5 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC ₹7.5 LPA",
+        "visitDate": "Nov 2026",
+        "funnel": [
+          {
+            "name": "Online Coding Assessment (OA)",
+            "count": 60
+          },
+          {
+            "name": "Technical Interview Round",
+            "count": 15
+          },
+          {
+            "name": "HR & Culture-Fit Interview",
+            "count": 5
+          },
+          {
+            "name": "Offers Extended",
+            "count": 1
+          }
+        ],
+        "funnelRaw": "OA -> Technical Interview -> HR -> 1+ offers",
+        "notes": "1+ confirmed selections"
+      }
+    ],
+    "notes": "1+ confirmed selection at ₹7.5 LPA CTC.",
+    "stages": [
+      {
+        "name": "Online Coding Assessment (OA)",
+        "count": 60
+      },
+      {
+        "name": "Technical Interview Round",
+        "count": 15
+      },
+      {
+        "name": "HR & Culture-Fit Interview",
+        "count": 5
       },
       {
         "name": "Offers Extended",
@@ -3731,43 +3816,6 @@ export const companies = [
     "notes": "No details available yet. Submit data if you have it."
   },
   {
-    "slug": "fractal",
-    "name": "Fractal",
-    "offers": [
-      "internship",
-      "fulltime"
-    ],
-    "seasons": [
-      "TE",
-      "BE"
-    ],
-    "pay": "No details available",
-    "payKind": "CTC",
-    "payRank": 0,
-    "dream": false,
-    "logo": "/logos/fractal.png",
-    "noDetailsAvailable": true,
-    "out": {
-      "internships": 0,
-      "fulltimeOffers": 0,
-      "ppo": 0,
-      "newHires": 0,
-      "students": 0
-    },
-    "open": "CE, CSE, EXTC",
-    "branches": "All branches open",
-    "cgpa": null,
-    "cgpaCriteria": "No details available",
-    "boardsCriteria": "No details available",
-    "first": "Oct 2026",
-    "last": "Oct 2026",
-    "visitTimeline": "No details available",
-    "funnelRaw": "No details available",
-    "status": "No details available",
-    "roles": [],
-    "notes": "No details available yet. Submit data if you have it."
-  },
-  {
     "slug": "trilogy",
     "name": "Trilogy",
     "offers": [
@@ -3803,6 +3851,43 @@ export const companies = [
     "status": "No details available",
     "roles": [],
     "notes": "No details available yet. Submit data if you have it."
+  },
+  {
+    "slug": "neebal",
+    "name": "Neebal",
+    "offers": [
+      "internship",
+      "fulltime"
+    ],
+    "seasons": [
+      "TE",
+      "BE"
+    ],
+    "pay": "No details available",
+    "payKind": "CTC",
+    "payRank": 0,
+    "dream": false,
+    "logo": "/logos/neebal.svg",
+    "noDetailsAvailable": true,
+    "out": {
+      "internships": 0,
+      "fulltimeOffers": 0,
+      "ppo": 0,
+      "newHires": 0,
+      "students": 0
+    },
+    "open": "CE, CSE, EXTC",
+    "branches": "All branches open",
+    "cgpa": null,
+    "cgpaCriteria": "No details available",
+    "boardsCriteria": "No details available",
+    "first": "Nov 2026",
+    "last": "Nov 2026",
+    "visitTimeline": "No details available",
+    "funnelRaw": "No details available",
+    "status": "No details available",
+    "roles": [],
+    "notes": "No details available yet. Submit data if you have it."
   }
 ];
 
@@ -3816,7 +3901,7 @@ export function searchCompanies(query, role = 'all', branch = 'all', sort = 'pla
     if (q) {
       const matchName = c.name.toLowerCase().includes(q);
       const matchSubtext = c.subtext && c.subtext.toLowerCase().includes(q);
-      const matchRoles = c.roles.some(r => r.title.toLowerCase().includes(q) || (r.notes && r.notes.toLowerCase().includes(q)));
+      const matchRoles = c.roles && c.roles.some(r => r.title.toLowerCase().includes(q) || (r.notes && r.notes.toLowerCase().includes(q)));
       const matchPay = c.pay.toLowerCase().includes(q);
       const matchCriteria = (c.cgpaCriteria && c.cgpaCriteria.toLowerCase().includes(q)) || (c.boardsCriteria && c.boardsCriteria.toLowerCase().includes(q));
       const matchBranch = (c.branches && c.branches.toLowerCase().includes(q)) || (c.open && c.open.toLowerCase().includes(q));

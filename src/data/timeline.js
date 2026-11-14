@@ -4,7 +4,7 @@
 export const timelineData = {
   summary: {
     internshipDrives: 15,
-    finalYearDrives: 24,
+    finalYearDrives: 25,
     busiestMonth: "Jul 2026 (11 drives)"
   },
 
@@ -15,7 +15,7 @@ export const timelineData = {
     { label: "Aug '26", count: 6, intern: 3, fulltime: 3, ppo: 2 },
     { label: "Sep '26", count: 5, intern: 2, fulltime: 3, ppo: 1 },
     { label: "Oct '26", count: 8, intern: 2, fulltime: 6, ppo: 2 },
-    { label: "Nov '26", count: 1, intern: 0, fulltime: 1, ppo: 0 }
+    { label: "Nov '26", count: 2, intern: 1, fulltime: 1, ppo: 1 }
   ],
 
   // All drive events from SPIT Classified CSV sorted chronologically
@@ -28,12 +28,26 @@ export const timelineData = {
       timestamp: 1794009600000,
       company: "HERE Technologies",
       slug: "here-technologies",
-      type: "fulltime",
-      typeLabel: "Placement Only",
-      role: "Software Engineer",
+      type: "ppo",
+      typeLabel: "Internship + PPO",
+      role: "Software Engineer (Intern + PPO)",
       offers: 3,
       pay: "CTC 13.5 LPA",
-      status: "3 offers confirmed"
+      status: "3 offers confirmed (Intern + PPO)"
+    },
+    {
+      date: "04 Nov 2026",
+      displayDate: "Nov 2026",
+      monthGroup: "Nov 2026",
+      timestamp: 1793836800000,
+      company: "Fractal",
+      slug: "fractal",
+      type: "fulltime",
+      typeLabel: "Placement Only",
+      role: "Software Engineer / Analyst",
+      offers: 1,
+      pay: "CTC 7.5 LPA",
+      status: "1+ confirmed selections"
     },
     // --- October 2026 ---
     {

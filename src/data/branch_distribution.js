@@ -2,7 +2,7 @@
 // Compiled from recruitment drives with verified departmental selection author records
 
 export const branchSummary = {
-  "total": 239,
+  "total": 240,
   "knownTotal": 125,
   "overallAverageCTC": "₹14.27 LPA",
   "overallMedianCTC": "₹14.70 LPA",
@@ -15,7 +15,7 @@ export const branchSummary = {
       "name": "Computer Engineering",
       "shortName": "CE",
       "count": 61,
-      "percentage": "25.5",
+      "percentage": "25.4",
       "knownPercentage": "48.8",
       "color": "#10b981",
       "recruiterCount": 29,
@@ -38,7 +38,7 @@ export const branchSummary = {
       "name": "Computer Science Engineering",
       "shortName": "CSE",
       "count": 44,
-      "percentage": "18.4",
+      "percentage": "18.3",
       "knownPercentage": "35.2",
       "color": "#38bdf8",
       "recruiterCount": 21,
@@ -61,7 +61,7 @@ export const branchSummary = {
       "name": "Electronics & Telecommunications",
       "shortName": "EXTC",
       "count": 20,
-      "percentage": "8.4",
+      "percentage": "8.3",
       "knownPercentage": "16.0",
       "color": "#f43f5e",
       "recruiterCount": 12,
@@ -83,11 +83,11 @@ export const branchSummary = {
       "id": "unknown",
       "name": "Unknown / Awaiting Division",
       "shortName": "Unknown",
-      "count": 114,
-      "percentage": "47.7",
+      "count": 115,
+      "percentage": "47.9",
       "knownPercentage": "—",
       "color": "#71717a",
-      "recruiterCount": 30,
+      "recruiterCount": 31,
       "averageCTC": "₹13.45 LPA",
       "medianCTC": "₹14.00 LPA",
       "highestCTC": "₹33.0 LPA",
@@ -445,9 +445,9 @@ export const companyBranchDistribution = [
     "notes": ""
   },
   {
-    "rawName": "HERE Technologies (Software Engineer)",
+    "rawName": "HERE Technologies (Software Engineer (Intern + PPO))",
     "company": "HERE Technologies",
-    "role": "Software Engineer",
+    "role": "Software Engineer (Intern + PPO)",
     "slug": "here-technologies",
     "logo": "/logos/here-technologies.svg",
     "extc": 0,
@@ -455,7 +455,7 @@ export const companyBranchDistribution = [
     "ce": 0,
     "unknown": 3,
     "total": 3,
-    "notes": "3 confirmed offers awaiting branch-wise division"
+    "notes": "3 confirmed offers (Intern + PPO) awaiting branch-wise division"
   },
   {
     "rawName": "AspectRatio (Analyst)",
@@ -573,6 +573,19 @@ export const companyBranchDistribution = [
     "unknown": 2,
     "total": 2,
     "notes": "1 candidate author is MCA; counted under unknown"
+  },
+  {
+    "rawName": "Fractal (Software Engineer / Analyst)",
+    "company": "Fractal",
+    "role": "Software Engineer / Analyst",
+    "slug": "fractal",
+    "logo": "/logos/fractal.png",
+    "extc": 0,
+    "cse": 0,
+    "ce": 0,
+    "unknown": 1,
+    "total": 1,
+    "notes": "1+ confirmed selection awaiting branch-wise division"
   },
   {
     "rawName": "Axis Mutual Fund (MT Digital Tech)",

@@ -338,9 +338,9 @@
     "notes": ""
   },
   {
-    "rawName": "HERE Technologies (Software Engineer)",
+    "rawName": "HERE Technologies (Software Engineer (Intern + PPO))",
     "company": "HERE Technologies",
-    "role": "Software Engineer",
+    "role": "Software Engineer (Intern + PPO)",
     "slug": "here-technologies",
     "logo": "/logos/here-technologies.svg",
     "extc": 0,
@@ -348,7 +348,7 @@
     "ce": 0,
     "unknown": 3,
     "total": 3,
-    "notes": "3 confirmed offers awaiting branch-wise division"
+    "notes": "3 confirmed offers (Intern + PPO) awaiting branch-wise division"
   },
   {
     "rawName": "AspectRatio (Analyst)",
@@ -466,6 +466,19 @@
     "unknown": 2,
     "total": 2,
     "notes": "1 candidate author is MCA; counted under unknown"
+  },
+  {
+    "rawName": "Fractal (Software Engineer / Analyst)",
+    "company": "Fractal",
+    "role": "Software Engineer / Analyst",
+    "slug": "fractal",
+    "logo": "/logos/fractal.png",
+    "extc": 0,
+    "cse": 0,
+    "ce": 0,
+    "unknown": 1,
+    "total": 1,
+    "notes": "1+ confirmed selection awaiting branch-wise division"
   },
   {
     "rawName": "Axis Mutual Fund (MT Digital Tech)",

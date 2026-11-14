@@ -3,17 +3,17 @@
 
 export const payData = {
   summary: {
-    overallAverageCTC: "₹14.08 LPA",
+    overallAverageCTC: "₹14.05 LPA",
     overallMedianCTC: "₹14.00 LPA",
-    drivesWithSelections: 30,
-    fulltimeAverageCTC: "₹14.07 LPA",
+    drivesWithSelections: 31,
+    fulltimeAverageCTC: "₹13.80 LPA",
     fulltimeMedianCTC: "₹13.50 LPA",
-    fulltimeDrivesCount: 23,
+    fulltimeDrivesCount: 24,
     ppoAverageCTC: "₹14.70 LPA",
     ppoMedianCTC: "₹15.00 LPA",
     ppoDrivesCount: 16,
     highestCTC: "₹33.00 LPA",
-    lowestCTC: "₹8.23 LPA",
+    lowestCTC: "₹7.50 LPA",
     highestStipend: "₹1,60,000 / mo",
     medianStipend: "₹40,000 / mo",
     averageStipend: "₹53,600 / mo"
@@ -24,7 +24,7 @@ export const payData = {
     { tier: "Super Dream (> ₹20 LPA)", count: 6, percentage: "3%", color: "var(--color-ppo)", description: "PhonePe SDE (₹33 LPA) & marquee product engineering roles" },
     { tier: "Dream (₹14 – ₹20 LPA)", count: 67, percentage: "29%", color: "var(--color-fulltime)", description: "IDFC FIRST, Barclays, ISS/STOXX, WorkIndia, AuxoAI, UBS, Nomura, Futures First" },
     { tier: "Core Tech (₹10 – ₹14 LPA)", count: 59, percentage: "26%", color: "var(--color-intern)", description: "HERE Technologies, Capgemini, AspectRatio, InCred, InSync, Baker Hughes, Infosys, Colgate" },
-    { tier: "Standard (< ₹10 LPA)", count: 96, percentage: "42%", color: "var(--color-muted)", description: "GEP Worldwide, TransUnion, Quantiphi, Wissen, Revvity, Axis MF, JPMC Risk" }
+    { tier: "Standard (< ₹10 LPA)", count: 97, percentage: "42%", color: "var(--color-muted)", description: "GEP Worldwide, TransUnion, Quantiphi, Wissen, Fractal, Revvity, Axis MF, JPMC Risk" }
   ],
 
   // Stipend Distribution Brackets
@@ -48,7 +48,7 @@ export const payData = {
     { name: "ISS / STOXX", pay: 14.7, type: "fulltime", students: 15 },
     { name: "Mahindra Finance", pay: 14.0, type: "fulltime", students: 9 },
     { name: "Nomura", pay: 13.9, type: "fulltime", students: 1 },
-    { name: "HERE Technologies", pay: 13.5, type: "fulltime", students: 3 },
+    { name: "HERE Technologies", pay: 13.5, type: "ppo", students: 3 },
     { name: "UBS", pay: 16.0, type: "fulltime", students: 14 },
     { name: "Capgemini", pay: 13.0, type: "fulltime", students: 4 },
     { name: "Baker Hughes", pay: 13.0, type: "fulltime", students: 3 },
@@ -61,6 +61,7 @@ export const payData = {
     { name: "GEP Worldwide", pay: 9.0, type: "fulltime", students: 9 },
     { name: "Quantiphi", pay: 8.5, type: "fulltime", students: 9 },
     { name: "Axis Mutual Fund", pay: 8.23, type: "fulltime", students: 1 },
-    { name: "Revvity", pay: 8.0, type: "ppo", students: 7 }
+    { name: "Revvity", pay: 8.0, type: "ppo", students: 7 },
+    { name: "Fractal", pay: 7.5, type: "fulltime", students: 1 }
   ]
 };

@@ -253,6 +253,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://placement-stats.vercel.app/companies/company.html?slug=fractal</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://placement-stats.vercel.app/companies/company.html?slug=bnp-paribas</loc>
     <lastmod>2026-11-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -331,13 +337,13 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://placement-stats.vercel.app/companies/company.html?slug=fractal</loc>
+    <loc>https://placement-stats.vercel.app/companies/company.html?slug=trilogy</loc>
     <lastmod>2026-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://placement-stats.vercel.app/companies/company.html?slug=trilogy</loc>
+    <loc>https://placement-stats.vercel.app/companies/company.html?slug=neebal</loc>
     <lastmod>2026-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
