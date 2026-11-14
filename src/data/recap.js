@@ -64,8 +64,8 @@ export const recapData = {
       title: "SPIT 2027 Season Highlights",
       subtitle: "Sardar Patel Institute of Technology",
       badge: "Overview",
-      stat: "228 Offers",
-      text: "Placement season for SPIT's Class of 2027 records 228 confirmed selections across 29 premier multinationals and engineering leaders.",
+      stat: "268 Offers",
+      text: "Placement season for SPIT's Class of 2027 records 268 confirmed selections across 48 premier multinationals and engineering leaders.",
       color: "var(--color-intern)"
     },
     {

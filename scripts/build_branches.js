@@ -77,7 +77,7 @@ function generateBranchesPage() {
             <span class="size-2 rounded-full" style="background:#71717a"></span>
             Unknown / Awaiting Division
           </dt>
-          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">${branchSummary.branches.find(b => b.id === 'unknown')?.count || 115}</dd>
+          <dd class="num order-1 font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-tight text-fg">${branchSummary.branches.find(b => b.id === 'unknown')?.count || 143}</dd>
           <dd class="label order-3 mt-1 text-[11px] text-faint">${branchSummary.branches.find(b => b.id === 'unknown')?.percentage}% pending author division</dd>
         </div>
       </dl>
@@ -139,8 +139,8 @@ function generateBranchesPage() {
             </div>
 
             <!-- Unknown Column -->
-            <div class="timeline-branch-col flex flex-col items-center gap-2 cursor-pointer group" data-branch="unknown" title="Unknown / Awaiting Division: ${branchSummary.branches.find(b => b.id === 'unknown')?.count || 115} offers (Click to filter)" style="height: 100%; justify-content: flex-end;">
-              <span class="num text-[14px] sm:text-[15px] text-fg font-medium font-mono">${branchSummary.branches.find(b => b.id === 'unknown')?.count || 115}</span>
+            <div class="timeline-branch-col flex flex-col items-center gap-2 cursor-pointer group" data-branch="unknown" title="Unknown / Awaiting Division: ${branchSummary.branches.find(b => b.id === 'unknown')?.count || 143} offers (Click to filter)" style="height: 100%; justify-content: flex-end;">
+              <span class="num text-[14px] sm:text-[15px] text-fg font-medium font-mono">${branchSummary.branches.find(b => b.id === 'unknown')?.count || 143}</span>
               <div class="w-full border border-line-strong transition-opacity group-hover:opacity-80" style="max-width: 56px; height: 160px; background-color: #71717a; border-radius: 0;"></div>
               <div class="flex flex-col items-center text-center mt-1">
                 <span class="label text-[13px] font-semibold text-fg">Unknown</span>

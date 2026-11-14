@@ -18,68 +18,61 @@ export const branches2028 = [
     name: "Computer Engineering",
     shortName: "CE",
     color: "var(--color-br-ce, #10b981)",
-    placedPercentage: 8,
     totalStudents: 275,
-    placedStudents: 22,
     medianCTC: "—",
     averageCTC: "—",
     highestCTC: "—",
     ppoCount: 0,
     topRecruiters: [
-      { name: "Barclays", offers: 11, logo: "/logos/barclays.png" },
-      { name: "Mastercard", offers: 5, logo: "/logos/mastercard.svg" },
-      { name: "IBM", offers: 3, logo: "/logos/ibm.svg" },
-      { name: "General Mills", offers: 3, logo: "/logos/general-mills.png" }
+      { name: "Barclays", offers: 25, logo: "/logos/barclays.png" },
+      { name: "Mastercard", offers: 9, logo: "/logos/mastercard.svg" },
+      { name: "IBM", offers: 5, logo: "/logos/ibm.svg" },
+      { name: "General Mills", offers: 6, logo: "/logos/general-mills.png" }
     ],
-    summary: "Early recruitment with 22 summer internship selections across global financial and enterprise tech firms."
+    summary: "Class of 2028 Computer Engineering summer internship drives."
   },
   {
     id: "cse",
     name: "Computer Science Engineering",
     shortName: "CSE",
     color: "var(--color-br-cse, #38bdf8)",
-    placedPercentage: 15,
     totalStudents: 137,
-    placedStudents: 20,
     medianCTC: "—",
     averageCTC: "—",
     highestCTC: "—",
     ppoCount: 0,
     topRecruiters: [
-      { name: "Barclays", offers: 10, logo: "/logos/barclays.png" },
-      { name: "Mastercard", offers: 4, logo: "/logos/mastercard.svg" },
-      { name: "General Mills", offers: 3, logo: "/logos/general-mills.png" },
-      { name: "Russell Investments", offers: 3, logo: "/logos/russell-investments.svg" }
+      { name: "Barclays", offers: 25, logo: "/logos/barclays.png" },
+      { name: "Mastercard", offers: 9, logo: "/logos/mastercard.svg" },
+      { name: "General Mills", offers: 6, logo: "/logos/general-mills.png" },
+      { name: "Russell Investments", offers: 5, logo: "/logos/russell-investments.svg" }
     ],
-    summary: "Strong summer internship outcomes across investment tech, enterprise cloud, and payments."
+    summary: "Class of 2028 Computer Science Engineering summer internship drives."
   },
   {
     id: "extc",
     name: "Electronics and Telecommunications Engineering",
     shortName: "EXTC",
     color: "var(--color-br-entc, #c2185b)",
-    placedPercentage: 6,
     totalStudents: 139,
-    placedStudents: 8,
     medianCTC: "—",
     averageCTC: "—",
     highestCTC: "—",
     ppoCount: 0,
     topRecruiters: [
-      { name: "Barclays", offers: 4, logo: "/logos/barclays.png" },
-      { name: "IBM", offers: 2, logo: "/logos/ibm.svg" },
-      { name: "Mastercard", offers: 2, logo: "/logos/mastercard.svg" }
+      { name: "Barclays", offers: 25, logo: "/logos/barclays.png" },
+      { name: "IBM", offers: 5, logo: "/logos/ibm.svg" },
+      { name: "Mastercard", offers: 9, logo: "/logos/mastercard.svg" }
     ],
-    summary: "Selections in core software, global sales, and tech internship tracks."
+    summary: "Class of 2028 Electronics and Telecommunications Engineering summer internship drives."
   },
   {
     id: "all",
     name: "All Branches Combined",
     shortName: "All",
     color: "var(--color-fg)",
-    placedPercentage: 9,
     totalStudents: 551,
-    placedStudents: 50,
+    confirmedOffers: 50,
     medianCTC: "—",
     averageCTC: "—",
     highestCTC: "—",

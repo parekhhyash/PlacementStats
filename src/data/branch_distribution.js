@@ -2,7 +2,7 @@
 // Compiled from recruitment drives with verified departmental selection author records
 
 export const branchSummary = {
-  "total": 240,
+  "total": 268,
   "knownTotal": 125,
   "totalBatchSize": 534,
   "overallAverageCTC": "₹14.27 LPA",
@@ -17,7 +17,7 @@ export const branchSummary = {
       "shortName": "CE",
       "totalStudents": 266,
       "count": 61,
-      "percentage": "25.4",
+      "percentage": "22.8",
       "knownPercentage": "48.8",
       "color": "#10b981",
       "recruiterCount": 29,
@@ -41,7 +41,7 @@ export const branchSummary = {
       "shortName": "CSE",
       "totalStudents": 137,
       "count": 44,
-      "percentage": "18.3",
+      "percentage": "16.4",
       "knownPercentage": "35.2",
       "color": "#38bdf8",
       "recruiterCount": 21,
@@ -65,7 +65,7 @@ export const branchSummary = {
       "shortName": "EXTC",
       "totalStudents": 131,
       "count": 20,
-      "percentage": "8.3",
+      "percentage": "7.5",
       "knownPercentage": "16.0",
       "color": "#f43f5e",
       "recruiterCount": 12,
@@ -88,23 +88,23 @@ export const branchSummary = {
       "name": "Unknown / Awaiting Division",
       "shortName": "Unknown",
       "totalStudents": null,
-      "count": 115,
-      "percentage": "47.9",
+      "count": 143,
+      "percentage": "53.4",
       "knownPercentage": "—",
       "color": "#71717a",
-      "recruiterCount": 31,
+      "recruiterCount": 32,
       "averageCTC": "₹13.45 LPA",
       "medianCTC": "₹14.00 LPA",
       "highestCTC": "₹33.0 LPA",
-      "knownOffersWithCTC": 102,
+      "knownOffersWithCTC": 127,
       "topPayingRecruiter": "Barclays (₹15.05 LPA)",
       "topRecruiters": [
+        "Ambiguous (25)",
         "Barclays (11)",
+        "UBS (10)",
         "Mahindra Finance (8)",
-        "UBS (7)",
         "GEP Worldwide (7)",
-        "Wissen Technology (7)",
-        "ISS-STOXX (6)"
+        "Wissen Technology (7)"
       ]
     }
   ]
@@ -630,5 +630,31 @@ export const companyBranchDistribution = [
     "unknown": 0,
     "total": 1,
     "notes": "100% known branch authors"
+  },
+  {
+    "rawName": "UBS (GOTO Intern)",
+    "company": "UBS",
+    "role": "GOTO Intern (Summer Internship)",
+    "slug": "ubs",
+    "logo": "/logos/ubs.svg",
+    "extc": 0,
+    "cse": 0,
+    "ce": 0,
+    "unknown": 3,
+    "total": 3,
+    "notes": "Pune summer internship (branch distribution pending)"
+  },
+  {
+    "rawName": "Ambiguous (Unassigned Selections)",
+    "company": "Ambiguous",
+    "role": "Unclassified Selections",
+    "slug": "ambiguous",
+    "logo": "",
+    "extc": 0,
+    "cse": 0,
+    "ce": 0,
+    "unknown": 25,
+    "total": 25,
+    "notes": "Anonymous / unassigned selections pending firm & department attribution"
   }
 ];
