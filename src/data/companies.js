@@ -3397,12 +3397,12 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "No details available",
+    "pay": "₹11 LPA",
     "payKind": "CTC",
-    "payRank": 0,
+    "payRank": 1100,
     "dream": false,
     "logo": "/logos/dolat-capital.svg",
-    "noDetailsAvailable": true,
+    "noDetailsAvailable": false,
     "out": {
       "internships": 0,
       "fulltimeOffers": 0,
@@ -3413,15 +3413,28 @@ export const companies = [
     "open": "CE, CSE",
     "branches": "CE and CSE",
     "cgpa": null,
-    "cgpaCriteria": "No details available",
-    "boardsCriteria": "No details available",
+    "cgpaCriteria": "No specific CGPA criteria stated",
+    "boardsCriteria": "Standard eligibility",
     "first": "Sep 2026",
     "last": "Sep 2026",
-    "visitTimeline": "No details available",
-    "funnelRaw": "No details available",
-    "status": "No details available",
-    "roles": [],
-    "notes": "No details available yet. Submit data if you have it."
+    "visitTimeline": "Sep 2026",
+    "funnelRaw": "Campus recruitment drive in Sep 2026",
+    "status": "Campus recruitment drive in Sep 2026 (₹11 LPA)",
+    "roles": [
+      {
+        "title": "Software Engineer / Quantitative Developer",
+        "type": "fulltime",
+        "count": 0,
+        "ctc": "₹11 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC ₹11 LPA",
+        "visitDate": "Sep 2026",
+        "funnel": [],
+        "funnelRaw": "Campus recruitment drive in Sep 2026",
+        "notes": "₹11 LPA CTC"
+      }
+    ],
+    "notes": "Campus recruitment drive in Sep 2026 with ₹11 LPA CTC."
   },
   {
     "slug": "versor",
@@ -3582,12 +3595,12 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "No details available",
+    "pay": "₹6 LPA",
     "payKind": "CTC",
-    "payRank": 0,
+    "payRank": 600,
     "dream": false,
     "logo": "/logos/kpmg.svg",
-    "noDetailsAvailable": true,
+    "noDetailsAvailable": false,
     "out": {
       "internships": 0,
       "fulltimeOffers": 0,
@@ -3598,15 +3611,28 @@ export const companies = [
     "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
-    "cgpaCriteria": "No details available",
-    "boardsCriteria": "No details available",
+    "cgpaCriteria": "No specific CGPA criteria stated",
+    "boardsCriteria": "Standard eligibility",
     "first": "Oct 2026",
     "last": "Oct 2026",
-    "visitTimeline": "No details available",
-    "funnelRaw": "No details available",
-    "status": "No details available",
-    "roles": [],
-    "notes": "No details available yet. Submit data if you have it."
+    "visitTimeline": "Oct 2026",
+    "funnelRaw": "Campus recruitment drive in Oct 2026",
+    "status": "Campus recruitment drive in Oct 2026 (₹6 LPA)",
+    "roles": [
+      {
+        "title": "Analyst / Associate Consultant",
+        "type": "fulltime",
+        "count": 0,
+        "ctc": "₹6 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC ₹6 LPA",
+        "visitDate": "Oct 2026",
+        "funnel": [],
+        "funnelRaw": "Campus recruitment drive in Oct 2026",
+        "notes": "₹6 LPA CTC"
+      }
+    ],
+    "notes": "Campus recruitment drive in Oct 2026 with ₹6 LPA CTC."
   },
   {
     "slug": "idfy",
@@ -3619,12 +3645,12 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "No details available",
+    "pay": "₹10 LPA",
     "payKind": "CTC",
-    "payRank": 0,
+    "payRank": 1000,
     "dream": false,
     "logo": "/logos/idfy.svg",
-    "noDetailsAvailable": true,
+    "noDetailsAvailable": false,
     "out": {
       "internships": 0,
       "fulltimeOffers": 0,
@@ -3635,15 +3661,28 @@ export const companies = [
     "open": "CE, CSE",
     "branches": "CE and CSE",
     "cgpa": null,
-    "cgpaCriteria": "No details available",
-    "boardsCriteria": "No details available",
+    "cgpaCriteria": "No specific CGPA criteria stated",
+    "boardsCriteria": "Standard eligibility",
     "first": "Oct 2026",
     "last": "Oct 2026",
-    "visitTimeline": "No details available",
-    "funnelRaw": "No details available",
-    "status": "No details available",
-    "roles": [],
-    "notes": "No details available yet. Submit data if you have it."
+    "visitTimeline": "Oct 2026",
+    "funnelRaw": "Campus recruitment drive in Oct 2026",
+    "status": "Campus recruitment drive in Oct 2026 (₹10 LPA)",
+    "roles": [
+      {
+        "title": "Software Engineer",
+        "type": "fulltime",
+        "count": 0,
+        "ctc": "₹10 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC ₹10 LPA",
+        "visitDate": "Oct 2026",
+        "funnel": [],
+        "funnelRaw": "Campus recruitment drive in Oct 2026",
+        "notes": "₹10 LPA CTC"
+      }
+    ],
+    "notes": "Campus recruitment drive in Oct 2026 with ₹10 LPA CTC."
   },
   {
     "slug": "hsbc",
@@ -3782,12 +3821,12 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "No details available",
+    "pay": "₹13.4 LPA",
     "payKind": "CTC",
-    "payRank": 0,
+    "payRank": 1340,
     "dream": true,
     "logo": "/logos/mastercard.svg",
-    "noDetailsAvailable": true,
+    "noDetailsAvailable": false,
     "out": {
       "internships": 0,
       "fulltimeOffers": 0,
@@ -3798,15 +3837,28 @@ export const companies = [
     "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
-    "cgpaCriteria": "No details available",
-    "boardsCriteria": "No details available",
+    "cgpaCriteria": "No specific CGPA criteria stated",
+    "boardsCriteria": "Standard eligibility",
     "first": "Oct 2026",
     "last": "Oct 2026",
-    "visitTimeline": "No details available",
-    "funnelRaw": "No details available",
-    "status": "No details available",
-    "roles": [],
-    "notes": "No details available yet. Submit data if you have it."
+    "visitTimeline": "Oct 2026",
+    "funnelRaw": "Campus recruitment drive in Oct 2026",
+    "status": "Campus recruitment drive in Oct 2026 (₹13.4 LPA)",
+    "roles": [
+      {
+        "title": "Software Engineer",
+        "type": "fulltime",
+        "count": 0,
+        "ctc": "₹13.4 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC ₹13.4 LPA",
+        "visitDate": "Oct 2026",
+        "funnel": [],
+        "funnelRaw": "Campus recruitment drive in Oct 2026",
+        "notes": "₹13.4 LPA CTC"
+      }
+    ],
+    "notes": "Campus recruitment drive in Oct 2026 with ₹13.4 LPA CTC."
   },
   {
     "slug": "carwale",
@@ -3819,12 +3871,12 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "No details available",
+    "pay": "₹9 LPA",
     "payKind": "CTC",
-    "payRank": 0,
+    "payRank": 900,
     "dream": false,
     "logo": "/logos/carwale.svg",
-    "noDetailsAvailable": true,
+    "noDetailsAvailable": false,
     "out": {
       "internships": 0,
       "fulltimeOffers": 0,
@@ -3835,15 +3887,28 @@ export const companies = [
     "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
-    "cgpaCriteria": "No details available",
-    "boardsCriteria": "No details available",
+    "cgpaCriteria": "No specific CGPA criteria stated",
+    "boardsCriteria": "Standard eligibility",
     "first": "Oct 2026",
     "last": "Oct 2026",
-    "visitTimeline": "No details available",
-    "funnelRaw": "No details available",
-    "status": "No details available",
-    "roles": [],
-    "notes": "No details available yet. Submit data if you have it."
+    "visitTimeline": "Oct 2026",
+    "funnelRaw": "Campus recruitment drive in Oct 2026",
+    "status": "Campus recruitment drive in Oct 2026 (₹9 LPA)",
+    "roles": [
+      {
+        "title": "Software Development Engineer",
+        "type": "fulltime",
+        "count": 0,
+        "ctc": "₹9 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC ₹9 LPA",
+        "visitDate": "Oct 2026",
+        "funnel": [],
+        "funnelRaw": "Campus recruitment drive in Oct 2026",
+        "notes": "₹9 LPA CTC"
+      }
+    ],
+    "notes": "Campus recruitment drive in Oct 2026 with ₹9 LPA CTC."
   },
   {
     "slug": "trilogy",
@@ -3893,9 +3958,9 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "₹6 LPA",
+    "pay": "₹5 LPA",
     "payKind": "CTC",
-    "payRank": 600,
+    "payRank": 500,
     "dream": false,
     "logo": "/logos/neebal.svg",
     "noDetailsAvailable": false,
@@ -3915,22 +3980,22 @@ export const companies = [
     "last": "Nov 2026",
     "visitTimeline": "Nov 2026",
     "funnelRaw": "Campus recruitment drive in Nov 2026",
-    "status": "Campus recruitment drive in Nov 2026 (₹6 LPA)",
+    "status": "Campus recruitment drive in Nov 2026 (₹5 LPA)",
     "roles": [
       {
         "title": "Software Engineer",
         "type": "fulltime",
         "count": 0,
-        "ctc": "₹6 LPA",
+        "ctc": "₹5 LPA",
         "stipend": null,
-        "rawCompensation": "CTC ₹6 LPA",
+        "rawCompensation": "CTC ₹5 LPA",
         "visitDate": "Nov 2026",
         "funnel": [],
         "funnelRaw": "Campus recruitment drive in Nov 2026",
-        "notes": "₹6 LPA CTC"
+        "notes": "₹5 LPA CTC"
       }
     ],
-    "notes": "Campus recruitment drive in Nov 2026 with ₹6 LPA CTC."
+    "notes": "Campus recruitment drive in Nov 2026 with ₹5 LPA CTC."
   }
 ];
 

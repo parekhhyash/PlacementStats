@@ -4,8 +4,8 @@
 export const timelineData = {
   summary: {
     internshipDrives: 15,
-    finalYearDrives: 28,
-    busiestMonth: "Jul 2026 (11 drives)"
+    finalYearDrives: 33,
+    busiestMonth: "Oct 2026 (12 drives)"
   },
 
   // Monthly stats for the timeline histogram chart
@@ -13,8 +13,8 @@ export const timelineData = {
     { label: "Jun '26", count: 2, intern: 1, fulltime: 1, ppo: 1 },
     { label: "Jul '26", count: 11, intern: 5, fulltime: 6, ppo: 4 },
     { label: "Aug '26", count: 6, intern: 3, fulltime: 3, ppo: 2 },
-    { label: "Sep '26", count: 6, intern: 2, fulltime: 4, ppo: 1 },
-    { label: "Oct '26", count: 8, intern: 2, fulltime: 6, ppo: 2 },
+    { label: "Sep '26", count: 7, intern: 2, fulltime: 5, ppo: 1 },
+    { label: "Oct '26", count: 12, intern: 2, fulltime: 10, ppo: 2 },
     { label: "Nov '26", count: 4, intern: 1, fulltime: 3, ppo: 1 }
   ],
 
@@ -32,8 +32,8 @@ export const timelineData = {
       typeLabel: "Placement Only",
       role: "Software Engineer",
       offers: 0,
-      pay: "CTC 6.0 LPA",
-      status: "Drive announced (₹6 LPA)"
+      pay: "CTC 5.0 LPA",
+      status: "Drive announced (₹5 LPA)"
     },
     {
       date: "10 Nov 2026",
@@ -93,6 +93,20 @@ export const timelineData = {
       status: "6 offers confirmed (results 28 Oct)"
     },
     {
+      date: "24 Oct 2026",
+      displayDate: "Oct 2026",
+      monthGroup: "Oct 2026",
+      timestamp: 1792886400000,
+      company: "Mastercard",
+      slug: "mastercard",
+      type: "fulltime",
+      typeLabel: "Placement Only",
+      role: "Software Engineer",
+      offers: 0,
+      pay: "CTC 13.4 LPA",
+      status: "Drive announced (₹13.4 LPA)"
+    },
+    {
       date: "22 Oct 2026",
       displayDate: "22-26 Oct",
       monthGroup: "Oct 2026",
@@ -107,6 +121,34 @@ export const timelineData = {
       status: "9 offers confirmed"
     },
     {
+      date: "20 Oct 2026",
+      displayDate: "Oct 2026",
+      monthGroup: "Oct 2026",
+      timestamp: 1792540800000,
+      company: "IDfy",
+      slug: "idfy",
+      type: "fulltime",
+      typeLabel: "Placement Only",
+      role: "Software Engineer",
+      offers: 0,
+      pay: "CTC 10 LPA",
+      status: "Drive announced (₹10 LPA)"
+    },
+    {
+      date: "18 Oct 2026",
+      displayDate: "Oct 2026",
+      monthGroup: "Oct 2026",
+      timestamp: 1792368000000,
+      company: "CarWale",
+      slug: "carwale",
+      type: "fulltime",
+      typeLabel: "Placement Only",
+      role: "Software Development Engineer",
+      offers: 0,
+      pay: "CTC 9 LPA",
+      status: "Drive announced (₹9 LPA)"
+    },
+    {
       date: "15 Oct 2026",
       displayDate: "9-15 Oct",
       monthGroup: "Oct 2026",
@@ -119,6 +161,20 @@ export const timelineData = {
       offers: 12,
       pay: "CTC 15.05 LPA",
       status: "12 offers confirmed (OA 9 Oct, interviews 15 Oct)"
+    },
+    {
+      date: "12 Oct 2026",
+      displayDate: "Oct 2026",
+      monthGroup: "Oct 2026",
+      timestamp: 1791849600000,
+      company: "KPMG",
+      slug: "kpmg",
+      type: "fulltime",
+      typeLabel: "Placement Only",
+      role: "Analyst / Associate Consultant",
+      offers: 0,
+      pay: "CTC 6 LPA",
+      status: "Drive announced (₹6 LPA)"
     },
     {
       date: "08 Oct 2026",
@@ -219,6 +275,20 @@ export const timelineData = {
       offers: 7,
       pay: "Stipend ₹60k/mo",
       status: "7 offers confirmed"
+    },
+    {
+      date: "20 Sep 2026",
+      displayDate: "Sep 2026",
+      monthGroup: "Sep 2026",
+      timestamp: 1789948800000,
+      company: "Dolat Capital",
+      slug: "dolat-capital",
+      type: "fulltime",
+      typeLabel: "Placement Only",
+      role: "Software Engineer / Quantitative Developer",
+      offers: 0,
+      pay: "CTC 11 LPA",
+      status: "Drive announced (₹11 LPA)"
     },
     {
       date: "15 Sep 2026",
