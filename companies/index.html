@@ -240,21 +240,36 @@
       </section>
 
       <div class="wrap">
-        <dl class="grid grid-cols-1 border-t border-line sm:grid-cols-3">
-          <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5 sm:first:pl-0">
-            <dt class="order-2 mt-2 text-muted">Total offers</dt>
-            <dd id="stat-total-offers" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">268</dd>
+        <dl class="grid grid-cols-2 border-t border-line sm:grid-cols-3 lg:grid-cols-6">
+          <div class="flex flex-col border-b border-r border-line py-5 pr-4 sm:border-b sm:border-r sm:px-5 sm:first:pl-0 lg:border-b-0 lg:border-r">
+            <dt class="order-2 mt-2 text-muted text-[13px]">Total offers</dt>
+            <dd id="stat-total-offers" class="num order-1 font-display text-[clamp(26px,2.2vw,40px)] leading-[1.05] tracking-[-0.035em]">268</dd>
             <dd id="stat-total-offers-sub" class="label order-3 mt-1 text-[11px] text-faint">Across all selections</dd>
           </div>
-          <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
-            <dt id="stat-avg-ctc-label" class="order-2 mt-2 text-muted">Avg CTC by company</dt>
-            <dd id="stat-avg-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">₹12.64<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
+          <div class="flex flex-col border-b border-line py-5 pl-4 sm:border-b sm:border-r sm:px-5 lg:border-b-0 lg:border-r">
+            <dt id="stat-avg-ctc-label" class="order-2 mt-2 text-muted text-[13px]">Avg CTC by company</dt>
+            <dd id="stat-avg-ctc" class="num order-1 font-display text-[clamp(26px,2.2vw,40px)] leading-[1.05] tracking-[-0.035em]">₹12.64<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
             <dd id="stat-avg-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">36 recruiters with CTC</dd>
           </div>
-          <div class="flex flex-col py-5 pr-4 sm:px-5">
-            <dt class="order-2 mt-2 text-muted">Median CTC</dt>
-            <dd id="stat-med-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">₹12<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
+          <div class="flex flex-col border-b border-r border-line py-5 pr-4 sm:border-b sm:border-r-0 sm:px-5 lg:border-b-0 lg:border-r">
+            <dt class="order-2 mt-2 text-muted text-[13px]">Median CTC</dt>
+            <dd id="stat-med-ctc" class="num order-1 font-display text-[clamp(26px,2.2vw,40px)] leading-[1.05] tracking-[-0.035em]">₹12<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
             <dd id="stat-med-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">Range ₹5–33 LPA</dd>
+          </div>
+          <div id="card-bracket-high" role="button" tabindex="0" title="Click to filter companies with ≥ ₹15 LPA" class="flex flex-col border-b border-line py-5 pl-4 sm:border-b-0 sm:border-r sm:px-5 lg:border-b-0 lg:border-r cursor-pointer hover:bg-panel/70 transition-all rounded-lg select-none">
+            <dt id="stat-bracket-high-label" class="order-2 mt-2 text-muted text-[13px]">≥ ₹15 LPA</dt>
+            <dd id="stat-bracket-high" class="num order-1 font-display text-[clamp(26px,2.2vw,40px)] leading-[1.05] tracking-[-0.035em]">11<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">comps</span></dd>
+            <dd id="stat-bracket-high-sub" class="label order-3 mt-1 text-[11px] text-faint">31% · Max ₹33 LPA</dd>
+          </div>
+          <div id="card-bracket-mid" role="button" tabindex="0" title="Click to filter companies with ₹10–15 LPA" class="flex flex-col border-r border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5 lg:border-b-0 lg:border-r cursor-pointer hover:bg-panel/70 transition-all rounded-lg select-none">
+            <dt id="stat-bracket-mid-label" class="order-2 mt-2 text-muted text-[13px]">₹10 – ₹15 LPA</dt>
+            <dd id="stat-bracket-mid" class="num order-1 font-display text-[clamp(26px,2.2vw,40px)] leading-[1.05] tracking-[-0.035em]">13<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">comps</span></dd>
+            <dd id="stat-bracket-mid-sub" class="label order-3 mt-1 text-[11px] text-faint">36% of recruiters</dd>
+          </div>
+          <div id="card-bracket-low" role="button" tabindex="0" title="Click to filter companies with < ₹10 LPA" class="flex flex-col py-5 pl-4 sm:border-b-0 sm:px-5 lg:border-b-0 cursor-pointer hover:bg-panel/70 transition-all rounded-lg select-none">
+            <dt id="stat-bracket-low-label" class="order-2 mt-2 text-muted text-[13px]">< ₹10 LPA</dt>
+            <dd id="stat-bracket-low" class="num order-1 font-display text-[clamp(26px,2.2vw,40px)] leading-[1.05] tracking-[-0.035em]">12<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">comps</span></dd>
+            <dd id="stat-bracket-low-sub" class="label order-3 mt-1 text-[11px] text-faint">33% of recruiters</dd>
           </div>
         </dl>
       </div>
@@ -590,6 +605,21 @@
     const statMedCtc = document.getElementById('stat-med-ctc');
     const statMedCtcSub = document.getElementById('stat-med-ctc-sub');
 
+    const statBracketHigh = document.getElementById('stat-bracket-high');
+    const statBracketHighLabel = document.getElementById('stat-bracket-high-label');
+    const statBracketHighSub = document.getElementById('stat-bracket-high-sub');
+    const statBracketMid = document.getElementById('stat-bracket-mid');
+    const statBracketMidLabel = document.getElementById('stat-bracket-mid-label');
+    const statBracketMidSub = document.getElementById('stat-bracket-mid-sub');
+    const statBracketLow = document.getElementById('stat-bracket-low');
+    const statBracketLowLabel = document.getElementById('stat-bracket-low-label');
+    const statBracketLowSub = document.getElementById('stat-bracket-low-sub');
+    const cardBracketHigh = document.getElementById('card-bracket-high');
+    const cardBracketMid = document.getElementById('card-bracket-mid');
+    const cardBracketLow = document.getElementById('card-bracket-low');
+
+    let activePayBracket = 'all'; // 'all' | 'high' | 'mid' | 'low'
+
     function calculateCtcSummary(compList) {
       const ctcValues = compList
         .map(c => {
@@ -605,7 +635,19 @@
         .sort((a, b) => a - b);
 
       if (ctcValues.length === 0) {
-        return { average: '—', median: '—', range: '—', count: 0 };
+        return {
+          average: '—',
+          median: '—',
+          range: '—',
+          count: 0,
+          highCount: 0,
+          midCount: 0,
+          lowCount: 0,
+          highPct: '0%',
+          midPct: '0%',
+          lowPct: '0%',
+          max: 0
+        };
       }
 
       const sum = ctcValues.reduce((acc, v) => acc + v, 0);
@@ -621,12 +663,89 @@
       const max = ctcValues[ctcValues.length - 1];
       const range = 'Range ₹' + (min % 1 === 0 ? min.toFixed(0) : min) + '–' + (max % 1 === 0 ? max.toFixed(0) : max) + ' LPA';
 
+      const highCount = ctcValues.filter(v => v >= 15).length;
+      const midCount = ctcValues.filter(v => v >= 10 && v < 15).length;
+      const lowCount = ctcValues.filter(v => v < 10).length;
+
+      const highPct = Math.round((highCount / ctcValues.length) * 100) + '%';
+      const midPct = Math.round((midCount / ctcValues.length) * 100) + '%';
+      const lowPct = Math.round((lowCount / ctcValues.length) * 100) + '%';
+
       return {
         average: '₹' + avg,
         median: '₹' + med,
         range: range,
-        count: ctcValues.length
+        count: ctcValues.length,
+        highCount: highCount,
+        midCount: midCount,
+        lowCount: lowCount,
+        highPct: highPct,
+        midPct: midPct,
+        lowPct: lowPct,
+        max: max
       };
+    }
+
+    function updateBracketCardStyles() {
+      if (cardBracketHigh) {
+        if (activePayBracket === 'high') {
+          cardBracketHigh.classList.add('bg-panel', 'ring-1', 'ring-fg/60');
+        } else {
+          cardBracketHigh.classList.remove('bg-panel', 'ring-1', 'ring-fg/60');
+        }
+      }
+      if (cardBracketMid) {
+        if (activePayBracket === 'mid') {
+          cardBracketMid.classList.add('bg-panel', 'ring-1', 'ring-fg/60');
+        } else {
+          cardBracketMid.classList.remove('bg-panel', 'ring-1', 'ring-fg/60');
+        }
+      }
+      if (cardBracketLow) {
+        if (activePayBracket === 'low') {
+          cardBracketLow.classList.add('bg-panel', 'ring-1', 'ring-fg/60');
+        } else {
+          cardBracketLow.classList.remove('bg-panel', 'ring-1', 'ring-fg/60');
+        }
+      }
+    }
+
+    function togglePayBracket(bracket) {
+      if (activePayBracket === bracket) {
+        activePayBracket = 'all';
+      } else {
+        activePayBracket = bracket;
+      }
+      updateBracketCardStyles();
+      renderCompanies();
+    }
+
+    if (cardBracketHigh) {
+      cardBracketHigh.addEventListener('click', () => togglePayBracket('high'));
+      cardBracketHigh.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          togglePayBracket('high');
+        }
+      });
+    }
+    if (cardBracketMid) {
+      cardBracketMid.addEventListener('click', () => togglePayBracket('mid'));
+      cardBracketMid.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          togglePayBracket('mid');
+        }
+      });
+    }
+    if (cardBracketLow) {
+      cardBracketLow.addEventListener('click', () => togglePayBracket('low'));
+      cardBracketLow.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          togglePayBracket('low');
+        }
+      });
     }
 
     function updateStatStrip() {
@@ -637,9 +756,25 @@
         if (statTotalOffersSub) statTotalOffersSub.textContent = 'Summer internship phase';
         if (statAvgCtcLabel) statAvgCtcLabel.textContent = 'Average stipend';
         if (statAvgCtc) statAvgCtc.innerHTML = '₹54k<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">/mo</span>';
-        if (statAvgCtcSub) statAvgCtcSub.textContent = 'Average monthly stipend';
+        if (statAvgCtcSub) statAvgCtcSub.textContent = '5 recruiters with stipend';
         if (statMedCtc) statMedCtc.innerHTML = '₹50k<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">/mo</span>';
-        if (statMedCtcSub) statMedCtcSub.textContent = 'Median monthly stipend';
+        if (statMedCtcSub) statMedCtcSub.textContent = 'Range ₹35k–75k / mo';
+
+        if (statBracketHighLabel) statBracketHighLabel.textContent = '≥ ₹60k/mo';
+        if (statBracketHigh) statBracketHigh.innerHTML = '2<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">comps</span>';
+        if (statBracketHighSub) statBracketHighSub.textContent = '40% · Max ₹75k/mo';
+
+        if (statBracketMidLabel) statBracketMidLabel.textContent = '₹40k – ₹60k/mo';
+        if (statBracketMid) statBracketMid.innerHTML = '2<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">comps</span>';
+        if (statBracketMidSub) statBracketMidSub.textContent = '40% of recruiters';
+
+        if (statBracketLowLabel) statBracketLowLabel.textContent = '< ₹40k/mo';
+        if (statBracketLow) statBracketLow.innerHTML = '1<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">comps</span>';
+        if (statBracketLowSub) statBracketLowSub.textContent = '20% of recruiters';
+
+        if (cardBracketHigh) cardBracketHigh.setAttribute('title', 'Click to filter companies with ≥ ₹60k/mo stipend');
+        if (cardBracketMid) cardBracketMid.setAttribute('title', 'Click to filter companies with ₹40k–₹60k/mo stipend');
+        if (cardBracketLow) cardBracketLow.setAttribute('title', 'Click to filter companies with < ₹40k/mo stipend');
       } else {
         const ctcSummary = calculateCtcSummary(companies);
 
@@ -650,6 +785,23 @@
         if (statAvgCtcSub) statAvgCtcSub.textContent = ctcSummary.count + ' recruiters with CTC';
         if (statMedCtc) statMedCtc.innerHTML = ctcSummary.median + '<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
         if (statMedCtcSub) statMedCtcSub.textContent = ctcSummary.range;
+
+        if (statBracketHighLabel) statBracketHighLabel.textContent = '≥ ₹15 LPA';
+        if (statBracketHigh) statBracketHigh.innerHTML = ctcSummary.highCount + '<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">comps</span>';
+        const maxStr = ctcSummary.max ? (' · Max ₹' + (ctcSummary.max % 1 === 0 ? ctcSummary.max.toFixed(0) : ctcSummary.max) + ' LPA') : '';
+        if (statBracketHighSub) statBracketHighSub.textContent = ctcSummary.highPct + maxStr;
+
+        if (statBracketMidLabel) statBracketMidLabel.textContent = '₹10 – ₹15 LPA';
+        if (statBracketMid) statBracketMid.innerHTML = ctcSummary.midCount + '<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">comps</span>';
+        if (statBracketMidSub) statBracketMidSub.textContent = ctcSummary.midPct + ' of recruiters';
+
+        if (statBracketLowLabel) statBracketLowLabel.textContent = '< ₹10 LPA';
+        if (statBracketLow) statBracketLow.innerHTML = ctcSummary.lowCount + '<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">comps</span>';
+        if (statBracketLowSub) statBracketLowSub.textContent = ctcSummary.lowPct + ' of recruiters';
+
+        if (cardBracketHigh) cardBracketHigh.setAttribute('title', 'Click to filter companies with ≥ ₹15 LPA CTC');
+        if (cardBracketMid) cardBracketMid.setAttribute('title', 'Click to filter companies with ₹10–15 LPA CTC');
+        if (cardBracketLow) cardBracketLow.setAttribute('title', 'Click to filter companies with < ₹10 LPA CTC');
       }
     }
 
@@ -678,6 +830,30 @@
       if (sortVal && sortSelect) sortVal.textContent = sortSelect.options[sortSelect.selectedIndex].text;
 
       let filtered = companies.filter(c => {
+        // Pay bracket filter
+        if (activePayBracket !== 'all') {
+          if (is2028) {
+            const rank = typeof c.payRank === 'number' ? c.payRank : 0;
+            if (activePayBracket === 'high' && rank < 6000) return false;
+            if (activePayBracket === 'mid' && (rank < 4000 || rank >= 6000)) return false;
+            if (activePayBracket === 'low' && (rank === 0 || rank >= 4000)) return false;
+          } else {
+            if (c.payKind !== 'CTC') return false;
+            if (!c.pay || c.pay === 'No details available' || c.pay === 'Unspecified' || c.pay === 'Not disclosed') return false;
+            let val = null;
+            if (typeof c.payRank === 'number' && c.payRank > 0 && c.payRank < 10000) {
+              val = c.payRank / 100;
+            } else {
+              const m = c.pay.match(/([0-9.]+)/);
+              val = m ? parseFloat(m[1]) : null;
+            }
+            if (typeof val !== 'number' || isNaN(val) || val <= 0) return false;
+            if (activePayBracket === 'high' && val < 15) return false;
+            if (activePayBracket === 'mid' && (val < 10 || val >= 15)) return false;
+            if (activePayBracket === 'low' && val >= 10) return false;
+          }
+        }
+
         // Query match
         if (q) {
           const matchName = c.name && c.name.toLowerCase().includes(q);
@@ -809,10 +985,29 @@
       if (countEl) {
         const filteredOffers = calculateOffers(filtered);
         const totalBatchOffers = calculateOffers(companies);
-        if (!q && role === 'all' && branch === 'all') {
-          countEl.textContent = `All ${companies.length} companies · ${totalBatchOffers} total offers`;
+        let bracketLabel = '';
+        if (activePayBracket === 'high') {
+          bracketLabel = is2028 ? '≥ ₹60k/mo' : '≥ ₹15 LPA';
+        } else if (activePayBracket === 'mid') {
+          bracketLabel = is2028 ? '₹40k – ₹60k/mo' : '₹10 – ₹15 LPA';
+        } else if (activePayBracket === 'low') {
+          bracketLabel = is2028 ? '< ₹40k/mo' : '< ₹10 LPA';
+        }
+
+        if (!q && role === 'all' && branch === 'all' && activePayBracket === 'all') {
+          countEl.innerHTML = `All ${companies.length} companies · ${totalBatchOffers} total offers`;
         } else {
-          countEl.textContent = `Showing ${filtered.length} of ${companies.length} companies · ${filteredOffers} offers`;
+          let html = `Showing ${filtered.length} of ${companies.length} companies · ${filteredOffers} offers`;
+          if (activePayBracket !== 'all') {
+            html += ` · <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-panel border border-line-strong text-fg text-[12px] font-medium"><span>Package: ${bracketLabel}</span><button type="button" id="btn-clear-bracket" class="hover:text-accent font-bold leading-none cursor-pointer text-muted hover:text-fg ml-1" title="Clear package filter">✕</button></span>`;
+          }
+          countEl.innerHTML = html;
+          const clearBtn = document.getElementById('btn-clear-bracket');
+          if (clearBtn) {
+            clearBtn.addEventListener('click', () => {
+              togglePayBracket('all');
+            });
+          }
         }
       }
 
