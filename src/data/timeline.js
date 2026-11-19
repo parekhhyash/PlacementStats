@@ -15,7 +15,7 @@ export const timelineData = {
     { label: "Aug '26", count: 6, intern: 3, fulltime: 3, ppo: 2 },
     { label: "Sep '26", count: 7, intern: 2, fulltime: 5, ppo: 1 },
     { label: "Oct '26", count: 12, intern: 2, fulltime: 10, ppo: 2 },
-    { label: "Nov '26", count: 4, intern: 1, fulltime: 3, ppo: 1 }
+    { label: "Nov '26", count: 2, intern: 0, fulltime: 2, ppo: 0 }
   ],
 
   // All drive events from SPIT Classified CSV sorted chronologically
@@ -49,34 +49,6 @@ export const timelineData = {
       pay: "CTC 5.5 LPA (from AmbitionBox)",
       status: "Drive announced (₹5.5 LPA · from AmbitionBox)"
     },
-    {
-      date: "06 Nov 2026",
-      displayDate: "Nov 2026",
-      monthGroup: "Nov 2026",
-      timestamp: 1794009600000,
-      company: "HERE Technologies",
-      slug: "here-technologies",
-      type: "ppo",
-      typeLabel: "Internship + PPO",
-      role: "Software Engineer (Intern + PPO)",
-      offers: 3,
-      pay: "CTC 13.5 LPA",
-      status: "3 offers confirmed (Intern + PPO)"
-    },
-    {
-      date: "04 Nov 2026",
-      displayDate: "Nov 2026",
-      monthGroup: "Nov 2026",
-      timestamp: 1793836800000,
-      company: "Fractal",
-      slug: "fractal",
-      type: "fulltime",
-      typeLabel: "Placement Only",
-      role: "Software Engineer / Analyst",
-      offers: 1,
-      pay: "CTC 7.5 LPA",
-      status: "1+ confirmed selections"
-    },
     // --- October 2026 ---
     {
       date: "26 Oct 2026",
@@ -103,8 +75,8 @@ export const timelineData = {
       typeLabel: "Placement Only",
       role: "Software Engineer",
       offers: 0,
-      pay: "CTC 13.4 LPA",
-      status: "Drive announced (₹13.4 LPA)"
+      pay: "CTC 15.56 LPA",
+      status: "Drive announced (₹15.56 LPA)"
     },
     {
       date: "22 Oct 2026",

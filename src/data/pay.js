@@ -22,9 +22,9 @@ export const payData = {
   // CTC Package Distribution Brackets
   brackets: [
     { tier: "Super Dream (> ₹20 LPA)", count: 6, percentage: "3%", color: "var(--color-ppo)", description: "PhonePe SDE (₹33 LPA) & marquee product engineering roles" },
-    { tier: "Dream (₹14 – ₹20 LPA)", count: 67, percentage: "29%", color: "var(--color-fulltime)", description: "IDFC FIRST, Barclays, ISS/STOXX, WorkIndia, AuxoAI, UBS, Nomura, Futures First" },
-    { tier: "Core Tech (₹10 – ₹14 LPA)", count: 59, percentage: "26%", color: "var(--color-intern)", description: "HERE Technologies, Mastercard, Dolat Capital, IDfy, Capgemini, AspectRatio, InCred, InSync, Baker Hughes, Infosys, Colgate" },
-    { tier: "Standard (< ₹10 LPA)", count: 97, percentage: "42%", color: "var(--color-muted)", description: "GEP Worldwide, TransUnion, CarWale, Quantiphi, Wissen, Fractal, KPMG, Neebal, Bootlabs, BNP Paribas, Revvity, Axis MF, JPMC Risk" }
+    { tier: "Dream (₹14 – ₹20 LPA)", count: 67, percentage: "29%", color: "var(--color-fulltime)", description: "IDFC FIRST, Barclays, Mastercard, ISS/STOXX, WorkIndia, AuxoAI, UBS, Nomura, Futures First" },
+    { tier: "Core Tech (₹10 – ₹14 LPA)", count: 59, percentage: "26%", color: "var(--color-intern)", description: "HERE Technologies, Dolat Capital, IDfy, Capgemini, AspectRatio, InCred, InSync, Baker Hughes, Infosys, Colgate" },
+    { tier: "Standard (< ₹10 LPA)", count: 97, percentage: "42%", color: "var(--color-muted)", description: "GEP Worldwide, TransUnion, CarWale, Quantiphi, Wissen, Fractal, Zycus, KPMG, Neebal, Bootlabs, BNP Paribas, Revvity, Axis MF, JPMC Risk" }
   ],
 
   // Stipend Distribution Brackets
@@ -62,6 +62,6 @@ export const payData = {
     { name: "Quantiphi", pay: 8.5, type: "fulltime", students: 9 },
     { name: "Axis Mutual Fund", pay: 8.23, type: "fulltime", students: 1 },
     { name: "Revvity", pay: 8.0, type: "ppo", students: 7 },
-    { name: "Fractal", pay: 7.5, type: "fulltime", students: 1 }
+    { name: "Fractal", pay: 9.5, type: "fulltime", students: 1 }
   ]
 };

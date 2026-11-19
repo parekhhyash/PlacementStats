@@ -2877,9 +2877,9 @@ export const companies = [
     "cgpa": 7,
     "cgpaCriteria": "Standard eligibility (7.0+ CGPA)",
     "boardsCriteria": "Standard SPIT eligibility",
-    "first": "Nov 2026",
-    "last": "Nov 2026",
-    "visitTimeline": "Nov 2026",
+    "first": "No details available",
+    "last": "No details available",
+    "visitTimeline": "No details available",
     "funnelRaw": "OA -> Technical Interview -> HR -> 3 offers",
     "status": "3 confirmed offers (Intern + PPO)",
     "roles": [
@@ -2890,7 +2890,7 @@ export const companies = [
         "ctc": "₹13.5 LPA",
         "stipend": null,
         "rawCompensation": "CTC ₹13.5 LPA",
-        "visitDate": "Nov 2026",
+        "visitDate": "No details available",
         "funnel": [
           {
             "name": "Online Coding Assessment (OA)",
@@ -3261,9 +3261,9 @@ export const companies = [
     "seasons": [
       "BE"
     ],
-    "pay": "₹7.5 LPA",
+    "pay": "₹9.5 LPA",
     "payKind": "CTC",
-    "payRank": 750,
+    "payRank": 950,
     "dream": false,
     "logo": "/logos/fractal.png",
     "out": {
@@ -3278,9 +3278,9 @@ export const companies = [
     "cgpa": 7,
     "cgpaCriteria": "Standard eligibility",
     "boardsCriteria": "Standard SPIT eligibility",
-    "first": "Nov 2026",
-    "last": "Nov 2026",
-    "visitTimeline": "Nov 2026",
+    "first": "No details available",
+    "last": "No details available",
+    "visitTimeline": "No details available",
     "funnelRaw": "OA -> Technical Interview -> HR -> 1+ offers",
     "status": "1+ confirmed offers",
     "roles": [
@@ -3288,10 +3288,10 @@ export const companies = [
         "title": "Software Engineer / Analyst",
         "type": "fulltime",
         "count": 1,
-        "ctc": "₹7.5 LPA",
+        "ctc": "₹9.5 LPA",
         "stipend": null,
-        "rawCompensation": "CTC ₹7.5 LPA",
-        "visitDate": "Nov 2026",
+        "rawCompensation": "CTC ₹9.5 LPA",
+        "visitDate": "No details available",
         "funnel": [
           {
             "name": "Online Coding Assessment (OA)",
@@ -3784,9 +3784,9 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "No details available",
+    "pay": "₹9–10 LPA",
     "payKind": "CTC",
-    "payRank": 0,
+    "payRank": 950,
     "dream": false,
     "logo": "/logos/zycus.png",
     "noDetailsAvailable": true,
@@ -3802,13 +3802,24 @@ export const companies = [
     "cgpa": null,
     "cgpaCriteria": "No details available",
     "boardsCriteria": "No details available",
-    "first": "Oct 2026",
-    "last": "Oct 2026",
+    "first": "No details available",
+    "last": "No details available",
     "visitTimeline": "No details available",
-    "funnelRaw": "No details available",
-    "status": "No details available",
-    "roles": [],
-    "notes": "No details available yet. Submit data if you have it."
+    "funnelRaw": "Campus recruitment drive (₹9–10 LPA)",
+    "status": "Campus recruitment drive (₹9–10 LPA)",
+    "roles": [
+      {
+        "title": "Software Engineer",
+        "type": "fulltime",
+        "count": 0,
+        "ctc": "₹9–10 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC ₹9–10 LPA",
+        "visitDate": "No details available",
+        "funnel": []
+      }
+    ],
+    "notes": "Campus recruitment drive with ₹9–10 LPA CTC."
   },
   {
     "slug": "mastercard",
@@ -3821,9 +3832,9 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "₹13.4 LPA",
+    "pay": "₹15.56 LPA",
     "payKind": "CTC",
-    "payRank": 1340,
+    "payRank": 1556,
     "dream": true,
     "logo": "/logos/mastercard.svg",
     "noDetailsAvailable": false,
@@ -3843,22 +3854,22 @@ export const companies = [
     "last": "Oct 2026",
     "visitTimeline": "Oct 2026",
     "funnelRaw": "Campus recruitment drive in Oct 2026",
-    "status": "Campus recruitment drive in Oct 2026 (₹13.4 LPA)",
+    "status": "Campus recruitment drive in Oct 2026 (₹15.56 LPA)",
     "roles": [
       {
         "title": "Software Engineer",
         "type": "fulltime",
         "count": 0,
-        "ctc": "₹13.4 LPA",
+        "ctc": "₹15.56 LPA",
         "stipend": null,
-        "rawCompensation": "CTC ₹13.4 LPA",
+        "rawCompensation": "CTC ₹15.56 LPA",
         "visitDate": "Oct 2026",
         "funnel": [],
         "funnelRaw": "Campus recruitment drive in Oct 2026",
-        "notes": "₹13.4 LPA CTC"
+        "notes": "₹15.56 LPA CTC"
       }
     ],
-    "notes": "Campus recruitment drive in Oct 2026 with ₹13.4 LPA CTC."
+    "notes": "Campus recruitment drive in Oct 2026 with ₹15.56 LPA CTC."
   },
   {
     "slug": "carwale",
