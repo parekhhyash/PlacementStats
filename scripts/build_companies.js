@@ -102,33 +102,33 @@ function generateCompaniesPage() {
       </section>
 
       <div class="wrap">
-        <dl class="grid grid-cols-2 border-t border-line sm:grid-cols-3 lg:grid-cols-6">
-          <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b sm:border-r sm:px-5 sm:first:pl-0 lg:border-b-0 lg:border-r lg:px-4 xl:px-5">
+        <dl class="grid grid-cols-2 border-t border-line sm:grid-cols-3 xl:grid-cols-6">
+          <div class="flex flex-col border-b border-r border-line py-5 pr-4 sm:border-b sm:border-r sm:px-5 sm:first:pl-0 sm:pl-0 xl:border-b-0 xl:border-r xl:first:pl-0">
             <dt class="order-2 mt-2 text-muted">Total offers</dt>
             <dd id="stat-total-offers" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em] whitespace-nowrap">${stats.totalOffers}</dd>
             <dd id="stat-total-offers-sub" class="label order-3 mt-1 text-[11px] text-faint">Across all selections</dd>
           </div>
-          <div class="flex flex-col border-b border-line py-5 pl-4 sm:border-b sm:border-r sm:px-5 lg:border-b-0 lg:border-r lg:px-4 xl:px-5">
+          <div class="flex flex-col border-b border-line py-5 pl-4 sm:border-b sm:border-r sm:px-5 xl:border-b-0 xl:border-r">
             <dt id="stat-avg-ctc-label" class="order-2 mt-2 text-muted">Avg CTC by company</dt>
             <dd id="stat-avg-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em] whitespace-nowrap">${ctcSummary.average}<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
             <dd id="stat-avg-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">${ctcSummary.count} recruiters with CTC</dd>
           </div>
-          <div class="flex flex-col border-b border-r border-line py-5 pr-4 sm:border-b sm:border-r-0 sm:px-5 lg:border-b-0 lg:border-r lg:px-4 xl:px-5">
+          <div class="flex flex-col border-b border-r border-line py-5 pr-4 sm:border-b sm:border-r-0 sm:px-5 xl:border-b-0 xl:border-r">
             <dt class="order-2 mt-2 text-muted">Median CTC</dt>
             <dd id="stat-med-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em] whitespace-nowrap">${ctcSummary.median}<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
             <dd id="stat-med-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">${ctcSummary.range}</dd>
           </div>
-          <div id="card-bracket-high" role="button" tabindex="0" title="Click to filter companies with ≥ ₹15 LPA" class="flex flex-col border-b border-line py-5 pl-4 sm:border-b-0 sm:border-r sm:px-5 lg:border-b-0 lg:border-r lg:px-4 xl:px-5 cursor-pointer hover:bg-panel/70 transition-all rounded-lg select-none">
+          <div id="card-bracket-high" role="button" tabindex="0" title="Click to filter companies with ≥ ₹15 LPA" class="flex flex-col border-b border-line py-5 pl-4 sm:border-b-0 sm:border-r sm:px-5 sm:pl-0 xl:border-b-0 xl:border-r xl:px-5 cursor-pointer hover:bg-panel/40 transition-colors select-none">
             <dt id="stat-bracket-high-label" class="order-2 mt-2 text-muted">≥ ₹15 LPA</dt>
             <dd id="stat-bracket-high" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em] whitespace-nowrap">${ctcSummary.highCount}<span class="ml-[0.2em] font-sans text-[0.38em] font-medium tracking-normal text-muted">companies</span></dd>
             <dd id="stat-bracket-high-sub" class="label order-3 mt-1 text-[11px] text-faint">${ctcSummary.highPct}${ctcSummary.max ? (' · Max ₹' + (ctcSummary.max % 1 === 0 ? ctcSummary.max.toFixed(0) : ctcSummary.max) + ' LPA') : ''}</dd>
           </div>
-          <div id="card-bracket-mid" role="button" tabindex="0" title="Click to filter companies with ₹10–15 LPA" class="flex flex-col border-r border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5 lg:border-b-0 lg:border-r lg:px-4 xl:px-5 cursor-pointer hover:bg-panel/70 transition-all rounded-lg select-none">
+          <div id="card-bracket-mid" role="button" tabindex="0" title="Click to filter companies with ₹10–15 LPA" class="flex flex-col border-r border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5 xl:border-b-0 xl:border-r cursor-pointer hover:bg-panel/40 transition-colors select-none">
             <dt id="stat-bracket-mid-label" class="order-2 mt-2 text-muted">₹10 – ₹15 LPA</dt>
             <dd id="stat-bracket-mid" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em] whitespace-nowrap">${ctcSummary.midCount}<span class="ml-[0.2em] font-sans text-[0.38em] font-medium tracking-normal text-muted">companies</span></dd>
             <dd id="stat-bracket-mid-sub" class="label order-3 mt-1 text-[11px] text-faint">${ctcSummary.midPct} of recruiters</dd>
           </div>
-          <div id="card-bracket-low" role="button" tabindex="0" title="Click to filter companies with < ₹10 LPA" class="flex flex-col py-5 pl-4 sm:border-b-0 sm:px-5 lg:border-b-0 lg:px-4 xl:px-5 cursor-pointer hover:bg-panel/70 transition-all rounded-lg select-none">
+          <div id="card-bracket-low" role="button" tabindex="0" title="Click to filter companies with < ₹10 LPA" class="flex flex-col py-5 pl-4 sm:border-b-0 sm:px-5 xl:border-b-0 cursor-pointer hover:bg-panel/40 transition-colors select-none">
             <dt id="stat-bracket-low-label" class="order-2 mt-2 text-muted">< ₹10 LPA</dt>
             <dd id="stat-bracket-low" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em] whitespace-nowrap">${ctcSummary.lowCount}<span class="ml-[0.2em] font-sans text-[0.38em] font-medium tracking-normal text-muted">companies</span></dd>
             <dd id="stat-bracket-low-sub" class="label order-3 mt-1 text-[11px] text-faint">${ctcSummary.lowPct} of recruiters</dd>
@@ -430,23 +430,23 @@ function generateCompaniesPage() {
     function updateBracketCardStyles() {
       if (cardBracketHigh) {
         if (activePayBracket === 'high') {
-          cardBracketHigh.classList.add('bg-panel', 'ring-1', 'ring-fg/60');
+          cardBracketHigh.classList.add('bg-panel/70');
         } else {
-          cardBracketHigh.classList.remove('bg-panel', 'ring-1', 'ring-fg/60');
+          cardBracketHigh.classList.remove('bg-panel/70');
         }
       }
       if (cardBracketMid) {
         if (activePayBracket === 'mid') {
-          cardBracketMid.classList.add('bg-panel', 'ring-1', 'ring-fg/60');
+          cardBracketMid.classList.add('bg-panel/70');
         } else {
-          cardBracketMid.classList.remove('bg-panel', 'ring-1', 'ring-fg/60');
+          cardBracketMid.classList.remove('bg-panel/70');
         }
       }
       if (cardBracketLow) {
         if (activePayBracket === 'low') {
-          cardBracketLow.classList.add('bg-panel', 'ring-1', 'ring-fg/60');
+          cardBracketLow.classList.add('bg-panel/70');
         } else {
-          cardBracketLow.classList.remove('bg-panel', 'ring-1', 'ring-fg/60');
+          cardBracketLow.classList.remove('bg-panel/70');
         }
       }
     }
