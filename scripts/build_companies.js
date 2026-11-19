@@ -597,6 +597,7 @@ function generateCompaniesPage() {
 
         const totalOffersCount = totalStudents || (roleFt + roleIntern + roleBoth) || Math.max(ftOffers, internOffers);
         const hasOffers = totalOffersCount > 0 || c.isAmbiguous;
+        const isNoDetails = !hasOffers || c.noDetailsAvailable;
 
         if (c.isAmbiguous) {
           offersMain = String(c.out?.students || 25);
@@ -1267,6 +1268,7 @@ function generateCompanyDetailPage() {
       const hasPay = company.pay && company.pay !== 'No details available' && company.pay !== 'Not disclosed';
       const hasOffers = company.out && typeof company.out.students === 'number' && company.out.students > 0;
       const isMissingOffers = !hasOffers && !company.isAmbiguous;
+      const isNoDetails = company.noDetailsAvailable || (!hasPay && !hasOffers);
 
       if (!hasPay && !hasOffers) {
         const noDetailsCard = document.getElementById('company-no-details-card');

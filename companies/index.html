@@ -882,6 +882,7 @@
 
         const totalOffersCount = totalStudents || (roleFt + roleIntern + roleBoth) || Math.max(ftOffers, internOffers);
         const hasOffers = totalOffersCount > 0 || c.isAmbiguous;
+        const isNoDetails = !hasOffers || c.noDetailsAvailable;
 
         if (c.isAmbiguous) {
           offersMain = String(c.out?.students || 25);

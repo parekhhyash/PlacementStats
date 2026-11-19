@@ -738,6 +738,7 @@
       const hasPay = company.pay && company.pay !== 'No details available' && company.pay !== 'Not disclosed';
       const hasOffers = company.out && typeof company.out.students === 'number' && company.out.students > 0;
       const isMissingOffers = !hasOffers && !company.isAmbiguous;
+      const isNoDetails = company.noDetailsAvailable || (!hasPay && !hasOffers);
 
       if (!hasPay && !hasOffers) {
         const noDetailsCard = document.getElementById('company-no-details-card');
