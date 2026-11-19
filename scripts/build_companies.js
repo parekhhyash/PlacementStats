@@ -25,8 +25,48 @@ function getBuildTimeStats(compList) {
   return { totalOffers, internCount, ppoCount, ftCount, bothCount, placedDrivesCount };
 }
 
+function calculateCtcSummary(compList) {
+  const ctcValues = compList
+    .map(c => {
+      if (c.payKind !== 'CTC') return null;
+      if (!c.pay || c.pay === 'No details available' || c.pay === 'Unspecified' || c.pay === 'Not disclosed') return null;
+      if (typeof c.payRank === 'number' && c.payRank > 0 && c.payRank < 10000) {
+        return c.payRank / 100;
+      }
+      const m = c.pay.match(/([0-9.]+)/);
+      return m ? parseFloat(m[1]) : null;
+    })
+    .filter(v => typeof v === 'number' && !isNaN(v) && v > 0)
+    .sort((a, b) => a - b);
+
+  if (ctcValues.length === 0) {
+    return { average: '—', median: '—', range: '—', count: 0 };
+  }
+
+  const sum = ctcValues.reduce((acc, v) => acc + v, 0);
+  const avg = (sum / ctcValues.length).toFixed(2);
+
+  const mid = Math.floor(ctcValues.length / 2);
+  const medNum = ctcValues.length % 2 !== 0 
+    ? ctcValues[mid] 
+    : (ctcValues[mid - 1] + ctcValues[mid]) / 2;
+  const med = (medNum % 1 === 0 ? medNum.toFixed(0) : medNum.toFixed(2));
+
+  const min = ctcValues[0];
+  const max = ctcValues[ctcValues.length - 1];
+  const range = 'Range ₹' + (min % 1 === 0 ? min.toFixed(0) : min) + '–' + (max % 1 === 0 ? max.toFixed(0) : max) + ' LPA';
+
+  return {
+    average: '₹' + avg,
+    median: '₹' + med,
+    range: range,
+    count: ctcValues.length
+  };
+}
+
 function generateCompaniesPage() {
   const stats = getBuildTimeStats(companies2027);
+  const ctcSummary = calculateCtcSummary(companies2027);
 
   const content = `
     <div vt-update="none">
@@ -44,13 +84,13 @@ function generateCompaniesPage() {
           </div>
           <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
             <dt class="order-2 mt-2 text-muted">Average CTC</dt>
-            <dd id="stat-avg-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">₹14.06<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
-            <dd id="stat-avg-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">${stats.placedDrivesCount} drives with selections</dd>
+            <dd id="stat-avg-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">${ctcSummary.average}<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
+            <dd id="stat-avg-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">${ctcSummary.count} recruiters with CTC</dd>
           </div>
           <div class="flex flex-col py-5 pr-4 sm:px-5">
             <dt class="order-2 mt-2 text-muted">Median CTC</dt>
-            <dd id="stat-med-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">₹13<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
-            <dd id="stat-med-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">Range ₹8.23–33.0 LPA</dd>
+            <dd id="stat-med-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">${ctcSummary.median}<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
+            <dd id="stat-med-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">${ctcSummary.range}</dd>
           </div>
         </dl>
       </div>
@@ -264,6 +304,45 @@ function generateCompaniesPage() {
     const statMedCtc = document.getElementById('stat-med-ctc');
     const statMedCtcSub = document.getElementById('stat-med-ctc-sub');
 
+    function calculateCtcSummary(compList) {
+      const ctcValues = compList
+        .map(c => {
+          if (c.payKind !== 'CTC') return null;
+          if (!c.pay || c.pay === 'No details available' || c.pay === 'Unspecified' || c.pay === 'Not disclosed') return null;
+          if (typeof c.payRank === 'number' && c.payRank > 0 && c.payRank < 10000) {
+            return c.payRank / 100;
+          }
+          const m = c.pay.match(/([0-9.]+)/);
+          return m ? parseFloat(m[1]) : null;
+        })
+        .filter(v => typeof v === 'number' && !isNaN(v) && v > 0)
+        .sort((a, b) => a - b);
+
+      if (ctcValues.length === 0) {
+        return { average: '—', median: '—', range: '—', count: 0 };
+      }
+
+      const sum = ctcValues.reduce((acc, v) => acc + v, 0);
+      const avg = (sum / ctcValues.length).toFixed(2);
+
+      const mid = Math.floor(ctcValues.length / 2);
+      const medNum = ctcValues.length % 2 !== 0 
+        ? ctcValues[mid] 
+        : (ctcValues[mid - 1] + ctcValues[mid]) / 2;
+      const med = (medNum % 1 === 0 ? medNum.toFixed(0) : medNum.toFixed(2));
+
+      const min = ctcValues[0];
+      const max = ctcValues[ctcValues.length - 1];
+      const range = 'Range ₹' + (min % 1 === 0 ? min.toFixed(0) : min) + '–' + (max % 1 === 0 ? max.toFixed(0) : max) + ' LPA';
+
+      return {
+        average: '₹' + avg,
+        median: '₹' + med,
+        range: range,
+        count: ctcValues.length
+      };
+    }
+
     function updateStatStrip() {
       const totalOffers = calculateOffers(companies);
 
@@ -275,14 +354,14 @@ function generateCompaniesPage() {
         if (statMedCtc) statMedCtc.innerHTML = '₹50k<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">/mo</span>';
         if (statMedCtcSub) statMedCtcSub.textContent = 'Median monthly stipend';
       } else {
-        const placedDrivesCount = companies.filter(c => c.out && (c.out.students > 0 || c.out.fulltimeOffers > 0 || c.out.internships > 0)).length;
+        const ctcSummary = calculateCtcSummary(companies);
 
         if (statTotalOffers) statTotalOffers.textContent = totalOffers;
         if (statTotalOffersSub) statTotalOffersSub.textContent = 'Across all selections';
-        if (statAvgCtc) statAvgCtc.innerHTML = '₹14.06<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
-        if (statAvgCtcSub) statAvgCtcSub.textContent = \`\${placedDrivesCount} drives with selections\`;
-        if (statMedCtc) statMedCtc.innerHTML = '₹13<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
-        if (statMedCtcSub) statMedCtcSub.textContent = 'Range ₹8.23–33.0 LPA';
+        if (statAvgCtc) statAvgCtc.innerHTML = ctcSummary.average + '<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
+        if (statAvgCtcSub) statAvgCtcSub.textContent = ctcSummary.count + ' recruiters with CTC';
+        if (statMedCtc) statMedCtc.innerHTML = ctcSummary.median + '<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
+        if (statMedCtcSub) statMedCtcSub.textContent = ctcSummary.range;
       }
     }
 
