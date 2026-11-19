@@ -735,57 +735,68 @@
       chipsEl.innerHTML = chips;
 
       // Stats
-      const isNoDetails = company.noDetailsAvailable || company.pay === 'No details available';
+      const hasPay = company.pay && company.pay !== 'No details available' && company.pay !== 'Not disclosed';
+      const hasOffers = company.out && typeof company.out.students === 'number' && company.out.students > 0;
+      const isMissingOffers = !hasOffers && !company.isAmbiguous;
 
-      if (isNoDetails) {
+      if (!hasPay && !hasOffers) {
         const noDetailsCard = document.getElementById('company-no-details-card');
         if (noDetailsCard) noDetailsCard.classList.remove('hidden');
+      } else if (isMissingOffers) {
+        const noDetailsCard = document.getElementById('company-no-details-card');
+        if (noDetailsCard) {
+          noDetailsCard.classList.remove('hidden');
+          const titleEl = noDetailsCard.querySelector('h3');
+          if (titleEl) titleEl.textContent = 'Selection results for this company are currently pending';
+          const descEl = noDetailsCard.querySelector('p');
+          if (descEl) descEl.textContent = 'The advertised compensation and drive dates are recorded, but verified student selection numbers have not been declared yet. If you have offer results, submit your data below.';
+          const badgeEl = noDetailsCard.querySelector('span.rounded-full');
+          if (badgeEl) badgeEl.textContent = 'STATUS: SELECTION RESULTS PENDING';
+        }
+      }
 
-        const statPay = document.getElementById('stat-pay');
-        if (statPay) statPay.innerHTML = '<span class="text-amber-400 text-[18px] sm:text-[20px] font-medium">No details</span>';
-        
-        const statPayKind = document.getElementById('stat-pay-kind');
-        if (statPayKind) statPayKind.textContent = 'Awaiting data';
-
-        document.getElementById('stat-total').textContent = '—';
-        const cohortLabel = document.getElementById('stat-cohort-label');
-        if (cohortLabel) cohortLabel.textContent = "Awaiting verification";
-
-        document.getElementById('stat-fulltime').textContent = '—';
-        document.getElementById('stat-ppo').textContent = 'Awaiting data';
-        document.getElementById('stat-interns').textContent = '—';
-
-        const statCgpa = document.getElementById('stat-cgpa');
-        if (statCgpa) statCgpa.textContent = '—';
-        const statBoards = document.getElementById('stat-boards');
-        if (statBoards) statBoards.textContent = '—';
-      } else {
-        document.getElementById('stat-pay').textContent = company.pay || 'Competitive';
+      // Advertised Pay
+      if (hasPay) {
+        document.getElementById('stat-pay').textContent = company.pay;
         const payKindBase = company.payKind === 'Stipend' ? 'Monthly Stipend' : 'Annual CTC';
         document.getElementById('stat-pay-kind').textContent = company.paySubtext ? (payKindBase + ' · ' + company.paySubtext) : payKindBase;
-        
+      } else {
+        const statPay = document.getElementById('stat-pay');
+        if (statPay) statPay.innerHTML = '<span class="text-faint text-[20px] font-medium">—</span>';
+        const statPayKind = document.getElementById('stat-pay-kind');
+        if (statPayKind) statPayKind.textContent = 'Not disclosed';
+      }
+
+      // Offers
+      if (hasOffers || company.isAmbiguous) {
         document.getElementById('stat-total').textContent = company.out?.students || 0;
         const cohortLabel = document.getElementById('stat-cohort-label');
         if (cohortLabel) cohortLabel.textContent = company.isAmbiguous ? "Estimated offers" : "Batch '" + matchedBatchYear.slice(2) + " offers";
-
         document.getElementById('stat-fulltime').textContent = company.out?.fulltimeOffers || 0;
         document.getElementById('stat-ppo').textContent = (company.out?.ppo || 0) + ' PPO conversions';
-
         document.getElementById('stat-interns').textContent = company.out?.internships || 0;
+      } else {
+        const statTotal = document.getElementById('stat-total');
+        if (statTotal) statTotal.innerHTML = '<span class="text-amber-400 text-[18px] sm:text-[20px] font-medium">No details</span>';
+        const cohortLabel = document.getElementById('stat-cohort-label');
+        if (cohortLabel) cohortLabel.textContent = 'Awaiting offer data';
+        document.getElementById('stat-fulltime').textContent = '—';
+        document.getElementById('stat-ppo').textContent = 'Awaiting data';
+        document.getElementById('stat-interns').textContent = '—';
+      }
 
-        // Criteria Stats
-        const statCgpa = document.getElementById('stat-cgpa');
-        if (statCgpa) {
-          const cVal = company.cgpa ? (company.cgpa + (company.cgpa < 10 ? '+' : '')) : 'Open';
-          statCgpa.textContent = cVal;
-        }
-        const statBoards = document.getElementById('stat-boards');
-        if (statBoards) {
-          let bVal = 'Standard';
-          if (company.boardsCriteria && company.boardsCriteria.includes('80%')) bVal = '80% XII';
-          else if (company.boardsCriteria && company.boardsCriteria.includes('60%')) bVal = '60% X/XII';
-          statBoards.textContent = bVal;
-        }
+      // Criteria Stats
+      const statCgpa = document.getElementById('stat-cgpa');
+      if (statCgpa) {
+        const cVal = company.cgpa ? (company.cgpa + (company.cgpa < 10 ? '+' : '')) : 'Open';
+        statCgpa.textContent = cVal;
+      }
+      const statBoards = document.getElementById('stat-boards');
+      if (statBoards) {
+        let bVal = 'Standard';
+        if (company.boardsCriteria && company.boardsCriteria.includes('80%')) bVal = '80% XII';
+        else if (company.boardsCriteria && company.boardsCriteria.includes('60%')) bVal = '60% X/XII';
+        statBoards.textContent = bVal;
       }
 
       // Detailed Criteria Box

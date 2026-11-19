@@ -465,18 +465,15 @@ function generateCompaniesPage() {
         if (c.offers && c.offers.includes('fulltime')) chips += '<span class="chip"><i class="dot" style="background:var(--color-fulltime)"></i>Full-time</span>';
         if (c.offers && c.offers.includes('ppo')) chips += '<span class="chip"><i class="dot" style="background:var(--color-ppo)"></i>PPO</span>';
 
-        const isNoDetails = c.noDetailsAvailable || c.pay === 'No details available';
-
+        const hasKnownPay = c.pay && c.pay !== 'No details available' && c.pay !== 'Not disclosed';
+        let payMain = '—';
         let paySubtitle = '&nbsp;';
-        let payMain = c.pay || 'Not disclosed';
 
-        if (isNoDetails) {
-          payMain = '<span class="text-amber-400 font-medium">No details available</span>';
-          paySubtitle = 'Submit data if you have →';
-        } else if (c.isAmbiguous) {
+        if (c.isAmbiguous) {
           payMain = 'Unspecified';
           paySubtitle = '15 unclassified recruiters';
-        } else if (c.pay && c.pay !== 'Not disclosed') {
+        } else if (hasKnownPay) {
+          payMain = c.pay;
           if (c.paySubtext) {
             paySubtitle = c.paySubtext;
           } else if (c.payKind === 'Stipend') {
@@ -488,80 +485,74 @@ function generateCompaniesPage() {
           } else {
             paySubtitle = 'Advertised CTC';
           }
+        } else {
+          payMain = '<span class="text-faint font-normal">—</span>';
+          paySubtitle = '<span class="text-faint text-[11px]">Not disclosed</span>';
         }
 
         let offersMain = '—';
         let offersSub = '&nbsp;';
-        const hasOffers = (c.out && (c.out.students || c.out.fulltimeOffers || c.out.internships));
+        const ftOffers = c.out?.fulltimeOffers || 0;
+        const internOffers = c.out?.internships || 0;
+        const totalStudents = c.out?.students || 0;
 
-        if (isNoDetails) {
-          offersMain = '—';
-          offersSub = 'Awaiting data';
-        } else if (c.isAmbiguous) {
+        let roleFt = 0;
+        let roleIntern = 0;
+        let roleBoth = 0;
+
+        if (c.roles && c.roles.length > 0) {
+          c.roles.forEach(r => {
+            const t = (r.type || '').toLowerCase();
+            const cnt = r.count || 0;
+            if (t === 'both' || t === 'internship+ppo' || t.includes('ppo')) {
+              roleBoth += cnt;
+            } else if (t === 'internship' || t === 'intern') {
+              roleIntern += cnt;
+            } else if (t === 'fulltime' || t === 'ft') {
+              roleFt += cnt;
+            } else {
+              roleFt += cnt;
+            }
+          });
+        }
+
+        const totalOffersCount = totalStudents || (roleFt + roleIntern + roleBoth) || Math.max(ftOffers, internOffers);
+        const hasOffers = totalOffersCount > 0 || c.isAmbiguous;
+
+        if (c.isAmbiguous) {
           offersMain = String(c.out?.students || 25);
           offersSub = 'Estimated';
-        } else {
-          const ftOffers = c.out?.fulltimeOffers || 0;
-          const internOffers = c.out?.internships || 0;
-          const totalStudents = c.out?.students || 0;
+        } else if (totalOffersCount > 0) {
+          offersMain = String(totalOffersCount);
 
-          let roleFt = 0;
-          let roleIntern = 0;
-          let roleBoth = 0;
-
-          if (c.roles && c.roles.length > 0) {
-            c.roles.forEach(r => {
-              const t = (r.type || '').toLowerCase();
-              const cnt = r.count || 0;
-              if (t === 'both' || t === 'internship+ppo' || t.includes('ppo')) {
-                roleBoth += cnt;
-              } else if (t === 'internship' || t === 'intern') {
-                roleIntern += cnt;
-              } else if (t === 'fulltime' || t === 'ft') {
-                roleFt += cnt;
-              } else {
-                roleFt += cnt;
-              }
-            });
-          }
-
-          const totalOffersCount = totalStudents || (roleFt + roleIntern + roleBoth) || Math.max(ftOffers, internOffers);
-
-          if (totalOffersCount > 0) {
-            offersMain = String(totalOffersCount);
-
-            if (roleFt > 0 && roleIntern > 0 && roleBoth === 0) {
-              offersSub = roleFt + ' full-time · ' + roleIntern + ' intern';
-            } else if (roleFt > 0 && roleBoth > 0 && roleIntern === 0) {
-              offersSub = roleFt + ' full-time · ' + roleBoth + ' intern/PPO';
-            } else if (roleIntern > 0 && roleBoth > 0 && roleFt === 0) {
-              offersSub = roleIntern + ' intern · ' + roleBoth + ' intern/PPO';
-            } else if (roleFt > 0 && roleIntern > 0 && roleBoth > 0) {
-              offersSub = roleFt + ' FT · ' + roleIntern + ' intern · ' + roleBoth + ' both';
-            } else if (roleBoth > 0 && roleFt === 0 && roleIntern === 0) {
-              if (c.offers && c.offers.includes('ppo')) {
-                offersSub = roleBoth + ' intern + PPO';
-              } else {
-                offersSub = roleBoth + ' full-time / intern';
-              }
-            } else if (roleFt > 0 && roleIntern === 0 && roleBoth === 0) {
-              offersSub = roleFt + ' full-time';
-            } else if (roleIntern > 0 && roleFt === 0 && roleBoth === 0) {
-              offersSub = roleIntern + ' intern';
-            } else if (ftOffers > 0 && internOffers > 0 && ftOffers !== internOffers) {
-              offersSub = ftOffers + ' full-time · ' + internOffers + ' intern';
-            } else if (ftOffers > 0 && internOffers === 0) {
-              offersSub = ftOffers + ' full-time';
-            } else if (internOffers > 0 && ftOffers === 0) {
-              offersSub = internOffers + ' intern';
-            } else if (ftOffers > 0 && ftOffers === internOffers) {
-              offersSub = ftOffers + (c.offers?.includes('ppo') ? ' intern + PPO' : ' full-time / intern');
+          if (roleFt > 0 && roleIntern > 0 && roleBoth === 0) {
+            offersSub = roleFt + ' full-time · ' + roleIntern + ' intern';
+          } else if (roleFt > 0 && roleBoth > 0 && roleIntern === 0) {
+            offersSub = roleFt + ' full-time · ' + roleBoth + ' intern/PPO';
+          } else if (roleIntern > 0 && roleBoth > 0 && roleFt === 0) {
+            offersSub = roleIntern + ' intern · ' + roleBoth + ' intern/PPO';
+          } else if (roleFt > 0 && roleIntern > 0 && roleBoth > 0) {
+            offersSub = roleFt + ' FT · ' + roleIntern + ' intern · ' + roleBoth + ' both';
+          } else if (roleBoth > 0 && roleFt === 0 && roleIntern === 0) {
+            if (c.offers && c.offers.includes('ppo')) {
+              offersSub = roleBoth + ' intern + PPO';
             } else {
-              offersSub = totalOffersCount + ' offers';
+              offersSub = roleBoth + ' full-time / intern';
             }
-          } else if (c.status) {
-            offersMain = c.status;
-            offersSub = '&nbsp;';
+          } else if (roleFt > 0 && roleIntern === 0 && roleBoth === 0) {
+            offersSub = roleFt + ' full-time';
+          } else if (roleIntern > 0 && roleFt === 0 && roleBoth === 0) {
+            offersSub = roleIntern + ' intern';
+          } else if (ftOffers > 0 && internOffers > 0 && ftOffers !== internOffers) {
+            offersSub = ftOffers + ' full-time · ' + internOffers + ' intern';
+          } else if (ftOffers > 0 && internOffers === 0) {
+            offersSub = ftOffers + ' full-time';
+          } else if (internOffers > 0 && ftOffers === 0) {
+            offersSub = internOffers + ' intern';
+          } else if (ftOffers > 0 && ftOffers === internOffers) {
+            offersSub = ftOffers + (c.offers?.includes('ppo') ? ' intern + PPO' : ' full-time / intern');
+          } else {
+            offersSub = totalOffersCount + ' offers';
           }
         }
 
@@ -586,17 +577,18 @@ function generateCompaniesPage() {
               </span>
               <span class="group-hover:text-bg max-lg:col-start-2 max-lg:row-start-1 max-lg:text-right">
                 <span class="num block text-[15px]">\${payMain}</span>
-                \${isNoDetails ? \`
-                  <button type="button" class="btn-open-quick-sub label block text-[11px] text-intern group-hover:text-bg font-medium hover:underline cursor-pointer" data-slug="\${c.slug}" data-name="\${c.name}">
-                    \${paySubtitle}
-                  </button>
-                \` : \`
-                  <span class="label block text-[11px] text-faint group-hover:text-bg/60">\${paySubtitle}</span>
-                \`}
+                <span class="label block text-[11px] text-faint group-hover:text-bg/60">\${paySubtitle}</span>
               </span>
-              <span class="group-hover:text-bg max-lg:col-span-2 max-lg:row-start-3 max-lg:flex max-lg:items-baseline max-lg:gap-2.5 \${(!hasOffers && !c.status && !isNoDetails) ? 'max-lg:hidden' : ''}">
-                <span class="num block text-[15px] font-medium">\${offersMain}</span>
-                <span class="label block text-[11px] text-faint group-hover:text-bg/60 normal-case">\${offersSub}</span>
+              <span class="group-hover:text-bg max-lg:col-span-2 max-lg:row-start-3 max-lg:flex max-lg:items-baseline max-lg:gap-2.5">
+                \${hasOffers ? \`
+                  <span class="num block text-[15px] font-medium">\${offersMain}</span>
+                  <span class="label block text-[11px] text-faint group-hover:text-bg/60 normal-case">\${offersSub}</span>
+                \` : \`
+                  <button type="button" class="btn-open-quick-sub text-left label block group-hover:text-bg cursor-pointer hover:underline" data-slug="\${c.slug}" data-name="\${c.name}">
+                    <span class="text-amber-400 font-medium text-[13px] block leading-tight">No details available</span>
+                    <span class="text-[11px] text-intern group-hover:text-bg/80 font-normal block mt-0.5">Submit data if you have →</span>
+                  </button>
+                \`}
               </span>
               <span class="label truncate text-muted group-hover:text-bg max-lg:hidden">\${c.branches || 'All branches'}</span>
             </a>
@@ -1193,57 +1185,68 @@ function generateCompanyDetailPage() {
       chipsEl.innerHTML = chips;
 
       // Stats
-      const isNoDetails = company.noDetailsAvailable || company.pay === 'No details available';
+      const hasPay = company.pay && company.pay !== 'No details available' && company.pay !== 'Not disclosed';
+      const hasOffers = company.out && typeof company.out.students === 'number' && company.out.students > 0;
+      const isMissingOffers = !hasOffers && !company.isAmbiguous;
 
-      if (isNoDetails) {
+      if (!hasPay && !hasOffers) {
         const noDetailsCard = document.getElementById('company-no-details-card');
         if (noDetailsCard) noDetailsCard.classList.remove('hidden');
+      } else if (isMissingOffers) {
+        const noDetailsCard = document.getElementById('company-no-details-card');
+        if (noDetailsCard) {
+          noDetailsCard.classList.remove('hidden');
+          const titleEl = noDetailsCard.querySelector('h3');
+          if (titleEl) titleEl.textContent = 'Selection results for this company are currently pending';
+          const descEl = noDetailsCard.querySelector('p');
+          if (descEl) descEl.textContent = 'The advertised compensation and drive dates are recorded, but verified student selection numbers have not been declared yet. If you have offer results, submit your data below.';
+          const badgeEl = noDetailsCard.querySelector('span.rounded-full');
+          if (badgeEl) badgeEl.textContent = 'STATUS: SELECTION RESULTS PENDING';
+        }
+      }
 
-        const statPay = document.getElementById('stat-pay');
-        if (statPay) statPay.innerHTML = '<span class="text-amber-400 text-[18px] sm:text-[20px] font-medium">No details</span>';
-        
-        const statPayKind = document.getElementById('stat-pay-kind');
-        if (statPayKind) statPayKind.textContent = 'Awaiting data';
-
-        document.getElementById('stat-total').textContent = '—';
-        const cohortLabel = document.getElementById('stat-cohort-label');
-        if (cohortLabel) cohortLabel.textContent = "Awaiting verification";
-
-        document.getElementById('stat-fulltime').textContent = '—';
-        document.getElementById('stat-ppo').textContent = 'Awaiting data';
-        document.getElementById('stat-interns').textContent = '—';
-
-        const statCgpa = document.getElementById('stat-cgpa');
-        if (statCgpa) statCgpa.textContent = '—';
-        const statBoards = document.getElementById('stat-boards');
-        if (statBoards) statBoards.textContent = '—';
-      } else {
-        document.getElementById('stat-pay').textContent = company.pay || 'Competitive';
+      // Advertised Pay
+      if (hasPay) {
+        document.getElementById('stat-pay').textContent = company.pay;
         const payKindBase = company.payKind === 'Stipend' ? 'Monthly Stipend' : 'Annual CTC';
         document.getElementById('stat-pay-kind').textContent = company.paySubtext ? (payKindBase + ' · ' + company.paySubtext) : payKindBase;
-        
+      } else {
+        const statPay = document.getElementById('stat-pay');
+        if (statPay) statPay.innerHTML = '<span class="text-faint text-[20px] font-medium">—</span>';
+        const statPayKind = document.getElementById('stat-pay-kind');
+        if (statPayKind) statPayKind.textContent = 'Not disclosed';
+      }
+
+      // Offers
+      if (hasOffers || company.isAmbiguous) {
         document.getElementById('stat-total').textContent = company.out?.students || 0;
         const cohortLabel = document.getElementById('stat-cohort-label');
         if (cohortLabel) cohortLabel.textContent = company.isAmbiguous ? "Estimated offers" : "Batch '" + matchedBatchYear.slice(2) + " offers";
-
         document.getElementById('stat-fulltime').textContent = company.out?.fulltimeOffers || 0;
         document.getElementById('stat-ppo').textContent = (company.out?.ppo || 0) + ' PPO conversions';
-
         document.getElementById('stat-interns').textContent = company.out?.internships || 0;
+      } else {
+        const statTotal = document.getElementById('stat-total');
+        if (statTotal) statTotal.innerHTML = '<span class="text-amber-400 text-[18px] sm:text-[20px] font-medium">No details</span>';
+        const cohortLabel = document.getElementById('stat-cohort-label');
+        if (cohortLabel) cohortLabel.textContent = 'Awaiting offer data';
+        document.getElementById('stat-fulltime').textContent = '—';
+        document.getElementById('stat-ppo').textContent = 'Awaiting data';
+        document.getElementById('stat-interns').textContent = '—';
+      }
 
-        // Criteria Stats
-        const statCgpa = document.getElementById('stat-cgpa');
-        if (statCgpa) {
-          const cVal = company.cgpa ? (company.cgpa + (company.cgpa < 10 ? '+' : '')) : 'Open';
-          statCgpa.textContent = cVal;
-        }
-        const statBoards = document.getElementById('stat-boards');
-        if (statBoards) {
-          let bVal = 'Standard';
-          if (company.boardsCriteria && company.boardsCriteria.includes('80%')) bVal = '80% XII';
-          else if (company.boardsCriteria && company.boardsCriteria.includes('60%')) bVal = '60% X/XII';
-          statBoards.textContent = bVal;
-        }
+      // Criteria Stats
+      const statCgpa = document.getElementById('stat-cgpa');
+      if (statCgpa) {
+        const cVal = company.cgpa ? (company.cgpa + (company.cgpa < 10 ? '+' : '')) : 'Open';
+        statCgpa.textContent = cVal;
+      }
+      const statBoards = document.getElementById('stat-boards');
+      if (statBoards) {
+        let bVal = 'Standard';
+        if (company.boardsCriteria && company.boardsCriteria.includes('80%')) bVal = '80% XII';
+        else if (company.boardsCriteria && company.boardsCriteria.includes('60%')) bVal = '60% X/XII';
+        statBoards.textContent = bVal;
       }
 
       // Detailed Criteria Box
