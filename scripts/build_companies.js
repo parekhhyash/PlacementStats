@@ -477,7 +477,9 @@ function generateCompaniesPage() {
           payMain = 'Unspecified';
           paySubtitle = '15 unclassified recruiters';
         } else if (c.pay && c.pay !== 'Not disclosed') {
-          if (c.payKind === 'Stipend') {
+          if (c.paySubtext) {
+            paySubtitle = c.paySubtext;
+          } else if (c.payKind === 'Stipend') {
             paySubtitle = 'Stipend';
           } else if (c.offers && c.offers.includes('fulltime')) {
             paySubtitle = 'Full-time CTC';
@@ -1217,7 +1219,8 @@ function generateCompanyDetailPage() {
         if (statBoards) statBoards.textContent = '—';
       } else {
         document.getElementById('stat-pay').textContent = company.pay || 'Competitive';
-        document.getElementById('stat-pay-kind').textContent = company.payKind === 'Stipend' ? 'Monthly Stipend' : 'Annual CTC';
+        const payKindBase = company.payKind === 'Stipend' ? 'Monthly Stipend' : 'Annual CTC';
+        document.getElementById('stat-pay-kind').textContent = company.paySubtext ? (payKindBase + ' · ' + company.paySubtext) : payKindBase;
         
         document.getElementById('stat-total').textContent = company.out?.students || 0;
         const cohortLabel = document.getElementById('stat-cohort-label');
@@ -1297,6 +1300,7 @@ function generateCompanyDetailPage() {
 
               <div class="text-left sm:text-right shrink-0 border-t sm:border-t-0 border-line pt-3 sm:pt-0">
                 <span class="num font-display text-[22px] sm:text-[24px] text-fg font-semibold block">\${r.ctc || 'Competitive'}</span>
+                \${(r.paySubtext || company.paySubtext) ? \`<span class="label block text-[11px] text-faint mt-0.5">\${r.paySubtext || company.paySubtext}</span>\` : ''}
                 \${r.stipend ? '<span class="label block text-[12px] text-muted mt-0.5">Stipend: ' + r.stipend + '</span>' : ''}
                 <span class="label block text-[11px] text-intern font-medium mt-1.5">\${r.count} \${r.count === 1 ? 'offer' : 'offers'} confirmed</span>
               </div>

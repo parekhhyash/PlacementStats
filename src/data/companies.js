@@ -3345,12 +3345,12 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "No details available",
+    "pay": "₹6 – ₹8 LPA",
     "payKind": "CTC",
-    "payRank": 0,
+    "payRank": 700,
     "dream": false,
     "logo": "/logos/bnp-paribas.svg",
-    "noDetailsAvailable": true,
+    "noDetailsAvailable": false,
     "out": {
       "internships": 0,
       "fulltimeOffers": 0,
@@ -3361,15 +3361,30 @@ export const companies = [
     "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
-    "cgpaCriteria": "No details available",
-    "boardsCriteria": "No details available",
+    "cgpaCriteria": "No specific CGPA criteria stated",
+    "boardsCriteria": "Standard eligibility",
     "first": "Sep 2026",
     "last": "Sep 2026",
-    "visitTimeline": "No details available",
-    "funnelRaw": "No details available",
-    "status": "No details available",
-    "roles": [],
-    "notes": "No details available yet. Submit data if you have it."
+    "visitTimeline": "Sep 2026",
+    "funnelRaw": "Campus recruitment drive in Sep 2026",
+    "status": "Campus recruitment drive (₹6 – ₹8 LPA · from AmbitionBox)",
+    "roles": [
+      {
+        "title": "Software Engineer / Associate",
+        "type": "fulltime",
+        "count": 0,
+        "ctc": "₹6 – ₹8 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC ₹6 – ₹8 LPA (from AmbitionBox)",
+        "visitDate": "Sep 2026",
+        "funnel": [],
+        "funnelRaw": "Campus recruitment drive in Sep 2026",
+        "notes": "CTC ₹6 – ₹8 LPA from AmbitionBox",
+        "paySubtext": "from AmbitionBox"
+      }
+    ],
+    "notes": "Campus recruitment drive with ₹6 – ₹8 LPA CTC (source: AmbitionBox).",
+    "paySubtext": "from AmbitionBox"
   },
   {
     "slug": "dolat-capital",
@@ -3700,7 +3715,7 @@ export const companies = [
     "last": "Nov 2026",
     "visitTimeline": "Nov 2026",
     "funnelRaw": "Campus recruitment drive in Nov 2026",
-    "status": "Campus recruitment drive in Nov 2026 (₹5.5 LPA)",
+    "status": "Campus recruitment drive in Nov 2026 (₹5.5 LPA · from AmbitionBox)",
     "roles": [
       {
         "title": "Software Engineer",
@@ -3708,14 +3723,16 @@ export const companies = [
         "count": 0,
         "ctc": "₹5.5 LPA",
         "stipend": null,
-        "rawCompensation": "CTC ₹5.5 LPA",
+        "rawCompensation": "CTC ₹5.5 LPA (from AmbitionBox)",
         "visitDate": "Nov 2026",
         "funnel": [],
         "funnelRaw": "Campus recruitment drive in Nov 2026",
-        "notes": "₹5.5 LPA CTC"
+        "notes": "₹5.5 LPA CTC (from AmbitionBox)",
+        "paySubtext": "from AmbitionBox"
       }
     ],
-    "notes": "Campus recruitment drive in Nov 2026 with ₹5.5 LPA CTC."
+    "notes": "Campus recruitment drive in Nov 2026 with ₹5.5 LPA CTC (source: AmbitionBox).",
+    "paySubtext": "from AmbitionBox"
   },
   {
     "slug": "zycus",

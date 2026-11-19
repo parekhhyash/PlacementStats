@@ -283,7 +283,7 @@ function generateHomePage() {
         if (c.offers && c.offers.includes('ppo')) chips += '<span class="chip"><i class="dot" style="background:var(--color-ppo)"></i>PPO</span>';
 
         const offersMade = (c.out && c.out.students) ? c.out.students + ' placed' : (c.status || 'Announced');
-        const paySubtitle = c.payKind === 'Stipend' ? 'Monthly Stipend' : 'Advertised CTC';
+        const paySubtitle = c.paySubtext || (c.payKind === 'Stipend' ? 'Monthly Stipend' : 'Advertised CTC');
 
         return \`
           <li>

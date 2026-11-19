@@ -802,7 +802,9 @@
           payMain = 'Unspecified';
           paySubtitle = '15 unclassified recruiters';
         } else if (c.pay && c.pay !== 'Not disclosed') {
-          if (c.payKind === 'Stipend') {
+          if (c.paySubtext) {
+            paySubtitle = c.paySubtext;
+          } else if (c.payKind === 'Stipend') {
             paySubtitle = 'Stipend';
           } else if (c.offers && c.offers.includes('fulltime')) {
             paySubtitle = 'Full-time CTC';

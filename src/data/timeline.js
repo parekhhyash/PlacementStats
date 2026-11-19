@@ -4,7 +4,7 @@
 export const timelineData = {
   summary: {
     internshipDrives: 15,
-    finalYearDrives: 27,
+    finalYearDrives: 28,
     busiestMonth: "Jul 2026 (11 drives)"
   },
 
@@ -13,7 +13,7 @@ export const timelineData = {
     { label: "Jun '26", count: 2, intern: 1, fulltime: 1, ppo: 1 },
     { label: "Jul '26", count: 11, intern: 5, fulltime: 6, ppo: 4 },
     { label: "Aug '26", count: 6, intern: 3, fulltime: 3, ppo: 2 },
-    { label: "Sep '26", count: 5, intern: 2, fulltime: 3, ppo: 1 },
+    { label: "Sep '26", count: 6, intern: 2, fulltime: 4, ppo: 1 },
     { label: "Oct '26", count: 8, intern: 2, fulltime: 6, ppo: 2 },
     { label: "Nov '26", count: 4, intern: 1, fulltime: 3, ppo: 1 }
   ],
@@ -46,8 +46,8 @@ export const timelineData = {
       typeLabel: "Placement Only",
       role: "Software Engineer",
       offers: 0,
-      pay: "CTC 5.5 LPA",
-      status: "Drive announced (₹5.5 LPA)"
+      pay: "CTC 5.5 LPA (from AmbitionBox)",
+      status: "Drive announced (₹5.5 LPA · from AmbitionBox)"
     },
     {
       date: "06 Nov 2026",
@@ -219,6 +219,20 @@ export const timelineData = {
       offers: 7,
       pay: "Stipend ₹60k/mo",
       status: "7 offers confirmed"
+    },
+    {
+      date: "15 Sep 2026",
+      displayDate: "Sep 2026",
+      monthGroup: "Sep 2026",
+      timestamp: 1789516800000,
+      company: "BNP Paribas",
+      slug: "bnp-paribas",
+      type: "fulltime",
+      typeLabel: "Placement Only",
+      role: "Software Engineer / Associate",
+      offers: 0,
+      pay: "CTC 6–8 LPA (from AmbitionBox)",
+      status: "Drive conducted (₹6–8 LPA · from AmbitionBox)"
     },
     {
       date: "10 Sep 2026",
