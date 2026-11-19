@@ -60,9 +60,8 @@ export function renderHeader(activePath = '/') {
               </span>
             </span>
             <span class="font-display text-[18px] font-medium tracking-tight text-fg flex items-center gap-1.5">
-              <span>Placed</span>
-              <span id="header-batch-mark" class="text-fg font-bold">’27</span>
-              <span class="text-faint text-[13px] font-mono">· SPIT</span>
+              <span id="header-logo-title">SPIT Placement</span>
+              <span id="header-batch-mark" class="text-fg font-bold">2027</span>
             </span>
           </span>
         </a>
@@ -133,13 +132,17 @@ export function initHeader() {
   const logoLink = document.getElementById('header-logo-link') || document.querySelector('a:has(.p27-mark)');
   if (logoLink) {
     logoLink.href = is2028 ? '/?batch=2028' : '/';
-    logoLink.setAttribute('aria-label', is2028 ? "Placed ’28 · SPIT, home" : "Placed ’27 · SPIT, home");
+    logoLink.setAttribute('aria-label', is2028 ? "SPIT Placements 2028, home" : "SPIT Placement 2027, home");
   }
 
-  // Update header mark without intercepting logo clicks
+  // Update header title and batch mark
+  const headerTitle = document.getElementById('header-logo-title');
   const headerMark = document.getElementById('header-batch-mark');
+  if (headerTitle) {
+    headerTitle.textContent = is2028 ? "SPIT Placements" : "SPIT Placement";
+  }
   if (headerMark) {
-    headerMark.textContent = is2028 ? "’28" : "’27";
+    headerMark.textContent = is2028 ? "2028" : "2027";
     headerMark.removeAttribute('title');
     headerMark.style.cursor = 'inherit';
   }

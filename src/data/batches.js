@@ -369,7 +369,7 @@ export const allBatches = {
   "2027": {
     year: "2027",
     label: "Class of 2027",
-    title: "Placed ’27 · SPIT",
+    title: "SPIT Placement 2027",
     statusBadge: "Placements in progress",
     stats: {
       totalCompanies: companies2027.length,
@@ -397,7 +397,7 @@ export const allBatches = {
   "2028": {
     year: "2028",
     label: "Class of 2028",
-    title: "Placed ’28 · SPIT",
+    title: "SPIT Placements 2028",
     statusBadge: "Summer internship drives ongoing",
     stats: {
       totalCompanies: companies2028.length,
