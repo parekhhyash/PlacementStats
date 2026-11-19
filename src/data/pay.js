@@ -13,7 +13,7 @@ export const payData = {
     ppoMedianCTC: "₹15.00 LPA",
     ppoDrivesCount: 16,
     highestCTC: "₹33.00 LPA",
-    lowestCTC: "₹7.50 LPA",
+    lowestCTC: "₹5.50 LPA",
     highestStipend: "₹1,60,000 / mo",
     medianStipend: "₹40,000 / mo",
     averageStipend: "₹53,600 / mo"
@@ -24,7 +24,7 @@ export const payData = {
     { tier: "Super Dream (> ₹20 LPA)", count: 6, percentage: "3%", color: "var(--color-ppo)", description: "PhonePe SDE (₹33 LPA) & marquee product engineering roles" },
     { tier: "Dream (₹14 – ₹20 LPA)", count: 67, percentage: "29%", color: "var(--color-fulltime)", description: "IDFC FIRST, Barclays, ISS/STOXX, WorkIndia, AuxoAI, UBS, Nomura, Futures First" },
     { tier: "Core Tech (₹10 – ₹14 LPA)", count: 59, percentage: "26%", color: "var(--color-intern)", description: "HERE Technologies, Capgemini, AspectRatio, InCred, InSync, Baker Hughes, Infosys, Colgate" },
-    { tier: "Standard (< ₹10 LPA)", count: 97, percentage: "42%", color: "var(--color-muted)", description: "GEP Worldwide, TransUnion, Quantiphi, Wissen, Fractal, Revvity, Axis MF, JPMC Risk" }
+    { tier: "Standard (< ₹10 LPA)", count: 97, percentage: "42%", color: "var(--color-muted)", description: "GEP Worldwide, TransUnion, Quantiphi, Wissen, Fractal, Neebal, Bootlabs, Revvity, Axis MF, JPMC Risk" }
   ],
 
   // Stipend Distribution Brackets

@@ -3675,12 +3675,12 @@
       "TE",
       "BE"
     ],
-    "pay": "No details available",
+    "pay": "₹5.5 LPA",
     "payKind": "CTC",
-    "payRank": 0,
+    "payRank": 550,
     "dream": false,
     "logo": "/logos/bootlabs.svg",
-    "noDetailsAvailable": true,
+    "noDetailsAvailable": false,
     "out": {
       "internships": 0,
       "fulltimeOffers": 0,
@@ -3691,15 +3691,28 @@
     "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
-    "cgpaCriteria": "No details available",
-    "boardsCriteria": "No details available",
-    "first": "Oct 2026",
-    "last": "Oct 2026",
-    "visitTimeline": "No details available",
-    "funnelRaw": "No details available",
-    "status": "No details available",
-    "roles": [],
-    "notes": "No details available yet. Submit data if you have it."
+    "cgpaCriteria": "No specific CGPA criteria stated",
+    "boardsCriteria": "Standard eligibility",
+    "first": "Nov 2026",
+    "last": "Nov 2026",
+    "visitTimeline": "Nov 2026",
+    "funnelRaw": "Campus recruitment drive in Nov 2026",
+    "status": "Campus recruitment drive in Nov 2026 (₹5.5 LPA)",
+    "roles": [
+      {
+        "title": "Software Engineer",
+        "type": "fulltime",
+        "count": 0,
+        "ctc": "₹5.5 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC ₹5.5 LPA",
+        "visitDate": "Nov 2026",
+        "funnel": [],
+        "funnelRaw": "Campus recruitment drive in Nov 2026",
+        "notes": "₹5.5 LPA CTC"
+      }
+    ],
+    "notes": "Campus recruitment drive in Nov 2026 with ₹5.5 LPA CTC."
   },
   {
     "slug": "zycus",
@@ -3860,12 +3873,12 @@
       "TE",
       "BE"
     ],
-    "pay": "No details available",
+    "pay": "₹6 LPA",
     "payKind": "CTC",
-    "payRank": 0,
+    "payRank": 600,
     "dream": false,
     "logo": "/logos/neebal.svg",
-    "noDetailsAvailable": true,
+    "noDetailsAvailable": false,
     "out": {
       "internships": 0,
       "fulltimeOffers": 0,
@@ -3876,14 +3889,27 @@
     "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
-    "cgpaCriteria": "No details available",
-    "boardsCriteria": "No details available",
+    "cgpaCriteria": "No specific CGPA criteria stated",
+    "boardsCriteria": "Standard eligibility",
     "first": "Nov 2026",
     "last": "Nov 2026",
-    "visitTimeline": "No details available",
-    "funnelRaw": "No details available",
-    "status": "No details available",
-    "roles": [],
-    "notes": "No details available yet. Submit data if you have it."
+    "visitTimeline": "Nov 2026",
+    "funnelRaw": "Campus recruitment drive in Nov 2026",
+    "status": "Campus recruitment drive in Nov 2026 (₹6 LPA)",
+    "roles": [
+      {
+        "title": "Software Engineer",
+        "type": "fulltime",
+        "count": 0,
+        "ctc": "₹6 LPA",
+        "stipend": null,
+        "rawCompensation": "CTC ₹6 LPA",
+        "visitDate": "Nov 2026",
+        "funnel": [],
+        "funnelRaw": "Campus recruitment drive in Nov 2026",
+        "notes": "₹6 LPA CTC"
+      }
+    ],
+    "notes": "Campus recruitment drive in Nov 2026 with ₹6 LPA CTC."
   }
 ]

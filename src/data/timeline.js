@@ -4,7 +4,7 @@
 export const timelineData = {
   summary: {
     internshipDrives: 15,
-    finalYearDrives: 25,
+    finalYearDrives: 27,
     busiestMonth: "Jul 2026 (11 drives)"
   },
 
@@ -15,12 +15,40 @@ export const timelineData = {
     { label: "Aug '26", count: 6, intern: 3, fulltime: 3, ppo: 2 },
     { label: "Sep '26", count: 5, intern: 2, fulltime: 3, ppo: 1 },
     { label: "Oct '26", count: 8, intern: 2, fulltime: 6, ppo: 2 },
-    { label: "Nov '26", count: 2, intern: 1, fulltime: 1, ppo: 1 }
+    { label: "Nov '26", count: 4, intern: 1, fulltime: 3, ppo: 1 }
   ],
 
   // All drive events from SPIT Classified CSV sorted chronologically
   events: [
     // --- November 2026 ---
+    {
+      date: "12 Nov 2026",
+      displayDate: "Nov 2026",
+      monthGroup: "Nov 2026",
+      timestamp: 1794528000000,
+      company: "Neebal",
+      slug: "neebal",
+      type: "fulltime",
+      typeLabel: "Placement Only",
+      role: "Software Engineer",
+      offers: 0,
+      pay: "CTC 6.0 LPA",
+      status: "Drive announced (₹6 LPA)"
+    },
+    {
+      date: "10 Nov 2026",
+      displayDate: "Nov 2026",
+      monthGroup: "Nov 2026",
+      timestamp: 1794355200000,
+      company: "Bootlabs",
+      slug: "bootlabs",
+      type: "fulltime",
+      typeLabel: "Placement Only",
+      role: "Software Engineer",
+      offers: 0,
+      pay: "CTC 5.5 LPA",
+      status: "Drive announced (₹5.5 LPA)"
+    },
     {
       date: "06 Nov 2026",
       displayDate: "Nov 2026",
