@@ -247,7 +247,7 @@
             <dd id="stat-total-offers-sub" class="label order-3 mt-1 text-[11px] text-faint">Across all selections</dd>
           </div>
           <div class="flex flex-col border-b border-line py-5 pr-4 sm:border-b-0 sm:border-r sm:px-5">
-            <dt class="order-2 mt-2 text-muted">Average CTC</dt>
+            <dt id="stat-avg-ctc-label" class="order-2 mt-2 text-muted">Avg CTC by company</dt>
             <dd id="stat-avg-ctc" class="num order-1 font-display text-[clamp(30px,3.2vw,48px)] leading-[1.05] tracking-[-0.035em]">₹12.64<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span></dd>
             <dd id="stat-avg-ctc-sub" class="label order-3 mt-1 text-[11px] text-faint">36 recruiters with CTC</dd>
           </div>
@@ -586,6 +586,7 @@
     const statTotalOffersSub = document.getElementById('stat-total-offers-sub');
     const statAvgCtc = document.getElementById('stat-avg-ctc');
     const statAvgCtcSub = document.getElementById('stat-avg-ctc-sub');
+    const statAvgCtcLabel = document.getElementById('stat-avg-ctc-label');
     const statMedCtc = document.getElementById('stat-med-ctc');
     const statMedCtcSub = document.getElementById('stat-med-ctc-sub');
 
@@ -634,6 +635,7 @@
       if (is2028) {
         if (statTotalOffers) statTotalOffers.textContent = totalOffers || '50';
         if (statTotalOffersSub) statTotalOffersSub.textContent = 'Summer internship phase';
+        if (statAvgCtcLabel) statAvgCtcLabel.textContent = 'Average stipend';
         if (statAvgCtc) statAvgCtc.innerHTML = '₹54k<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">/mo</span>';
         if (statAvgCtcSub) statAvgCtcSub.textContent = 'Average monthly stipend';
         if (statMedCtc) statMedCtc.innerHTML = '₹50k<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">/mo</span>';
@@ -643,6 +645,7 @@
 
         if (statTotalOffers) statTotalOffers.textContent = totalOffers;
         if (statTotalOffersSub) statTotalOffersSub.textContent = 'Across all selections';
+        if (statAvgCtcLabel) statAvgCtcLabel.textContent = 'Avg CTC by company';
         if (statAvgCtc) statAvgCtc.innerHTML = ctcSummary.average + '<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
         if (statAvgCtcSub) statAvgCtcSub.textContent = ctcSummary.count + ' recruiters with CTC';
         if (statMedCtc) statMedCtc.innerHTML = ctcSummary.median + '<span class="ml-[0.2em] font-sans text-[0.4em] font-medium tracking-normal text-muted">LPA</span>';
