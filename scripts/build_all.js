@@ -21,7 +21,7 @@ try {
     }
 
     // 2. Copy root icons and meta assets
-    const assetsToSync = ['favicon.ico', 'icon.svg', 'apple-touch-icon.png', 'og.png', 'manifest.webmanifest', 'robots.txt', 'sitemap.xml', 'llms.txt'];
+    const assetsToSync = ['favicon.ico', 'icon.svg', 'apple-touch-icon.png', 'og.png', 'manifest.webmanifest', 'robots.txt', 'sitemap.xml', 'llms.txt', 'googleea88389ccf3cfa49.html'];
     assetsToSync.forEach(file => {
       const srcFile = path.join(publicDir, file);
       const destFile = path.join(rootDir, file);

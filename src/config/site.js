@@ -14,7 +14,7 @@ export const siteConfig = {
     defaultKeywords: "Sardar Patel Institute of Technology (SPIT) placement data, SPIT placement data, SPIT placement statistics, SPIT placements 2027, Sardar Patel Institute of Technology placements, SPIT Mumbai average package, SPIT highest package, SPIT recruiter CTC, SPIT branchwise placement, SPIT Computer Engineering, SPIT CSE, SPIT EXTC",
     ogImage: "/og.png",
     twitterHandle: "@spit_mumbai",
-    googleSiteVerification: process.env.GOOGLE_SITE_VERIFICATION || ""
+    googleSiteVerification: "kKVwu3iKsoZS2PC1gyU2-96Owfp5I0XHsGOaa64jS28"
   },
 
   // College Information
