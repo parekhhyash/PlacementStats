@@ -173,8 +173,8 @@ export const timelineData = {
       typeLabel: "Placement Only",
       role: "Analyst / Associate Consultant",
       offers: 0,
-      pay: "CTC 6 LPA",
-      status: "Drive announced (₹6 LPA)"
+      pay: "CTC 7 LPA",
+      status: "Drive announced (₹7 LPA)"
     },
     {
       date: "08 Oct 2026",

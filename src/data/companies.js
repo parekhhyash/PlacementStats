@@ -3595,9 +3595,9 @@ export const companies = [
       "TE",
       "BE"
     ],
-    "pay": "₹6 LPA",
+    "pay": "₹7 LPA",
     "payKind": "CTC",
-    "payRank": 600,
+    "payRank": 700,
     "dream": false,
     "logo": "/logos/kpmg.svg",
     "noDetailsAvailable": false,
@@ -3617,22 +3617,22 @@ export const companies = [
     "last": "Oct 2026",
     "visitTimeline": "Oct 2026",
     "funnelRaw": "Campus recruitment drive in Oct 2026",
-    "status": "Campus recruitment drive in Oct 2026 (₹6 LPA)",
+    "status": "Campus recruitment drive in Oct 2026 (₹7 LPA)",
     "roles": [
       {
         "title": "Analyst / Associate Consultant",
         "type": "fulltime",
         "count": 0,
-        "ctc": "₹6 LPA",
+        "ctc": "₹7 LPA",
         "stipend": null,
-        "rawCompensation": "CTC ₹6 LPA",
+        "rawCompensation": "CTC ₹7 LPA",
         "visitDate": "Oct 2026",
         "funnel": [],
         "funnelRaw": "Campus recruitment drive in Oct 2026",
-        "notes": "₹6 LPA CTC"
+        "notes": "₹7 LPA CTC"
       }
     ],
-    "notes": "Campus recruitment drive in Oct 2026 with ₹6 LPA CTC."
+    "notes": "Campus recruitment drive in Oct 2026 with ₹7 LPA CTC."
   },
   {
     "slug": "idfy",
