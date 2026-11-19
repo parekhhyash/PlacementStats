@@ -279,7 +279,7 @@ function pageTemplate({
   const preRenderedHeader = getHeaderHtml(activePath);
   const preRenderedFooter = getFooterHtml();
 
-  const siteUrl = siteConfig.siteUrl || 'https://placement-stats.vercel.app';
+  const siteUrl = siteConfig.siteUrl || 'https://spitplacements.vercel.app';
   const cleanPath = activePath.endsWith('/') ? activePath : activePath + '/';
   const fullCanonical = canonicalUrl || (siteUrl + (cleanPath === '/' ? '/' : cleanPath));
   const fullOgImage = ogImage.startsWith('http') ? ogImage : (siteUrl + (ogImage.startsWith('/') ? ogImage : '/' + ogImage));
@@ -392,6 +392,13 @@ function pageTemplate({
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
+  <!-- Canonical Host Redirect -->
+  <script>
+    if (window.location.hostname === 'placement-stats.vercel.app') {
+      window.location.replace('https://spitplacements.vercel.app' + window.location.pathname + window.location.search + window.location.hash);
+    }
+  </script>
+
   <!-- Standard SEO Meta Tags -->
   <title>${pageTitle}</title>
   <meta name="description" content="${pageDesc}" />
@@ -400,6 +407,7 @@ function pageTemplate({
   <meta name="robots" content="${robotsDirective}" />
   <link rel="canonical" href="${fullCanonical}" />
   <meta name="theme-color" content="#000000" />
+  ${siteConfig.seo.googleSiteVerification ? `<meta name="google-site-verification" content="${siteConfig.seo.googleSiteVerification}" />` : ''}
 
   <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
   <meta property="og:type" content="${ogType}" />

@@ -1,0 +1,36 @@
+# SPIT Placements · Sardar Patel Institute of Technology
+
+> Official student-maintained placement portal and recruitment analytics dashboard for Sardar Patel Institute of Technology (SPIT Mumbai), covering Class of 2027 (Full-time & Internships) and Class of 2028 (Summer Internships). Verified compensation records, recruiter CTC distributions, branch-wise statistics, and drive timelines.
+
+## Core Navigation & Pages
+
+- [Overview / Home](https://spitplacements.vercel.app/): Executive placement dashboard with live headline counters, split-flap updates ticker, top recruiter metrics, and seasonal summaries.
+- [Season Highlights](https://spitplacements.vercel.app/highlights/): Key placement milestones, highest salary records (PhonePe ₹33 LPA), top stipends (JPMC ₹1.60L/mo), dream recruiter offers, and compensation benchmarks.
+- [Companies Directory](https://spitplacements.vercel.app/companies/): Complete directory of 38+ visiting companies with salary packages, hiring criteria, CTC brackets (≥₹15 LPA, ₹10–15 LPA, <₹10 LPA), and selection funnels.
+- [Offers & Selections](https://spitplacements.vercel.app/offers/): Full verified offers database classified by role domains (Software Engineering, Quant Finance, AI/ML, Consulting), salary tiers, and PPO conversions.
+- [Branchwise Analysis](https://spitplacements.vercel.app/branchwise/): Department-level placement statistics and verified average/median packages across Computer Engineering (CE), Computer Science (CSE), and EXTC.
+- [Recruitment Timeline](https://spitplacements.vercel.app/timeline/): Month-by-month placement calendar and chronological drive logs tracking peak hiring periods and full-time hiring schedules.
+- [Live Updates](https://spitplacements.vercel.app/updates/): Latest confirmed placement announcements, new recruiter drive circulars, and batch progress updates.
+- [Submit Placement Data](https://spitplacements.vercel.app/corrections/): Community verification and data submission portal for offer letters and circulars.
+- [Feedback Portal](https://spitplacements.vercel.app/feedback/): Student and recruiter feedback form for platform feature suggestions and ratings.
+
+## Institution Summary
+
+- Institution: Sardar Patel Institute of Technology (Autonomous Institute affiliated to University of Mumbai)
+- Location: Bhavan's Campus, Munshi Nagar, Andheri (West), Mumbai, Maharashtra 400058, India
+- Website: https://spitplacements.vercel.app/
+- Official College Site: https://www.spit.ac.in/
+- Academic Batches Tracked: Class of 2027 (B.Tech 2023–2027) & Class of 2028 (B.Tech 2024–2028)
+- Academic Departments: Computer Engineering (CE), Computer Science and Engineering (CSE), Electronics and Telecommunications Engineering (EXTC)
+
+## Key Placement Statistics (Batch 2027)
+
+- Total Confirmed Offers: 268+
+- Total Batch Size: 534 students
+- Highest CTC: ₹33.0 LPA (PhonePe SDE)
+- Average CTC (Recruiter CTC): ₹14.26 LPA
+- Median CTC: ₹14.0 LPA
+- Top Internship Stipend: ₹1,60,000 / month (JPMorgan Chase & Co. - CTC Risk)
+- Median Internship Stipend: ₹40,000 / month
+- Average Internship Stipend: ₹53,600 / month
+- Key Recruiters: JPMorgan Chase & Co. (JPMC), Barclays, PhonePe, Nomura, BlackRock, Mastercard, UBS, ISS / STOXX, IDFC FIRST Bank, TransUnion, GEP Worldwide, Wissen Technology, Quantiphi, Mahindra Finance, Colgate-Palmolive, Revvity, Russell Investments, Nouryon.

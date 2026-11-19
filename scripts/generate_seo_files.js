@@ -5,11 +5,11 @@ const { siteConfig } = require('../src/config/site');
 function generateSeoFiles() {
   const rootDir = path.join(__dirname, '..');
   const publicDir = path.join(rootDir, 'public');
-  const siteUrl = siteConfig.siteUrl || 'https://placement-stats.vercel.app';
+  const siteUrl = siteConfig.siteUrl || 'https://spitplacements.vercel.app';
   const today = new Date().toISOString().split('T')[0];
 
   // 1. Robots.txt
-  const robotsTxt = `# robots.txt for Placed ’27 · SPIT Placement Statistics
+  const robotsTxt = `# robots.txt for SPIT Placements · Sardar Patel Institute of Technology
 User-agent: *
 Allow: /
 Disallow: /admin/

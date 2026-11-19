@@ -1,9 +1,9 @@
-# robots.txt for Placed ’27 · SPIT Placement Statistics
+# robots.txt for SPIT Placements · Sardar Patel Institute of Technology
 User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /admin
 
 # Sitemap & Host
-Host: https://placement-stats.vercel.app
-Sitemap: https://placement-stats.vercel.app/sitemap.xml
+Host: https://spitplacements.vercel.app
+Sitemap: https://spitplacements.vercel.app/sitemap.xml

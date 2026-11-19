@@ -1473,7 +1473,7 @@ function generateCompanyDetailPage() {
       const ogDesc = document.querySelector('meta[property="og:description"]');
       if (ogDesc && metaDesc) ogDesc.setAttribute('content', metaDesc.getAttribute('content'));
       const canonicalTag = document.querySelector('link[rel="canonical"]');
-      if (canonicalTag) canonicalTag.setAttribute('href', \`https://placement-stats.vercel.app/companies/company.html?slug=\${company.slug}\`);
+      if (canonicalTag) canonicalTag.setAttribute('href', \`https://spitplacements.vercel.app/companies/company.html?slug=\${company.slug}\`);
 
       // Breadcrumb & Links
       const bcLink = document.getElementById('breadcrumb-companies-link');
