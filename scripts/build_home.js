@@ -1020,8 +1020,8 @@ function generateHomePage() {
 
   const html = pageTemplate({
     title: "Placed ’27 · SPIT Placement Statistics & Campus Recruitment Analytics",
-    description: `Explore verified campus placement records for Sardar Patel Institute of Technology (SPIT Mumbai) Class of 2027 & 2028: ${siteConfig.stats.studentsPlaced} confirmed offers, ${siteConfig.stats.averageCTC} average CTC, ${siteConfig.stats.highestCTC} highest package, recruiter packages, and branch analytics.`,
-    keywords: "SPIT placement statistics, SPIT placements 2027, Sardar Patel Institute of Technology placements, SPIT Mumbai average package, SPIT highest package, SPIT placement report, SPIT recruiters 2027, SPIT branchwise placement",
+    description: `Explore verified Sardar Patel Institute of Technology (SPIT) placement data for Class of 2027 & 2028: ${siteConfig.stats.studentsPlaced} confirmed offers, ${siteConfig.stats.averageCTC} average CTC, ${siteConfig.stats.highestCTC} highest package, recruiter packages, and branch analytics.`,
+    keywords: "Sardar Patel Institute of Technology (SPIT) placement data, SPIT placement statistics, SPIT placements 2027, Sardar Patel Institute of Technology placements, SPIT Mumbai average package, SPIT highest package, SPIT placement report, SPIT recruiters 2027, SPIT branchwise placement",
     activePath: '/',
     content: mainContent,
     extraScript

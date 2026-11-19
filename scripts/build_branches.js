@@ -804,8 +804,8 @@ function generateBranchesPage() {
 
   const html = pageTemplate({
     title: `Branch-Wise Placement Distribution · CE, CSE, EXTC | SPIT Mumbai`,
-    description: `Department-level placement statistics and verified average/median packages across Computer Engineering (CE), Computer Science (CSE), and EXTC at Sardar Patel Institute of Technology.`,
-    keywords: `SPIT branchwise placements, SPIT Computer Engineering placements, SPIT CSE average package, SPIT EXTC placements, SPIT branch distribution, Sardar Patel Institute of Technology branch stats`,
+    description: `Branch-wise Sardar Patel Institute of Technology (SPIT) placement data: verified average and median packages across Computer Engineering (CE), Computer Science (CSE), and EXTC.`,
+    keywords: `Sardar Patel Institute of Technology (SPIT) placement data, SPIT branchwise placements, SPIT Computer Engineering placements, SPIT CSE average package, SPIT EXTC placements, SPIT branch distribution, Sardar Patel Institute of Technology branch stats`,
     activePath: '/branchwise/',
     content,
     extraScript

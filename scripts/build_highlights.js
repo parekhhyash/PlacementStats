@@ -323,8 +323,8 @@ function generateHighlightsPage() {
 
   const html = pageTemplate({
     title: `Season Highlights & Placement Records · SPIT Mumbai | Placed ’27`,
-    description: `Key recruitment milestones and placement highlights for SPIT Mumbai: PhonePe ₹33 LPA highest package, JPMC ₹1.60L/month stipend, dream company offers, and compensation benchmarks.`,
-    keywords: `SPIT placement highlights, SPIT marquee offers, PhonePe SPIT CTC, JPMC SPIT stipend, SPIT placement statistics, Sardar Patel Institute of Technology highest CTC`,
+    description: `Key milestones and Sardar Patel Institute of Technology (SPIT) placement data highlights: highest packages, dream recruiter offers, median CTC benchmarks, and top stipends.`,
+    keywords: `Sardar Patel Institute of Technology (SPIT) placement data, SPIT placement highlights, SPIT marquee offers, PhonePe SPIT CTC, JPMC SPIT stipend, SPIT placement statistics, Sardar Patel Institute of Technology highest CTC`,
     activePath: '/highlights/',
     content,
     extraScript

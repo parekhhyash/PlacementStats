@@ -333,9 +333,10 @@ function pageTemplate({
       "@context": "https://schema.org",
       "@type": "Dataset",
       "name": "SPIT Mumbai Campus Placement Statistics Class of 2027 & 2028",
-      "description": "Verified campus placement dataset detailing confirmed offers, recruiter CTC compensation packages, branch distributions, and hiring timelines for Sardar Patel Institute of Technology (SPIT Mumbai).",
+      "description": "Verified Sardar Patel Institute of Technology (SPIT) placement data detailing confirmed offers, recruiter CTC compensation packages, branch distributions, and hiring timelines for SPIT Mumbai.",
       "url": fullCanonical,
       "keywords": [
+        "Sardar Patel Institute of Technology (SPIT) placement data",
         "SPIT Placement Statistics",
         "Engineering Placements Mumbai",
         "Computer Engineering CTC",

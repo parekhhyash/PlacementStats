@@ -10,8 +10,8 @@ export const siteConfig = {
     siteName: "Placed ’27 · SPIT Placements",
     defaultTitle: "Placed ’27 · SPIT Placement Statistics & Campus Recruitment Analytics",
     titleTemplate: "%s | SPIT Placements",
-    defaultDescription: "Explore verified campus placement records, recruiter salary packages, stipend distributions, branch-wise statistics, and drive timelines for Sardar Patel Institute of Technology (SPIT Mumbai).",
-    defaultKeywords: "SPIT placement statistics, SPIT placements 2027, Sardar Patel Institute of Technology placements, SPIT Mumbai average package, SPIT highest package, SPIT recruiter CTC, SPIT branchwise placement, SPIT Computer Engineering, SPIT CSE, SPIT EXTC",
+    defaultDescription: "Explore verified Sardar Patel Institute of Technology (SPIT) placement data, recruiter salary packages, stipend distributions, branch-wise statistics, and drive timelines for SPIT Mumbai.",
+    defaultKeywords: "Sardar Patel Institute of Technology (SPIT) placement data, SPIT placement data, SPIT placement statistics, SPIT placements 2027, Sardar Patel Institute of Technology placements, SPIT Mumbai average package, SPIT highest package, SPIT recruiter CTC, SPIT branchwise placement, SPIT Computer Engineering, SPIT CSE, SPIT EXTC",
     ogImage: "/og.png",
     twitterHandle: "@spit_mumbai"
   },

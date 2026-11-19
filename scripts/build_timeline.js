@@ -257,8 +257,8 @@ function generateTimelinePage() {
 
   const html = pageTemplate({
     title: `Placement Timeline & Recruitment Calendar · SPIT Class of 2027 & 2028`,
-    description: `Month-by-month placement calendar and chronological drive logs for Sardar Patel Institute of Technology: peak hiring months, internship recruitment dates, and full-time hiring schedules.`,
-    keywords: `SPIT placement timeline, SPIT placement calendar, SPIT recruitment dates, SPIT hiring schedule, SPIT intern drive dates`,
+    description: `Chronological Sardar Patel Institute of Technology (SPIT) placement data and hiring drive calendar: recruitment dates, monthly offer timelines, and drive logs.`,
+    keywords: `Sardar Patel Institute of Technology (SPIT) placement data, SPIT placement timeline, SPIT placement calendar, SPIT recruitment dates, SPIT hiring schedule, SPIT intern drive dates`,
     activePath: '/timeline/',
     content,
     extraScript

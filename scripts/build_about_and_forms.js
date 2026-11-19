@@ -252,8 +252,8 @@ function generateFeedbackPage() {
 
   const html = pageTemplate({
     title: `Give Feedback · Placed ’27 · ${siteConfig.collegeShort}`,
-    description: `Share anonymous feedback, rate the dashboard experience, and request new analytics features for the SPIT placement statistics platform.`,
-    keywords: `SPIT placement feedback, Placed 27 feedback, SPIT placement reviews`,
+    description: `Share feedback and suggestions to improve the Sardar Patel Institute of Technology (SPIT) placement data portal and analytics dashboard.`,
+    keywords: `Sardar Patel Institute of Technology (SPIT) placement data, SPIT placement feedback, Placed 27 feedback, SPIT placement reviews`,
     activePath: '/feedback/',
     content,
     extraScript
@@ -584,8 +584,8 @@ function generateCorrectionsPage() {
 
   const html = pageTemplate({
     title: `Submit & Verify Placement Data · SPIT Community Portal`,
-    description: `Contribute confirmed campus placement circulars, offer letters, or report data corrections to maintain accurate placement statistics for the SPIT student community.`,
-    keywords: `submit SPIT placement data, report SPIT placement correction, SPIT student portal`,
+    description: `Submit verified offer circulars, corrections, or updates to maintain accurate Sardar Patel Institute of Technology (SPIT) placement data for the student community.`,
+    keywords: `Sardar Patel Institute of Technology (SPIT) placement data, submit SPIT placement data, report SPIT placement correction, SPIT student portal`,
     activePath: '/corrections/',
     content,
     extraScript
@@ -741,8 +741,8 @@ function generateContactPage() {
 
   const html = pageTemplate({
     title: `Contact Placement Coordinators & Contributors · SPIT Mumbai`,
-    description: `Get in touch with the student developers and contributors behind the SPIT placement analytics dashboard.`,
-    keywords: `SPIT placement contact, SPIT placement committee, SPIT student developers`,
+    description: `Get in touch with the student developers maintaining the Sardar Patel Institute of Technology (SPIT) placement data portal.`,
+    keywords: `Sardar Patel Institute of Technology (SPIT) placement data, SPIT placement contact, SPIT placement committee, SPIT student developers`,
     activePath: '/contact/',
     content,
     extraScript

@@ -1117,8 +1117,8 @@ function generateCompaniesPage() {
 
   const html = pageTemplate({
     title: `Companies & Recruiters Directory · SPIT Placements 2027 | Placed ’27`,
-    description: `Complete directory of 38+ recruitment companies visiting Sardar Patel Institute of Technology (SPIT Mumbai) with salary packages, hiring criteria, and selection funnels.`,
-    keywords: `SPIT recruiters list, companies visiting SPIT Mumbai, SPIT placement companies, Barclays SPIT package, PhonePe SPIT, UBS SPIT, SPIT selection criteria, SPIT campus recruitment`,
+    description: `Sardar Patel Institute of Technology (SPIT) placement data directory: recruiter CTC packages, hiring criteria, compensation benchmarks, and selection statistics for visiting companies.`,
+    keywords: `Sardar Patel Institute of Technology (SPIT) placement data, SPIT recruiters list, companies visiting SPIT Mumbai, SPIT placement companies, Barclays SPIT package, PhonePe SPIT, UBS SPIT, SPIT selection criteria, SPIT campus recruitment`,
     activePath: '/companies/',
     content,
     extraScript
@@ -1799,8 +1799,8 @@ function generateCompanyDetailPage() {
 
   const html = pageTemplate({
     title: `Company Recruitment Process, Eligibility & CTC · SPIT Placements`,
-    description: `Detailed recruitment breakdown for visiting companies at Sardar Patel Institute of Technology (SPIT Mumbai): compensation packages, eligibility cutoffs, selection rounds, and offer statistics.`,
-    keywords: `SPIT company placement details, SPIT recruitment process, SPIT selection rounds, SPIT eligibility criteria, SPIT package`,
+    description: `Company-wise Sardar Patel Institute of Technology (SPIT) placement data: compensation packages, eligibility cutoffs, selection rounds, and verified offer statistics.`,
+    keywords: `Sardar Patel Institute of Technology (SPIT) placement data, SPIT company placement details, SPIT recruitment process, SPIT selection rounds, SPIT eligibility criteria, SPIT package`,
     activePath: '/companies/',
     content,
     extraScript

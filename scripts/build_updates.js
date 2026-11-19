@@ -126,8 +126,8 @@ function generateUpdatesPage() {
 
   const html = pageTemplate({
     title: `Recent Placement Updates & Announcements · SPIT Placements`,
-    description: `Latest confirmed placement announcements, new recruiter drive circulars, and batch progress updates for Sardar Patel Institute of Technology (SPIT Mumbai).`,
-    keywords: `SPIT placement updates, SPIT placement announcements, SPIT latest placements, SPIT recruitment results`,
+    description: `Latest announcements and Sardar Patel Institute of Technology (SPIT) placement data updates: confirmed offers, new recruiter circulars, and batch progress logs.`,
+    keywords: `Sardar Patel Institute of Technology (SPIT) placement data, SPIT placement updates, SPIT placement announcements, SPIT latest placements, SPIT recruitment results`,
     activePath: '/updates/',
     content,
     extraScript
