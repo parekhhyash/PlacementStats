@@ -49,6 +49,96 @@ function generateHomePage() {
         <ol id="home-latest-companies">
           <!-- Injected via script from active batch dataset -->
         </ol>
+
+        <!-- Submit Company Data Modal for Home Page -->
+        <div id="quick-submit-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 hidden">
+          <div class="relative w-full max-w-[560px] rounded-3xl border border-line-strong bg-panel p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex items-start justify-between gap-4 border-b border-line pb-4">
+              <div>
+                <span class="label text-intern font-mono">Contribute Verified Data</span>
+                <h3 id="quick-modal-title" class="font-display text-[22px] font-semibold text-fg mt-1">Submit Placement Data</h3>
+              </div>
+              <button id="quick-modal-close-btn" type="button" class="cursor-pointer rounded-full p-2 text-muted hover:text-fg hover:bg-line transition-colors">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+
+            <form id="quick-submit-form" class="mt-6 space-y-4">
+              <div>
+                <label class="label block text-[11px] text-faint mb-1.5">Company Name</label>
+                <input id="quick-comp-name" type="text" readonly class="w-full rounded-xl border border-line-strong bg-bg/50 px-3.5 py-2.5 text-[14px] text-fg font-medium outline-none" />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Batch</label>
+                  <select id="quick-comp-batch" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+                    <option value="2027" class="bg-[#121316] text-[#ededed]">Class of 2027</option>
+                    <option value="2028" class="bg-[#121316] text-[#ededed]">Class of 2028</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Branch</label>
+                  <select id="quick-comp-branch" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" style="color-scheme: dark; background-color: #121316; color: #ededed;">
+                    <option value="All branches" class="bg-[#121316] text-[#ededed]">All Branches Open</option>
+                    <option value="CE" class="bg-[#121316] text-[#ededed]">Computer Engineering (CE)</option>
+                    <option value="CSE" class="bg-[#121316] text-[#ededed]">Computer Science Engineering (CSE)</option>
+                    <option value="EXTC" class="bg-[#121316] text-[#ededed]">Electronics and Telecommunications Engineering (EXTC)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Role Title</label>
+                  <input id="quick-comp-role" type="text" placeholder="e.g. SDE, Associate Analyst" required class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                </div>
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Package / Compensation</label>
+                  <input id="quick-comp-pay" type="text" placeholder="e.g. ₹15 LPA or ₹50,000 / mo" required class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Offers Made / Placed Count</label>
+                  <input id="quick-comp-offers" type="number" min="1" placeholder="e.g. 5" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                </div>
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Eligibility / CGPA Cutoff</label>
+                  <input id="quick-comp-cgpa" type="text" placeholder="e.g. 8.0+ CGPA, no active backlogs" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                </div>
+              </div>
+
+              <div>
+                <label class="label block text-[11px] text-faint mb-1.5">Additional Details / Drive Rounds / Dates</label>
+                <textarea id="quick-comp-details" rows="3" placeholder="Provide any details about rounds, assessment dates, interview stages, or verification references..." class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg"></textarea>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Your Name (Optional)</label>
+                  <input id="quick-comp-name-sub" type="text" placeholder="Anonymous or Name" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                </div>
+                <div>
+                  <label class="label block text-[11px] text-faint mb-1.5">Contact (Optional)</label>
+                  <input id="quick-comp-contact" type="text" placeholder="Email / Phone for verification" class="w-full rounded-xl border border-line-strong bg-bg px-3.5 py-2.5 text-[14px] text-fg outline-none focus:border-fg" />
+                </div>
+              </div>
+
+              <div id="quick-comp-status" class="hidden"></div>
+
+              <div class="flex items-center justify-end gap-3 pt-4 border-t border-line">
+                <button id="quick-modal-cancel-btn" type="button" class="cursor-pointer rounded-full px-5 py-2.5 font-mono text-[13px] text-muted hover:text-fg transition-colors">
+                  Cancel
+                </button>
+                <button id="quick-modal-submit-btn" type="submit" class="cursor-pointer inline-flex items-center gap-2 rounded-full bg-intern px-6 py-2.5 font-mono text-[13px] font-semibold text-bg transition-opacity hover:opacity-90">
+                  <span id="quick-modal-btn-text">Submit Data</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   `;
@@ -261,6 +351,114 @@ function generateHomePage() {
       return maxTs;
     }
 
+    const SUPABASE_URL = 'https://ntdmjyexirakcaovjeia.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZG1qeWV4aXJha2Nhb3ZqZWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2NTUzNTUsImV4cCI6MjA4NjIzMTM1NX0.LFbBXU-ANjoUUi_HfMIWYAjKidRgEct_VO-588T-Y7M';
+
+    // Quick Submission Modal Logic on Home Page
+    const quickModal = document.getElementById('quick-submit-modal');
+    const quickModalTitle = document.getElementById('quick-modal-title');
+    const quickCompName = document.getElementById('quick-comp-name');
+    const quickCompBatch = document.getElementById('quick-comp-batch');
+    const quickForm = document.getElementById('quick-submit-form');
+    const quickStatus = document.getElementById('quick-comp-status');
+    const quickBtnText = document.getElementById('quick-modal-btn-text');
+    const quickSubmitBtn = document.getElementById('quick-modal-submit-btn');
+
+    function openQuickSubmitModal(compName) {
+      if (!quickModal) return;
+      if (quickCompName) quickCompName.value = compName;
+      if (quickModalTitle) quickModalTitle.textContent = 'Submit Data · ' + compName;
+      if (quickCompBatch) quickCompBatch.value = is2028 ? '2028' : '2027';
+      if (quickStatus) {
+        quickStatus.classList.add('hidden');
+        quickStatus.textContent = '';
+      }
+      quickModal.classList.remove('hidden');
+    }
+
+    function closeQuickSubmitModal() {
+      if (quickModal) quickModal.classList.add('hidden');
+    }
+
+    document.getElementById('quick-modal-close-btn')?.addEventListener('click', closeQuickSubmitModal);
+    document.getElementById('quick-modal-cancel-btn')?.addEventListener('click', closeQuickSubmitModal);
+
+    quickModal?.addEventListener('click', (e) => {
+      if (e.target === quickModal) closeQuickSubmitModal();
+    });
+
+    quickForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!quickSubmitBtn) return;
+      quickSubmitBtn.disabled = true;
+      if (quickBtnText) quickBtnText.textContent = 'Submitting...';
+
+      const compName = quickCompName?.value || 'Company';
+      const batchYear = quickCompBatch?.value || (is2028 ? '2028' : '2027');
+      const branchVal = document.getElementById('quick-comp-branch')?.value || 'All branches';
+      const roleVal = document.getElementById('quick-comp-role')?.value || '';
+      const payVal = document.getElementById('quick-comp-pay')?.value || '';
+      const offersVal = parseInt(document.getElementById('quick-comp-offers')?.value, 10) || 1;
+      const cgpaVal = document.getElementById('quick-comp-cgpa')?.value || '';
+      const detailsVal = document.getElementById('quick-comp-details')?.value || '';
+      const nameVal = document.getElementById('quick-comp-name-sub')?.value || 'Anonymous';
+      const contactVal = document.getElementById('quick-comp-contact')?.value || '';
+
+      const combinedDetails = [
+        cgpaVal ? ('Eligibility: ' + cgpaVal) : '',
+        detailsVal
+      ].filter(Boolean).join(' | ');
+
+      const payload = {
+        type: 'branch_data',
+        batch: batchYear,
+        batch_year: batchYear,
+        branch: branchVal,
+        company_name: compName,
+        role_title: roleVal,
+        offers_count: offersVal,
+        compensation: payVal,
+        details: combinedDetails,
+        submitter_name: nameVal,
+        submitter_contact: contactVal,
+        status: 'pending'
+      };
+
+      try {
+        const res = await fetch(\`\${SUPABASE_URL}/rest/v1/submissions\`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': \`Bearer \${SUPABASE_KEY}\`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify([payload])
+        });
+
+        if (!res.ok) throw new Error(await res.text() || 'Failed to submit data');
+
+        if (quickStatus) {
+          quickStatus.className = 'rounded-xl p-3 text-[13px] bg-intern/10 border border-intern/30 text-intern';
+          quickStatus.textContent = '✔ Thank you! Placement data for ' + compName + ' has been submitted and sent to the admin dashboard for verification.';
+          quickStatus.classList.remove('hidden');
+        }
+        quickForm.reset();
+        setTimeout(() => {
+          closeQuickSubmitModal();
+        }, 2200);
+      } catch (err) {
+        if (quickStatus) {
+          quickStatus.className = 'rounded-xl p-3 text-[13px] bg-red-500/10 border border-red-500/30 text-red-300';
+          quickStatus.textContent = 'Submission error: ' + (err.message || 'Please try again.');
+          quickStatus.classList.remove('hidden');
+        }
+      } finally {
+        quickSubmitBtn.disabled = false;
+        if (quickBtnText) quickBtnText.textContent = 'Submit Data';
+      }
+    });
+
     // 2. Populate latest companies list based on visit date
     function renderLatestList() {
       const latestList = document.getElementById('home-latest-companies');
@@ -282,12 +480,78 @@ function generateHomePage() {
         if (c.offers && c.offers.includes('fulltime')) chips += '<span class="chip"><i class="dot" style="background:var(--color-fulltime)"></i>Full-time</span>';
         if (c.offers && c.offers.includes('ppo')) chips += '<span class="chip"><i class="dot" style="background:var(--color-ppo)"></i>PPO</span>';
 
-        const offersMade = (c.out && c.out.students) ? c.out.students + ' placed' : (c.status || 'Announced');
+        let offersMain = '—';
+        let offersSub = '&nbsp;';
+        const ftOffers = c.out?.fulltimeOffers || 0;
+        const internOffers = c.out?.internships || 0;
+        const totalStudents = c.out?.students || 0;
+
+        let roleFt = 0;
+        let roleIntern = 0;
+        let roleBoth = 0;
+
+        if (c.roles && c.roles.length > 0) {
+          c.roles.forEach(r => {
+            const t = (r.type || '').toLowerCase();
+            const cnt = r.count || 0;
+            if (t === 'both' || t === 'internship+ppo' || t.includes('ppo')) {
+              roleBoth += cnt;
+            } else if (t === 'internship' || t === 'intern') {
+              roleIntern += cnt;
+            } else if (t === 'fulltime' || t === 'ft') {
+              roleFt += cnt;
+            } else {
+              roleFt += cnt;
+            }
+          });
+        }
+
+        const totalOffersCount = totalStudents || (roleFt + roleIntern + roleBoth) || Math.max(ftOffers, internOffers);
+        const hasOffers = totalOffersCount > 0 || c.isAmbiguous;
+        const isNoDetails = !hasOffers || c.noDetailsAvailable;
+
+        if (c.isAmbiguous) {
+          offersMain = String(c.out?.students || 25);
+          offersSub = 'Estimated';
+        } else if (totalOffersCount > 0) {
+          offersMain = String(totalOffersCount);
+
+          if (roleFt > 0 && roleIntern > 0 && roleBoth === 0) {
+            offersSub = roleFt + ' full-time · ' + roleIntern + ' intern';
+          } else if (roleFt > 0 && roleBoth > 0 && roleIntern === 0) {
+            offersSub = roleFt + ' full-time · ' + roleBoth + ' intern/PPO';
+          } else if (roleIntern > 0 && roleBoth > 0 && roleFt === 0) {
+            offersSub = roleIntern + ' intern · ' + roleBoth + ' intern/PPO';
+          } else if (roleFt > 0 && roleIntern > 0 && roleBoth > 0) {
+            offersSub = roleFt + ' FT · ' + roleIntern + ' intern · ' + roleBoth + ' both';
+          } else if (roleBoth > 0 && roleFt === 0 && roleIntern === 0) {
+            if (c.offers && c.offers.includes('ppo')) {
+              offersSub = roleBoth + ' intern + PPO';
+            } else {
+              offersSub = roleBoth + ' full-time / intern';
+            }
+          } else if (roleFt > 0 && roleIntern === 0 && roleBoth === 0) {
+            offersSub = roleFt + ' full-time';
+          } else if (roleIntern > 0 && roleFt === 0 && roleBoth === 0) {
+            offersSub = roleIntern + ' intern';
+          } else if (ftOffers > 0 && internOffers > 0 && ftOffers !== internOffers) {
+            offersSub = ftOffers + ' full-time · ' + internOffers + ' intern';
+          } else if (ftOffers > 0 && internOffers === 0) {
+            offersSub = ftOffers + ' full-time';
+          } else if (internOffers > 0 && ftOffers === 0) {
+            offersSub = internOffers + ' intern';
+          } else if (ftOffers > 0 && ftOffers === internOffers) {
+            offersSub = ftOffers + (c.offers?.includes('ppo') ? ' intern + PPO' : ' full-time / intern');
+          } else {
+            offersSub = totalOffersCount + ' offers';
+          }
+        }
+
         const paySubtitle = c.paySubtext || (c.payKind === 'Stipend' ? 'Monthly Stipend' : 'Advertised CTC');
 
         return \`
           <li>
-            <a class="group relative isolate grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-4 gap-y-2 py-4 lg:grid-cols-[3.5rem_minmax(0,1fr)_9rem_12rem_9rem_11rem] lg:items-center lg:py-3.5 border-b border-line" href="/companies/company.html?slug=\${c.slug}\${is2028 ? '&batch=2028' : ''}">
+            <a class="group relative isolate grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-4 gap-y-2 py-4 lg:grid-cols-[3.5rem_minmax(0,1fr)_9rem_12rem_9rem_11rem] lg:items-center lg:py-3.5 border-b border-line" href="/companies/company.html?slug=\${c.slug}\${is2028 ? '&batch=2028' : ''}\${isNoDetails ? '&submit=1' : ''}">
               <span aria-hidden="true" class="row-curtain absolute inset-y-0 -inset-x-4 z-0 origin-bottom scale-y-0 bg-fg transition-transform duration-[320ms] ease-[var(--ease)] group-hover:origin-top group-hover:scale-y-100 group-focus-visible:scale-y-100"></span>
               <span class="label num text-faint group-hover:text-bg max-lg:hidden relative z-10">\${num}</span>
               <span class="flex min-w-0 items-center gap-3 lg:gap-4 transition-transform duration-[350ms] ease-[var(--ease)] group-hover:translate-x-3 relative z-10">
@@ -301,15 +565,31 @@ function generateHomePage() {
                 <span class="num block text-[15px] text-fg group-hover:text-bg">\${c.pay || 'Competitive'}</span>
                 <span class="label block text-[11px] text-faint group-hover:text-bg/60">\${paySubtitle}</span>
               </span>
-              <span class="group-hover:text-bg max-lg:col-span-2 max-lg:row-start-3 max-lg:flex max-lg:gap-4 relative z-10">
-                <span class="num block text-[15px] text-fg group-hover:text-bg">\${offersMade}</span>
-                <span class="label block text-[11px] text-faint group-hover:text-bg/60">\${c.status || ''}</span>
+              <span class="group-hover:text-bg max-lg:col-span-2 max-lg:row-start-3 max-lg:flex max-lg:items-baseline max-lg:gap-2.5 relative z-10">
+                \${hasOffers ? \`
+                  <span class="num block text-[15px] font-medium text-fg group-hover:text-bg">\${offersMain}</span>
+                  <span class="label block text-[11px] text-faint group-hover:text-bg/60 normal-case">\${offersSub}</span>
+                \` : \`
+                  <button type="button" class="btn-open-quick-sub text-left label block group-hover:text-bg cursor-pointer hover:underline relative z-20" data-slug="\${c.slug}" data-name="\${c.name}">
+                    <span class="text-amber-400 font-medium text-[13px] block leading-tight">No details available</span>
+                    <span class="text-[11px] text-intern group-hover:text-bg/80 font-normal block mt-0.5">Submit data if you have →</span>
+                  </button>
+                \`}
               </span>
               <span class="label truncate text-muted group-hover:text-bg max-lg:hidden relative z-10">\${c.branches || 'All branches open'}</span>
             </a>
           </li>
         \`;
       }).join('');
+
+      latestList.querySelectorAll('.btn-open-quick-sub').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const compName = btn.getAttribute('data-name');
+          openQuickSubmitModal(compName);
+        });
+      });
     }
 
     renderLatestList();
@@ -317,8 +597,6 @@ function generateHomePage() {
     // Background live Supabase sync
     async function syncLiveHome() {
       try {
-        const SUPABASE_URL = 'https://ntdmjyexirakcaovjeia.supabase.co';
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZG1qeWV4aXJha2Nhb3ZqZWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2NTUzNTUsImV4cCI6MjA4NjIzMTM1NX0.LFbBXU-ANjoUUi_HfMIWYAjKidRgEct_VO-588T-Y7M';
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 6000);
         const res = await fetch(\`\${SUPABASE_URL}/rest/v1/companies?batch_year=eq.\${batch.year}&order=out_students.desc\`, {
