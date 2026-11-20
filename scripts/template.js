@@ -4,7 +4,7 @@ const { siteConfig } = require('../src/config/site');
 
 function getHeaderHtml(activePath = '/') {
   const navLinks = [
-    { label: "Highlights", href: "/highlights/", glow: true },
+    { label: "Stats", href: "/stats/", glow: true },
     { label: "Companies", href: "/companies/" },
     { label: "Offers", href: "/offers/" },
     { label: "Branchwise", href: "/branchwise/" },
@@ -247,7 +247,8 @@ function getFooterHtml() {
 function getBreadcrumbName(cleanPath) {
   const map = {
     '/': 'Home',
-    '/highlights/': 'Season Highlights',
+    '/stats/': 'Placement Stats',
+    '/highlights/': 'Placement Stats',
     '/companies/': 'Companies Directory',
     '/offers/': 'Placement Offers',
     '/branchwise/': 'Branch-Wise Distribution',
@@ -327,7 +328,7 @@ function pageTemplate({
   });
 
   // 3. Dataset Schema (Campus Placement Records)
-  if (cleanPath === '/' || cleanPath === '/branchwise/' || cleanPath === '/offers/' || cleanPath === '/highlights/') {
+  if (cleanPath === '/' || cleanPath === '/branchwise/' || cleanPath === '/offers/' || cleanPath === '/highlights/' || cleanPath === '/stats/') {
     schemas.push({
       "@context": "https://schema.org",
       "@type": "Dataset",

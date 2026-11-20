@@ -154,13 +154,13 @@ function generateHomePage() {
           </span>
           Latest results
         </p>
-        <a class="label link-underline text-fg" href="/highlights/">Full highlights →</a>
+        <a class="label link-underline text-fg" href="/stats/">Full stats →</a>
       </div>
       <section class="glow-ring rounded-[28px] p-px">
         <div class="relative overflow-hidden rounded-[27px] bg-bg p-5 sm:p-7">
           <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4">
             <div>
-              <p id="home-recap-season" class="label text-muted">Highlights · Marquee Recruiters · Season 2027</p>
+              <p id="home-recap-season" class="label text-muted">Stats · Marquee Recruiters · Season 2027</p>
               <h2 class="display-m mt-3">The flagship recruiters</h2>
             </div>
           </div>
@@ -225,7 +225,7 @@ function generateHomePage() {
           <h2 class="display-m mt-3 max-w-[18ch]">Where students got offers</h2>
         </div>
         <div class="flex flex-col justify-end gap-4 lg:items-start">
-          <a class="label link-underline text-fg" href="/highlights/">Offers breakdown →</a>
+          <a class="label link-underline text-fg" href="/stats/">Offers breakdown →</a>
         </div>
       </div>
       <div class="mt-10">
@@ -668,7 +668,7 @@ function generateHomePage() {
     // 4. Populate Marquee Cards
     const recapSeason = document.getElementById('home-recap-season');
     if (recapSeason) {
-      recapSeason.textContent = \`Highlights · Flagship Recruiters · Season \${batch.year}\`;
+      recapSeason.textContent = \`Stats · Flagship Recruiters · Season \${batch.year}\`;
     }
     const recapCards = document.getElementById('home-recap-cards');
     if (recapCards) {

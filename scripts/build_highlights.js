@@ -6,12 +6,12 @@ const { siteConfig } = require('../src/config/site');
 function generateHighlightsPage() {
   const content = `
     <section class="wrap pb-12 pt-[clamp(48px,8vw,112px)]">
-      <p id="highlights-page-badge" class="label text-muted">Season Highlights · ${siteConfig.collegeShort} ${siteConfig.batchYear}</p>
+      <p id="highlights-page-badge" class="label text-muted">Placement Stats · ${siteConfig.collegeShort} ${siteConfig.batchYear}</p>
       <h1 class="display-xl mt-6">
         The season,<br/><span class="text-muted">in numbers.</span>
       </h1>
       <p id="highlights-page-desc" class="mt-8 max-w-[58ch] text-[18px] leading-relaxed text-muted">
-        Key placement metrics, recruitment milestones, compensation breakdown, and confirmed offers across our departments.
+        Verified placement stats Sardar Patel Institute of Technology: key recruitment metrics, milestones, compensation breakdown, and confirmed offers across our departments.
       </p>
     </section>
 
@@ -21,7 +21,7 @@ function generateHighlightsPage() {
         <div class="relative overflow-hidden rounded-[27px] bg-bg p-6 sm:p-10">
           <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4">
             <div>
-              <p id="highlights-hero-season" class="label text-muted">Highlights · Flagship Recruiters · Season 2027</p>
+              <p id="highlights-hero-season" class="label text-muted">Stats · Flagship Recruiters · Season 2027</p>
               <h2 class="display-l mt-4 max-w-[18ch]">Key season milestones</h2>
             </div>
           </div>
@@ -95,16 +95,16 @@ function generateHighlightsPage() {
 
     // Header Badge & Desc
     const badgeEl = document.getElementById('highlights-page-badge');
-    if (badgeEl) badgeEl.textContent = \`Season Highlights · SPIT Class of \${batch.year}\`;
+    if (badgeEl) badgeEl.textContent = \`Placement Stats · SPIT Class of \${batch.year}\`;
 
     const descEl = document.getElementById('highlights-page-desc');
     if (descEl) {
-      descEl.textContent = \`Key placement metrics, recruitment milestones, compensation breakdown, and confirmed offers for the SPIT \${batch.year} cohort.\`;
+      descEl.textContent = \`Verified placement stats Sardar Patel Institute of Technology (SPIT): key metrics, recruitment milestones, compensation breakdown, and confirmed offers for the SPIT \${batch.year} cohort.\`;
     }
 
     const heroSeason = document.getElementById('highlights-hero-season');
     if (heroSeason) {
-      heroSeason.textContent = \`Highlights · Flagship Recruiters · Season \${batch.year}\`;
+      heroSeason.textContent = \`Stats · Flagship Recruiters · Season \${batch.year}\`;
     }
 
     // --- Dynamic Calculation of All Metrics (No Hardcoded Numbers) ---
@@ -322,18 +322,26 @@ function generateHighlightsPage() {
   `;
 
   const html = pageTemplate({
-    title: `Season Highlights & Placement Records · SPIT Mumbai | Placed ’27`,
-    description: `Key milestones and Sardar Patel Institute of Technology (SPIT) placement data highlights: highest packages, dream recruiter offers, median CTC benchmarks, and top stipends.`,
-    keywords: `Sardar Patel Institute of Technology (SPIT) placement data, SPIT placement highlights, SPIT marquee offers, PhonePe SPIT CTC, JPMC SPIT stipend, SPIT placement statistics, Sardar Patel Institute of Technology highest CTC`,
-    activePath: '/highlights/',
+    title: `Placement Stats · Sardar Patel Institute of Technology (SPIT) | Placed ’27`,
+    description: `Placement stats Sardar Patel Institute of Technology (SPIT): verified recruitment milestones, highest CTC records, department averages, median compensation benchmarks, and marquee recruiter offers.`,
+    keywords: `placement stats sardar patel institute of technology, SPIT placement stats, sardar patel institute of technology placement data, SPIT placement statistics, SPIT highest package, SPIT average CTC, SPIT marquee offers`,
+    activePath: '/stats/',
     content,
     extraScript
   });
 
-  const dir = path.join(__dirname, '..', 'highlights');
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'index.html'), html);
-  console.log('highlights/index.html created successfully!');
+  // Write canonical page at /stats/
+  const statsDir = path.join(__dirname, '..', 'stats');
+  if (!fs.existsSync(statsDir)) fs.mkdirSync(statsDir, { recursive: true });
+  fs.writeFileSync(path.join(statsDir, 'index.html'), html);
+  console.log('stats/index.html created successfully!');
+
+  // Maintain redirect stub at /highlights/ to /stats/
+  const highlightsDir = path.join(__dirname, '..', 'highlights');
+  if (!fs.existsSync(highlightsDir)) fs.mkdirSync(highlightsDir, { recursive: true });
+  const redirectHtml = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Placement Stats · Sardar Patel Institute of Technology (SPIT)</title><link rel="canonical" href="https://spitplacements.vercel.app/stats/"><meta http-equiv="refresh" content="0; url=/stats/"><script>window.location.replace('/stats/' + window.location.search);</script></head><body></body></html>`;
+  fs.writeFileSync(path.join(highlightsDir, 'index.html'), redirectHtml);
+  console.log('highlights/index.html redirect stub created successfully!');
 }
 
 generateHighlightsPage();

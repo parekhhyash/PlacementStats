@@ -29,7 +29,7 @@ Sitemap: ${siteUrl}/sitemap.xml
   // 2. Core Site Pages for Sitemap
   const pages = [
     { url: '/', priority: '1.0', changefreq: 'daily' },
-    { url: '/highlights/', priority: '0.9', changefreq: 'weekly' },
+    { url: '/stats/', priority: '0.9', changefreq: 'weekly' },
     { url: '/companies/', priority: '0.9', changefreq: 'daily' },
     { url: '/offers/', priority: '0.9', changefreq: 'weekly' },
     { url: '/branchwise/', priority: '0.9', changefreq: 'weekly' },
