@@ -367,7 +367,7 @@ export const companies = [
   {
     "slug": "ambiguous",
     "name": "Ambiguous",
-    "subtext": "BNP Paribas, Dolat Capital, Versor, Kelp Global, LogiNext, Nxpec Technologies, KPMG, IDfy, HSBC, Bootlabs, Zycus, Mastercard, CarWale, Fractal, Trilogy",
+    "subtext": "BNP Paribas, Dolat Capital, Versor, Kelp Global, LogiNext, Nxpec Technologies, KPMG, IDfy, HSBC, Bootlabs, Zycus, Mastercard, CarWale, Fractal",
     "offers": [
       "fulltime"
     ],
@@ -406,10 +406,10 @@ export const companies = [
         "stipend": null,
         "rawCompensation": "Across unclassified recruiters",
         "visitDate": "Oct 2026",
-        "notes": "Estimated 25 total hires across BNP Paribas, Dolat Capital, Versor, Kelp Global, LogiNext, Nxpec Technologies, KPMG, IDfy, HSBC, Bootlabs, Zycus, Mastercard, CarWale, Fractal, Trilogy."
+        "notes": "Estimated 25 total hires across BNP Paribas, Dolat Capital, Versor, Kelp Global, LogiNext, Nxpec Technologies, KPMG, IDfy, HSBC, Bootlabs, Zycus, Mastercard, CarWale, Fractal."
       }
     ],
-    "notes": "Companies included: BNP Paribas, Dolat Capital, Versor, Kelp Global, LogiNext, Nxpec Technologies, KPMG, IDfy, HSBC, Bootlabs, Zycus, Mastercard, CarWale, Fractal, Trilogy."
+    "notes": "Companies included: BNP Paribas, Dolat Capital, Versor, Kelp Global, LogiNext, Nxpec Technologies, KPMG, IDfy, HSBC, Bootlabs, Zycus, Mastercard, CarWale, Fractal."
   },
   {
     "slug": "ubs",
@@ -3925,19 +3925,18 @@ export const companies = [
     "slug": "trilogy",
     "name": "Trilogy",
     "offers": [
-      "internship",
       "fulltime"
     ],
     "seasons": [
-      "TE",
       "BE"
     ],
-    "pay": "No details available",
+    "pay": "Competitive",
     "payKind": "CTC",
     "payRank": 0,
     "dream": true,
     "logo": "/logos/trilogy.svg",
-    "noDetailsAvailable": true,
+    "zeroOffers": true,
+    "noDetailsAvailable": false,
     "out": {
       "internships": 0,
       "fulltimeOffers": 0,
@@ -3948,15 +3947,26 @@ export const companies = [
     "open": "CE, CSE, EXTC",
     "branches": "All branches open",
     "cgpa": null,
-    "cgpaCriteria": "No details available",
-    "boardsCriteria": "No details available",
+    "cgpaCriteria": "No minimum cutoff reported",
+    "boardsCriteria": "Standard SPIT eligibility criteria",
     "first": "Oct 2026",
     "last": "Oct 2026",
-    "visitTimeline": "No details available",
-    "funnelRaw": "No details available",
-    "status": "No details available",
-    "roles": [],
-    "notes": "No details available yet. Submit data if you have it."
+    "visitTimeline": "Oct 2026",
+    "funnelRaw": "Recruitment drive completed with 0 selections / 0 offers extended.",
+    "status": "0 offers extended",
+    "roles": [
+      {
+        "title": "Software Development Engineer",
+        "type": "fulltime",
+        "count": 0,
+        "ctc": "Competitive",
+        "stipend": null,
+        "rawCompensation": "Full-time SDE role",
+        "visitDate": "Oct 2026",
+        "notes": "Campus recruitment drive concluded with 0 selections / 0 offers extended."
+      }
+    ],
+    "notes": "Campus recruitment drive concluded with 0 offers extended (0 selections)."
   },
   {
     "slug": "neebal",

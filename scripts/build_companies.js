@@ -619,14 +619,15 @@ function generateCompaniesPage() {
 
         // Query match
         if (q) {
-          const matchName = c.name && c.name.toLowerCase().includes(q);
+          const matchName = (c.name && c.name.toLowerCase().includes(q)) || (q.includes('triology') && c.slug === 'trilogy');
           const matchSubtext = c.subtext && c.subtext.toLowerCase().includes(q);
           const matchRoles = c.roles && c.roles.some(r => (r.title && r.title.toLowerCase().includes(q)) || (r.notes && r.notes.toLowerCase().includes(q)));
           const matchPay = c.pay && c.pay.toLowerCase().includes(q);
           const matchBranch = c.branches && c.branches.toLowerCase().includes(q);
           const matchCgpa = c.cgpaCriteria && c.cgpaCriteria.toLowerCase().includes(q);
           const matchBoards = c.boardsCriteria && c.boardsCriteria.toLowerCase().includes(q);
-          if (!matchName && !matchSubtext && !matchRoles && !matchPay && !matchBranch && !matchCgpa && !matchBoards) return false;
+          const matchNotes = c.notes && c.notes.toLowerCase().includes(q);
+          if (!matchName && !matchSubtext && !matchRoles && !matchPay && !matchBranch && !matchCgpa && !matchBoards && !matchNotes) return false;
         }
 
         // Role filter
@@ -842,10 +843,13 @@ function generateCompaniesPage() {
         }
 
         const totalOffersCount = totalStudents || (roleFt + roleIntern + roleBoth) || Math.max(ftOffers, internOffers);
-        const hasOffers = totalOffersCount > 0 || c.isAmbiguous;
-        const isNoDetails = !hasOffers || c.noDetailsAvailable;
+        const hasOffers = totalOffersCount > 0 || c.isAmbiguous || c.zeroOffers;
+        const isNoDetails = (!hasOffers || c.noDetailsAvailable) && !c.zeroOffers;
 
-        if (c.isAmbiguous) {
+        if (c.zeroOffers) {
+          offersMain = '0';
+          offersSub = '0 offers extended';
+        } else if (c.isAmbiguous) {
           offersMain = String(c.out?.students || 25);
           offersSub = 'Estimated';
         } else if (totalOffersCount > 0) {
@@ -1512,11 +1516,11 @@ function generateCompanyDetailPage() {
 
       // Stats
       const hasPay = company.pay && company.pay !== 'No details available' && company.pay !== 'Not disclosed';
-      const hasOffers = company.out && typeof company.out.students === 'number' && company.out.students > 0;
-      const isMissingOffers = !hasOffers && !company.isAmbiguous;
-      const isNoDetails = company.noDetailsAvailable || (!hasPay && !hasOffers);
+      const hasOffers = (company.out && typeof company.out.students === 'number' && company.out.students > 0) || company.zeroOffers;
+      const isMissingOffers = !hasOffers && !company.isAmbiguous && !company.zeroOffers;
+      const isNoDetails = (company.noDetailsAvailable || (!hasPay && !hasOffers)) && !company.zeroOffers;
 
-      if (!hasPay && !hasOffers) {
+      if (!hasPay && !hasOffers && !company.zeroOffers) {
         const noDetailsCard = document.getElementById('company-no-details-card');
         if (noDetailsCard) noDetailsCard.classList.remove('hidden');
       } else if (isMissingOffers) {
@@ -1545,7 +1549,14 @@ function generateCompanyDetailPage() {
       }
 
       // Offers
-      if (hasOffers || company.isAmbiguous) {
+      if (company.zeroOffers) {
+        document.getElementById('stat-total').textContent = '0';
+        const cohortLabel = document.getElementById('stat-cohort-label');
+        if (cohortLabel) cohortLabel.textContent = "0 offers extended";
+        document.getElementById('stat-fulltime').textContent = '0';
+        document.getElementById('stat-ppo').textContent = '0 PPO conversions';
+        document.getElementById('stat-interns').textContent = '0';
+      } else if (hasOffers || company.isAmbiguous) {
         document.getElementById('stat-total').textContent = company.out?.students || 0;
         const cohortLabel = document.getElementById('stat-cohort-label');
         if (cohortLabel) cohortLabel.textContent = company.isAmbiguous ? "Estimated offers" : "Batch '" + matchedBatchYear.slice(2) + " offers";
@@ -1632,7 +1643,7 @@ function generateCompanyDetailPage() {
                 <span class="num font-display text-[22px] sm:text-[24px] text-fg font-semibold block">\${r.ctc || 'Competitive'}</span>
                 \${(r.paySubtext || company.paySubtext) ? \`<span class="label block text-[11px] text-faint mt-0.5">\${r.paySubtext || company.paySubtext}</span>\` : ''}
                 \${r.stipend ? '<span class="label block text-[12px] text-muted mt-0.5">Stipend: ' + r.stipend + '</span>' : ''}
-                <span class="label block text-[11px] text-intern font-medium mt-1.5">\${r.count} \${r.count === 1 ? 'offer' : 'offers'} confirmed</span>
+                <span class="label block text-[11px] \${r.count === 0 ? 'text-muted' : 'text-intern'} font-medium mt-1.5">\${r.count === 0 ? '0 offers extended (0 selections)' : (r.count + (r.count === 1 ? ' offer confirmed' : ' offers confirmed'))}</span>
               </div>
             </div>
           </div>

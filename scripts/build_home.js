@@ -507,10 +507,13 @@ function generateHomePage() {
         }
 
         const totalOffersCount = totalStudents || (roleFt + roleIntern + roleBoth) || Math.max(ftOffers, internOffers);
-        const hasOffers = totalOffersCount > 0 || c.isAmbiguous;
-        const isNoDetails = !hasOffers || c.noDetailsAvailable;
+        const hasOffers = totalOffersCount > 0 || c.isAmbiguous || c.zeroOffers;
+        const isNoDetails = (!hasOffers || c.noDetailsAvailable) && !c.zeroOffers;
 
-        if (c.isAmbiguous) {
+        if (c.zeroOffers) {
+          offersMain = '0';
+          offersSub = '0 offers extended';
+        } else if (c.isAmbiguous) {
           offersMain = String(c.out?.students || 25);
           offersSub = 'Estimated';
         } else if (totalOffersCount > 0) {
