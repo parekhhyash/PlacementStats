@@ -13,7 +13,7 @@
 
   <!-- Standard SEO Meta Tags -->
   <title>Placement Stats · Sardar Patel Institute of Technology (SPIT) | Placed ’27</title>
-  <meta name="description" content="Placement stats Sardar Patel Institute of Technology (SPIT): verified recruitment milestones, highest CTC records, department averages, median compensation benchmarks, and marquee recruiter offers." />
+  <meta name="description" content="Placement stats Sardar Patel Institute of Technology (SPIT): 50.2% placement rate, verified recruitment milestones, highest CTC records, department averages, median compensation benchmarks, and marquee recruiter offers." />
   <meta name="keywords" content="placement stats sardar patel institute of technology, SPIT placement stats, sardar patel institute of technology placement data, SPIT placement statistics, SPIT highest package, SPIT average CTC, SPIT marquee offers" />
   <meta name="author" content="SPIT Student Community" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -25,7 +25,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Placed ’27 · SPIT Placements" />
   <meta property="og:title" content="Placement Stats · Sardar Patel Institute of Technology (SPIT) | Placed ’27" />
-  <meta property="og:description" content="Placement stats Sardar Patel Institute of Technology (SPIT): verified recruitment milestones, highest CTC records, department averages, median compensation benchmarks, and marquee recruiter offers." />
+  <meta property="og:description" content="Placement stats Sardar Patel Institute of Technology (SPIT): 50.2% placement rate, verified recruitment milestones, highest CTC records, department averages, median compensation benchmarks, and marquee recruiter offers." />
   <meta property="og:url" content="https://spitplacements.vercel.app/stats/" />
   <meta property="og:image" content="https://spitplacements.vercel.app/og.png" />
   <meta property="og:image:width" content="1200" />
@@ -36,7 +36,7 @@
   <!-- Twitter / X Cards -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Placement Stats · Sardar Patel Institute of Technology (SPIT) | Placed ’27" />
-  <meta name="twitter:description" content="Placement stats Sardar Patel Institute of Technology (SPIT): verified recruitment milestones, highest CTC records, department averages, median compensation benchmarks, and marquee recruiter offers." />
+  <meta name="twitter:description" content="Placement stats Sardar Patel Institute of Technology (SPIT): 50.2% placement rate, verified recruitment milestones, highest CTC records, department averages, median compensation benchmarks, and marquee recruiter offers." />
   <meta name="twitter:image" content="https://spitplacements.vercel.app/og.png" />
   <meta name="twitter:image:alt" content="Placed ’27 · SPIT Placement Statistics Dashboard" />
   
@@ -344,8 +344,8 @@
           <span class="label text-[12px] text-faint">Calculated dynamically from verified placement data</span>
         </div>
 
-        <!-- 8-Card Major Metrics Grid -->
-        <div id="major-stats-grid" class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- 9-Card Major Metrics Grid -->
+        <div id="major-stats-grid" class="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3">
           <!-- Dynamically injected -->
         </div>
       </section>
@@ -532,6 +532,14 @@
     // --- Dynamic Calculation of All Metrics (No Hardcoded Numbers) ---
     const totalCompanies = companies.length;
     const totalOffers = companies.reduce((sum, c) => sum + (c.out?.students || 0), 0) || (batch.stats ? batch.stats.studentsPlaced : 0);
+    const totalBatchSize = batch.stats?.totalBatchSize || (is2028 ? 551 : 534);
+    const placedStudents = totalOffers;
+    const placementPct = totalBatchSize > 0 ? ((placedStudents / totalBatchSize) * 100).toFixed(1) : '0.0';
+
+    const descEl = document.getElementById('highlights-page-desc');
+    if (descEl) {
+      descEl.textContent = `Verified placement stats Sardar Patel Institute of Technology (SPIT): ${placementPct}% placement rate, key metrics, recruitment milestones, compensation breakdown, and confirmed offers for the SPIT ${batch.year} cohort.`;
+    }
 
     let ftAndDualOffers = 0;
     let internOnlyOffers = 0;
@@ -585,60 +593,67 @@
     const medianCTC = medianCtcVal > 0 ? `₹${medianCtcVal.toFixed(1)} LPA` : (batch.stats?.medianCTC || '—');
     const averageCTC = avgCtcVal > 0 ? `₹${avgCtcVal} LPA` : (batch.stats?.averageCTC || '—');
 
-    // Render 8 Major Stats Grid
+    // Render 9 Major Stats Grid
     const majorStatsEl = document.getElementById('major-stats-grid');
     if (majorStatsEl) {
       majorStatsEl.innerHTML = `
-        <!-- 1. Total Confirmed Offers -->
+        <!-- 1. Percentage of Students Placed -->
+        <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between col-span-2 md:col-span-1">
+          <dt class="order-2 mt-3 text-muted text-[13px]">${is2028 ? 'Percentage Placed (Internships)' : 'Percentage of Students Placed'}</dt>
+          <dd class="order-1 num font-display text-[clamp(28px,2.8vw,42px)] leading-none text-fg">${placementPct}%</dd>
+          <dd class="order-3 label mt-2 text-[11px] text-faint">${placedStudents} of ${totalBatchSize} enrolled students</dd>
+        </div>
+
+        <!-- 2. Total Confirmed Offers -->
         <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
           <dt class="order-2 mt-3 text-muted text-[13px]">Total Confirmed Offers</dt>
           <dd class="order-1 num font-display text-[clamp(28px,2.8vw,42px)] leading-none text-fg">${totalOffers}</dd>
           <dd class="order-3 label mt-2 text-[11px] text-faint">Across all ${totalCompanies} firms</dd>
         </div>
 
-        <!-- 2. Full-time & Dual -->
+        <!-- 3. Companies Recruiting -->
+        <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
+          <dt class="order-2 mt-3 text-muted text-[13px]">Companies Recruiting</dt>
+          <dd class="order-1 num font-display text-[clamp(28px,2.8vw,42px)] leading-none text-fg">${totalCompanies}</dd>
+          <dd class="order-3 label mt-2 text-[11px] text-faint">${is2028 ? 'Internship recruiters' : 'Registered campus drives'}</dd>
+        </div>
+
+        <!-- 4. Full-time & Dual -->
         <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
           <dt class="order-2 mt-3 text-muted text-[13px]">Full-time & Dual</dt>
           <dd class="order-1 num font-display text-[clamp(28px,2.8vw,42px)] leading-none text-fg">${ftAndDualOffers}</dd>
           <dd class="order-3 label mt-2 text-[11px] text-faint">Direct FT + Dual offers</dd>
         </div>
 
-        <!-- 3. Internship Only -->
-        <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
-          <dt class="order-2 mt-3 text-muted text-[13px]">Internship Only</dt>
-          <dd class="order-1 num font-display text-[clamp(28px,2.8vw,42px)] leading-none text-fg">${internOnlyOffers}</dd>
-          <dd class="order-3 label mt-2 text-[11px] text-faint">Summer internships</dd>
-        </div>
-
-        <!-- 4. Dual / PPO Pathway -->
+        <!-- 5. Dual / PPO Pathway -->
         <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
           <dt class="order-2 mt-3 text-muted text-[13px]">Dual / PPO Pathway</dt>
           <dd class="order-1 num font-display text-[clamp(28px,2.8vw,42px)] leading-none text-fg">${ppoPathwayOffers}</dd>
           <dd class="order-3 label mt-2 text-[11px] text-faint">Internship + FT conversion</dd>
         </div>
 
-        <!-- 5. Number of Companies -->
+        <!-- 6. Internship Only -->
         <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
-          <dt class="order-2 mt-3 text-muted text-[13px]">Companies Recruiting</dt>
-          <dd class="order-1 num font-display text-[clamp(28px,2.8vw,42px)] leading-none text-fg">${totalCompanies}</dd>
-          <dd class="order-3 label mt-2 text-[11px] text-faint">Registered campus drives</dd>
+          <dt class="order-2 mt-3 text-muted text-[13px]">Internship Only</dt>
+          <dd class="order-1 num font-display text-[clamp(28px,2.8vw,42px)] leading-none text-fg">${internOnlyOffers}</dd>
+          <dd class="order-3 label mt-2 text-[11px] text-faint">Summer internships</dd>
         </div>
 
-        <!-- 6. Highest CTC / Stipend -->
+        <!-- 7. Highest CTC / Stipend -->
         <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
           <dt class="order-2 mt-3 text-muted text-[13px]">${is2028 ? 'Highest Stipend' : 'Highest CTC'}</dt>
           <dd class="order-1 num font-display text-[clamp(24px,2.4vw,36px)] leading-none text-fg text-ppo">${is2028 ? batch.stats?.highestStipend : highestCTC}</dd>
           <dd class="order-3 label mt-2 text-[11px] text-faint">${is2028 ? 'Barclays Summer Intern' : 'PhonePe SDE'}</dd>
         </div>
 
-        <!-- 7. Average CTC / Stipend -->
+        <!-- 8. Average CTC / Stipend -->
         <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
           <dt class="order-2 mt-3 text-muted text-[13px]">${is2028 ? 'Average Stipend' : 'Average CTC'}</dt>
           <dd class="order-1 num font-display text-[clamp(24px,2.4vw,36px)] leading-none text-fg">${is2028 ? batch.stats?.averageStipend : averageCTC}</dd>
           <dd class="order-3 label mt-2 text-[11px] text-faint">${is2028 ? 'Batch-wide mean stipend' : 'Batch-wide mean CTC'}</dd>
         </div>
 
-        <!-- 8. Median CTC / Stipend -->
+        <!-- 9. Median CTC / Stipend -->
         <div class="rounded-2xl border border-line bg-panel p-5 flex flex-col justify-between">
           <dt class="order-2 mt-3 text-muted text-[13px]">${is2028 ? 'Median Stipend' : 'Median CTC'}</dt>
           <dd class="order-1 num font-display text-[clamp(24px,2.4vw,36px)] leading-none text-fg">${is2028 ? batch.stats?.medianStipend : medianCTC}</dd>
