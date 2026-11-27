@@ -7,7 +7,7 @@ export const siteConfig = {
   // Canonical Site URL & SEO Metadata
   siteUrl: "https://spitplacements.vercel.app",
   seo: {
-    siteName: "Placed ’27 · SPIT Placements",
+    siteName: "SPIT Placements",
     defaultTitle: "Placed ’27 · SPIT Placement Statistics & Campus Recruitment Analytics",
     titleTemplate: "%s | SPIT Placements",
     defaultDescription: "Explore verified Sardar Patel Institute of Technology (SPIT) placement data, recruiter salary packages, stipend distributions, branch-wise statistics, and drive timelines for SPIT Mumbai.",

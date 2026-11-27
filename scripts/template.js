@@ -335,12 +335,18 @@ function pageTemplate({
   // Build JSON-LD structured data schemas
   const schemas = [];
 
-  // 1. WebSite Schema (with search action)
+  // 1. WebSite Schema (with search action & Site Name guidance)
   schemas.push({
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Placed ’27 · SPIT",
-    "alternateName": ["SPIT Placements", "Placed 27", "SPIT Mumbai Placements"],
+    "name": "SPIT Placements",
+    "alternateName": [
+      "SPIT Placement Statistics",
+      "Placed 27",
+      "Placed '27 · SPIT",
+      "SPIT Mumbai Placements",
+      "Sardar Patel Institute of Technology Placements"
+    ],
     "url": siteUrl + "/",
     "inLanguage": "en-IN",
     "description": siteConfig.seo.defaultDescription,
